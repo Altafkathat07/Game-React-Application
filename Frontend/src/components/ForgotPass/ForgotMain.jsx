@@ -6,7 +6,7 @@ function ForgotMain() {
   return (
     <>
       <div data-v-51f72da1="" className="mian forgot">
-      <Header />
+      <Header titel = "<" />
       <ForgotForm />
        <Footer />
       </div>

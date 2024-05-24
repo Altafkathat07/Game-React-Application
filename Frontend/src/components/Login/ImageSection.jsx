@@ -1,18 +1,33 @@
-import banner1  from '../../assets/images/back.c3244ab0.png';
+
 
 function ImageSection() {
   return (
     <>
-       <div data-v-a0753f48="" className="login-banner">
-                <div data-v-a0753f48="" className="bankPage c-row c-row-middle-center">
-                    <div data-v-a0753f48="" className="bank c-row c-row-middle-center" >
-                        <img data-v-a0753f48="" src={banner1} className="navbar-back" />
-                    </div>
-                </div>
-                {/* <h3 style="color: white; text-align: center;">Game</h3> */}
-            </div>
+      <div data-v-8752c961="" className="login__container-heading">
+        <h1 data-v-8752c961="" className="login__container-heading__title">
+          Log in
+        </h1>
+        <div data-v-8752c961="" className="login__container-heading__subTitle">
+          <div data-v-8752c961="">
+            Please log in with your phone number or email
+          </div>
+          <div data-v-8752c961="">
+            If you forget your password, please contact customer service
+          </div>
+        </div>
+      </div>
+      <div data-v-8752c961="" className="login_container-tab">
+        <div data-v-8752c961="" className="tab active">
+          <div data-v-8752c961="" className="phonebg phoneactive">
+          <i className="bi bi-phone"></i>
+          </div>
+          <div data-v-8752c961="" className="font30 phonefont30active">
+            Log in with phone
+          </div>
+        </div>
+      </div>
     </>
-  )
+  );
 }
 
-export default ImageSection
+export default ImageSection;

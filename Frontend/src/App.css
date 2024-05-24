@@ -645,7 +645,7 @@ input[type="number"] {
   height: 0.6rem !important;
 }
 .daman-lottery h3[data-v-4feef803] {
-  font-size: 0.45rem !important;
+  font-size: 0.46rem !important;
 }
 .daman-lottery .daman-btn[data-v-4feef803] {
   width: 2.0rem !important;
@@ -2557,6 +2557,14 @@ ul {
   width: 1em;
   height: 1em;
   object-fit: contain;
+}
+.navbar .navbar-left h3{
+  text-align: start;
+  font-size: 30px !important;
+}
+.msg[data-v-106b99c8]{
+  margin-right: 25px !important;
+  
 }
 .van-tabbar-item {
   display: -webkit-box;
