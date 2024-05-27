@@ -2,7 +2,7 @@ import Footer from "../Home/Footer"
 import Header from "../Home/Header"
 import ContentSection from "./ContentSection"
 import RegisterForm from "./RegisterForm"
-import '../../App.css'
+import '../../assets/home/css/index.css'
 import '../../assets/home/css/login.css'
 
 function RegisterMain() {

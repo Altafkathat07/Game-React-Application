@@ -1,7 +1,7 @@
 
 import ProfileDetail from "./ProfileDetail"
 import ProfileNav from "./ProfileNav"
-import '../../App.css'
+import '../../assets/home/css/index.css'
 import '../../assets/home/css/login.css'
 import '../../assets/admin/css/admin.css'
 

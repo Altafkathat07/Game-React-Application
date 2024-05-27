@@ -4,7 +4,7 @@ import GameSection from "./GameSection"
 import Header from "./Header"
 import HomeCom from "./HomeCom"
 import NoticeBar from "./NoticeBar"
-import '../../App.css'
+import '../../assets/home/css/index.css'
 import '../../assets/home/css/login.css'
 
 function Main() {

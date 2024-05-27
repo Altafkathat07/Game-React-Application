@@ -4,7 +4,8 @@ import LoginMain from "./Login/LoginMain";
 import RegisterMain from "./Register/RegisterMain";
 import ForgotMain from "./ForgotPass/ForgotMain";
 import ProfileMain from "./Profile/ProfileMain";
-import IndexMain from "./Admin/IndexPage/IndexMain";
+import IndexMain from "./Admin/IndexPage/AdminMain";
+import UiMain from "./Admin/UiManagment/UiMain";
 
 
 function AllPages() {
@@ -20,6 +21,7 @@ function AllPages() {
         <Route path="/forgot" element={<ForgotMain />} />
         <Route path="/main" element={<ProfileMain />} />
         <Route path="/admin" element={<IndexMain />} />
+        <Route path="/admin/uimanagemnt" element={<UiMain />} />
         
     </Routes>
     
