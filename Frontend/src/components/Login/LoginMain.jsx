@@ -2,6 +2,8 @@ import Footer from "../Home/Footer"
 import Header from "../Home/Header"
 import FormSection from "./FormSection"
 import ImageSection from "./ImageSection"
+import '../../App.css'
+import '../../assets/home/css/login.css'
 
 function LoginMain() {
   return (

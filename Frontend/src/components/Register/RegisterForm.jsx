@@ -2,12 +2,13 @@ import phoneImg from '../../assets/images/cellphone.png'
 import passImg from '../../assets/images/lock.png'
 import eye from '../../assets/images/eye.png'
 import invite from '../../assets/images/invitecode.png'
+import { Link } from 'react-router-dom'
 
 function RegisterForm() {
   return (
     <>
       <div data-v-8752c961="" className="login__container-form">
-        <form action="">
+        <form action="http://localhost:8888/api/webapi/register" method="post">
             <div data-v-8752c961="" className="tab-content activecontent">
                 <div data-v-0ce8d964="" data-v-8752c961="" className="signIn__container">
                     <div data-v-93f53084="" data-v-0ce8d964="" className="phoneInput__container">
@@ -101,7 +102,7 @@ function RegisterForm() {
                             <span data-v-57d49070="">Password</span>
                         </div>
                         <div data-v-57d49070="" className="passwordInput__container-input">
-                            <input data-v-57d49070="" id="passwordfield" type="password" placeholder="Please enterPassword" maxLength="32" autoComplete="on" required />
+                            <input data-v-57d49070="" id="passwordfield" type="password" name='pwd' placeholder="Please enterPassword" maxLength="32" autoComplete="on" required />
                             <img data-v-57d49070="" id="eyeicon" src={eye} className="eye" />
                         </div>
                     </div>
@@ -111,7 +112,7 @@ function RegisterForm() {
                             <span data-v-57d49070="">Invite Code</span>
                         </div>
                         <div data-v-57d49070="" className="passwordInput__container-input">
-                            <input data-v-57d49070="" id="invitecode" type="text" placeholder="Please Invite Code" maxLength="32" autoComplete="on" required />
+                            <input data-v-57d49070="" id="invitecode" type="text" name='invitecode' placeholder="Please Invite Code" maxLength="32" autoComplete="on" required />
                         </div>
                     </div>
                     <div data-v-0ce8d964="" className="signIn__container-remember">
@@ -124,8 +125,8 @@ function RegisterForm() {
                     <div className="alert-toast"></div>
         
                     <div data-v-0ce8d964="" className="signIn__container-button">
-                        <button data-v-0ce8d964="" className="active">Register</button>
-                        <button data-v-0ce8d964="" className="register"> <span> I have an account </span> Login</button>
+                        <button type='submit' data-v-0ce8d964="" className="active">Register</button>
+                      <Link to="/login"><button data-v-0ce8d964="" className="register"> <span> I have an account </span> Login</button></Link>
                     </div>
                     <div data-v-0ce8d964="" className="signIn_footer">
         

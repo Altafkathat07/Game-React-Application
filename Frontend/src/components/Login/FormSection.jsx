@@ -1,7 +1,7 @@
 import phoneImg from '../../assets/images/cellphone.png'
 import passImg from '../../assets/images/lock.png'
 import eye from '../../assets/images/eye.png'
-// import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 function FormSection() {
     const showPass = () => {
@@ -13,6 +13,7 @@ function FormSection() {
 
     <div data-v-8752c961="" className="login__container-form">
             <div data-v-8752c961="" className="tab-content activecontent">
+                <form action="http://localhost:8888/api/webapi/login" method='post'>
                 <div data-v-0ce8d964="" data-v-8752c961="" className="signIn__container">
                     <div data-v-93f53084="" data-v-0ce8d964="" className="phoneInput__container">
                         <div data-v-93f53084="" className="phoneInput__container-label">
@@ -119,8 +120,8 @@ function FormSection() {
                     <div className="alert-toast"></div>
         
                     <div data-v-0ce8d964="" className="signIn__container-button">
-                        <button data-v-0ce8d964="" className="active">Log in</button>
-                        <button data-v-0ce8d964="" className="register">Register</button>
+                        <button type='submit' data-v-0ce8d964="" className="active">Log in</button>
+                       <Link to="/register"> <button data-v-0ce8d964="" className="register">Register</button> </Link>
                     </div>
                     <div data-v-0ce8d964="" className="signIn_footer">
         
@@ -166,6 +167,7 @@ function FormSection() {
                     </div> */}
                     <div data-v-5acdbb67="" data-v-0ce8d964="" className="popups"></div>
                 </div>
+                </form>
             </div>
             <div data-v-8752c961="" className="tab-content">
                 <div data-v-5d3a4ff1="" data-v-8752c961="" className="signIn__container">
