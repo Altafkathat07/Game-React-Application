@@ -1,5 +1,8 @@
 import AdminNav from "../IndexPage/AdminNav"
 import AdminSidebar from "../IndexPage/AdminSidebar"
+import BannersForm from "./BannersForm"
+import NoticeForm from "./NoticeForm"
+import TermsForm from "./TermsForm"
 function UiMain() {
   return (
     <>
@@ -7,6 +10,11 @@ function UiMain() {
         <AdminNav />
         <div className="container-fluid page-body-wrapper">
           <AdminSidebar />
+          <div className="container">
+          <NoticeForm />
+          <TermsForm />
+          <BannersForm />
+          </div>
         </div>
      </div>
     </>

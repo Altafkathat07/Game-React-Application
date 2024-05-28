@@ -17920,7 +17920,7 @@ dl li {
 
 .navbar .navbar-menu-wrapper .search-field .input-group i {
   font-size: 17px;
-  margin-top: 20px;
+  margin-top: 15px;
   margin-right: 0;
   color: #9c9fa6;
 }
@@ -18860,7 +18860,7 @@ dl li {
   flex-grow: 1;
 }
 
-.navbar{
-  /* width: 100% !important; */
+#adminNav{
+  width: 100% !important;
 }
 /*# sourceMappingURL=style.css.map */

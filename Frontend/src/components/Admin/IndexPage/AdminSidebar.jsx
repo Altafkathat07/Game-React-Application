@@ -20,10 +20,10 @@ function AdminSidebar() {
                         </a>
                     </li>
                     <li className="nav-item">
-                        <a className="nav-link" href="index.html">
+                        <Link  to="/admin" className="nav-link">
                           <span className="menu-title">Dashboard</span>
                           <i className="mdi mdi-home menu-icon"></i>
-                        </a>
+                        </Link>
                     </li> 
                     <li className="nav-item">
                         <Link  to="/admin/uimanagemnt" className="nav-link">

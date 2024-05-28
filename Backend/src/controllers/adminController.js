@@ -11,9 +11,9 @@ let timeNow = Date.now();
 const termsAndCondition = async(req, res) => {
     let auth = req.cookies.auth;
     let term = req.body.term;
-    if ( !term || !auth) {
+    if ( !term ) {
         return res.status(200).json({
-            message: 'Failed',
+            message: 'Failed11',
             status: false,
             timeStamp: timeNow,
         });
@@ -22,9 +22,9 @@ const termsAndCondition = async(req, res) => {
     console.log(rows);
     
     if(rows[0].length === 0){
-        console.log("In the insert row")
         const sql = "INSERT INTO terms SET term = ?";
         await connection.execute(sql, [term]);
+        res.redirect("http://localhost:5173/admin/uimanagemnt")
         return res.status(200).json({
             message: 'Successful Inserted',
             status: true
@@ -33,6 +33,7 @@ const termsAndCondition = async(req, res) => {
 
     }else{
         await connection.query(`UPDATE terms SET term = ?`, [term]);
+        res.redirect("http://localhost:5173/admin/uimanagemnt")
         return res.status(200).json({
             message: 'Successful change',
             status: true,
@@ -63,7 +64,7 @@ const termsFetching = async(req, res) => {
 const notice = async(req, res) => {
     let auth = req.cookies.auth;
     let noti = req.body.notices;
-    if ( !noti || !auth) {
+    if ( !noti ) {
         return res.status(200).json({
             message: 'Failed',
             status: false,
@@ -76,6 +77,7 @@ const notice = async(req, res) => {
     if(rows[0].length === 0){
         const sql = "INSERT INTO notification SET notice = ?";
         await connection.execute(sql, [noti]);
+        res.redirect("http://localhost:5173/admin/uimanagemnt")
         return res.status(200).json({
             message: 'Successful Inserted',
             status: true
@@ -84,6 +86,7 @@ const notice = async(req, res) => {
 
     }else{
         await connection.query(`UPDATE notification SET notice = ?`, [noti]);
+        res.redirect("http://localhost:5173/admin/uimanagemnt");
         return res.status(200).json({
             message: 'Successful change',
             status: true,
@@ -135,31 +138,52 @@ const upload = multer({ storage: storage }).array('banners');
 const uploadBanner = async (req, res) => {
     try {
         // Handle file upload using multer
-        upload(req, res, async function (err) {
-            if (err instanceof multer.MulterError) {
-                console.error('Multer error:', err);
-                return res.status(400).json({ message: 'File upload error' });
-            } else if (err) {
-                console.error('Error uploading files:', err);
-                return res.status(500).json({ message: 'Internal server error111' });
-            }
+        // upload(req, res, async function (err) {
+        //     if (err instanceof multer.MulterError) {
+        //         console.error('Multer error:', err);
+        //         return res.status(400).json({ message: 'File upload error' });
+        //     } else if (err) {
+        //         console.error('Error uploading files:', err);
+        //         return res.status(500).json({ message: 'Internal server error111' });
+        //     }
 
-            // If files are successfully uploaded
-            const banners = req.files; // Access uploaded files
-            if (!banners || banners.length === 0) {
-                return res.status(400).json({ message: 'No files uploaded' });
-            }
+        //     // If files are successfully uploaded
+        //     const banners = req.files; // Access uploaded files
+        //     if (!banners || banners.length === 0) {
+        //         return res.status(400).json({ message: 'No files uploaded' });
+        //     }
 
-            // Process and save the files to storage
-            // Assuming each uploaded banner corresponds to a separate record in the database
-            for (const banner of banners) {
-                const filename = banner.filename;
-                // Save file information to MySQL database
-                await connection.query('INSERT INTO banners (filename) VALUES (?)', [filename]);
-            }
+        //     // Process and save the files to storage
+        //     // Assuming each uploaded banner corresponds to a separate record in the database
+        //     for (const banner of banners) {
+        //         const filename = banner.filename;
+        //         // Save file information to MySQL database
+        //         await connection.query('INSERT INTO banners (filename) VALUES (?)', [filename]);
+        //     }
 
-            return res.status(200).json({ message: 'Files uploaded successfully', status: true, files: banners });
-        });
+        //     return res.status(200).json({ message: 'Files uploaded successfully', status: true, files: banners });
+        // });
+        upload(req, res, async (err) => {
+            if (err) {
+              res.status(400).send({err, message: "this is the error",});
+            } else {
+              if (req.files == undefined) {
+                res.status(400).send('No file selected');
+              } else {
+                // Insert file information into MySQL
+                let values = req.files.map(file => [file.filename, file.path]);
+                let sql = 'INSERT INTO banners (filename) VALUES ?';
+                db.query(sql, [values], (err, result) => {
+                  if (err) {
+                    throw err
+                    console.log("this is the error")
+                };
+
+                  res.send('Files uploaded and information saved to database');
+                });
+              }
+            }
+          });
     } catch (error) {
         console.error('Error uploading files:', error);
         return res.status(500).json({ message: 'Internal server error' });

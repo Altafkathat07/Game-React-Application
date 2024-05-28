@@ -1,4 +1,4 @@
-
+import audioImg from '../../assets/images/audio.webp'
 
 function ProfileNav() {
   return (
@@ -8,7 +8,7 @@ function ProfileNav() {
                 <div data-v-106b99c8="" className="navbar-title">Mine </div>
                 <div data-v-106b99c8="" className="navbar-right" >
                     <div data-v-8cd483ca="" data-v-106b99c8="" className="c-row">
-                        <img data-v-8cd483ca="" data-v-106b99c8="" src="/images/audio.webp" className="audio" />
+                        <img data-v-8cd483ca="" data-v-106b99c8="" src={audioImg} className="audio" />
                     </div>
                 </div>
             </div>

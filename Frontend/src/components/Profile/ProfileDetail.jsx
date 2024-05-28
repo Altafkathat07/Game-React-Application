@@ -1,4 +1,4 @@
-
+import avatar from '../../assets/images/avatar.svg'
 
 function ProfileDetail() {
   return (
@@ -7,7 +7,7 @@ function ProfileDetail() {
         <div data-v-8cd483ca="" className="c-row c-row-between c-row-middle state-box c-pr">
             <div data-v-8cd483ca="" className="c-row c-row-middle">
                 <div data-v-8cd483ca="" className="user-img">
-                    <img data-v-8cd483ca="" src="/images/avatar.svg" className="img" />
+                    <img data-v-8cd483ca="" src={avatar} className="img" />
                 </div>
                 <div data-v-8cd483ca="" className="p-l-10 infoName">
                     <div data-v-8cd483ca="" className="name mb3 c-row c-row-middle">  </div>

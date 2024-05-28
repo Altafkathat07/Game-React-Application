@@ -12,9 +12,9 @@ const initWebRouter = (app) => {
     router.get('/api/webapi/admin/privacy-fetching', adminController.termsFetching);
     router.get('/api/webapi/admin/notification-fetching', adminController.noticeFetching);
 
-    router.post('/api/webapi/admin/terms', middlewareController,adminController.termsAndCondition);
-    router.post('/api/webapi/admin/notice', middlewareController,adminController.notice);
-    router.post('/api/webapi/admin/upload-banner', middlewareController, adminController.uploadBanner);
+    router.post('/api/webapi/admin/terms', adminController.termsAndCondition);
+    router.post('/api/webapi/admin/notice',   adminController.notice);
+    router.post('/api/webapi/admin/upload-banner', adminController.uploadBanner);
 
 
    
