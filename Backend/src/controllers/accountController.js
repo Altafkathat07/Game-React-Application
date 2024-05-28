@@ -56,7 +56,7 @@ const register = async(req, res) => {
     let code = randomString(5) + randomNumber(10000, 99999);
     let ip = ipAddress(req);
     let time = timeCreate();
-    console.log(username, pwd, invitecode)
+    // console.log(username, pwd, invitecode)
     if (!username || !pwd || !invitecode) {
         // console.log(username, pwd, invitecode )
         return res.status(200).json({

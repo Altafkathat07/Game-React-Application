@@ -118,7 +118,7 @@ function RegisterForm() {
                     <div data-v-0ce8d964="" className="signIn__container-remember">
                         <div data-v-0ce8d964="" role="checkbox" className="van-checkbox" tabIndex="0" aria-checked="true">
                             <div className="van-checkbox__icon van-checkbox__icon--round van-checkbox__icon--checked"><i className="van-badge__wrapper van-icon van-icon-success" ></i></div>
-                            <span className="van-checkbox__label">I have read and agree  <span data-v-f2791930="">【Privacy Agreement】</span> </span>
+                            <span className="van-checkbox__label">I have read and agree  <Link to="/privacy-agreement"><span data-v-f2791930="">【Privacy Agreement】</span></Link> </span>
                         </div>
                 
                     </div>

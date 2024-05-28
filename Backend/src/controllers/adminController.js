@@ -11,9 +11,9 @@ let timeNow = Date.now();
 const termsAndCondition = async(req, res) => {
     let auth = req.cookies.auth;
     let term = req.body.term;
-    if ( !term) {
+    if ( !term || !auth) {
         return res.status(200).json({
-            message: 'Failed22',
+            message: 'Failed',
             status: false,
             timeStamp: timeNow,
         });
@@ -26,7 +26,7 @@ const termsAndCondition = async(req, res) => {
         const sql = "INSERT INTO terms SET term = ?";
         await connection.execute(sql, [term]);
         return res.status(200).json({
-            message: 'Successful Inserted 22',
+            message: 'Successful Inserted',
             status: true
         })
 
@@ -39,6 +39,79 @@ const termsAndCondition = async(req, res) => {
         });
     }
 }
+
+const termsFetching = async(req, res) => {
+    const rows = await connection.query(`SELECT * FROM terms LIMIT 1`)
+    console.log(rows);
+    
+    if(rows[0].length === 1){
+        const data = rows[0]
+        return res.status(200).json({
+            message: 'Successful Fetching',
+            status: true,
+            data: data
+        })
+    }else{
+        return res.status(202).json({
+            message: 'something went wrong while fetching Privacy Agreement',
+            status: false,
+        })
+    }
+}
+
+
+const notice = async(req, res) => {
+    let auth = req.cookies.auth;
+    let noti = req.body.notices;
+    if ( !noti || !auth) {
+        return res.status(200).json({
+            message: 'Failed',
+            status: false,
+            timeStamp: timeNow,
+        });
+    }
+    const rows = await connection.query(`SELECT * FROM notification LIMIT 1`)
+    // console.log(rows);
+    
+    if(rows[0].length === 0){
+        const sql = "INSERT INTO notification SET notice = ?";
+        await connection.execute(sql, [noti]);
+        return res.status(200).json({
+            message: 'Successful Inserted',
+            status: true
+        })
+
+
+    }else{
+        await connection.query(`UPDATE notification SET notice = ?`, [noti]);
+        return res.status(200).json({
+            message: 'Successful change',
+            status: true,
+        });
+    }
+}
+
+const noticeFetching = async(req, res) => {
+    const rows = await connection.query(`SELECT * FROM notification LIMIT 1`)
+    console.log(rows);
+    
+    if(rows[0].length === 1){
+        const data = rows[0]
+        return res.status(200).json({
+            message: 'Successful Fetching',
+            status: true,
+            data: data
+        })
+    }else{
+        return res.status(202).json({
+            message: 'something went wrong while fetching Privacy Agreement',
+            status: false,
+        })
+    }
+}
+
+
+
 
 // Set up multer storage
 const currentDirectory = process.cwd();
@@ -127,6 +200,9 @@ const uploadBanner = async (req, res) => {
 
 module.exports = {
     termsAndCondition,
-    uploadBanner
+    uploadBanner,
+    notice,
+    termsFetching,
+    noticeFetching
 
 }
