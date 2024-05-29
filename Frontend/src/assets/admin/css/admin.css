@@ -18510,7 +18510,7 @@ dl li {
 }
 
 .sidebar .nav .nav-item:hover {
-  background: #fcfcfc;
+  /* background: #fcfcfc; */
 }
 
 .sidebar .nav .nav-item.nav-profile .nav-link {

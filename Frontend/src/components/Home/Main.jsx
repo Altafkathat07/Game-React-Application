@@ -10,7 +10,7 @@ import '../../assets/home/css/login.css'
 function Main() {
   return (
     <div id="app">
-		<div data-v-432e6ed0="" className="home mian game">
+		<div data-v-432e6ed0="" className="home mian game" id="application">
             <Header />
             <Banner />
             <NoticeBar />

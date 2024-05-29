@@ -113,9 +113,6 @@ const noticeFetching = async(req, res) => {
     }
 }
 
-
-
-
 // Set up multer storage
 const currentDirectory = process.cwd();
 
@@ -135,60 +132,75 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage: storage }).array('banners');
 
+// const uploadBanner = async (req, res) => {
+//     try {
+//         // Handle file upload using multer
+//         upload(req, res, async function (err) {
+//             if (err instanceof multer.MulterError) {
+//                 console.error('Multer error:', err);
+//                 return res.status(400).json({ message: 'File upload error' });
+//             } else if (err) {
+//                 console.error('Error uploading files:', err);
+//                 return res.status(500).json({ message: 'Internal server error111' });
+//             }
+
+//             // If files are successfully uploaded
+//             const banners = req.files; // Access uploaded files
+//             if (!banners || banners.length === 0) {
+//                 return res.status(400).json({ message: 'No files uploaded' });
+//             }
+
+//             // Process and save the files to storage
+//             // Assuming each uploaded banner corresponds to a separate record in the database
+//             for (const banner of banners) {
+//                 const filename = banner.filename;
+//                 // Save file information to MySQL database
+//                 await connection.query('INSERT INTO banners (filename) VALUES (?)', [filename]);
+//             }
+
+//             return res.status(200).json({ message: 'Files uploaded successfully', status: true, files: banners });
+//         });
+//     }catch (error) {
+//         console.error('Error uploading files:', error);
+//         return res.status(500).json({ message: 'Internal server error' });
+//     }
+// };
+
 const uploadBanner = async (req, res) => {
     try {
         // Handle file upload using multer
-        // upload(req, res, async function (err) {
-        //     if (err instanceof multer.MulterError) {
-        //         console.error('Multer error:', err);
-        //         return res.status(400).json({ message: 'File upload error' });
-        //     } else if (err) {
-        //         console.error('Error uploading files:', err);
-        //         return res.status(500).json({ message: 'Internal server error111' });
-        //     }
-
-        //     // If files are successfully uploaded
-        //     const banners = req.files; // Access uploaded files
-        //     if (!banners || banners.length === 0) {
-        //         return res.status(400).json({ message: 'No files uploaded' });
-        //     }
-
-        //     // Process and save the files to storage
-        //     // Assuming each uploaded banner corresponds to a separate record in the database
-        //     for (const banner of banners) {
-        //         const filename = banner.filename;
-        //         // Save file information to MySQL database
-        //         await connection.query('INSERT INTO banners (filename) VALUES (?)', [filename]);
-        //     }
-
-        //     return res.status(200).json({ message: 'Files uploaded successfully', status: true, files: banners });
-        // });
-        upload(req, res, async (err) => {
+        upload(req, res, async function (err) {
             if (err) {
-              res.status(400).send({err, message: "this is the error",});
-            } else {
-              if (req.files == undefined) {
-                res.status(400).send('No file selected');
-              } else {
-                // Insert file information into MySQL
-                let values = req.files.map(file => [file.filename, file.path]);
-                let sql = 'INSERT INTO banners (filename) VALUES ?';
-                db.query(sql, [values], (err, result) => {
-                  if (err) {
-                    throw err
-                    console.log("this is the error")
-                };
-
-                  res.send('Files uploaded and information saved to database');
-                });
-              }
+                console.error('Error uploading files:', err);
+                if (err instanceof multer.MulterError) {
+                    return res.status(400).json({ message: 'File upload error' });
+                } else {
+                    return res.status(500).json({ message: 'Internal server error' });
+                }
             }
-          });
+
+            // If files are successfully uploaded
+            const banners = req.files; // Access uploaded files
+            if (!banners || banners.length === 0) {
+                return res.status(400).json({ message: 'No files uploaded' });
+            }
+
+            // Process and save the files to storage
+            // Assuming each uploaded banner corresponds to a separate record in the database
+            for (const banner of banners) {
+                const filename = banner.filename;
+                // Save file information to MySQL database
+                await connection.query('INSERT INTO banners (filename) VALUES (?)', [filename]);
+            }
+
+            return res.status(200).json({ message: 'Files uploaded successfully', status: true, files: banners });
+        });
     } catch (error) {
         console.error('Error uploading files:', error);
         return res.status(500).json({ message: 'Internal server error' });
     }
 };
+
 
 // const getBanners = async (req, res) => {
 //     try {

@@ -5,7 +5,7 @@ const middlewareController = async(req, res, next) => {
     if (!auth) return res.redirect("http://localhost:5173/login");
     try {
         const [rows] = await connection.execute('SELECT `token`, `status` FROM `users` WHERE `token` = ? AND `veri` = 1', [auth]);
-        if(!rows) {
+        if(!rows || rows.length === 0) {
             res.clearCookie("auth");
             return res.end();
         };
