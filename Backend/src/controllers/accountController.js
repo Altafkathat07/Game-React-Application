@@ -2,7 +2,12 @@ import connection from "../config/connectDB";
 import jwt from 'jsonwebtoken'
 import md5 from "md5";
 import request from 'request';
-import e from "express";
+import e, { response } from "express";
+import fast2sms from  "fast-two-sms";
+
+
+
+
 require('dotenv').config();
 
 let timeNow = Date.now();
@@ -46,8 +51,51 @@ const timeCreate = () => {
     return time;
 }
 
+const otpVerify = async (req, res) =>{
+
+    let { username} = req.body;
+    let otp = randomNumber(100000, 999999);
+    if (!username ) {
+        return res.status(200).json({
+            message: 'ERROR!!!',
+            status: false
+        });
+    }
+
+    if (username.length < 9 || username.length > 10 || !isNumber(username)) {
+        return res.status(200).json({
+            message: 'phone error',
+            status: false
+        });
+    }
+    const option = {
+        authorization: "gT1GIrhD4UNvpOQdBWAutKm38nfVPZqwxYkF6e79yElMjoSCbzz01dLDEKxYM28gt9a3XTkOB4ifeyHc",
+        message: `your otp is : ` +  otp,
+        number: [username]
+    
+    }
+    console.log(username, option)
+    
+    fast2sms.sendMessage(option).then((response)=>{
+        console.log(response)
+        return res.status(200).json({
+            message: 'otp send successfully',
+            status: true
+        });
+    }).catch((error) =>{
+        console.log(option)
+        console.log(error)
+        return res.status(200).json({
+            message: 'something went wrong while sending otp',
+            status: false
+        });
+    })
+}
+
+
 
 const register = async(req, res) => {
+    
     let now = new Date().getTime();
     let { username, pwd, invitecode } = req.body;
     let id_user = randomNumber(10000, 99999);
@@ -71,6 +119,8 @@ const register = async(req, res) => {
             status: false
         });
     }
+
+
 
     try {
         const [check_u] = await connection.query('SELECT * FROM users WHERE phone = ?', [username]);
@@ -133,21 +183,42 @@ const login = async(req, res) => {
     }
 
     try {
+
         const [rows] = await connection.query('SELECT * FROM users WHERE phone = ? AND password = ? ', [username, md5(pwd)]);
+        // console.log("first : " +rows)
         if (rows.length == 1) {
+            // console.log("second : " +rows)
             if (rows[0].status == 1) {
+                // console.log("third : " +rows)
                 const { password, money, ip, veri, ip_address, status, time, ...others } = rows[0];
+                // console.log("four : " + password)
                 const accessToken = jwt.sign({
                     user: {...others },
                     timeNow: timeNow
                 }, process.env.ACCESS_TOKEN_SECRET, { expiresIn: "1d" });
+
+                // console.log("five - accessToken:", accessToken);
+                const [popupRows] = await connection.query('SELECT * FROM popup LIMIT 1');
+                // const popupMessage = popupRows.length > 0 ? popupRows[0].message : null;
+                const pop = popupRows[0].message;
+                if(!pop){
+                    return res.status(208).json({
+                        message: 'Error Popup',
+                        status: false,
+                    })
+                }
                 await connection.execute('UPDATE `users` SET `token` = ? WHERE `phone` = ? ', [md5(accessToken), username]);
-                res.redirect("http://localhost:5173/")
+                
+
+                // req.session.popupMessage = pop;
+                // res.redirect("http://localhost:5173/")
                 return res.status(200).json({
                     message: 'Login Success',
                     status: true,
                     token: accessToken,
-                    value: md5(accessToken)
+                    value: md5(accessToken),
+                    popup: pop,
+                    redirectTo: 'http://localhost:5173/'
                 }); 
             } else {
                 return res.status(410).json({
@@ -170,13 +241,32 @@ const login = async(req, res) => {
 
 }
 
+const UserDetails = async(req, res) =>{
+    const [rows] = await connection.query('SELECT * FROM users');
+    console.log(rows);
+    if(!rows || rows.length === 0){
+        return res.status(200).json({
+            message: 'something went wrong while user fetching user details',
+            status: false
+        });
+    }
+    const data = rows[0];
+    console.log(data);
+    return res.status(200).json({
+        message: 'user Details fetch success',
+        status: false,
+        data: data
+    });
+}
+
 module.exports = {
     register,
-    login
+    login,
+    otpVerify,
+    UserDetails,
     // loginPage,
     // registerPage,
     // forgotPage,
-    // verifyCode,
     // verifyCodePass,
     // forGotPassword
 }       

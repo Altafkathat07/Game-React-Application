@@ -30,6 +30,12 @@ function AdminSidebar() {
                           <span className="menu-title">UI Managment</span>
                           <i className="mdi mdi-home menu-icon"></i>
                         </Link>
+                    </li>  
+                    <li className="nav-item">
+                        <Link  to="/admin/user-details" className="nav-link">
+                          <span className="menu-title">User Managment</span>
+                          <i className="mdi mdi-home menu-icon"></i>
+                        </Link>
                     </li> 
                     
                     

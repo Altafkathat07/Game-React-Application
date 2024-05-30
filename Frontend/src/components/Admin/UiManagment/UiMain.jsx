@@ -2,6 +2,7 @@ import AdminNav from "../IndexPage/AdminNav"
 import AdminSidebar from "../IndexPage/AdminSidebar"
 import BannersForm from "./BannersForm"
 import NoticeForm from "./NoticeForm"
+import PopupForm from "./PopupForm"
 import TermsForm from "./TermsForm"
 function UiMain() {
   return (
@@ -13,6 +14,7 @@ function UiMain() {
           <div className="container">
           <NoticeForm />
           <TermsForm />
+          <PopupForm />
           <BannersForm />
           </div>
         </div>

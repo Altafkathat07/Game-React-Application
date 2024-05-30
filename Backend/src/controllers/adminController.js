@@ -94,6 +94,39 @@ const notice = async(req, res) => {
     }
 }
 
+const Popup = async(req, res) => {
+    let auth = req.cookies.auth;
+    let msg = req.body.message;
+    if ( !msg ) {
+        return res.status(200).json({
+            message: 'Failed',
+            status: false,
+            timeStamp: timeNow,
+        });
+    }
+    const rows = await connection.query(`SELECT * FROM popup LIMIT 1`)
+    // console.log(rows);
+    
+    if(rows[0].length === 0){
+        const sql = "INSERT INTO popup SET message = ?";
+        await connection.execute(sql, [msg]);
+        res.redirect("http://localhost:5173/admin/uimanagemnt")
+        // return res.status(200).json({
+        //     message: 'Successful Inserted',
+        //     status: true
+        // })
+
+
+    }else{
+        await connection.query(`UPDATE popup SET message = ?`, [msg]);
+        res.redirect("http://localhost:5173/admin/uimanagemnt");
+        // return res.status(200).json({
+        //     message: 'Successful change',
+        //     status: true,
+        // });
+    }
+}
+
 const noticeFetching = async(req, res) => {
     const rows = await connection.query(`SELECT * FROM notification LIMIT 1`)
     console.log(rows);
@@ -174,9 +207,11 @@ const uploadBanner = async (req, res) => {
                 console.error('Error uploading files:', err);
                 if (err instanceof multer.MulterError) {
                     return res.status(400).json({ message: 'File upload error' });
-                } else {
-                    return res.status(500).json({ message: 'Internal server error' });
+                } else{
+                    return res.status(400).json({ message: 'Internal server error' });
+                    
                 }
+                
             }
 
             // If files are successfully uploaded
@@ -239,6 +274,7 @@ module.exports = {
     uploadBanner,
     notice,
     termsFetching,
-    noticeFetching
+    noticeFetching,
+    Popup,
 
 }

@@ -7,6 +7,7 @@ import ProfileMain from "./Profile/ProfileMain";
 import IndexMain from "./Admin/IndexPage/AdminMain";
 import UiMain from "./Admin/UiManagment/UiMain";
 import PrivacyMain from "./PrivacyAgreement/PrivacyMain";
+import UserMain from "./Admin/UserDetails/UserMain";
 
 
 function AllPages() {
@@ -23,6 +24,7 @@ function AllPages() {
         <Route path="/main" element={<ProfileMain />} />
         <Route path="/admin" element={<IndexMain />} />
         <Route path="/admin/uimanagemnt" element={<UiMain />} />
+        <Route path="/admin/user-details" element={<UserMain />} />
         <Route path="/privacy-agreement" element={<PrivacyMain />} />
         
     </Routes>
