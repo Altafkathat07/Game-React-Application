@@ -8,6 +8,9 @@ import IndexMain from "./Admin/IndexPage/AdminMain";
 import UiMain from "./Admin/UiManagment/UiMain";
 import PrivacyMain from "./PrivacyAgreement/PrivacyMain";
 import UserMain from "./Admin/UserDetails/UserMain";
+import SettingMain from "./Admin/Setting/SettingMain";
+import UserProfileMain from "./UserProfile/UserProfileMain";
+import BankMain from "./UserBankDetail/BankMain";
 
 
 function AllPages() {
@@ -22,9 +25,12 @@ function AllPages() {
         <Route path="/register" element={<RegisterMain />} />
         <Route path="/forgot" element={<ForgotMain />} />
         <Route path="/main" element={<ProfileMain />} />
+        <Route path="/profile" element={<UserProfileMain />} />
+        <Route path="/profile/bank-details" element={<BankMain />} />
         <Route path="/admin" element={<IndexMain />} />
         <Route path="/admin/uimanagemnt" element={<UiMain />} />
         <Route path="/admin/user-details" element={<UserMain />} />
+        <Route path="/admin/settings" element={<SettingMain />} />
         <Route path="/privacy-agreement" element={<PrivacyMain />} />
         
     </Routes>

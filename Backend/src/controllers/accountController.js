@@ -145,10 +145,10 @@ const register = async(req, res) => {
                     await connection.execute(sql, [id_user, username, name_user, md5(pwd), 0, code, invitecode, "ctv", 1, otp2, ip, 1, time]);
                     // await connection.execute('INSERT INTO point_list SET phone = ?', [username]);
                     res.redirect('http://localhost:5173/login')
-                    return res.status(200).json({
-                        message: 'Register Success',
-                        status: true
-                    });
+                    // return res.status(200).json({
+                    //     message: 'Register Success',
+                    //     status: true
+                    // });
                 } else {
                     return res.status(200).json({
                         message: 'IP address has been registered',
@@ -211,14 +211,13 @@ const login = async(req, res) => {
                 
 
                 // req.session.popupMessage = pop;
-                // res.redirect("http://localhost:5173/")
+                res.redirect("http://localhost:5173/")
                 return res.status(200).json({
                     message: 'Login Success',
                     status: true,
                     token: accessToken,
                     value: md5(accessToken),
                     popup: pop,
-                    redirectTo: 'http://localhost:5173/'
                 }); 
             } else {
                 return res.status(410).json({
@@ -243,18 +242,18 @@ const login = async(req, res) => {
 
 const UserDetails = async(req, res) =>{
     const [rows] = await connection.query('SELECT * FROM users');
-    console.log(rows);
+    // console.log(rows);
     if(!rows || rows.length === 0){
         return res.status(200).json({
             message: 'something went wrong while user fetching user details',
             status: false
         });
     }
-    const data = rows[0];
+    const data = rows;
     console.log(data);
     return res.status(200).json({
         message: 'user Details fetch success',
-        status: false,
+        status: true,
         data: data
     });
 }

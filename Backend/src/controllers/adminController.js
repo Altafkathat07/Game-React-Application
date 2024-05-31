@@ -146,6 +146,69 @@ const noticeFetching = async(req, res) => {
     }
 }
 
+const DeleteUser = async (req, res) => {
+    const { id } =  req.params;
+    console.log(id)
+    if(!id){
+        return res.status(202).json({
+            message: 'something went wrong while id fetching',
+            status: false,
+        })
+        
+    }
+    console.log(id)
+    const [user] = await connection.query('SELECT * FROM users WHERE id = ? ', [id]) ;
+   if (user.length === 0) {
+    return res.status(202).json({
+        message: 'user id not find',
+        status: false,
+    })
+   } 
+
+   await connection.query('DELETE FROM users WHERE id = ?', [id])
+   res.redirect("http://localhost:5173/admin/user-details")
+
+}
+
+const UserStatus = async (req, res) => {
+    const { id } = req.params;
+  const { status } = req.body;
+    if(!id || !status){
+        return res.status(202).json({
+            message: 'something went wrong while id fetching',
+            status: false,
+        })
+        
+    }
+    try {
+        const [user] = await connection.query('SELECT * FROM users WHERE id = ?', [id]);
+        
+        if (user.length === 0) {
+          return res.status(404).json({
+            message: 'User not found',
+            status: false,
+          });
+        }
+    
+        await connection.query('UPDATE users SET status = ? WHERE id = ?', [status, id]);
+    
+        return res.status(200).json({
+          message: 'User status updated successfully',
+          status: true,
+        });
+      } catch (error) {
+        console.error('Error updating user status:', error);
+        return res.status(500).json({
+          message: 'Server error',
+          status: false,
+        });
+      }
+   
+
+}
+
+
+
 // Set up multer storage
 const currentDirectory = process.cwd();
 
@@ -276,5 +339,7 @@ module.exports = {
     termsFetching,
     noticeFetching,
     Popup,
+    DeleteUser,
+    UserStatus,
 
 }
