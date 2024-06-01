@@ -5,7 +5,7 @@ function TableContent() {
     const [users, setUsers] = useState([]);
 
     useEffect(() => {
-      fetch('http://localhost:8888/api/webapi/admin/user-details')
+      fetch('/api/webapi/admin/user-details')
         .then((res) => {
           if (!res.ok) {
             throw new Error('Network data was not ok ' + res.statusText);
@@ -35,7 +35,7 @@ function TableContent() {
     const toggleStatus = async (userId, currentStatus) => {
       const newStatus = currentStatus === 1 ? 0 : 1;
       try {
-        const response = await fetch(`http://localhost:8888/api/webapi/admin/update-user-status/:id/${userId}`, {
+        const response = await fetch(`/api/webapi/admin/update-user-status/:id/${userId}`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
@@ -89,12 +89,12 @@ function TableContent() {
                     </button>
               </td>
               <td>
-                <form action={`http://localhost:8888/api/webapi/admin/user-edit/${user.id}`} method="post">
+                <form action={`/api/webapi/admin/user-edit/${user.id}`} method="post">
                 <button type="button" className="btn btn-link btn-sm btn-rounded">
                   Edit
                 </button> 
                 </form>
-                <form action={`http://localhost:8888/api/webapi/admin/user-delete/${user.id}`} method="post">
+                <form action={`/api/webapi/admin/user-delete/${user.id}`} method="post">
                 <button type="submit" className="btn btn-link btn-sm btn-rounded">
                   Delete
                 </button>

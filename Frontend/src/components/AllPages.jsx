@@ -11,6 +11,8 @@ import UserMain from "./Admin/UserDetails/UserMain";
 import SettingMain from "./Admin/Setting/SettingMain";
 import UserProfileMain from "./UserProfile/UserProfileMain";
 import BankMain from "./UserBankDetail/BankMain";
+import WalletMain from "./Wallet/WalletMain";
+import PromotionMain from "./Promotion/PromotionMain";
 
 
 function AllPages() {
@@ -25,6 +27,8 @@ function AllPages() {
         <Route path="/register" element={<RegisterMain />} />
         <Route path="/forgot" element={<ForgotMain />} />
         <Route path="/main" element={<ProfileMain />} />
+        <Route path="/promotion" element={<PromotionMain />} />
+        <Route path="/wallet" element={<WalletMain />} />
         <Route path="/profile" element={<UserProfileMain />} />
         <Route path="/profile/bank-details" element={<BankMain />} />
         <Route path="/admin" element={<IndexMain />} />

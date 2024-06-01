@@ -7,7 +7,7 @@ let router = express.Router();
 const initWebRouter = (app) => {
 
     router.post('/api/webapi/register', accountController.register);
-    router.post('/api/webapi/register/otp', accountController.otpVerify);
+    // router.post('/api/webapi/register/otp', accountController.otpVerify);
     router.post('/api/webapi/login', accountController.login);
 
     router.get('/api/webapi/admin/privacy-fetching', adminController.termsFetching);

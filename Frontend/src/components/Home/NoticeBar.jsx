@@ -5,7 +5,7 @@ function NoticeBar() {
 	const [notice, setNotice] = useState('');
 	const [style, setStyle] = useState({});
     useEffect(() => {
-        fetch('http://localhost:8888/api/webapi/admin/notification-fetching')
+        fetch('/api/webapi/admin/notification-fetching')
           .then((res) => {
             if (!res.ok) {
               throw new Error('Network response was not ok ' + res.statusText);

@@ -13903,7 +13903,7 @@ h6,
 }
 
 p {
-  font-size: 0.875rem;
+  font-size: 0.675rem;
 }
 
 h1,
@@ -13936,10 +13936,10 @@ h6,
   font-size: .9375rem;
 }
 
-p {
+/* p {
   font-size: .9375rem;
   line-height: 1.5;
-}
+} */
 
 .display-1 {
   font-size: 3.75rem;
@@ -18863,4 +18863,12 @@ dl li {
 #adminNav{
   width: 100% !important;
 }
-/*# sourceMappingURL=style.css.map */
+.percentage{
+  width: 50px;
+}
+.levelForm{
+  display: flex;
+  justify-content: space-between;
+  /* align-items: center; */
+}
+

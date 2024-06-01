@@ -13,7 +13,7 @@ function FormSection() {
 
     <div data-v-8752c961="" className="login__container-form">
             <div data-v-8752c961="" className="tab-content activecontent">
-                <form action="http://localhost:8888/api/webapi/login" method='post'>
+                <form action="/api/webapi/login" method='post'>
                 <div data-v-0ce8d964="" data-v-8752c961="" className="signIn__container">
                     <div data-v-93f53084="" data-v-0ce8d964="" className="phoneInput__container">
                         <div data-v-93f53084="" className="phoneInput__container-label">
@@ -245,7 +245,7 @@ function FormSection() {
         </div>
       {/* <div data-v-a0753f48="" className="login-box" >
                 <div data-v-a0753f48="" className="tit">Login</div>
-                <form action="http://localhost:8888/api/webapi/login" method="post">
+                <form action="/api/webapi/login" method="post">
                 <div data-v-a0753f48="" className="mian-from">
                     <div data-v-a0753f48="" className="lab">
                          <span data-v-a0753f48=""> </span>

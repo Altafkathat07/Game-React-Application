@@ -7,7 +7,7 @@ import '../../assets/home/css/login.css'
 function PrivacyMain() {
     const [terms, setTerms] = useState('');
     useEffect(() => {
-         fetch('http://localhost:8888/api/webapi/admin/privacy-fetching')
+         fetch('/api/webapi/admin/privacy-fetching')
           .then((res) => {
             if (!res.ok) {
               throw new Error('Network response was not ok ' + res.statusText);

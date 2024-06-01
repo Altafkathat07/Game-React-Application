@@ -8,7 +8,7 @@ function RegisterForm() {
   return (
     <>
       <div data-v-8752c961="" className="login__container-form">
-        <form action="http://localhost:8888/api/webapi/register" method="post">
+        <form action="/api/webapi/register" method="post">
             <div data-v-8752c961="" className="tab-content activecontent">
                 <div data-v-0ce8d964="" data-v-8752c961="" className="signIn__container">
                     <div data-v-93f53084="" data-v-0ce8d964="" className="phoneInput__container">
@@ -97,6 +97,12 @@ function RegisterForm() {
                         </div>
                     </div>
                     <div data-v-57d49070="" data-v-0ce8d964="" className="passwordInput__container">
+                    
+                        <div data-v-57d49070="" className="passwordInput__container-input">
+                            <input data-v-57d49070="" id="otp" type="text" name='otp' placeholder="Please Enter OTP" maxLength="32" autoComplete="on" required /><button type="submit" className='getOtp'>Get OTP</button>
+                        </div>
+                    </div>
+                    <div data-v-57d49070="" data-v-0ce8d964="" className="passwordInput__container">
                         <div data-v-57d49070="" className="passwordInput__container-label">
                             <img data-v-57d49070="" className="passwordInput__container-label__icon" data-origin="https://www.bigdaddygame2.com/assets/png/password-b827c2b3.png" src={passImg} />
                             <span data-v-57d49070="">Password</span>
@@ -114,7 +120,7 @@ function RegisterForm() {
                         <div data-v-57d49070="" className="passwordInput__container-input">
                             <input data-v-57d49070="" id="invitecode" type="text" name='invitecode' placeholder="Please Invite Code" maxLength="32" autoComplete="on" required />
                         </div>
-                    </div>
+                    </div> 
                     <div data-v-0ce8d964="" className="signIn__container-remember">
                         <div data-v-0ce8d964="" role="checkbox" className="van-checkbox" tabIndex="0" aria-checked="true">
                             <div className="van-checkbox__icon van-checkbox__icon--round van-checkbox__icon--checked"><i className="van-badge__wrapper van-icon van-icon-success" ></i></div>
