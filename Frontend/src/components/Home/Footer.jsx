@@ -24,7 +24,8 @@ function Footer() {
             </div>
             </Link>
         </div>
-        <div className="van-tabbar-item" data-url="/checkIn" >
+        <div className="van-tabbar-item" >
+        <Link to="/activity">
             <div className="van-tabbar-item__icon">
                 
             </div>
@@ -32,10 +33,12 @@ function Footer() {
                 <div>
                     <img src={check} />
                 </div>
-                <span className="name">Attendance</span>
+                <span className="name">Activity</span>
             </div>
+            </Link>
         </div>
-        <div className="van-tabbar-item" data-url="/promotion" >
+        <div className="van-tabbar-item" >
+        <Link to="/promotion">
             <div className="van-tabbar-item__icon">
                 
             </div>
@@ -45,8 +48,10 @@ function Footer() {
                 </div>
                 <span className="name">Promotion</span>
             </div>
+            </Link>
         </div>
-        <div className="van-tabbar-item" data-url="/keFuMenu">
+        <div className="van-tabbar-item">
+            <Link to="/wallet">
             <div className="van-tabbar-item__icon">
                 
             </div>
@@ -54,8 +59,9 @@ function Footer() {
                 <div>
                     <img src={wallet} />
                 </div>
-                <span className="name">Support</span>
+                <span className="name">wallet</span>
             </div>
+            </Link>
         </div>
         
         <div className="van-tabbar-item"  >

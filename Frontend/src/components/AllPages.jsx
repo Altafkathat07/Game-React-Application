@@ -13,6 +13,11 @@ import UserProfileMain from "./UserProfile/UserProfileMain";
 import BankMain from "./UserBankDetail/BankMain";
 import WalletMain from "./Wallet/WalletMain";
 import PromotionMain from "./Promotion/PromotionMain";
+import MyTeamPage from "./Promotion/MyTeamPage";
+import HistoryPage from "./Promotion/HistoryPage";
+import TutorialPage from "./Promotion/TutorialPage";
+import ActivityPage from "./Activity/ActivityPage";
+import RulePage from "./Activity/RulePage";
 
 
 function AllPages() {
@@ -28,8 +33,13 @@ function AllPages() {
         <Route path="/forgot" element={<ForgotMain />} />
         <Route path="/main" element={<ProfileMain />} />
         <Route path="/promotion" element={<PromotionMain />} />
+        <Route path="/promotion/myteam" element={<MyTeamPage />} />
+        <Route path="/promotion/history" element={<HistoryPage />} />
+        <Route path="/promotion/tutorial" element={<TutorialPage />} />
         <Route path="/wallet" element={<WalletMain />} />
         <Route path="/profile" element={<UserProfileMain />} />
+        <Route path="/activity" element={<ActivityPage />} />
+        <Route path="/activity/rule" element={<RulePage />} />
         <Route path="/profile/bank-details" element={<BankMain />} />
         <Route path="/admin" element={<IndexMain />} />
         <Route path="/admin/uimanagemnt" element={<UiMain />} />

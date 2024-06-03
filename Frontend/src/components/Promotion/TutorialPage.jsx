@@ -1,16 +1,14 @@
 import Footer from "../Home/Footer"
 import Header from "../Home/Header"
-import PromotionInstructer from "./PromotionInstructer"
-import PromotionTabel from "./PromotionTabel"
+import TutorialContent from "./TutorialContent"
 
-function PromotionMain() {
+function TutorialPage() {
   return (
     <>
-       <div id="app">
+         <div id="app">
 		<div data-v-432e6ed0="" className="home mian game" id="application">
             <Header />
-            <PromotionInstructer />
-            <PromotionTabel />
+            <TutorialContent />
             <Footer />
         </div>
     </div>
@@ -18,4 +16,4 @@ function PromotionMain() {
   )
 }
 
-export default PromotionMain
+export default TutorialPage
