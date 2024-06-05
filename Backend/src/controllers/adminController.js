@@ -227,7 +227,7 @@ const upload = multer({ storage: storage }).array('banners');
 
 const uploadBanner = async (req, res) => {
     try {
-        // Handle file upload using multer
+      
         upload(req, res, async function (err) {
             if (err instanceof multer.MulterError) {
                 console.error('Multer error:', err);
@@ -237,20 +237,17 @@ const uploadBanner = async (req, res) => {
                 return res.status(500).json({ message: 'Internal server error' });
             }
 
-            // If files are successfully uploaded
+        
             const banners = req.files;
             console.log(req.files) ;
-            // Access uploaded files
+            
             console.log(banners);
             if (!banners || banners.length === 0) {
                 return res.status(400).json({ message: 'No files uploaded' });
             }
 
-            // Process and save the files to storage
-            // Assuming each uploaded banner corresponds to a separate record in the database
             for (const banner of banners) {
                 const filename = banner.filename;
-                // Save file information to MySQL database
                 await connection.query('INSERT INTO banners (filename) VALUES (?)', [filename]);
             }
 

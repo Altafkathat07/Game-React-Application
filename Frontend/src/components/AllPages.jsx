@@ -18,6 +18,13 @@ import HistoryPage from "./Promotion/HistoryPage";
 import TutorialPage from "./Promotion/TutorialPage";
 import ActivityPage from "./Activity/ActivityPage";
 import RulePage from "./Activity/RulePage";
+import ResetPasswordMain from "./ResetPassword/ResetPasswordMain";
+import RedeemMain from "./RedeemCode/RedeemMain";
+import GuideMain from "./BegginerGuide/GuideMain";
+import AboutMain from "./AboutPage/AboutMain";
+import RiskMain from "./RiskAgreement/RiskMain";
+import SupportMain from "./SupportPage/SupportMain";
+import SalaryRecord from "./SalaryRecord/SalaryRecord";
 
 
 function AllPages() {
@@ -42,10 +49,17 @@ function AllPages() {
         <Route path="/activity/rule" element={<RulePage />} />
         <Route path="/profile/bank-details" element={<BankMain />} />
         <Route path="/admin" element={<IndexMain />} />
+        <Route path="/reset-password" element={<ResetPasswordMain />} />
+        <Route path="/redeem-code" element={<RedeemMain />} />
+        <Route path="/beginner-guide" element={<GuideMain />} />
+        <Route path="/about-us" element={<AboutMain />} />
         <Route path="/admin/uimanagemnt" element={<UiMain />} />
         <Route path="/admin/user-details" element={<UserMain />} />
         <Route path="/admin/settings" element={<SettingMain />} />
         <Route path="/privacy-agreement" element={<PrivacyMain />} />
+        <Route path="/risk-disclosure-agreement" element={<RiskMain />} />
+        <Route path="/support" element={<SupportMain />} />
+        <Route path="/salary-record" element={<SalaryRecord />} />
         
     </Routes>
     

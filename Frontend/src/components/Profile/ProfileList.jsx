@@ -1,9 +1,9 @@
 import { useState } from 'react'
-import img1 from '../../assets/images/s1.png'
-import img2 from '../../assets/images/s2.png'
-import img3 from '../../assets/images/s3.png'
-import img4 from '../../assets/images/s4.png'
-import img5 from '../../assets/images/s5.png'
+import support from '../../assets/images/supicon.webp'
+import secure from '../../assets/images/securityicon.webp'
+import guide from '../../assets/images/guideicon.webp'
+import about from '../../assets/images/abouticon.webp'
+import redeem from '../../assets/images/redeem.webp'
 import {Link} from 'react-router-dom'
 
 function ProfileList() {
@@ -20,7 +20,7 @@ function ProfileList() {
                     { level === 1 &&(
                        <Link to="/admin"> <div data-v-21f3500a="" onChange={fun} className="item c-row c-row-between" >
                             <div data-v-21f3500a="" className="c-row c-row-middle">
-                                <img data-v-21f3500a="" width="24px" height="24px" src={img1} className="img" />
+                                <img data-v-21f3500a="" width="24px" height="24px" src={secure} className="img" />
                                 <span data-v-21f3500a="" className="name">Administrator Area</span>
                             </div>
                             <div data-v-21f3500a="" className="c-row c-row-middle">
@@ -32,27 +32,30 @@ function ProfileList() {
                         </div>
                         </Link>
                     )}
+                    <Link to="/reset-password">
                     <div data-v-21f3500a="" className="item c-row c-row-between" >
                         <div data-v-21f3500a="" className="c-row c-row-middle"><img data-v-21f3500a="" width="24px"
-                                height="24px" src={img1} className="img" /><span data-v-21f3500a="" className="name">Security and Safety</span></div>
+                                height="24px" src={secure} className="img" /><span data-v-21f3500a="" className="name">Security and Safety</span></div>
                         <div data-v-21f3500a="" className="c-row c-row-middle"><i data-v-21f3500a=""
                                 className="van-icon van-icon-arrow" >
                                 
                             </i></div>
                     </div>
-                    
-                    
+                    </Link>
+                    <Link to="/redeem-code">
                     <div data-v-21f3500a="" className="item c-row c-row-between" >
                         <div data-v-21f3500a="" className="c-row c-row-middle"><img data-v-21f3500a="" width="24px"
-                                height="24px" src={img2} className="img" /><span data-v-21f3500a="" className="name">Redeem Code</span></div>
+                                height="24px" src={redeem} className="img" /><span data-v-21f3500a="" className="name">Redeem Code</span></div>
                         <div data-v-21f3500a="" className="c-row c-row-middle"><i data-v-21f3500a=""
                                 className="van-icon van-icon-arrow" >
                                 
                             </i></div>
                     </div>
+                    </Link>
+                    <Link to="/beginner-guide">
                     <div data-v-21f3500a="" className="item c-row c-row-between" >
                         <div data-v-21f3500a="" className="c-row c-row-middle"><img data-v-21f3500a="" width="24px"
-                                height="24px" src={img3} className="img" /><span data-v-21f3500a=""
+                                height="24px" src={guide} className="img" /><span data-v-21f3500a=""
                                 className="name">Guide for beginners</span>
                         </div>
                         <div data-v-21f3500a="" className="c-row c-row-middle"><i data-v-21f3500a=""
@@ -60,18 +63,33 @@ function ProfileList() {
                                 
                             </i></div>
                     </div>
+                    </Link>
+                    <Link to="/about-us">
                     <div data-v-21f3500a="" className="item c-row c-row-between" >
                         <div data-v-21f3500a="" className="c-row c-row-middle"><img data-v-21f3500a="" width="24px"
-                                height="24px" src={img4} className="img" /><span data-v-21f3500a="" className="name">About Us</span></div>
+                                height="24px" src={about} className="img" /><span data-v-21f3500a="" className="name">About Us</span></div>
                         <div data-v-21f3500a="" className="c-row c-row-middle">
                             <i data-v-21f3500a=""
                                 className="van-icon van-icon-arrow" >
                                 
                             </i></div>
                     </div>
+                    </Link>                    
+                    <Link to="/salary-record">
+                    <div data-v-21f3500a="" className="item c-row c-row-between" >
+                        <div data-v-21f3500a="" className="c-row c-row-middle"><i className="bi bi-cash mr-2"></i><span data-v-21f3500a="" className="name">Salary Record</span></div>
+                        <div data-v-21f3500a="" className="c-row c-row-middle">
+                            <i data-v-21f3500a=""
+                                className="van-icon van-icon-arrow" >
+                                
+                            </i>
+                        </div>
+                    </div>
+                    </Link>
+                    <Link to="/support">
                     <div data-v-21f3500a="" className="item c-row c-row-between" >
                         <div data-v-21f3500a="" className="c-row c-row-middle"><img data-v-21f3500a="" width="24px"
-                                height="24px" src={img5} className="img" /><span data-v-21f3500a=""
+                                height="24px" src={support} className="img" /><span data-v-21f3500a=""
                                 className="name">Customer Support Online 24/7</span></div>
                         <div data-v-21f3500a="" className="c-row c-row-middle">
                             <i data-v-21f3500a=""
@@ -79,6 +97,7 @@ function ProfileList() {
                                 
                             </i></div>
                     </div>
+                    </Link>
                 </div>
       
     </>
