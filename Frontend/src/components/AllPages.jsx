@@ -25,6 +25,8 @@ import AboutMain from "./AboutPage/AboutMain";
 import RiskMain from "./RiskAgreement/RiskMain";
 import SupportMain from "./SupportPage/SupportMain";
 import SalaryRecord from "./SalaryRecord/SalaryRecord";
+import WinGoMain from "./WinGo/WinGoMain";
+import Main_5D from "./5D/Main_5D";
 
 
 function AllPages() {
@@ -60,6 +62,8 @@ function AllPages() {
         <Route path="/risk-disclosure-agreement" element={<RiskMain />} />
         <Route path="/support" element={<SupportMain />} />
         <Route path="/salary-record" element={<SalaryRecord />} />
+        <Route path="/wingo" element={<WinGoMain />} />
+        <Route path="/5d" element={<Main_5D />} />
         
     </Routes>
     

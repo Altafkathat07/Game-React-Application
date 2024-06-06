@@ -1,4 +1,4 @@
-import img1 from '../../assets/images/tải xuống (1).png';
+import img1 from '../../assets/images/refresh.png';
 import img2 from '../../assets/images/myWithdrawHistoraay-8ddd0e20.png';
 // import img3 from '../../assets/images/rechargeIconaa-a37f0b23.png';
 // import img4 from '../../assets/images/widthdrawBlueaa-52d9a5cc.png';
