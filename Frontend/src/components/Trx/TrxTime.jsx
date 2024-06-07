@@ -1,7 +1,7 @@
 import watcImg1 from "../../assets/images/icon_clock-red.webp"
 import watcImg2 from "../../assets/images/icon_clock-gerrn.webp"
 
-function WingoTime() {
+function TrxTime() {
   return (
     <>
       <div data-v-a9660e98="" className="box c-row">
@@ -70,4 +70,4 @@ function WingoTime() {
   )
 }
 
-export default WingoTime
+export default TrxTime

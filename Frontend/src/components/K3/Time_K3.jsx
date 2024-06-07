@@ -1,10 +1,10 @@
 import watcImg1 from "../../assets/images/icon_clock-red.webp"
 import watcImg2 from "../../assets/images/icon_clock-gerrn.webp"
 
-function WingoTime() {
+function Time_K3() {
   return (
     <>
-      <div data-v-a9660e98="" className="box c-row">
+       <div data-v-a9660e98="" className="box c-row">
     <div data-v-a9660e98="" className="item c-tc">
         <div data-v-a9660e98="" className="circular c-row c-row-middle-center c-tc">
             <span data-v-a9660e98="" className="li">?</span>
@@ -65,9 +65,9 @@ function WingoTime() {
         </div>
         <div data-v-a9660e98="" className="txt c-tc">10 min</div>
     </div>
-      </div> 
+</div> 
     </>
   )
 }
 
-export default WingoTime
+export default Time_K3

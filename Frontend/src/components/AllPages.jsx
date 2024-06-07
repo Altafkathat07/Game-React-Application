@@ -27,6 +27,8 @@ import SupportMain from "./SupportPage/SupportMain";
 import SalaryRecord from "./SalaryRecord/SalaryRecord";
 import WinGoMain from "./WinGo/WinGoMain";
 import Main_5D from "./5D/Main_5D";
+import Main_K3 from "./K3/Main_K3";
+import TrxMain from "./Trx/TrxMain";
 
 
 function AllPages() {
@@ -64,6 +66,8 @@ function AllPages() {
         <Route path="/salary-record" element={<SalaryRecord />} />
         <Route path="/wingo" element={<WinGoMain />} />
         <Route path="/5d" element={<Main_5D />} />
+        <Route path="/k3" element={<Main_K3 />} />
+        <Route path="/trx" element={<TrxMain />} />
         
     </Routes>
     
