@@ -1,0 +1,339 @@
+
+
+         .selectBox[data-v-25d9c352] {
+            width: 100%;
+            background: #ff9801;
+        }
+
+         .selectBox .colorBox[data-v-25d9c352] {
+            height: 1.46667rem;
+            width: 100%;
+            background: -webkit-linear-gradient(left,#C4933F 0%,#FAE59F 100%);
+            background: linear-gradient(90deg,#fff 0%,#fff 100%)
+        }
+
+         .selectBox .txtBox[data-v-25d9c352] {
+            background-color: #ff9801;
+            z-index: 99;
+            height: 3.33333rem;
+            margin-top: -.8rem;
+            border-radius: .26667rem .26667rem 0 0;
+            padding: .4rem .53333rem 0;
+            position: relative
+        }
+
+         .selectBox .txtBox.action[data-v-25d9c352] {
+            height: 1.6rem
+        }
+
+         .selectBox .txtBox .txt[data-v-25d9c352] {
+            color: #fff;
+            font-weight: 600;
+            font-size: 1.2rem;
+            line-height: .53333rem
+        }
+
+         .selectBox .txtBox .money[data-v-25d9c352] {
+            color: #fff;
+            font-weight: 600;
+            margin-left: 0.8rem;
+            font-size: 1.1rem;
+            text-align: center
+        }
+
+         .selectBox .txtBox .Umoney[data-v-25d9c352] {
+            font-size: .48rem;
+            font-weight: 500
+        }
+
+         .selectBox .txtBox .Umoney .txt[data-v-25d9c352] {
+            font-size: .37333rem;
+            font-weight: 400
+        }
+
+         .selectBox .txtBox .Umoney .red[data-v-25d9c352] {
+            font-size: .48rem;
+            color: #fb4e4e
+        }
+
+         .selectBox .txtBox .img.action[data-v-25d9c352] {
+            -webkit-animation: rotation-data-v-25d9c352 .5s linear
+        }
+
+        @-webkit-keyframes rotation-data-v-25d9c352 {
+            0% {
+                -webkit-transform: rotate(0deg)
+            }
+
+            to {
+                -webkit-transform: rotate(180deg)
+            }
+        }
+
+         .selectBox .txtBox .icon[data-v-25d9c352] {
+            position: absolute;
+            right: .53333rem;
+            top: 0;
+            height: 1.46667rem;
+            width: .88rem;
+            background: url(/images/wallet_bookmark.png) no-repeat 50%;
+            background-size: 100% 100%
+        }
+
+         .selectBox .tab[data-v-25d9c352] {
+            padding: .53333rem .4rem 0;
+            border-top: .02667rem solid #ff901e;
+            background: #ff9801;
+        }
+
+         .selectBox .tab .box[data-v-25d9c352] {
+            width: 100%
+        }
+
+         .selectBox .tab .box ul[data-v-25d9c352] {
+            width: calc(100% + .26667rem)
+        }
+
+         .selectBox .tab .box ul li.item[data-v-25d9c352] {
+            padding: .51333rem;
+            width: calc(35.3% - .16667rem);
+            border-radius: .13333rem;
+            white-space: nowrap;
+            background-image: linear-gradient(40deg, #e5e7f6 35%, #f5f3fb);
+            margin-bottom: .26667rem;
+            margin-right: .26667rem;
+            position: relative;
+            height: 3.7rem;
+        }
+
+         .selectBox .tab .box ul li.item .icon[data-v-25d9c352] {
+            height: .8rem;
+            width: .8rem;
+            border-radius: .8rem;
+            margin: 0 auto
+        }
+
+         .selectBox .tab .box ul li.item .icon .size[data-v-25d9c352] {
+            font-size: .53333rem;
+            color: #333
+        }
+
+         .selectBox .tab .box ul li.item .name[data-v-25d9c352] {
+            text-align: center
+        }
+
+         .selectBox .tab .box ul li.item .icons[data-v-25d9c352] {
+            padding-right: 0.10667rem;
+            text-align: right;
+            width: 0.7rem;
+            line-height: 1.06667rem;
+            height: 0.6rem;
+            background: url(/images/wallet_tick.png) no-repeat 50%;
+            background-size: 100% 100%;
+            position: absolute;
+            right: 0;
+            bottom: 0
+        }
+
+         .selectBox .tab .box ul li.item.action[data-v-25d9c352] {
+            background: -webkit-linear-gradient(left,#C4933F 0%,#FAE59F 100%);
+            background: linear-gradient(90deg,#2979F2 0%,#2AAAF3 100%);
+            color: #fff
+        }
+
+         .selectBox .tab .box ul li.item.action .size[data-v-25d9c352] {
+            color: #fff;
+            font-size: 1.4rem;
+            
+        }
+
+         .selectBox .withd[data-v-25d9c352] {
+            padding: 0 .53333rem;
+            height: 1.06667rem;
+            line-height: 1.06667rem;
+            font-size: .34667rem
+        }
+
+         .selectBox .number-box[data-v-25d9c352] {
+            padding: 0 .53333rem;
+            height: 2.06667rem;
+            line-height: 2.06667rem;
+            color: #fff;
+            border-bottom: .02667rem solid #ffbb00;
+            font-size: 1.266667rem;
+            font-weight: 600;
+            background: #ff9801;
+        }
+
+         .selectBox .number-box .symbol.action[data-v-25d9c352] {
+            font-size: .48rem
+        }
+
+         .selectBox .number-box .input[data-v-25d9c352] {
+            font-size: 1rem;
+            background: 0 0 !important
+        }
+        .selectBox .number-box .input[data-v-25d9c352]::placeholder{
+            color: #fff;
+        }
+        #amount::placeholder{
+            color: #fff;
+        }
+    
+
+         .selectBox .ipnBox[data-v-25d9c352] {
+            padding: 0 .53333rem
+        }
+
+         .selectBox .ipnBox .red[data-v-25d9c352] {
+            font-size: .42667rem;
+            color: #fb4e4e
+        }
+
+         .selectBox .bankBox[data-v-25d9c352] {
+            padding: 0 .53333rem;
+            padding-bottom: 50px;
+        }
+        .with[data-v-25d9c352]{
+           width: 30px !important;
+        }
+
+         .selectBox .bankBox .box[data-v-25d9c352] {
+            background: #ff9801;
+            border: .05333rem solid #fff;
+            box-shadow: 0  0 10px #eebc70;
+            border-radius: .13333rem
+        }
+
+         .selectBox .bankBox .box .item[data-v-25d9c352] {
+            padding: .46667rem;
+            border-bottom: .02667rem solid #fff;
+            font-size: .8333rem;
+            color: #fff
+        }
+
+         .selectBox .bankBox .box .item[data-v-25d9c352]:last-child {
+            border-bottom: none
+        }
+
+         .selectBox .conBox[data-v-25d9c352] {
+            padding: 0 .53333rem;
+            background: #ff9801;
+            padding-bottom: 0.2rem;
+        }
+
+         .selectBox .conBox .des[data-v-25d9c352] {
+            color: #fff;
+            font-size: 0.82667rem;
+            margin-bottom: .4rem
+        }
+
+         .selectBox .conBox .box[data-v-25d9c352] {
+            background: #fff;
+            border-radius: .13333rem
+        }
+
+         .selectBox .conBox .box .tit[data-v-25d9c352] {
+            height: .93333rem;
+            padding: 0 .26667rem;
+            color: #f2413b
+        }
+
+         .selectBox .conBox .box .tit.action[data-v-25d9c352] {
+            border-bottom: .02667rem solid #ebebeb
+        }
+
+         .selectBox .conBox .box .list .item[data-v-25d9c352] {
+            height: .93333rem;
+            padding: 0 .4rem;
+            line-height: .93333rem;
+            color: #fff;
+            border-bottom: .02667rem solid #090909
+        }
+
+         .selectBox .conBox .box .list .item .name[data-v-25d9c352] {
+            max-width: 6.4rem;
+            overflow: hidden;
+            white-space: nowrap
+        }
+
+         .selectBox .conBox .box .list .icon[data-v-25d9c352] {
+            height: .53333rem;
+            width: .53333rem;
+            border-radius: .53333rem;
+            border: .05333rem solid #eee
+        }
+
+         .selectBox .conBox .box .list .icon.action[data-v-25d9c352] {
+            /* border-color: rgba(250, 229, 159, .41);
+            background-color: rgba(250, 229, 159, .51) */
+        }
+
+         .selectBox .conBox .box .add[data-v-25d9c352] {
+            -webkit-line-clamp: 1;
+            height: 1.93333rem;
+            padding: 0 .26667rem;
+            background: #f2ecec;
+            border-radius: .26667rem;
+            color: #ff9801;
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+         .selectBox .conBox .box .add .plus[data-v-25d9c352] {
+            margin-right: .26667rem;
+            height: 1.26667rem;
+            width: 1.26667rem;
+            border-radius: .66667rem;
+            background-color: #f5c176;
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+         .selectBox .requiredBox[data-v-25d9c352] {
+            padding: 0 .53333rem;
+            background: #ff9801;
+        }
+
+         .selectBox .requiredBox .box[data-v-25d9c352] {
+            position: relative;
+            height: 2.06667rem;
+            line-height: 1.96rem;
+            margin: 0.4rem 0 0.8rem;
+            background: #fff;
+            color: #ff9801;
+            font-size: 1rem;
+            border-radius: 0.26667rem;
+            outline: none;
+            border: 0.05333rem solid #ff9801;
+            overflow: hidden
+        }
+
+         .selectBox .requiredBox .box .input[data-v-25d9c352] {
+            width: 100%;
+            height: 100%;
+            border: none;
+            background: #fff;
+            outline: none;
+            padding-left: .26667rem
+        }
+
+         .withdrawal-btn .btn[data-v-25d9c352] {
+            width: 75%;
+            height: 2.13333rem;
+            font-size: 1rem;
+            font-weight: 700;
+            letter-spacing: .01333rem;
+            border: none;
+            border-radius: 1.06667rem;
+            color: #ffffff;
+            background: -webkit-linear-gradient(top,#FAE59F 0%,#C4933F 100%);
+            background: linear-gradient(180deg,#2AAAF3 0%,#2979F2 100%)
+        }
+        .with_des{
+            width: 30px !important;
+        }
+
+   

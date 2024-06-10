@@ -2,6 +2,7 @@ import recharge from '../../assets/images/rechargeIconaa-a37f0b23.png';
 import rechargeHistory from '../../assets/images/rechargeHistory-dbaa148953.png';
 import withdraw from '../../assets/images/widthdrawBlueaa-52d9a5cc.png';
 import widthdrawHistory from '../../assets/images/myWithdrawHistoraay-8ddd0e20.png';
+import { Link } from 'react-router-dom';
 
 function WalletContent() {
   return (
@@ -56,14 +57,18 @@ function WalletContent() {
                             </div>
                         </div> --> */}
                         <div data-v-7b283485="" className="c-row c-row-between total-btn m-t-30" id="image_box">
-                            <div className="images_21">
-                                <img src={recharge} width="40px" height="40px" />
-                                <p>Recharge</p>
-                            </div>
-                            <div className="images_21">
-                                <img src={withdraw} width="40px" height="40px"/>
-                                <p>Withdraw</p>
-                            </div>
+                            <Link to="/recharge">
+                                <div className="images_21">
+                                    <img src={recharge} width="40px" height="40px" />
+                                    <p>Recharge</p>
+                                </div>
+                            </Link>
+                            <Link to="/withdraw">
+                                <div className="images_21">
+                                    <img src={withdraw} width="40px" height="40px"/>
+                                    <p>Withdraw</p>
+                                </div>
+                            </Link>
                             <div className="images_21"> 
                                 <img src={rechargeHistory} width="40px" height="40px" className='rec_mrg'/>
                                 <p>Recharge History</p>

@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import img1 from '../../assets/images/refresh.png';
 import img2 from '../../assets/images/myWithdrawHistoraay-8ddd0e20.png';
 // import img3 from '../../assets/images/rechargeIconaa-a37f0b23.png';
@@ -75,12 +76,16 @@ function ProfileWallet() {
                             </div>
                         </div>
                         <div data-v-8cd483ca="" className="c-row c-row-between m-t-10 infoBtn">
-                            <div data-v-8cd483ca="" className="item c-row c-row-center">
-                                <div data-v-8cd483ca="" className="li"> Withdraw</div>
-                            </div>
+                            <Link to="/withdraw" style={{width: "100%"}}>
+                                <div data-v-8cd483ca="" className="item c-row c-row-center">
+                                    <div data-v-8cd483ca="" className="li"> Withdraw</div>
+                                </div>
+                            </Link>
+                            <Link to="/recharge" style={{width: "100%"}}>
                             <div data-v-8cd483ca="" className="item c-row c-row-center" >
                                 <div data-v-8cd483ca="" className="li"> Recharge </div>
                             </div>
+                            </Link>
                         </div>
                     </div>
         </div>            

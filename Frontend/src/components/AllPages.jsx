@@ -29,6 +29,8 @@ import WinGoMain from "./WinGo/WinGoMain";
 import Main_5D from "./5D/Main_5D";
 import Main_K3 from "./K3/Main_K3";
 import TrxMain from "./Trx/TrxMain";
+import WalletProfileMain from "./Wallet/WalletProfileMain";
+import RechargeMain from "./Recharge/RechargeMain";
 
 
 function AllPages() {
@@ -48,6 +50,8 @@ function AllPages() {
         <Route path="/promotion/history" element={<HistoryPage />} />
         <Route path="/promotion/tutorial" element={<TutorialPage />} />
         <Route path="/wallet" element={<WalletMain />} />
+        <Route path="/withdraw" element={<WalletProfileMain />} />
+        <Route path="/recharge" element={<RechargeMain />} />
         <Route path="/profile" element={<UserProfileMain />} />
         <Route path="/activity" element={<ActivityPage />} />
         <Route path="/activity/rule" element={<RulePage />} />

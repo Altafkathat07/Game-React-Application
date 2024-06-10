@@ -1,12 +1,13 @@
 import down from "../../assets/images/down.png"
 import msg from "../../assets/images/msgimage.png"
+import {Link} from "react-router-dom"
 function Header() {
   return (
     <>
        <div data-v-106b99c8="" data-v-432e6ed0=""className="navbar">
 				<div data-v-106b99c8=""className="navbar-left">
 				<div data-v-432e6ed0="" data-v-106b99c8=""className="c-row c-row-middle-center">
-						<h3>Game</h3>
+					<Link to="/"><h3 style={{color: "#fff"}}>Game</h3></Link>
 					</div>
 				</div>
 				<div data-v-106b99c8=""className="navbar-title">
