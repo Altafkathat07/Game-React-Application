@@ -25,19 +25,19 @@ const termsAndCondition = async(req, res) => {
         const sql = "INSERT INTO terms SET term = ?";
         await connection.execute(sql, [term]);
         res.redirect("http://localhost:5173/admin/uimanagemnt")
-        return res.status(200).json({
-            message: 'Successful Inserted',
-            status: true
-        })
+        // return res.status(200).json({
+        //     message: 'Successful Inserted',
+        //     status: true
+        // })
 
 
     }else{
         await connection.query(`UPDATE terms SET term = ?`, [term]);
         res.redirect("http://localhost:5173/admin/uimanagemnt")
-        return res.status(200).json({
-            message: 'Successful change',
-            status: true,
-        });
+        // return res.status(200).json({
+        //     message: 'Successful change',
+        //     status: true,
+        // });
     }
 }
 

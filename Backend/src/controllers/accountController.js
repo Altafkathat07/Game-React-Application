@@ -187,7 +187,7 @@ const register = async(req, res) => {
                 }
             } else {
                 return res.status(200).json({
-                    message: 'Referrer code does not exist',
+                    message: 'Invite code does not exist',
                     status: false
                 });
             }

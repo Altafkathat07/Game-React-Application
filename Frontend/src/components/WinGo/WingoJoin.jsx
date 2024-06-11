@@ -3,12 +3,13 @@
 function WingoJoin() {
   return (
     <>
-      <div data-v-a9660e98="" className="popup-join van-popup van-popup--round van-popup--bottom d-none" >
+    <div className="van-overlay " style={{ zIndex: "2031", display: "none" }} ></div>
+      <div data-v-a9660e98="" className="popup-join van-popup van-popup--round van-popup--bottom" style={{transform: "translateY(400px)", maxWidth: "20rem", left: "auto", zIndex: "2032", display: "none",}}>
   <div data-v-a9660e98="" className="betting-mark colorred">
     <div data-v-a9660e98="" className="head">
       <div data-v-a9660e98="" className="box">
         <div data-v-a9660e98="" className="con">1 Minute</div>
-        <div data-v-a9660e98="" className="color" 
+        <div data-v-a9660e98="" className="color" style={{color: "rgb(251, 78, 78)"}}
         >Choose<span data-v-a9660e98="" className="p-l-10">Red</span></div>
       </div>
     </div>
@@ -16,10 +17,10 @@ function WingoJoin() {
       <div data-v-a9660e98="" className="item c-row c-row-between">
         <div data-v-a9660e98="" className="tit">Amount</div>
         <div data-v-a9660e98="" className="c-row amount-box" data-money="1">
-          <div data-x="1" data-v-a9660e98="" className="li" >1</div>
-          <div data-x="10" data-v-a9660e98="" className="li" >10</div>
-          <div data-x="100" data-v-a9660e98="" className="li" >100</div>
-          <div data-x="1000" data-v-a9660e98="" className="li" >1000</div>
+          <div data-x="1" data-v-a9660e98="" className="li" style={{backgroundColor: "rgb(251, 78, 78)", color: "rgb(255, 255, 255)",}}>1</div>
+          <div data-x="10" data-v-a9660e98="" className="li"  style={{backgroundColor: "rgb(240, 240, 240)", color: "rgb(0, 0, 0)",}} >10</div>
+          <div data-x="100" data-v-a9660e98="" className="li"  style={{backgroundColor: "rgb(240, 240, 240)", color: "rgb(0, 0, 0)",}} >100</div>
+          <div data-x="1000" data-v-a9660e98="" className="li"  style={{backgroundColor: "rgb(240, 240, 240)", color: "rgb(0, 0, 0)",}} >1000</div>
         </div>
       </div>
       <div data-v-a9660e98="" className="item c-row c-row-between">
@@ -29,7 +30,7 @@ function WingoJoin() {
           <div data-v-a9660e98="" className="digit-box van-cell van-field">
             <div className="van-cell__value van-cell__value--alone van-field__value">
               <div className="van-field__body">
-                    <input type="tel" inputMode="numeric" className="van-field__control" onInput="value=value.replace(/\D/g,'')" value="1" />
+                    <input type="number" className="van-field__control"  />
                 </div>
             </div>
           </div>
