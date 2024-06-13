@@ -3,6 +3,7 @@ import accountController from '../controllers/accountController';
 import adminController from '../controllers/adminController';
 import wingoController from '../controllers/wingoController';
 import userController from '../controllers/userController';
+import homeController from '../controllers/homeController';
 import middlewareController from '../middleware/auth';
 let router = express.Router();
 
@@ -11,7 +12,7 @@ const initWebRouter = (app) => {
     router.post('/api/webapi/register', accountController.register);
     // router.post('/api/webapi/register/otp', accountController.otpVerify);
     router.post('/api/webapi/login', accountController.login);
-    router.get('/api/webapi/GetUserInfo', middlewareController, userController.userInfo);
+    router.post('/api/webapi/GetUserInfo', userController.userInfo);
 
     router.get('/api/webapi/admin/privacy-fetching', middlewareController, adminController.termsFetching);
     router.get('/api/webapi/admin/notification-fetching',middlewareController, adminController.noticeFetching);
@@ -23,6 +24,8 @@ const initWebRouter = (app) => {
     router.get('/api/webapi/admin/recharge-approve', adminController.rechargeApproveDetail);
     
     router.get('/api/webapi/admin/withdraw-detail', adminController.withdraDetails);
+    router.post('/api/webapi/admin/withdraw-confirm/:id', adminController.withdrawConfirm);
+    router.post('/api/webapi/admin/withdraw-cancel/:id/:money', adminController.withdrawCancel);
     router.get('/api/webapi/admin/withdraw-approve', adminController.withdrawApproveDetail);
     
     router.post('/api/webapi/admin/user-delete/:id',middlewareController, adminController.DeleteUser);
@@ -42,6 +45,9 @@ const initWebRouter = (app) => {
     router.post('/api/webapi/add-bank' , userController.addBank);
     router.post('/api/webapi/user-bank-info' , userController.UserBankInfo);
     router.post('/api/webapi/withdrawal', userController.withdrawal); 
+
+
+    router.post('/api/webapi/salary_record', homeController.getSalaryRecord); 
 
 
 

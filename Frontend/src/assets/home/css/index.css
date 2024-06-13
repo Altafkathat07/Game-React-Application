@@ -8631,15 +8631,19 @@ a:hover {
   font-size: 0.42667rem;
 }
 .mian .menu-box .infoName .name[data-v-8cd483ca] {
-  font-size: 0.50667rem;
-  height: 0.48rem;
+  font-size: .8667rem;
+  font-weight: 700;
+  height: 1rem;
 }
 .mian .menu-box .infoName .number[data-v-8cd483ca] {
-  height: 0.53333rem;
-  line-height: 0.53333rem;
+  font-size: .7667rem;
+  font-weight: 700;
+  line-height: 1rem;
 }
 .mian .menu-box .infoName .id[data-v-8cd483ca] {
-  font-size: 0.42667rem;
+  font-size: .8667rem;
+  font-weight: 700;
+  line-height: 1rem;
 }
 .mian .menu-box .infoName .integral .txt[data-v-8cd483ca] {
   margin-bottom: 0.05333rem;

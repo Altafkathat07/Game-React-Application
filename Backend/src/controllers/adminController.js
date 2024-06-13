@@ -346,35 +346,19 @@ const withdrawApproveDetail = async (req, res) =>{
 
 const withdrawConfirm = async (req, res) => {
     const { id } =  req.params;
-    // const { money } =  req.params;
     if(!id){
         return res.status(202).json({
             message: 'something went wrong while id fetching',
             status: false,
-        })
-        
+        })  
     }
     const [user] = await connection.query('SELECT * FROM withdraw WHERE id = ? ', [id]) ;
-   if (user.length === 0) {
-    return res.status(202).json({
-        message: 'user id not find',
-        status: false,
-    })
-   } 
-//    console.log(user[0]);
-    // const phone = user[0].phone
-    // console.log(phone)
-    // const [rows] = await connection.query('SELECT * FROM users WHERE phone = ?', [phone])
-    // console.log(rows[0].id)
-    // if(!rows || rows.length === 0){
-    //     return res.status(202).json({
-    //         message: 'user not found',
-    //         status: false,
-    //     })
-    // }
-    // await connection.query('UPDATE users SET money = money + ?, total_money = total_money + ? WHERE phone = ?', [money, money, rows[0].phone]);
-
-
+    if (user.length === 0) {
+        return res.status(202).json({
+            message: 'user id not find',
+            status: false,
+        })
+    } 
    await connection.query('UPDATE withdraw SET status = ? WHERE id = ?', [1, id])
 //    return res.status(202).json({
 //     message: 'fetching success',
@@ -418,12 +402,12 @@ const withdrawCancel = async (req, res) => {
 
 
    await connection.query('UPDATE withdraw SET status = ? WHERE id = ?', [2, id])
-   return res.status(202).json({
-    message: 'Cancel success',
-    status: true,
-
-})
    res.redirect("http://localhost:5173/admin/recharge")
+//    return res.status(202).json({
+//     message: 'Cancel success',
+//     status: true,
+
+// })
 
 }
 

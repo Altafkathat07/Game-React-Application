@@ -1,6 +1,19 @@
-
+import { useState, useEffect } from 'react';
+import axios from 'axios';
 import avatar from "../../assets/images/avatar.svg"; 
+
 function UserDetail() {
+  const [user, setUser] = useState({});
+
+  useEffect(() => {
+      axios.post('/api/webapi/GetUserInfo')
+          .then(response => {
+              const userInfo = response.data.data;
+              console.log("this is res: " + JSON.stringify(userInfo));
+              setUser(userInfo);
+          })
+          .catch(error => console.log(error));
+  }, []);
   return (
     <>
       <div data-v-9f3a9836="" className="profile">
@@ -13,19 +26,20 @@ function UserDetail() {
                 </div>
                 <div data-v-9f3a9836="" className="item c-row c-row-between">
                     <div data-v-9f3a9836="" className="lab">ID</div>
-                    <div data-v-9f3a9836="" className="txt id">80176</div>
+                    <div data-v-9f3a9836="" className="txt id">{user.id_user}</div>
                 </div>
                 <div data-v-9f3a9836="" className="item c-row c-row-between">
                     <div data-v-9f3a9836="" className="lab">Username</div>
                     <div data-v-9f3a9836="" className="txt c-row c-row-middle-center">
-                        <span className="name">Member28716</span>
-                        <i data-v-9f3a9836="" className="m-l-10 van-icon van-icon-arrow" >
+                        <span className="name">{user.name_user}</span>
+                        {/* <i data-v-9f3a9836="" className="m-l-10 van-icon van-icon-arrow" > */}
                            
-                        </i></div>
+                        {/* </i> */}
+                        </div>
                 </div>
                 <div data-v-9f3a9836="" className="item c-row c-row-between">
                     <div data-v-9f3a9836="" className="lab">Mobile Number</div>
-                    <div data-v-9f3a9836="" className="number">+91 9990008888</div>
+                    <div data-v-9f3a9836="" className="number" style={{color: "#959595"}}>+91 {user.phone_user}</div>
                 </div>
     </div>
     </>

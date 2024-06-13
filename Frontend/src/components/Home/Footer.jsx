@@ -65,7 +65,7 @@ function Footer() {
         </div>
         
         <div className="van-tabbar-item"  >
-        <Link to="/login">
+        <Link to="/main">
             <div className="van-tabbar-item__icon">
                 
             </div>

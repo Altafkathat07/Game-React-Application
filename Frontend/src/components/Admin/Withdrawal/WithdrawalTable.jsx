@@ -98,10 +98,10 @@ function WithdrawalTable() {
                     </span>
                     </td>
               <td style={{display: "flex", justifyContent: "space-between", alignItems: "center"}}>
-                <form action={`/api/webapi/admin/recharge-confirm/${user.id}/${user.money}`} method="post">
+                <form action={`/api/webapi/admin/withdraw-confirm/${user.id}`} method="post">
                 <button className="btn btn-success btn-sm confirm-btn" href="" data="97"><i className="fa fa-check"></i></button>
                  </form>
-                <form action={`/api/webapi/admin/recharge-cancel/${user.id}`} method="post">
+                <form action={`/api/webapi/admin/withdraw-cancel/${user.id}/${user.money}`} method="post">
                 <button className="btn btn-danger btn-sm delete-btn" href="" data="97"><i className="bi bi-trash3-fill"></i></button>
                 </form>
               </td>
