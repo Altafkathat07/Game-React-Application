@@ -106,7 +106,7 @@ function FormSection() {
                             <span data-v-57d49070="">Password</span>
                         </div>
                         <div data-v-57d49070="" className="passwordInput__container-input">
-                            <input data-v-57d49070="" id="passwordfield" type="password" placeholder="Please enterPassword" maxLength="32" autoComplete="on" required />
+                            <input data-v-57d49070="" name="pwd" id="passwordfield" type="password" placeholder="Please enterPassword"  required />
                             <img data-v-57d49070="" id="eyeicon" src={eye} className="eye" onClick={showPass} />
                         </div>
                     </div>

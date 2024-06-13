@@ -207,6 +207,106 @@ const UserStatus = async (req, res) => {
 
 }
 
+const rechargeDetails = async (req, res) =>{
+    const [rows] = await connection.query('SELECT * FROM recharge WHERE status = 0');
+    console.log(rows);
+    if(!rows || rows.length === 0){
+        return res.status(200).json({
+            message: 'something went wrong while user fetching recharge details',
+            status: false
+        });
+    }
+    const data = rows;
+    console.log(data);
+    return res.status(200).json({
+        message: 'recharge Details fetch success',
+        status: true,
+        data: data
+    });
+}
+const rechargeApproveDetail = async (req, res) =>{
+    const [rows] = await connection.query('SELECT * FROM recharge WHERE status = 1');
+    console.log(rows);
+    if(!rows || rows.length === 0){
+        return res.status(200).json({
+            message: 'something went wrong while user fetching recharge details',
+            status: false
+        });
+    }
+    const data = rows;
+    console.log(data);
+    return res.status(200).json({
+        message: 'recharge Details fetch success',
+        status: true,
+        data: data
+    });
+}
+
+const rechargeConfirm = async (req, res) => {
+    const { id } =  req.params;
+    const { money } =  req.params;
+    // console.log(id)
+    // console.log(money)
+    if(!id){
+        return res.status(202).json({
+            message: 'something went wrong while id fetching',
+            status: false,
+        })
+        
+    }
+    // console.log(id)
+    const [user] = await connection.query('SELECT * FROM recharge WHERE id = ? ', [id]) ;
+   if (user.length === 0) {
+    return res.status(202).json({
+        message: 'user id not find',
+        status: false,
+    })
+   } 
+//    console.log(user[0]);
+    const phone = user[0].phone
+    // console.log(phone)
+    const [rows] = await connection.query('SELECT * FROM users WHERE phone = ?', [phone])
+    console.log(rows[0].id)
+    if(!rows || rows.length === 0){
+        return res.status(202).json({
+            message: 'user not found',
+            status: false,
+        })
+    }
+    await connection.query('UPDATE users SET money = money + ?, total_money = total_money + ? WHERE phone = ?', [money, money, rows[0].phone]);
+
+
+   await connection.query('UPDATE recharge SET status = ? WHERE id = ?', [1, id])
+//    return res.status(202).json({
+//     message: 'fetching success',
+//     status: true,
+//     data: user
+
+// })
+   res.redirect("http://localhost:5173/admin/recharge")
+
+}
+
+const rechargeCancel = async (req, res) => {
+    const { id } =  req.params;
+    if(!id){
+        return res.status(202).json({
+            message: 'something went wrong while id fetching',
+            status: false,
+        })
+        
+    }
+
+   await connection.query('UPDATE recharge SET status = ? WHERE id = ?', [2, id])
+   return res.status(202).json({
+    message: 'Cancel success',
+    status: true,
+
+})
+   res.redirect("http://localhost:5173/admin/recharge")
+
+}
+
 
 const currentDirectory = process.cwd();
 
@@ -269,5 +369,9 @@ module.exports = {
     Popup,
     DeleteUser,
     UserStatus,
+    rechargeDetails,
+    rechargeConfirm,
+    rechargeCancel,
+    rechargeApproveDetail
 
 }

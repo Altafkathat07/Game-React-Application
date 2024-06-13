@@ -10,7 +10,6 @@ import WinGoPeriod from "./WinGoPeriod"
 import WinGoList from "./WinGoList"
 import WingoJoin from "./WingoJoin"
 import "../WinGo/wingo";
-// import FetchUserInfo from "./FetchUserInfo"
 
 
 // import $ from 'jquery';
@@ -164,7 +163,6 @@ function WinGoMain() {
             <div data-v-a9660e98="" className="game-list p-b-20 pb-4">
             <WinGoList/>
             <WingoJoin />
-            {/* <FetchUserInfo /> */}
             </div>
             <Footer />
         </div>

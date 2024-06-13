@@ -38,11 +38,23 @@ function AdminSidebar() {
                         </Link>
                     </li> 
                     <li className="nav-item">
+                        <Link  to="/admin/recharge" className="nav-link">
+                          <span className="menu-title">Browse Recharge</span>
+                          <i className="mdi mdi-home menu-icon"></i>
+                        </Link>
+                    </li>  
+                    <li className="nav-item">
+                        <Link  to="/admin/recharge-approve" className="nav-link">
+                          <span className="menu-title">Recharge (Approve)</span>
+                          <i className="mdi mdi-home menu-icon"></i>
+                        </Link>
+                    </li> 
+                    <li className="nav-item">
                         <Link  to="/admin/settings" className="nav-link">
                           <span className="menu-title">Setting</span>
                           <i className="mdi mdi-home menu-icon"></i>
                         </Link>
-                    </li> 
+                    </li>
                     
                     
                 

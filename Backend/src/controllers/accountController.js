@@ -13,6 +13,7 @@ import multer from "multer";
 
 require('dotenv').config();
 
+
 let timeNow = Date.now();
 
 const randomString = (length) => {
@@ -215,21 +216,16 @@ const login = async(req, res) => {
     try {
 
         const [rows] = await connection.query('SELECT * FROM users WHERE phone = ? AND password = ? ', [username, md5(pwd)]);
-        // console.log("first : " +rows)
+      
         if (rows.length == 1) {
-            // console.log("second : " +rows)
             if (rows[0].status == 1) {
-                // console.log("third : " +rows)
                 const { password, money, ip, veri, ip_address, status, time, ...others } = rows[0];
-                // console.log("four : " + password)
                 const accessToken = jwt.sign({
                     user: {...others },
                     timeNow: timeNow
                 }, process.env.ACCESS_TOKEN_SECRET, { expiresIn: "1d" });
 
-                // console.log("five - accessToken:", accessToken);
                 const [popupRows] = await connection.query('SELECT * FROM popup LIMIT 1');
-                // const popupMessage = popupRows.length > 0 ? popupRows[0].message : null;
                 const pop = popupRows[0].message;
                 if(!pop){
                     return res.status(208).json({
@@ -239,16 +235,17 @@ const login = async(req, res) => {
                 }
                 await connection.execute('UPDATE `users` SET `token` = ? WHERE `phone` = ? ', [md5(accessToken), username]);
                 
+                 res.cookie('authToken', accessToken, { httpOnly: true, secure: false }); 
+                 console.log('Cookie set:', 'authToken', accessToken);
 
-                // req.session.popupMessage = pop;
                 res.redirect("http://localhost:5173/")
-                return res.status(200).json({
-                    message: 'Login Success',
-                    status: true,
-                    token: accessToken,
-                    value: md5(accessToken),
-                    popup: pop,
-                }); 
+                // return res.status(200).json({
+                //     message: 'Login Success',
+                //     status: true,
+                //     token: accessToken,
+                //     value: md5(accessToken),
+                //     popup: pop,
+                // }); 
             } else {
                 return res.status(410).json({
                     message: 'Account has been locked',

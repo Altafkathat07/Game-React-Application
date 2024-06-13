@@ -11,23 +11,32 @@ const initWebRouter = (app) => {
     router.post('/api/webapi/register', accountController.register);
     // router.post('/api/webapi/register/otp', accountController.otpVerify);
     router.post('/api/webapi/login', accountController.login);
-    router.get('/api/webapi/GetUserInfo', userController.userInfo);
+    router.get('/api/webapi/GetUserInfo', middlewareController, userController.userInfo);
 
-    router.get('/api/webapi/admin/privacy-fetching', adminController.termsFetching);
-    router.get('/api/webapi/admin/notification-fetching', adminController.noticeFetching);
-    router.get('/api/webapi/admin/user-details', accountController.UserDetails);
+    router.get('/api/webapi/admin/privacy-fetching', middlewareController, adminController.termsFetching);
+    router.get('/api/webapi/admin/notification-fetching',middlewareController, adminController.noticeFetching);
+    router.get('/api/webapi/admin/user-details',middlewareController, accountController.UserDetails);
 
-    router.post('/api/webapi/admin/user-delete/:id', adminController.DeleteUser);
-    router.post('/api/webapi/admin/update-user-status/:id', adminController.UserStatus);
+    router.get('/api/webapi/admin/recharge-detail',middlewareController, adminController.rechargeDetails);
+    router.post('/api/webapi/admin/recharge-confirm/:id/:money',middlewareController, adminController.rechargeConfirm);
+    router.post('/api/webapi/admin/recharge-cancel/:id',middlewareController, adminController.rechargeCancel);
+    router.get('/api/webapi/admin/recharge-approve',middlewareController, adminController.rechargeApproveDetail);
 
-    router.post('/api/webapi/admin/terms', adminController.termsAndCondition);
-    router.post('/api/webapi/admin/notice',   adminController.notice);
-    router.post('/api/webapi/admin/pop-up',   adminController.Popup);
-    router.post('/api/webapi/admin/upload-banner', adminController.uploadBanner);
+    router.post('/api/webapi/admin/user-delete/:id',middlewareController, adminController.DeleteUser);
+    router.post('/api/webapi/admin/update-user-status/:id',middlewareController, adminController.UserStatus);
 
-    router.post('/api/webapi/wingo/bet', middlewareController, wingoController.betWinGo); 
-    router.post('/api/webapi/GetNoaverageEmerdList', wingoController.listOrderOld);
-    router.post('/api/webapi/GetMyEmerdList', wingoController.GetMyEmerdList);
+    router.post('/api/webapi/admin/terms',middlewareController, adminController.termsAndCondition);
+    router.post('/api/webapi/admin/notice',middlewareController,   adminController.notice);
+    router.post('/api/webapi/admin/pop-up',middlewareController,   adminController.Popup);
+    router.post('/api/webapi/admin/upload-banner',middlewareController, adminController.uploadBanner);
+
+    router.post('/api/webapi/wingo/bet',middlewareController, middlewareController, wingoController.betWinGo); 
+    router.post('/api/webapi/GetNoaverageEmerdList',middlewareController, wingoController.listOrderOld);
+    router.post('/api/webapi/GetMyEmerdList',middlewareController, wingoController.GetMyEmerdList);
+
+    router.post('/api/webapi/recharge',middlewareController, userController.recharge);
+
+    router.post('/api/webapi/add-bank' , userController.addBank);
 
 
 

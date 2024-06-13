@@ -492,7 +492,11 @@ left: 20px;
 }
 
  .selectBox .pay-box .btn-list .item .next-btn[data-v-67caa467] {
-    height: 1.06667rem
+    height: 2.06667rem;
+    background: #fe9701;
+    color: white;
+    font-size: 1rem;
+    font-weight: 600;
 }
 
  .selectBox .pay-box .btn-list .item .btn[data-v-67caa467] {

@@ -5,6 +5,7 @@ import bet from "../../assets/images/total_bet.png"
 import time from "../../assets/images/withdraw_time.png"
 import daily from "../../assets/images/daily.png"
 import range from "../../assets/images/range.png"
+import { Link } from "react-router-dom"
 
 function WalletProfile() {
   return (
@@ -51,7 +52,7 @@ function WalletProfile() {
                     <div data-v-25d9c352="" className="symbol c-row c-row-middle">₹</div>
                     <div data-v-25d9c352="" className="input c-row c-row-middle van-cell van-field">
                         <div className="van-cell__value van-cell__value--alone van-field__value">
-                            <input type="number" inputMode="numeric" placeholder="Withdrawal Amount" className="van-field__control" id="amount"/>
+                            <input type="number" inputMode="numeric" placeholder="Withdrawal Amount" className="van-field__control" id="amount" style={{color: "#FFF"}}/>
                         </div>
                     </div>
                     
@@ -64,12 +65,14 @@ function WalletProfile() {
                             <div data-v-25d9c352="" className="list">
                                 
                             </div>
+                            <Link to="/wallet/user-bank">
                             <div data-v-25d9c352="" className="c-row c-row-center" >
                                 <div data-v-25d9c352="" className="add c-row c-row-middle-center m-t-10 m-b-10" ><span
                                         data-v-25d9c352="" className="plus c-row c-row-middle-center">
                                        <i className="bi bi-plus"></i>
                                         </span> Add BankCard</div>
                             </div>
+                            </Link>
                         </div>
                     </div> 
                 </div>

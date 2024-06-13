@@ -356,7 +356,7 @@ const GetMyEmerdList = async (req, res) => {
             status: false
         });
     }
-    let auth = req.cookies.auth;
+    let auth = 130;
 
     let game = '';
     if (typeid == 1) game = 'wingo';
@@ -364,7 +364,7 @@ const GetMyEmerdList = async (req, res) => {
     if (typeid == 5) game = 'wingo5';
     if (typeid == 10) game = 'wingo10';
 
-    const [user] = await connection.query('SELECT `phone`, `code`, `invite`, `level`, `money` FROM users WHERE token = ? AND veri = 1 LIMIT 1 ', [auth]);
+    const [user] = await connection.query('SELECT `phone`, `code`, `invite`, `level`, `money` FROM users WHERE id = ? AND veri = 1 LIMIT 1 ', [auth]);
     const [minutes_1] = await connection.query(`SELECT * FROM minutes_1 WHERE phone = ? AND game = '${game}' ORDER BY id DESC LIMIT ${Number(pageno) + ',' + Number(pageto)}`, [user[0].phone]);
     const [minutes_1All] = await connection.query(`SELECT * FROM minutes_1 WHERE phone = ? AND game = '${game}' ORDER BY id DESC `, [user[0].phone]);
 

@@ -1,3 +1,5 @@
+// import { useEffect, useState } from 'react';
+// import axios from "axios";
 import Main from "./Home/Main";
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import LoginMain from "./Login/LoginMain";
@@ -31,10 +33,27 @@ import Main_K3 from "./K3/Main_K3";
 import TrxMain from "./Trx/TrxMain";
 import WalletProfileMain from "./Wallet/WalletProfileMain";
 import RechargeMain from "./Recharge/RechargeMain";
+import BrowseRecharge from "./Admin/Recharge/BrowseRecharge";
+import RechargeApprove from "./Admin/RechargeApprove/RechargeApprove";
+import UserBank from "./Wallet/UserBank";
 // import WinGoMainTesting from "./WinGo/WinGoMainTesting";
 
 
 function AllPages() {
+  // const [isAuthenticated, setIsAuthenticated] = useState(false);
+
+  // useEffect(() => {
+  //     const checkAuth = async () => {
+  //         try {
+  //             await axios.get('http://localhost:5000/api/webapi/GetUserInfo', { withCredentials: true });
+  //             setIsAuthenticated(true);
+  //         } catch (error) {
+  //             setIsAuthenticated(false);
+  //         }
+  //     };
+
+  //     checkAuth();
+  // }, []);
   return (
     <>
    
@@ -57,6 +76,7 @@ function AllPages() {
         <Route path="/activity" element={<ActivityPage />} />
         <Route path="/activity/rule" element={<RulePage />} />
         <Route path="/profile/bank-details" element={<BankMain />} />
+        <Route path="/wallet/user-bank" element={<UserBank />} />
         <Route path="/admin" element={<IndexMain />} />
         <Route path="/reset-password" element={<ResetPasswordMain />} />
         <Route path="/redeem-code" element={<RedeemMain />} />
@@ -64,6 +84,8 @@ function AllPages() {
         <Route path="/about-us" element={<AboutMain />} />
         <Route path="/admin/uimanagemnt" element={<UiMain />} />
         <Route path="/admin/user-details" element={<UserMain />} />
+        <Route path="/admin/recharge" element={<BrowseRecharge />} />
+        <Route path="/admin/recharge-approve" element={<RechargeApprove />} />
         <Route path="/admin/settings" element={<SettingMain />} />
         <Route path="/privacy-agreement" element={<PrivacyMain />} />
         <Route path="/risk-disclosure-agreement" element={<RiskMain />} />
