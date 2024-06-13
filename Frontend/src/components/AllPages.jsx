@@ -36,6 +36,8 @@ import RechargeMain from "./Recharge/RechargeMain";
 import BrowseRecharge from "./Admin/Recharge/BrowseRecharge";
 import RechargeApprove from "./Admin/RechargeApprove/RechargeApprove";
 import UserBank from "./Wallet/UserBank";
+import BrowseWithdrawa from "./Admin/Withdrawal/BrowseWithdrawa";
+import WithdrawApprove from "./Admin/WithdrawApprove/WithdrawApprove";
 // import WinGoMainTesting from "./WinGo/WinGoMainTesting";
 
 
@@ -85,14 +87,15 @@ function AllPages() {
         <Route path="/admin/uimanagemnt" element={<UiMain />} />
         <Route path="/admin/user-details" element={<UserMain />} />
         <Route path="/admin/recharge" element={<BrowseRecharge />} />
+        <Route path="/admin/withdraw" element={<BrowseWithdrawa />} />
         <Route path="/admin/recharge-approve" element={<RechargeApprove />} />
+        <Route path="/admin/withdraw-approve" element={<WithdrawApprove />} />
         <Route path="/admin/settings" element={<SettingMain />} />
         <Route path="/privacy-agreement" element={<PrivacyMain />} />
         <Route path="/risk-disclosure-agreement" element={<RiskMain />} />
         <Route path="/support" element={<SupportMain />} />
         <Route path="/salary-record" element={<SalaryRecord />} />
         <Route path="/wingo" element={<WinGoMain />} />
-        {/* <Route path="/wingo" element={<WinGoMainTesting />} /> */}
         <Route path="/5d" element={<Main_5D />} />
         <Route path="/k3" element={<Main_K3 />} />
         <Route path="/trx" element={<TrxMain />} />

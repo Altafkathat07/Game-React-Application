@@ -336,4 +336,23 @@
             width: 30px !important;
         }
 
+        .backinfo[data-v-25d9c3523] {
+            height: 1.93333rem;
+            padding: 0 .4rem;
+            line-height: .93333rem;
+            background-color: #ffffff;
+            margin-top: 9px;
+            color: #fd9601;
+            border-radius: 2px;
+            border-bottom: .02667rem solid #e87801;
+        }
+        .van-ellipsis[data-v-25d9c3524]{
+            font-size: 1.4rem;
+            font-weight: 600;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
    
