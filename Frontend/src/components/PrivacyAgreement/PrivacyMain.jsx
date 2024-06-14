@@ -3,25 +3,18 @@ import Footer from "../Home/Footer"
 import Header from "../Home/Header"
 import '../../assets/home/css/index.css'
 import '../../assets/home/css/login.css'
+import axios from "axios"
 
 function PrivacyMain() {
     const [terms, setTerms] = useState('');
     useEffect(() => {
-         fetch('/api/webapi/admin/privacy-fetching')
-          .then((res) => {
-            if (!res.ok) {
-              throw new Error('Network response was not ok ' + res.statusText);
-            }
-            return res.json();
-          })
-          .then((data) => {
-            // console.log("Data fetched:", data.data[0].term);
-            const result = data.data[0].term;
-            setTerms(result);
-          })
-          .catch((error) => {
-            console.error('There has been a problem with your fetch operation:', error);
-          });
+         axios.get('/api/webapi/admin/privacy-fetching')
+         .then(response => {
+          const userInfo = response.data.data;
+          console.log("this is res: " + JSON.stringify(userInfo));
+          setTerms(userInfo[0].term);
+      })
+      .catch(error => console.log(error));
       }, []);
 
   return (

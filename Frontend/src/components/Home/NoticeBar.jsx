@@ -37,7 +37,7 @@ function NoticeBar() {
 						<i className="van-icon van-icon-volume-o van-notice-bar__left-icon">
 							
 						</i>
-						<div role="marquee" className="van-notice-bar__wrap">
+						<div role="marquee" className="van-notice-bar__wrap" style={{fontSize: "0.9rem"}}>
 							<div className="van-notice-bar__content" id="notice" style={style}>{notice}</div>
 						</div>
 					</div>

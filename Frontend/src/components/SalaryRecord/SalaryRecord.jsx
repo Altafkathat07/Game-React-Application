@@ -9,7 +9,7 @@ function SalaryRecord() {
   const [rows, setRows] = useState([]);
 
   useEffect(() => {
-      axios.get('/getrecord')
+      axios.post('/api/webapi/salary_record')
           .then(response => {
               updateTable(response.data);
           })
@@ -25,6 +25,9 @@ function SalaryRecord() {
           console.log('No data found or invalid response format');
       }
   };
+
+
+
   return (
     <>
       <div id="app">
@@ -38,7 +41,7 @@ function SalaryRecord() {
                         <th data-v-432e6eddw="" className="text-center salary">Phone</th>
                         <th data-v-432e6eddw="" className="text-center salary">Amount</th>
                         <th data-v-432e6eddw="" className="text-center salary">Type</th>
-                        <th data-v-432e6eddw="" className="text-center salary">Time</th>
+                        {/* <th data-v-432e6eddw="" className="text-center salary">Time</th> */}
                       </tr>
                     </thead>
                     <tbody>
@@ -47,7 +50,7 @@ function SalaryRecord() {
                         <td className="text-center">{item.phone}</td>
                         <td className="text-center">{item.amount}</td>
                         <td className="text-center">{item.type}</td>
-                        <td className="text-center">{item.time}</td>
+                        {/* <td className="text-center">{isDate(item.time)}</td> */}
                     </tr>
                 ))}
                     </tbody>

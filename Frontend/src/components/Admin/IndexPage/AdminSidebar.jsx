@@ -5,7 +5,7 @@ function AdminSidebar() {
   return (
     <>
       <nav className="sidebar sidebar-offcanvas" id="sidebar">
-                <ul className="nav">
+                <ul data-v-8cd483caa="" className="nav" >
                     <li className="nav-item nav-profile">
                         <a href="#" className="nav-link">
                             <div className="nav-profile-image">
@@ -64,6 +64,18 @@ function AdminSidebar() {
                     <li className="nav-item">
                         <Link  to="/admin/settings" className="nav-link">
                           <span className="menu-title">Setting</span>
+                          <i className="mdi mdi-home menu-icon"></i>
+                        </Link>
+                    </li> 
+                    <li className="nav-item">
+                        <Link  to="/admin/giftcode" className="nav-link">
+                          <span className="menu-title">Create GiftCode</span>
+                          <i className="mdi mdi-home menu-icon"></i>
+                        </Link>
+                    </li>  
+                    <li className="nav-item">
+                        <Link  to="/" className="nav-link">
+                          <span className="menu-title">Go to Website</span>
                           <i className="mdi mdi-home menu-icon"></i>
                         </Link>
                     </li>

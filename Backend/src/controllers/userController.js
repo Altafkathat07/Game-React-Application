@@ -52,6 +52,8 @@ const userInfo = async (req, res) => {
             name_user: others.name_user,
             phone_user: others.phone,
             money_user: others.money,
+            totalRecharge: totalRecharge,
+            totalWithdraw: totalWithdraw,
         },
         totalRecharge: totalRecharge,
         totalWithdraw: totalWithdraw,
@@ -549,6 +551,98 @@ const withdrawal = async (req, res) => {
 
 }
 
+const useRedenvelope = async(req, res) => {
+    let auth = 130;
+    let code = req.body.code;
+    // let claim = req.body.claim;
+    if(!auth || !code ) {
+        return res.status(200).json({
+            message: 'Failed',
+            status: false,
+            timeStamp: timeNow,
+        })
+    }
+    const [user] = await connection.query('SELECT `phone`, `code`,`invite` FROM users WHERE `id` = ? ', [auth]);
+    let userInfo = user[0];
+    if(!user) {
+        return res.status(200).json({
+            message: 'Failed',
+            status: false,
+            timeStamp: timeNow,
+        });
+    };
+    const [redenvelopes] = await connection.query(
+        'SELECT * FROM redenvelopes WHERE id_redenvelope = ?', [code]);
+        
+    if (redenvelopes.length == 0) {
+        return res.status(200).json({
+            message: 'Redemption code error',
+            status: false,
+            timeStamp: timeNow,
+        });
+    }else {
+        let infoRe = redenvelopes[0];
+        const d = new Date();
+        const time = d.getTime();
+        // 
+        if (infoRe.status == 0 && infoRe.max_count < infoRe.max_claims) {
+            await connection.query('UPDATE redenvelopes SET used = ?, status = ? WHERE `id_redenvelope` = ?', [1, 1, infoRe.id_redenvelope]);
+           
+            if (infoRe.max_count == infoRe.max_claims ) {
+               
+                await connection.query('UPDATE redenvelopes SET used = ?, status = ? WHERE `id_redenvelope` = ?', [1, 1, infoRe.id_redenvelope]);
+            } else {
+
+                const userClaimed = await connection.query('SELECT * FROM redenvelopes_used');
+                const data = userClaimed[0];
+                const filteredData = data.filter(item => {
+                
+                   const  userDataCheck =  item.phone_used ===  userInfo.phone && item.id_redenvelops === infoRe.id_redenvelope;
+                    if (userDataCheck === true) {
+                        return true;
+                    }else{
+                        return false
+                    }
+                    
+                  });
+                
+                  if(filteredData.length !== 0){
+                    return res.status(200).json({
+                        message: 'User already claimed a gift code',
+                        status: false,
+                        timeStamp: timeNow,
+                    });
+                  }
+                
+
+               
+                await connection.query('UPDATE redenvelopes SET used = ?, max_count = ? WHERE `id_redenvelope` = ?', [0, infoRe.max_count+1,  infoRe.id_redenvelope]);
+                
+            }
+        
+
+           
+            await connection.query('UPDATE users SET money = money + ? WHERE `phone` = ?', [infoRe.money, userInfo.phone]);
+        
+            
+            let sql = 'INSERT INTO redenvelopes_used SET phone = ?, phone_used = ?, id_redenvelops = ?, money = ?, `time` = ? ';
+            await connection.query(sql, [infoRe.phone, userInfo.phone, infoRe.id_redenvelope, infoRe.money, time]);
+        
+            return res.status(200).json({
+                message: `Received successfully +${infoRe.money}`,
+                status: true,
+                timeStamp: timeNow,
+            });
+        } else {
+            return res.status(200).json({
+                message: 'Gift code already used',
+                status: false,
+                timeStamp: timeNow,
+            });
+        }
+    }
+}
+
 
 
 module.exports = {
@@ -556,5 +650,6 @@ module.exports = {
     recharge,
     addBank,
     UserBankInfo,
-    withdrawal
+    withdrawal,
+    useRedenvelope
 }

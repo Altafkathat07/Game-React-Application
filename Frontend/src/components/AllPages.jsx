@@ -38,6 +38,7 @@ import RechargeApprove from "./Admin/RechargeApprove/RechargeApprove";
 import UserBank from "./Wallet/UserBank";
 import BrowseWithdrawa from "./Admin/Withdrawal/BrowseWithdrawa";
 import WithdrawApprove from "./Admin/WithdrawApprove/WithdrawApprove";
+import GiftCodeMain from "./Admin/CreateGiftCode/GiftCodeMain";
 // import WinGoMainTesting from "./WinGo/WinGoMainTesting";
 
 
@@ -91,6 +92,7 @@ function AllPages() {
         <Route path="/admin/recharge-approve" element={<RechargeApprove />} />
         <Route path="/admin/withdraw-approve" element={<WithdrawApprove />} />
         <Route path="/admin/settings" element={<SettingMain />} />
+        <Route path="/admin/giftcode" element={<GiftCodeMain />} />
         <Route path="/privacy-agreement" element={<PrivacyMain />} />
         <Route path="/risk-disclosure-agreement" element={<RiskMain />} />
         <Route path="/support" element={<SupportMain />} />

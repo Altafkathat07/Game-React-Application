@@ -10,15 +10,17 @@ function RedeemContent() {
                         <img data-v-3b4d4aab="" alt="" className="" src={gift} />
                     </div>
                 </div>
+                    <form action="/api/webapi/claim-code" method="post">
                 <div data-v-3b4d4aab="" className="redeem-container-content">
                     <div data-v-3b4d4aab="" className="redeem-container-receive">
                         <p data-v-3b4d4aab="">Hi</p>
                         <p data-v-3b4d4aab="">We have a gift for you</p>
                         <h4 data-v-3b4d4aab="">Please enter the gift code below</h4>
-                        <input data-v-3b4d4aab="" type="text" autoComplete="new-password" placeholder="Please enter gift code" />
-                        <button data-v-3b4d4aab="">Receive</button>
+                        <input data-v-3b4d4aab="" type="text" autoComplete="new-password" name="code" placeholder="Please enter gift code" />
+                        <button data-v-3b4d4aab="" type="submit">Receive</button>
                     </div>
                 </div>
+                    </form>
             </div>
     </>
   )

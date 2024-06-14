@@ -1,6 +1,7 @@
 import img from "../../assets/images/wal_img.png"
 import pay from "../../assets/images/htmls2.png"
-import { useState } from "react"
+import { useState, useEffect } from "react"
+import axios from "axios"
 
 function RechargeContent() {
     const [amount, setAmount] = useState(300)
@@ -8,6 +9,17 @@ function RechargeContent() {
     const amountHandler = (value) =>{
         setAmount(value);
     }
+    const [user, setUser] = useState({});
+
+    useEffect(() => {
+        axios.post('/api/webapi/GetUserInfo')
+            .then(response => {
+                const userInfo = response.data.data;
+                console.log("this is res: " + JSON.stringify(userInfo));
+                setUser(userInfo);
+            })
+            .catch(error => console.log(error));
+    }, []);
   return (
     <>
       <div data-v-67caa467="" className="selectBox">
@@ -17,7 +29,7 @@ function RechargeContent() {
                     <div data-v-67caa467="" className="c-row c-row-middle">
                         <div data-v-67caa467="" className="money">
                             
-                            <div data-v-67caa467="">34871.40<span data-v-67caa467="" className="p-l-5"> ₹</span></div>
+                            <div data-v-67caa467="">{user.money_user ?? 0}<span data-v-67caa467="" className="p-l-5"> ₹</span></div>
                         </div>
                         <div data-v-67caa467="" className="van-image m-l-10" style={{width: "20px"}}>
                             <img src={img} className="van-image__img" />

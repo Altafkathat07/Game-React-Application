@@ -411,6 +411,166 @@ const withdrawCancel = async (req, res) => {
 
 }
 
+const createBonus = async (req, res) => {
+    const randomString = (length) => {
+        var result = '';
+        var characters = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        var charactersLength = characters.length;
+        for (var i = 0; i < length; i++) {
+            result += characters.charAt(Math.floor(Math.random() *
+                charactersLength));
+        }
+        return result;
+    }
+    function timerJoin(params = '', addHours = 0) {
+        let date = '';
+        if (params) {
+            date = new Date(Number(params));
+        } else {
+            date = new Date();
+        }
+
+        date.setHours(date.getHours() + addHours);
+
+        let years = formateT(date.getFullYear());
+        let months = formateT(date.getMonth() + 1);
+        let days = formateT(date.getDate());
+
+        let hours = date.getHours() % 12;
+        hours = hours === 0 ? 12 : hours;
+        let ampm = date.getHours() < 12 ? "AM" : "PM";
+
+        let minutes = formateT(date.getMinutes());
+        let seconds = formateT(date.getSeconds());
+
+        return years + '-' + months + '-' + days + ' ' + hours + ':' + minutes + ':' + seconds + ' ' + ampm;
+    }
+    const d = new Date();
+    const time = d.getTime();
+
+    let auth = 130;
+    let money = req.body.money;
+    let claim = req.body.numberOfClaim;
+    let type = req.body.type;
+
+
+    if (!money || !claim) {
+        return res.status(200).json({
+            message: 'Failed 1',
+            status: false,
+            timeStamp: timeNow,
+        });
+    }
+    const [user] = await connection.query('SELECT * FROM users WHERE id = ? ', [auth]);
+
+    if (user.length == 0) {
+        return res.status(200).json({
+            message: 'Failed ',
+            status: false,
+            timeStamp: timeNow,
+        });
+    }
+    let userInfo = user[0];
+
+    if (type == 'all') {
+        let select = req.body.select;
+        if (select == '1') {
+            await connection.query(`UPDATE point_list SET money = money + ? WHERE level = 2`, [money]);
+        } else {
+            await connection.query(`UPDATE point_list SET money = money - ? WHERE level = 2`, [money]);
+        }
+        return res.status(200).json({
+            message: 'successful change',
+            status: true,
+        });
+    }
+
+    if (type == 'two') {
+        let select = req.body.select;
+        if (select == '1') {
+            await connection.query(`UPDATE point_list SET money_us = money_us + ? WHERE level = 2`, [money]);
+        } else {
+            await connection.query(`UPDATE point_list SET money_us = money_us - ? WHERE level = 2`, [money]);
+        }
+        return res.status(200).json({
+            message: 'successful change',
+            status: true,
+        });
+    }
+
+    if (type == 'one') {
+        let select = req.body.select;
+        let phone = req.body.phone;
+        const [user] = await connection.query('SELECT * FROM point_list WHERE phone = ? ', [phone]);
+        if (user.length == 0) {
+            return res.status(200).json({
+                message: 'Failed',
+                status: false,
+                timeStamp: timeNow,
+            });
+        }
+        if (select == '1') {
+            await connection.query(`UPDATE point_list SET money = money + ? WHERE level = 2 and phone = ?`, [money, phone]);
+        } else {
+            await connection.query(`UPDATE point_list SET money = money - ? WHERE level = 2 and phone = ?`, [money, phone]);
+        }
+        return res.status(200).json({
+            message: 'successful change',
+            status: true,
+        });
+    }
+
+    if (type == 'three') {
+        let select = req.body.select;
+        let phone = req.body.phone;
+        const [user] = await connection.query('SELECT * FROM point_list WHERE phone = ? ', [phone]);
+        if (user.length == 0) {
+            return res.status(200).json({
+                message: 'account does not exist',
+                status: false,
+                timeStamp: timeNow,
+            });
+        }
+        if (select == '1') {
+            await connection.query(`UPDATE point_list SET money_us = money_us + ? WHERE level = 2 and phone = ?`, [money, phone]);
+        } else {
+            await connection.query(`UPDATE point_list SET money_us = money_us - ? WHERE level = 2 and phone = ?`, [money, phone]);
+        }
+        return res.status(200).json({
+            message: 'successful change',
+            status: true,
+        });
+    }
+
+    if (!type) {
+        let id_redenvelops = randomString(16);
+        let sql = `INSERT INTO redenvelopes SET id_redenvelope = ?, phone = ?, money = ?, used = ?, max_claims = ?, max_count = ?, amount = ?, status = ?, time = ?`;
+        await connection.query(sql, [id_redenvelops, userInfo.phone, money, 0, claim, 0, 1, 0, time]);
+        return res.status(200).json({
+            message: 'Successful change',
+            status: true,
+            id: id_redenvelops,
+        });
+    }
+}
+
+const bonusDetails = async (req, res) =>{
+    const [rows] = await connection.query('SELECT * FROM redenvelopes WHERE status = 0');
+    console.log(rows);
+    if(!rows || rows.length === 0){
+        return res.status(200).json({
+            message: 'something went wrong while user fetching bonus details',
+            status: false
+        });
+    }
+    const data = rows;
+    console.log(data);
+    return res.status(200).json({
+        message: 'bonus Details fetch success',
+        status: true,
+        data: data
+    });
+}
 
 const currentDirectory = process.cwd();
 
@@ -481,5 +641,7 @@ module.exports = {
     withdrawApproveDetail,
     withdrawConfirm,
     withdrawCancel,
+    createBonus,
+    bonusDetails
 
 }

@@ -1,3 +1,5 @@
+import { useState, useEffect } from 'react';
+import axios from 'axios';
 import recharge from '../../assets/images/rechargeIconaa-a37f0b23.png';
 import rechargeHistory from '../../assets/images/rechargeHistory-dbaa148953.png';
 import withdraw from '../../assets/images/widthdrawBlueaa-52d9a5cc.png';
@@ -5,6 +7,18 @@ import widthdrawHistory from '../../assets/images/myWithdrawHistoraay-8ddd0e20.p
 import { Link } from 'react-router-dom';
 
 function WalletContent() {
+    const [user, setUser] = useState({});
+
+    useEffect(() => {
+        axios.post('/api/webapi/GetUserInfo')
+            .then(response => {
+                const userInfo = response.data.data;
+                console.log("this is res: " + JSON.stringify(userInfo));
+                setUser(userInfo);
+            })
+            .catch(error => console.log(error));
+    }, []);
+
   return (
     <>
        <div data-v-7b283485="" className="wallet">
@@ -27,7 +41,7 @@ function WalletContent() {
                             <div data-v-7b283485="" className="c-row balanceMoney c-row-middle-center">
                                 <div data-v-7b283485="" className="money">
                                     
-                                    <div data-v-7b283485="">₹<span data-v-7b283485="" className="p-l-10">Loading...</span>
+                                    <div data-v-7b283485="">₹<span data-v-7b283485="" className="p-l-10">{user.money_user ?? "Loading..."}</span>
                                     </div>
                                 </div>
                                 <div data-v-7b283485="" id="reload">
@@ -41,12 +55,12 @@ function WalletContent() {
                                 <div data-v-7b283485="" className="item">
                                     <div data-v-7b283485="">Total Recharge</div>
                                     
-                                    <div data-v-7b283485="" className="moneyItem">₹ 0.00</div>
+                                    <div data-v-7b283485="" className="moneyItem">₹ {user.totalRecharge ?? 0.00}</div>
                                 </div>
                                 <div data-v-7b283485="" className="item">
                                     <div data-v-7b283485="">Total Withdrawal</div>
                                     
-                                    <div data-v-7b283485="" className="moneyItem">₹ 0.00</div>
+                                    <div data-v-7b283485="" className="moneyItem">₹ {user.totalWithdraw ?? 0.00}</div>
                                 </div>
                             </div>
                         </div>

@@ -18872,3 +18872,7 @@ dl li {
   /* align-items: center; */
 }
 
+.nav[data-v-8cd483caa]{
+  width: 16rem !important;
+  position: relative !important;
+}
