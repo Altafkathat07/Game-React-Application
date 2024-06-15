@@ -9,6 +9,7 @@ require('dotenv').config();
 
 
 const getSalaryRecord = async(req, res)=>{
+    // const auth = req.cookies.authToken;
     const auth = 130;
 
     const [rows] = await connection.query(`SELECT * FROM users WHERE id = ?`, [auth]);

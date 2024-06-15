@@ -1,4 +1,5 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import axios from 'axios'
 import support from '../../assets/images/supicon.webp'
 import secure from '../../assets/images/securityicon.webp'
 import guide from '../../assets/images/guideicon.webp'
@@ -7,18 +8,24 @@ import redeem from '../../assets/images/redeem.webp'
 import {Link} from 'react-router-dom'
 
 function ProfileList() {
-    const [level, setLevel] = useState(1);
-    const fun = () =>{
+    const [level, setLevel] = useState({});
 
-        setLevel();
-    }
+    useEffect(() => {
+        axios.post('/api/webapi/GetUserInfo')
+            .then(response => {
+                const userInfo = response.data.data;
+                console.log("this is res: " + JSON.stringify(userInfo.level));
+                setLevel(userInfo.level);
+            })
+            .catch(error => console.log(error));
+    }, []);
   return (
     <>
      <div data-v-21f3500a="" data-v-8cd483ca="" className="list">
                     
                     
                     { level === 1 &&(
-                       <Link to="/admin"> <div data-v-21f3500a="" onChange={fun} className="item c-row c-row-between" >
+                       <Link to="/admin"> <div data-v-21f3500a=""  className="item c-row c-row-between" >
                             <div data-v-21f3500a="" className="c-row c-row-middle">
                                 <img data-v-21f3500a="" width="24px" height="24px" src={secure} className="img" />
                                 <span data-v-21f3500a="" className="name">Administrator Area</span>

@@ -238,14 +238,14 @@ const login = async(req, res) => {
                  res.cookie('authToken', accessToken, { httpOnly: true, secure: false }); 
                  console.log('Cookie set:', 'authToken', accessToken);
 
-                res.redirect("http://localhost:5173/")
-                // return res.status(200).json({
-                //     message: 'Login Success',
-                //     status: true,
-                //     token: accessToken,
-                //     value: md5(accessToken),
-                //     popup: pop,
-                // }); 
+                // res.redirect("http://localhost:5173/")
+                return res.status(200).json({
+                    message: 'Login Success',
+                    status: true,
+                    token: accessToken,
+                    value: md5(accessToken),
+                    popup: pop,
+                }); 
             } else {
                 return res.status(410).json({
                     message: 'Account has been locked',

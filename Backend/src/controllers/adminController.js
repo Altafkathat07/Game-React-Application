@@ -9,11 +9,13 @@ let timeNow = Date.now();
 
 
 const termsAndCondition = async(req, res) => {
-    let auth = req.cookies.auth;
+    // let auth = req.cookies.authToken;
+    let auth = 130;
+
     let term = req.body.term;
-    if ( !term ) {
+    if ( !auth || !term ) {
         return res.status(200).json({
-            message: 'Failed11',
+            message: 'Failed',
             status: false,
             timeStamp: timeNow,
         });
@@ -62,9 +64,10 @@ const termsFetching = async(req, res) => {
 
 
 const notice = async(req, res) => {
-    let auth = req.cookies.auth;
+    // let auth = req.cookies.authToken;
+    let auth = 130;
     let noti = req.body.notices;
-    if ( !noti ) {
+    if ( !auth || !noti  ) {
         return res.status(200).json({
             message: 'Failed',
             status: false,
@@ -95,9 +98,10 @@ const notice = async(req, res) => {
 }
 
 const Popup = async(req, res) => {
-    let auth = req.cookies.auth;
+    // let auth = req.cookies.authToken;
+    let auth = 130;
     let msg = req.body.message;
-    if ( !msg ) {
+    if (!auth || !msg ) {
         return res.status(200).json({
             message: 'Failed',
             status: false,
@@ -454,7 +458,7 @@ const createBonus = async (req, res) => {
     let type = req.body.type;
 
 
-    if (!money || !claim) {
+    if (!auth || !money || !claim) {
         return res.status(200).json({
             message: 'Failed 1',
             status: false,

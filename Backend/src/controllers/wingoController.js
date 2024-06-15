@@ -95,7 +95,8 @@ const rosesPlus = async (auth, money) => {
 }
 const betWinGo = async (req, res) => {
     let { typeid, join, x, money } = req.body;
-    let auth = req.cookies.auth;
+    // let auth = req.cookies.authToken;
+    let auth = 130;
 
     if (typeid != 1 && typeid != 3 && typeid != 5 && typeid != 10) {
         return res.status(200).json({
@@ -111,7 +112,7 @@ const betWinGo = async (req, res) => {
     if (typeid == 5) gameJoin = 'wingo5';
     if (typeid == 10) gameJoin = 'wingo10';
     const [winGoNow] = await connection.query(`SELECT period FROM wingo WHERE status = 0 AND game = '${gameJoin}' ORDER BY id DESC LIMIT 1 `);
-    const [user] = await connection.query('SELECT `phone`, `code`, `invite`, `level`, `money` FROM users WHERE token = ? AND veri = 1  LIMIT 1 ', [auth]);
+    const [user] = await connection.query('SELECT `phone`, `code`, `invite`, `level`, `money` FROM users WHERE id = ? AND veri = 1  LIMIT 1 ', [auth]);
     if (!winGoNow[0] || !user[0] || !isNumber(x) || !isNumber(money)) {
         return res.status(200).json({
             message: 'Error!',
@@ -235,8 +236,8 @@ const betWinGo = async (req, res) => {
         today = ?,
         time = ?`;
         await connection.execute(sql, [id_product, userInfo.phone, userInfo.code, userInfo.invite, period, userInfo.level, total, x, fee, 0, gameJoin, join, 0, checkTime, timeNow]);
-        await connection.execute('UPDATE `users` SET `money` = `money` - ? WHERE `token` = ? ', [money * x, auth]);
-        const [users] = await connection.query('SELECT `money`, `level` FROM users WHERE token = ? AND veri = 1  LIMIT 1 ', [auth]);
+        await connection.execute('UPDATE `users` SET `money` = `money` - ? WHERE `id` = ? ', [money * x, auth]);
+        const [users] = await connection.query('SELECT `money`, `level` FROM users WHERE id = ? AND veri = 1  LIMIT 1 ', [auth]);
         await rosesPlus(auth, money * x);
         // const [level] = await connection.query('SELECT * FROM level ');
         // let level0 = level[0];
@@ -290,8 +291,9 @@ const listOrderOld = async (req, res) => {
             status: false
         });
     }
-    // let auth = req.cookies.auth;
-    // const [user] = await connection.query('SELECT `phone`, `code`, `invite`, `level`, `money` FROM users WHERE token = ? AND veri = 1  LIMIT 1 ', [auth]);
+    // let auth = req.cookies.authToken;
+    let auth = 130;
+    const [user] = await connection.query('SELECT `phone`, `code`, `invite`, `level`, `money` FROM users WHERE id = ? AND veri = 1  LIMIT 1 ', [auth]);
 
     let game = '';
     if (typeid == 1) game = 'wingo';
@@ -312,7 +314,7 @@ const listOrderOld = async (req, res) => {
             status: false
         });
     }
-    if (!pageno || !pageto  || !wingo[0] || !period[0]) {
+    if (!pageno || !user[0] || !pageto  || !wingo[0] || !period[0]) {
         return res.status(200).json({
             message: 'Error!',
             status: true
@@ -356,6 +358,7 @@ const GetMyEmerdList = async (req, res) => {
             status: false
         });
     }
+    // let auth = req.cookies.authToken;
     let auth = 130;
 
     let game = '';

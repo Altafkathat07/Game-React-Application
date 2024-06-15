@@ -1,19 +1,41 @@
+import { useState } from 'react'
+import axios from 'axios'
 import phoneImg from '../../assets/images/cellphone.png'
 import passImg from '../../assets/images/lock.png'
 import eye from '../../assets/images/eye.png'
 import { Link } from 'react-router-dom'
 
 function FormSection() {
-    const showPass = () => {
+    const [username, setUsername] = useState('');
+    const [pwd, setPwd] = useState('');
+    const [showPassword, setShowPassword] = useState(false);
 
-    }
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+    
+        try {
+            const response = await axios.post('/api/webapi/login', { username, pwd });
+            console.log('Submitted data:', { username, pwd });
+            
+            if (response.status === 200 && response.data.status) {
+                window.location.href = '/dashboard';
+            } else {
+                // Handle error by displaying the response message
+                alert(response.data.message || 'Login failed. Please try again.');
+            }
+        } catch (error) {
+            console.error('Error logging in:', error);
+            alert('Error logging in. Please try again.');
+        }
+    };
+  
   return (
     <>
 
 
     <div data-v-8752c961="" className="login__container-form">
             <div data-v-8752c961="" className="tab-content activecontent">
-                <form action="/api/webapi/login" method='post'>
+                <form onSubmit={handleSubmit}>
                 <div data-v-0ce8d964="" data-v-8752c961="" className="signIn__container">
                     <div data-v-93f53084="" data-v-0ce8d964="" className="phoneInput__container">
                         <div data-v-93f53084="" className="phoneInput__container-label">
@@ -97,7 +119,9 @@ function FormSection() {
                                                 <span data-v-6f85c91a="">+263</span> Zimbabwe </div>
                                 </div> */}
                             </div>
-                            <input data-v-93f53084="" type="text" name="username" placeholder="Please enter the phone number" autoComplete="on" required />
+                            <input data-v-93f53084="" type="text" name="username" placeholder="Please enter the phone number" autoComplete="on" required  value={username}
+                                    onChange={(e) => setUsername(e.target.value)}
+                                    />
                         </div>
                     </div>
                     <div data-v-57d49070="" data-v-0ce8d964="" className="passwordInput__container">
@@ -106,8 +130,13 @@ function FormSection() {
                             <span data-v-57d49070="">Password</span>
                         </div>
                         <div data-v-57d49070="" className="passwordInput__container-input">
-                            <input data-v-57d49070="" name="pwd" id="passwordfield" type="password" placeholder="Please enterPassword"  required />
-                            <img data-v-57d49070="" id="eyeicon" src={eye} className="eye" onClick={showPass} />
+                            <input data-v-57d49070="" name="pwd" id="passwordfield"    type={showPassword ? "text" : "password"}
+                                    placeholder="Please enter Password"
+                                    required
+                                    value={pwd}
+                                    onChange={(e) => setPwd(e.target.value)}/>
+                            <img data-v-57d49070="" id="eyeicon" src={eye} className="eye"  onClick={() => setShowPassword(!showPassword)}
+                                    alt="Toggle visibility" />
                         </div>
                     </div>
                     <div data-v-0ce8d964="" className="signIn__container-remember">

@@ -7,6 +7,7 @@ const axios = require('axios');
 let timeNow = Date.now();
 
 const userInfo = async (req, res) => {
+    // let auth = req.cookies.authToken;
     let auth = 130;
 
     if (!auth) {
@@ -18,7 +19,7 @@ const userInfo = async (req, res) => {
     }
     const [rows] = await connection.query('SELECT * FROM users WHERE `id` = ? ', [auth]);
     
-   console.log(rows[0].phone);
+//    console.log(rows[0].phone);
     if (!rows) {
         return res.status(200).json({
             message: 'Failed',
@@ -52,6 +53,7 @@ const userInfo = async (req, res) => {
             name_user: others.name_user,
             phone_user: others.phone,
             money_user: others.money,
+            level: others.user_level,
             totalRecharge: totalRecharge,
             totalWithdraw: totalWithdraw,
         },
@@ -63,6 +65,7 @@ const userInfo = async (req, res) => {
 }
 
 const recharge = async (req, res) => {
+    // let auth = req.cookies.authToken;
     let auth = 130;
     let rechid = req.cookies.orderid;
     let money = req.body.money;
@@ -276,6 +279,7 @@ const recharge = async (req, res) => {
 }
 
 const addBank = async (req, res) => {
+    // let auth = req.cookies.authToken;
     let auth = 130;
     let bank_name = req.body.bankname;
     let user_name = req.body.username;
@@ -337,6 +341,7 @@ const addBank = async (req, res) => {
 }
 
 const UserBankInfo = async (req, res) => {
+    // let auth = req.cookies.authToken;
     let auth = 130;
     if (!auth) {
         return res.status(200).json({
@@ -415,6 +420,7 @@ const UserBankInfo = async (req, res) => {
 }
 
 const withdrawal = async (req, res) => {
+    // let auth = req.cookies.authToken;
     let auth = 130;
     let money = req.body.money;
     let password = req.body.password;
@@ -552,6 +558,7 @@ const withdrawal = async (req, res) => {
 }
 
 const useRedenvelope = async(req, res) => {
+    // let auth = req.cookies.authToken;
     let auth = 130;
     let code = req.body.code;
     // let claim = req.body.claim;
@@ -644,6 +651,7 @@ const useRedenvelope = async(req, res) => {
 }
 
 const listRecharge = async (req, res) => {
+    // let auth = req.cookies.authToken;
     let auth = 130;
     if (!auth) {
         return res.status(200).json({
@@ -670,6 +678,7 @@ const listRecharge = async (req, res) => {
     });
 }
 const listWithdraw= async (req, res) => {
+    // let auth = req.cookies.authToken;
     let auth = 130;
     if (!auth) {
         return res.status(200).json({
@@ -697,6 +706,7 @@ const listWithdraw= async (req, res) => {
 }
 
 const promotion = async (req, res) => {
+    // let auth = req.cookies.authToken;
     let auth = 130;
     if (!auth) {
         return res.status(200).json({
@@ -853,6 +863,7 @@ const promotion = async (req, res) => {
 }
 
 const activityCheck = async (req, res) => {
+    // let auth = req.cookies.authToken;
     let auth = 130;
     let data = req.body.data;
 
