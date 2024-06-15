@@ -12,14 +12,14 @@ import img from "../../assets/images/copy.png"
 function WithdrawalHistrory() {
     const [items, setItems] = useState([]);
     useEffect(() => {
-        axios.get('/api/webapi/recharge-list')
+        axios.get('/api/webapi/withdraw-list')
             .then(response => {
                 console.log("Recharge list response:", response.data);
-                if (Array.isArray(response.data.datas)) { // Ensure response.data.datas is an array
+                if (Array.isArray(response.data.datas)) { 
                     setItems(response.data.datas);
                 } else {
                     console.error("Unexpected data format:", response.data);
-                    setItems([]); // Default to empty array if data format is unexpected
+                    setItems([]); 
                 }
             })
             .catch(error => console.log(error));

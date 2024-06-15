@@ -4,6 +4,7 @@ import PromotionInstructer from "./PromotionInstructer"
 import PromotionTabel from "./PromotionTabel"
 
 function PromotionMain() {
+  
   return (
     <>
        <div id="app">

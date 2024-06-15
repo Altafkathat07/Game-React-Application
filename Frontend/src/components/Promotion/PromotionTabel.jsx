@@ -1,6 +1,24 @@
-
+import { useState, useEffect } from "react";
+import axios from "axios";
 
 function PromotionTabel() {
+
+    const [users, setUsers] = useState([]);
+
+    useEffect(() => {
+        axios.post('/api/webapi/promotion')
+        .then(response => {
+            console.log("table list response:", response.data);
+            if (Array.isArray(response.data)) { // Ensure response.data.datas is an array
+            console.log("table list response:", response.data);
+                setUsers(response.data);
+            } else {
+                
+                setUsers([]); // Default to empty array if data format is unexpected
+            }
+        })
+        .catch(error => console.log(error));
+}, []);
   return (
     <>
        <div data-v-7c8bbbf4="" className="titel c-row c-row-between">Referral Condition For Level Commission</div>
@@ -11,49 +29,27 @@ function PromotionTabel() {
                             <div data-v-7c8bbbf4="" className="c-tc van-ellipsis van-col van-col--6">Commission</div> 
                             <div data-v-7c8bbbf4="" className="c-tc van-ellipsis van-col van-col--6">Recharge</div>
                         </div>
-                        
-                        <div data-v-7c8bbbf4="" className="bd van-row">
-                            <div data-v-7c8bbbf4="" className="c-tc van-ellipsis van-col van-col--6">Level 1</div>
-                            <div data-v-7c8bbbf4="" className="c-tc van-col van-col--6">2</div>
-                            <div data-v-7c8bbbf4="" className="c-tc van-col van-col--6">1%</div> 
-                            <div data-v-7c8bbbf4="" className="c-tc van-col van-col--6">600</div>
-                        </div>
-                        <div data-v-7c8bbbf4="" className="bd van-row">
-                            <div data-v-7c8bbbf4="" className="c-tc van-ellipsis van-col van-col--6">Level 2</div>
-                            <div data-v-7c8bbbf4="" className="c-tc van-col van-col--6">5</div>
-                            <div data-v-7c8bbbf4="" className="c-tc van-col van-col--6">0.25%</div> 
-                            <div data-v-7c8bbbf4="" className="c-tc van-col van-col--6">1500</div>
-                        </div>
-                        <div data-v-7c8bbbf4="" className="bd van-row">
-                            <div data-v-7c8bbbf4="" className="c-tc van-ellipsis van-col van-col--6">Level 3</div>
-                            <div data-v-7c8bbbf4="" className="c-tc van-col van-col--6">8</div>
-                            <div data-v-7c8bbbf4="" className="c-tc van-col van-col--6">0.25%</div> 
-                            <div data-v-7c8bbbf4="" className="c-tc van-col van-col--6">2400</div>
-                        </div>
-                        <div data-v-7c8bbbf4="" className="bd van-row">
-                            <div data-v-7c8bbbf4="" className="c-tc van-ellipsis van-col van-col--6">Level 4</div>
-                            <div data-v-7c8bbbf4="" className="c-tc van-col van-col--6">11</div>
-                            <div data-v-7c8bbbf4="" className="c-tc van-col van-col--6">0.25%</div> 
-                            <div data-v-7c8bbbf4="" className="c-tc van-col van-col--6">3300</div>
-                        </div>
-                        <div data-v-7c8bbbf4="" className="bd van-row">
-                            <div data-v-7c8bbbf4="" className="c-tc van-ellipsis van-col van-col--6">Level 5</div>
-                            <div data-v-7c8bbbf4="" className="c-tc van-col van-col--6">14</div>
-                            <div data-v-7c8bbbf4="" className="c-tc van-col van-col--6">0.25%</div>
-                            <div data-v-7c8bbbf4="" className="c-tc van-col van-col--6">4200</div>
-                        </div>
-                        <div data-v-7c8bbbf4="" className="bd van-row">
-                            <div data-v-7c8bbbf4="" className="c-tc van-ellipsis van-col van-col--6">Level 6</div>
-                            <div data-v-7c8bbbf4="" className="c-tc van-col van-col--6">17</div>
-                            <div data-v-7c8bbbf4="" className="c-tc van-col van-col--6">0.25%</div> 
-                            <div data-v-7c8bbbf4="" className="c-tc van-col van-col--6">5100</div>
-                        </div>
-                        <div data-v-7c8bbbf4="" className="bd van-row">
-                            <div data-v-7c8bbbf4="" className="c-tc van-ellipsis van-col van-col--6">Level 7</div>
-                            <div data-v-7c8bbbf4="" className="c-tc van-col van-col--6">20</div>
-                            <div data-v-7c8bbbf4="" className="c-tc van-col van-col--6">0.25%</div>
-                            <div data-v-7c8bbbf4="" className="c-tc van-col van-col--6">6000</div>
-                        </div>
+                        {users.map((user, index) => (
+                            users ? (
+                            <div key={index} className="bd van-row" data-v-7c8bbbf4="">
+                                {user.level.map((level, levelIndex) => (
+                                <div key={levelIndex} className="c-tc van-ellipsis van-col van-col--6" data-v-7c8bbbf4="">
+                                    Lvl {level}
+                                </div>
+                                ))}
+                                <div className="c-tc van-col van-col--6" data-v-7c8bbbf4="">
+                                2
+                                </div>
+                                <div className="c-tc van-col van-col--6" data-v-7c8bbbf4="">
+                                1%
+                                </div>
+                                <div className="c-tc van-col van-col--6" data-v-7c8bbbf4="">
+                                600
+                                </div>
+                            </div> ) : `<div> NO MORE DATA </div>`
+                        ))}
+
+                      
                         
                     </div>
     </>

@@ -1,7 +1,41 @@
+// import { useState } from "react";
 import img from "../../assets/images/tu.webp"
 import { Link } from "react-router-dom"
 
 function ActivityClaim() {
+    // const [showMessage, setShowMessage] = useState(true);
+    // const [blockClick, setBlockClick] = useState(false);
+
+
+
+    const handleClick = (e) => {
+      e.preventDefault();
+      const data = e.currentTarget.getAttribute('data-dpr');
+      const wd = e.currentTarget;
+  
+      fetch('/api/webapi/activity_check', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ data: data }),
+      })
+        .then(response => {
+          if (!response.ok) {
+            throw new Error('Network response was not ok');
+          }
+          return response.json();
+        })
+        .then(data => {
+            // setBlockClick(data.message, wd);
+          if (data.status === false) return;
+          wd.classList.remove('action');
+          wd.querySelector('.txt').textContent = 'Received';
+        })
+        .catch(error => {
+          console.error('There was a problem with the fetch operation:', error);
+        });
+    };
   return (
     <>
        <div data-v-11ffe290="" className="check-box">
@@ -17,49 +51,49 @@ function ActivityClaim() {
                     </div>
                 </div>
                 <div data-v-11ffe290="" className="list c-row c-flex-warp">
-                    <div data-v-11ffe290="" data-dpr="1" className="item action">
+                    <div data-v-11ffe290="" data-dpr="1" className="item action" onClick={handleClick}>
                         
                         <div data-v-11ffe290="" className="num c-row c-row-middle c-row-center"> 25<span
                                 data-v-11ffe290="" className="des">₹</span></div><img data-v-11ffe290=""
                             src={img} className="imgCoin" /><span data-v-11ffe290="" className="txt">Get it now</span>
                         
                     </div>
-                    <div data-v-11ffe290="" data-dpr="2" className="item action">
+                    <div data-v-11ffe290="" data-dpr="2" className="item action" onClick={handleClick}>
                         
                         <div data-v-11ffe290="" className="num c-row c-row-middle c-row-center"> 30<span
                                 data-v-11ffe290="" className="des">₹</span></div><img data-v-11ffe290=""
                             src={img} className="imgCoin" /><span data-v-11ffe290="" className="txt">Get it now</span>
                         
                     </div>
-                    <div data-v-11ffe290="" data-dpr="3" className="item action">
+                    <div data-v-11ffe290="" data-dpr="3" className="item action" onClick={handleClick}>
                         
                         <div data-v-11ffe290="" className="num c-row c-row-middle c-row-center"> 35<span
                                 data-v-11ffe290="" className="des">₹</span></div><img data-v-11ffe290=""
                             src={img} className="imgCoin" /><span data-v-11ffe290="" className="txt">Get it now</span>
                         
                     </div>
-                    <div data-v-11ffe290="" data-dpr="4" className="item action">
+                    <div data-v-11ffe290="" data-dpr="4" className="item action" onClick={handleClick}>
                         
                         <div data-v-11ffe290="" className="num c-row c-row-middle c-row-center"> 40<span
                                 data-v-11ffe290="" className="des">₹</span></div><img data-v-11ffe290=""
                             src={img} className="imgCoin" /><span data-v-11ffe290="" className="txt">Get it now</span>
                         
                     </div>
-                    <div data-v-11ffe290="" data-dpr="5" className="item action">
+                    <div data-v-11ffe290="" data-dpr="5" className="item action" onClick={handleClick}>
                         
                         <div data-v-11ffe290="" className="num c-row c-row-middle c-row-center"> 45<span
                                 data-v-11ffe290="" className="des">₹</span></div><img data-v-11ffe290=""
                             src={img} className="imgCoin" /><span data-v-11ffe290="" className="txt" >Get it now</span>
                         
                     </div>
-                    <div data-v-11ffe290="" data-dpr="6" className="item action">
+                    <div data-v-11ffe290="" data-dpr="6" className="item action" onClick={handleClick}>
                         
                         <div data-v-11ffe290="" className="num c-row c-row-middle c-row-center"> 50<span
                                 data-v-11ffe290="" className="des">₹</span></div><img data-v-11ffe290=""
                             src={img} className="imgCoin" /><span data-v-11ffe290="" className="txt" >Get it now</span>
                         
                     </div>
-                    <div data-v-11ffe290="" data-dpr="7" className="item action">
+                    <div data-v-11ffe290="" data-dpr="7" className="item action" onClick={handleClick}>
                         
                         <div data-v-11ffe290="" className="num c-row c-row-middle c-row-center"> 65<span
                                 data-v-11ffe290="" className="des">₹</span></div><img data-v-11ffe290=""
