@@ -14,6 +14,8 @@ const initWebRouter = (app) => {
     router.post('/api/webapi/login', accountController.login);
     router.post('/api/webapi/GetUserInfo', userController.userInfo);
 
+    router.get('/api/webapi/recharge-list', userController.listRecharge);
+
     router.get('/api/webapi/admin/privacy-fetching',  adminController.termsFetching);
     router.get('/api/webapi/admin/notification-fetching', adminController.noticeFetching);
     router.get('/api/webapi/admin/user-details', accountController.UserDetails);

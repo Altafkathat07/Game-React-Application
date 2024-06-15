@@ -643,6 +643,34 @@ const useRedenvelope = async(req, res) => {
     }
 }
 
+const listRecharge = async (req, res) => {
+    let auth = 130;
+    if (!auth) {
+        return res.status(200).json({
+            message: 'Failed',
+            status: false,
+            timeStamp: timeNow,
+        })
+    }
+    const [user] = await connection.query('SELECT `phone`, `code`,`invite` FROM users WHERE `id` = ? ', [auth]);
+    let userInfo = user[0];
+    if (!user) {
+        return res.status(200).json({
+            message: 'Failed',
+            status: false,
+            timeStamp: timeNow,
+        });
+    };
+    const [recharge] = await connection.query('SELECT * FROM recharge WHERE phone = ? ORDER BY id DESC ', [userInfo.phone]);
+    return res.status(200).json({
+        message: 'Receive success',
+        datas: recharge,
+        status: true,
+        timeStamp: timeNow,
+    });
+}
+
+
 
 
 module.exports = {
@@ -651,5 +679,6 @@ module.exports = {
     addBank,
     UserBankInfo,
     withdrawal,
-    useRedenvelope
+    useRedenvelope,
+    listRecharge
 }

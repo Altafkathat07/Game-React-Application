@@ -83,10 +83,12 @@ function WalletContent() {
                                     <p>Withdraw</p>
                                 </div>
                             </Link>
+                            <Link to="/recharge/history">
                             <div className="images_21"> 
                                 <img src={rechargeHistory} width="40px" height="40px" className='rec_mrg'/>
                                 <p>Recharge History</p>
                             </div>
+                            </Link>
                             <div className="images_21">   
                                 <img src={widthdrawHistory} width="40px" height="40px" className='rec_mrg' />
                                 <p >Withdraw History</p>

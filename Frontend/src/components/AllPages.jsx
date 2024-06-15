@@ -39,6 +39,8 @@ import UserBank from "./Wallet/UserBank";
 import BrowseWithdrawa from "./Admin/Withdrawal/BrowseWithdrawa";
 import WithdrawApprove from "./Admin/WithdrawApprove/WithdrawApprove";
 import GiftCodeMain from "./Admin/CreateGiftCode/GiftCodeMain";
+import RechargeHistory from "./Recharge/RechargeHistory";
+import WithdrawalHistrory from "./Wallet/WithdrawalHistrory";
 // import WinGoMainTesting from "./WinGo/WinGoMainTesting";
 
 
@@ -74,7 +76,9 @@ function AllPages() {
         <Route path="/promotion/tutorial" element={<TutorialPage />} />
         <Route path="/wallet" element={<WalletMain />} />
         <Route path="/withdraw" element={<WalletProfileMain />} />
+        <Route path="/withdraw/history" element={<WithdrawalHistrory />} />
         <Route path="/recharge" element={<RechargeMain />} />
+        <Route path="/recharge/history" element={<RechargeHistory />} />
         <Route path="/profile" element={<UserProfileMain />} />
         <Route path="/activity" element={<ActivityPage />} />
         <Route path="/activity/rule" element={<RulePage />} />

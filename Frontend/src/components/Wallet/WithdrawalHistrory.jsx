@@ -8,7 +8,8 @@ import '../../assets/admin/css/admin.css'
 import Header from "../Home/Header"
 import Footer from "../Home/Footer"
 import img from "../../assets/images/copy.png"
-function RechargeHistory() {
+
+function WithdrawalHistrory() {
     const [items, setItems] = useState([]);
     useEffect(() => {
         axios.get('/api/webapi/recharge-list')
@@ -109,4 +110,4 @@ function RechargeHistory() {
   )
 }
 
-export default RechargeHistory
+export default WithdrawalHistrory

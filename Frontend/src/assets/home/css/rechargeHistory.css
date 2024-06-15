@@ -1,0 +1,69 @@
+
+ .box[data-v-3966082f] {
+    padding: .4rem
+}
+
+ .box .list[data-v-3966082f] {
+    background: #fff;
+    border-radius: .4rem;
+    overflow: hidden
+}
+.box .list .van-list{
+    background-color: #fff;
+    color: #000;
+    font-size: 0.8rem;
+}
+
+ .box .list .item {
+    padding: .8667rem .6rem;
+    background: rgb(221 232 236 / 68%);
+    margin-bottom: 1rem !important;
+    line-height: 1.2rem;
+}
+.box .list .item .time{
+    font-size: 0.7rem !important;
+    font-weight: 500;
+}
+.box .list .item .money{
+    font-size: 0.8rem !important;
+    font-weight: 500;
+    color: #1fbd2c;
+
+}
+
+ .box .list .item .money[data-v-3966082f] {
+    font-size: .4rem;
+    color: #fb4e4e
+}
+
+ .box .list .item .money.action[data-v-3966082f] {
+    color: #6abe57
+}
+
+ .box .list .item .number[data-v-3966082f],
+ .box .list .item .time[data-v-3966082f] {
+    font-size: .32rem;
+    color: #000
+}
+
+ .box .list .item .number[data-v-3966082f] {
+    font-size: .4rem
+}
+
+ .box .list .item .number .btn[data-v-3966082f] {
+    padding: .13333rem .26667rem;
+    font-size: .32rem;
+    margin-left: .26667rem;
+    border-radius: .13333rem;
+    background-color: #ffce1f;
+    color: #fff
+}
+
+ .box .list .item .state[data-v-3966082f] {
+    text-align: center;
+    font-weight: 600
+}
+
+ .box .list .item .txt[data-v-3966082f] {
+    text-align: center
+}
