@@ -1,30 +1,27 @@
-import connection from '../config/connectDB';
+import jwt from 'jsonwebtoken';
 
 const middlewareController = async(req, res, next) => {
-    const authToken = req.cookies.authToken;
+    const auth = req.cookies.authToken;
+    console.log("this is middleware token :" + auth);
 
-    if (!authToken) {
-        return res.redirect("http://localhost:5173/login");
-    }
-
-    try {
-        const [rows] = await connection.execute('SELECT `token`, `status` FROM `users` WHERE `token` = ? AND `veri` = 1', [authToken]);
-
-        if (!rows || rows.length === 0) {
-            res.clearCookie("authToken");
-            return res.redirect("http://localhost:5173/login");
-        }
-
-        if (authToken === rows[0].token && rows[0].status === '1') {
-            next();
-        } else {
-            res.clearCookie("authToken");
-            return res.redirect("http://localhost:5173/login");
-        }
-    } catch (error) {
-        console.error('Error verifying token:', error);
-        res.clearCookie("authToken");
-        return res.redirect("http://localhost:5173/login");
+    if (auth) {
+        const token = auth;
+        jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, user) => {
+            if (err) {
+                return res.status(401).json({
+                    message: 'Failed',
+                    status: false,
+                });
+            }
+            req.user = user;
+            console.log("this is user : " + user);
+            next(); 
+        });
+    } else {
+        return res.status(401).json({
+            message: 'Failed',
+            status: false,
+        }); 
     }
 };
 

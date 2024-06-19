@@ -5,10 +5,17 @@ import secure from '../../assets/images/securityicon.webp'
 import guide from '../../assets/images/guideicon.webp'
 import about from '../../assets/images/abouticon.webp'
 import redeem from '../../assets/images/redeem.webp'
+// import logout from '../../assets/images/logout_icon.png'
 import {Link} from 'react-router-dom'
+// import { useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2';
+import withReactContent from 'sweetalert2-react-content';
+const MySwal = withReactContent(Swal);
 
 function ProfileList() {
     const [level, setLevel] = useState({});
+    // const navigate = useNavigate();
+    // const [isBalanceVisible, setIsBalanceVisible] = useState(true);
 
     useEffect(() => {
         axios.post('/api/webapi/GetUserInfo')
@@ -19,6 +26,73 @@ function ProfileList() {
             })
             .catch(error => console.log(error));
     }, []);
+
+  
+    const handleLogoutClick = (e) => {
+        e.preventDefault();
+        MySwal.fire({
+          title: 'Are you sure?',
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonText: 'Confirm',
+          cancelButtonText: 'Cancel!',
+          reverseButtons: true,
+          customClass: {
+            confirmButton: 'btn btn-success',
+            cancelButton: 'btn btn-danger',
+          },
+          buttonsStyling: false,
+        }).then((result) => {
+          if (result.isConfirmed) {
+            unsetCookie();
+            MySwal.fire('Logged out!', 'You have been logged out.', 'success');
+          } else if (result.dismiss === Swal.DismissReason.cancel) {
+            MySwal.fire('Cancelled', 'You are still logged in :)', 'error');
+          }
+        });
+      };
+    
+      const setCookie = (cname, cvalue, exdays) => {
+        const d = new Date();
+        d.setTime(d.getTime() + exdays * 24 * 60 * 60 * 1000);
+        let expires = `expires=${d.toUTCString()}`;
+        document.cookie = `${cname}=${cvalue};${expires};path=/`;
+      };
+    
+      const getCookie = (cname) => {
+        let name = `${cname}=`;
+        let decodedCookie = decodeURIComponent(document.cookie);
+        let ca = decodedCookie.split(';');
+        for (let i = 0; i < ca.length; i++) {
+          let c = ca[i].trim();
+          if (c.indexOf(name) === 0) {
+            return c.substring(name.length, c.length);
+          }
+        }
+        return '';
+      };
+    
+      const unsetCookie = () => {
+        setCookie('token', '', 0);
+        setCookie('auth', '', 0);
+        if (!getCookie('token') && !getCookie('auth')) {
+          window.location.href = '/login';
+        } else {
+          setCookie('token', '', 0);
+          setCookie('auth', '', 0);
+          window.location.href = '/login';
+        }
+      };
+
+//   const togglePasswordVisibility = () => {
+//     let input = document.getElementById('pass_log_id');
+//     input.type = input.type === 'password' ? 'text' : 'password';
+//   };
+
+//   const toggleBalanceVisibility = () => {
+//     setIsBalanceVisible(!isBalanceVisible);
+//   };
+
   return (
     <>
      <div data-v-21f3500a="" data-v-8cd483ca="" className="list">
@@ -106,6 +180,41 @@ function ProfileList() {
                     </div>
                     </Link>
                 </div>
+                <div data-v-8cd483ca="" className="logout-btn m-t-40" onClick={handleLogoutClick}>
+                <div data-v-8cd483ca="" className="gradient">
+                    <button data-v-8cd483ca=""
+                        className="logout van-button van-button--default van-button--normal van-button--block van-button--round"
+                        style={{background: "#f18301", color: "#fff",display: "flex",justifyContent: "center",alignItems: "center",borderRadius: "1rem",textAlign: "center",width: "100%",height: "1.8rem",lineHeight: "0.8rem" }}>
+                        <div data-v-8cd483ca="" className="van-button__content">
+                            <span data-v-8cd483ca="" className="van-button__text">
+                                <span data-v-8cd483ca="" style={{fontSize: "1rem"}}>Logout</span>
+                            </span>
+                        </div>
+                    </button>
+                </div>
+            </div>
+            
+            {/* {isDialogVisible && ( */}
+               { 
+                // <div role="dialog" className="van-dialog" style={{zIndex: "2002"}} aria-labelledby="">
+                //     <div data-v-b9e16d43="" className="dialog__container-img"><img data-v-b9e16d43="" alt="" className="" data-origin="https://www.bigdaddygame2.com/assets/png/orderCancelWarn-93894f35.png" src={logout} style={{width: "2.13333rem", height: "2.13333rem",}} /></div>
+                //     <div className="van-dialog__content">
+                //         <div className="van-dialog__message van-dialog__message dialog__container-title" style={{font-size: ".48rem", fontWeight: "700", color: "#fff", }}><h1>Do you want to log out?</h1></div>
+                //     </div>
+                //     <div className="van--top van-dialog__footer van-dialog__footer--buttons">
+                //         <button className="van-button van-button--default van-button--large van-dialog__cancel" style={{width: "3.12rem", height: "1.06667rem", color: "#fff", fontSize: ".42667rem", textAlign: "center", borderRadius: "9rem", border: "0.01333rem solid #2979F2",background: "transparent", }}>
+                //             <div className="van-button__content">
+                //                 <span className="van-button__text">Cancel</span>
+                //             </div>
+                //         </button>
+                //         <button className="van-button van-button--default van-button--large van-dialog__confirm van-hairline--left" style={{ width: "4.34667rem", height: "1.06667rem", fontSize: ".42667rem", textAlign: "center", borderRadius: "9rem", border: "0.01333rem solid #2979F2", color: "#fff", fontWeight: "700", background: "linear-gradient(180deg,#2AAAF3 0%,#2979F2 100%)" }}>
+                //             <div className="van-button__content">
+                //                 <span className="van-button__text">Confirm</span>
+                //             </div>
+                //         </button>
+                //     </div>
+                // </div>   
+            }
       
     </>
   )

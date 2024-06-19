@@ -8640,6 +8640,36 @@ a:hover {
   font-weight: 700;
   line-height: 1rem;
 }
+.swal2-popup{
+  display: none;
+  position: relative;
+  box-sizing: border-box;
+  flex-direction: column;
+  justify-content: center;
+  width: 25em;
+  max-width: 100%;
+  padding: .5em;
+  border: none;
+  border-radius: 5px;
+  background: #ffffff;
+  font-family: inherit;
+  font-size: 0.7rem !important;
+} 
+.swal2-actions{
+  justify-content: space-between !important;
+}
+.swal2-title {
+  position: relative;
+  max-width: 100%;
+  margin: 0 0 0.4em;
+  padding: 0;
+  color: #fc9c15;
+  font-size: 1.875em;
+  font-weight: 600;
+  text-align: center;
+  text-transform: none;
+  word-wrap: break-word;
+}
 .mian .menu-box .infoName .id[data-v-8cd483ca] {
   font-size: .8667rem;
   font-weight: 700;

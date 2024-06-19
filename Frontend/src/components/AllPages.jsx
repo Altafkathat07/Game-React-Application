@@ -1,7 +1,7 @@
-import { useEffect, useState } from 'react';
-import axios from "axios";
-import Main from "./Home/Main";
+import {useContext } from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import AuthContext from './Auth/AuthContext';
+import Main from "./Home/Main";
 import LoginMain from "./Login/LoginMain";
 import RegisterMain from "./Register/RegisterMain";
 import ForgotMain from "./ForgotPass/ForgotMain";
@@ -45,23 +45,11 @@ import WithdrawalHistrory from "./Wallet/WithdrawalHistrory";
 
 
 function AllPages() {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const { isAuthenticated, loadingUserInfo } = useContext(AuthContext);
 
-  useEffect(() => {
-    const checkAuth = async () => {
-      try {
-        const response = await axios.post('/api/webapi/GetUserInfo');
-        const userInfo = response.data.data;
-        console.log(userInfo)
-        setIsAuthenticated(true);
-      } catch (error) {
-        setIsAuthenticated(false);
-        console.error('Error fetching user info:', error);
-      }
-    };
-  
-    checkAuth();
-  }, []);
+  if (loadingUserInfo) {
+    return <p>Loading user info...</p>;
+  }
  
   return (
     <>

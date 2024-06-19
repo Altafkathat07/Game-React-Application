@@ -157,6 +157,9 @@ const register = async(req, res) => {
         const [check_u] = await connection.query('SELECT * FROM users WHERE phone = ?', [username]);
         const [check_i] = await connection.query('SELECT * FROM users WHERE code = ? ', [invitecode]);
         const [check_ip] = await connection.query('SELECT * FROM users WHERE ip_address = ? ', [ip]);
+        const [welcome_bonus] = await connection.query('SELECT * FROM bonus');
+        // console.log(welcome_bonus[0].welcome_bonus);
+        const wel_bonus = welcome_bonus[0].welcome_bonus ?? 0;
 
         if (check_u.length == 1 && check_u[0].veri == 1) {
             return res.status(200).json({
@@ -173,7 +176,7 @@ const register = async(req, res) => {
                     //     ctv = check_i[0].ctv;
                     // }
                     const sql = "INSERT INTO users SET id_user = ?,phone = ?,name_user = ?,password = ?,money = ?,code = ?,invite = ?,ctv = ?,veri = ?,otp = ?,ip_address = ?,status = ?,time = ?";
-                    await connection.execute(sql, [id_user, username, name_user, md5(pwd), 0, code, invitecode, "ctv", 1, otp2, ip, 1, time]);
+                    await connection.execute(sql, [id_user, username, name_user, md5(pwd), wel_bonus, code, invitecode, "ctv", 1, otp2, ip, 1, time]);
                     // await connection.execute('INSERT INTO point_list SET phone = ?', [username]);
                     res.redirect('http://localhost:5173/login')
                     // return res.status(200).json({
@@ -236,7 +239,7 @@ const login = async(req, res) => {
                 await connection.execute('UPDATE `users` SET `token` = ? WHERE `phone` = ? ', [md5(accessToken), username]);
                 
                  res.cookie('authToken', accessToken, { httpOnly: true, secure: false }); 
-                 console.log('Cookie set:', 'authToken', accessToken);
+                 console.log(accessToken);
 
                 // res.redirect("http://localhost:5173/")
                 return res.status(200).json({

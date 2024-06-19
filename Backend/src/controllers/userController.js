@@ -7,8 +7,9 @@ const axios = require('axios');
 let timeNow = Date.now();
 
 const userInfo = async (req, res) => {
-    // let auth = req.cookies.authToken;
-    let auth = 130;
+    // let auth = req.user.user.phone
+    let auth = req.user.user.phone
+    console.log("this is user info" + auth)
 
     if (!auth) {
         return res.status(200).json({
@@ -17,7 +18,10 @@ const userInfo = async (req, res) => {
             timeStamp: timeNow,
         });
     }
-    const [rows] = await connection.query('SELECT * FROM users WHERE `id` = ? ', [auth]);
+    const [rows] = await connection.query('SELECT * FROM users WHERE `phone` = ? ', [auth]);
+
+    console.log(rows[0])
+    
     
 //    console.log(rows[0].phone);
     if (!rows) {
@@ -65,8 +69,8 @@ const userInfo = async (req, res) => {
 }
 
 const recharge = async (req, res) => {
-    // let auth = req.cookies.authToken;
-    let auth = 130;
+    // let auth = req.user.user.phone
+    let auth = req.user.user.phone;
     let rechid = req.cookies.orderid;
     let money = req.body.money;
     let type = "bank";
@@ -75,6 +79,21 @@ const recharge = async (req, res) => {
     let status = req.body.status
     let txnId = req.body.clientTxnId
 
+    const [user] = await connection.query('SELECT `phone`, `code`,`invite` FROM users WHERE `phone` = ?', [auth]);
+    let userInfo = user[0];
+    // console.log(userInfo);
+    const [bonus] = await connection.execute('SELECT * FROM bonus');
+    const FirstRecharge = bonus[0].first_reacharge_bonus;
+    const first = Number(FirstRecharge);
+    // console.log(FirstRecharge);
+    // const [first_recharge_bonus] = await connection.execute('SELECT * FROM recharge WHERE phone = ? ORDER BY id DESC LIMIT 1', [userInfo.phone]);
+    // console.log(first_recharge_bonus)
+    // if (first_recharge_bonus && first_recharge_bonus[0].first_recharge === 1) {
+    //     const bonusAmount = FirstRecharge; 
+    //     first_recharge_bonus.money += bonusAmount;
+    // }
+    
+    // console.log(first_recharge_bonus);
     // console.log(rechid, money, type, typeid, utr, status, txnId);
 
     if (type != 'cancel' && type != 'submit' && type != 'submitauto' && type != 'online') {
@@ -86,8 +105,7 @@ const recharge = async (req, res) => {
             })
         }
     }
-    const [user] = await connection.query('SELECT `phone`, `code`,`invite` FROM users WHERE `id` = ?', [auth]);
-    let userInfo = user[0];
+    
     if (!user) {
         return res.status(200).json({
             message: 'Failed',
@@ -239,6 +257,9 @@ const recharge = async (req, res) => {
 
     money = Number(money);
     let client_transaction_id = id_time + id_order;
+    let new_money = eval(money+first);
+    console.log(new_money);
+    
     
     const sql = `INSERT INTO recharge SET
         id_order = ?,
@@ -253,7 +274,7 @@ const recharge = async (req, res) => {
         time = ?`;
     const [userCount] = await connection.execute('SELECT * FROM recharge WHERE phone = ?', [userInfo.phone]);
     if(userCount.length == 0) {
-        await connection.execute(sql, [client_transaction_id, '0', userInfo.phone, money, type, 0, 1 ,checkTime, '0', time]);
+        await connection.execute(sql, [client_transaction_id, '0', userInfo.phone, new_money, type, 0, 1 ,checkTime, '0', time]);
         res.redirect("http://localhost:5173/wallet")
         // return res.status(200).json({
         //     message: 'Order creation successful',
@@ -279,8 +300,8 @@ const recharge = async (req, res) => {
 }
 
 const addBank = async (req, res) => {
-    // let auth = req.cookies.authToken;
-    let auth = 130;
+    // let auth = req.user.user.phone
+    let auth = req.user.user.phone;
     let bank_name = req.body.bankname;
     let user_name = req.body.username;
     let account = req.body.account;
@@ -295,7 +316,7 @@ const addBank = async (req, res) => {
             timeStamp: timeNow,
         })
     }
-    const [user] = await connection.query('SELECT `phone`, `code`,`invite` FROM users WHERE `id` = ? ', [auth]);
+    const [user] = await connection.query('SELECT `phone`, `code`,`invite` FROM users WHERE `phone` = ? ', [auth]);
     let userInfo = user[0];
     if (!user) {
         return res.status(200).json({
@@ -341,8 +362,8 @@ const addBank = async (req, res) => {
 }
 
 const UserBankInfo = async (req, res) => {
-    // let auth = req.cookies.authToken;
-    let auth = 130;
+    // let auth = req.user.user.phone
+    let auth = req.user.user.phone;
     if (!auth) {
         return res.status(200).json({
             message: 'Failed',
@@ -350,7 +371,7 @@ const UserBankInfo = async (req, res) => {
             timeStamp: timeNow,
         })
     }
-    const [user] = await connection.query('SELECT `phone`, `code`,`invite`, `money` FROM users WHERE `id` = ? ', [auth]);
+    const [user] = await connection.query('SELECT `phone`, `code`,`invite`, `money` FROM users WHERE `phone` = ? ', [auth]);
     let userInfo = user[0];
     if (!user) {
         return res.status(200).json({
@@ -420,8 +441,8 @@ const UserBankInfo = async (req, res) => {
 }
 
 const withdrawal = async (req, res) => {
-    // let auth = req.cookies.authToken;
-    let auth = 130;
+    // let auth = req.user.user.phone
+    let auth = req.user.user.phone;
     let money = req.body.money;
     let password = req.body.password;
     if (!auth || !money || !password || money < 109) {
@@ -431,7 +452,7 @@ const withdrawal = async (req, res) => {
             timeStamp: timeNow,
         })
     }
-    const [user] = await connection.query('SELECT `phone`, `code`,`invite`, `money` FROM users WHERE `id` = ? AND password = ?', [auth, md5(password)]);
+    const [user] = await connection.query('SELECT `phone`, `code`,`invite`, `money` FROM users WHERE `phone` = ? AND password = ?', [auth, md5(password)]);
 
     if (user.length == 0) {
         return res.status(200).json({
@@ -558,8 +579,8 @@ const withdrawal = async (req, res) => {
 }
 
 const useRedenvelope = async(req, res) => {
-    // let auth = req.cookies.authToken;
-    let auth = 130;
+    // let auth = req.user.user.phone
+    let auth = req.user.user.phone;
     let code = req.body.code;
     // let claim = req.body.claim;
     if(!auth || !code ) {
@@ -569,7 +590,7 @@ const useRedenvelope = async(req, res) => {
             timeStamp: timeNow,
         })
     }
-    const [user] = await connection.query('SELECT `phone`, `code`,`invite` FROM users WHERE `id` = ? ', [auth]);
+    const [user] = await connection.query('SELECT `phone`, `code`,`invite` FROM users WHERE `phone` = ? ', [auth]);
     let userInfo = user[0];
     if(!user) {
         return res.status(200).json({
@@ -651,8 +672,8 @@ const useRedenvelope = async(req, res) => {
 }
 
 const listRecharge = async (req, res) => {
-    // let auth = req.cookies.authToken;
-    let auth = 130;
+    // let auth = req.user.user.phone
+    let auth = req.user.user.phone;
     if (!auth) {
         return res.status(200).json({
             message: 'Failed',
@@ -660,7 +681,7 @@ const listRecharge = async (req, res) => {
             timeStamp: timeNow,
         })
     }
-    const [user] = await connection.query('SELECT `phone`, `code`,`invite` FROM users WHERE `id` = ? ', [auth]);
+    const [user] = await connection.query('SELECT `phone`, `code`,`invite` FROM users WHERE `phone` = ? ', [auth]);
     let userInfo = user[0];
     if (!user) {
         return res.status(200).json({
@@ -678,8 +699,8 @@ const listRecharge = async (req, res) => {
     });
 }
 const listWithdraw= async (req, res) => {
-    // let auth = req.cookies.authToken;
-    let auth = 130;
+    // let auth = req.user.user.phone
+    let auth = req.user.user.phone
     if (!auth) {
         return res.status(200).json({
             message: 'Failed',
@@ -687,7 +708,7 @@ const listWithdraw= async (req, res) => {
             timeStamp: timeNow,
         })
     }
-    const [user] = await connection.query('SELECT `phone`, `code`,`invite` FROM users WHERE `id` = ? ', [auth]);
+    const [user] = await connection.query('SELECT `phone`, `code`,`invite` FROM users WHERE `phone` = ? ', [auth]);
     let userInfo = user[0];
     if (!user) {
         return res.status(200).json({
@@ -706,8 +727,8 @@ const listWithdraw= async (req, res) => {
 }
 
 const promotion = async (req, res) => {
-    // let auth = req.cookies.authToken;
-    let auth = 130;
+    // let auth = req.user.user.phone
+    let auth = req.user.user.phone
     if (!auth) {
         return res.status(200).json({
             message: 'Failed',
@@ -716,7 +737,7 @@ const promotion = async (req, res) => {
         });
     }
 
-    const [user] = await connection.query('SELECT `phone`, `code`,`invite`, `roses_f`, `roses_f1`, `roses_today` FROM users WHERE `id` = ? ', [auth]);
+    const [user] = await connection.query('SELECT `phone`, `code`,`invite`, `roses_f`, `roses_f1`, `roses_today` FROM users WHERE `phone` = ? ', [auth]);
     const [level] = await connection.query('SELECT * FROM level');
 
     if (!user) {
@@ -863,8 +884,8 @@ const promotion = async (req, res) => {
 }
 
 const activityCheck = async (req, res) => {
-    // let auth = req.cookies.authToken;
-    let auth = 130;
+    // let auth = req.user.user.phone
+    let auth = req.user.user.phone
     let data = req.body.data;
 
     if (!auth) return res.status(200).json({
@@ -872,7 +893,7 @@ const activityCheck = async (req, res) => {
         status: false,
         timeStamp: timeNow,
     });;
-    const [rows] = await connection.query('SELECT * FROM users WHERE `id` = ? ', [auth]);
+    const [rows] = await connection.query('SELECT * FROM users WHERE `phone` = ? ', [auth]);
     if (!rows) return res.status(200).json({
         message: 'Failed',
         status: false,

@@ -1,33 +1,62 @@
 import { useState } from 'react'
-import axios from 'axios'
+// import axios from 'axios'
 import phoneImg from '../../assets/images/cellphone.png'
 import passImg from '../../assets/images/lock.png'
 import eye from '../../assets/images/eye.png'
 import { Link } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom';
+import alertMessage from '../AlertUtils'
 
 function FormSection() {
     const [username, setUsername] = useState('');
     const [pwd, setPwd] = useState('');
     const [showPassword, setShowPassword] = useState(false);
+    const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-    
+
+        const requestData = {
+            username: username,
+            pwd: pwd
+        };
+
         try {
-            const response = await axios.post('/api/webapi/login', { username, pwd });
-            console.log('Submitted data:', { username, pwd });
-            
-            if (response.status === 200 && response.data.status) {
-                window.location.href = '/dashboard';
-            } else {
-                // Handle error by displaying the response message
-                alert(response.data.message || 'Login failed. Please try again.');
+            const response = await fetch('/api/webapi/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(requestData)
+            });
+
+            if (!response.ok) {
+                const errorData = await response.json();
+                throw new Error(errorData.message);
+                // alertMessage(errorData.message)
             }
+
+            const responseData = await response.json();
+            const { token, popup } = responseData;
+
+            // Set authToken cookie received from the server
+            document.cookie = `authToken=${token};`;
+
+            // Display a success message or handle further actions
+            navigate('/'); 
+            alertMessage({
+                title: popup,
+                confirmButtonText: 'OK',
+              });
+            // alert('Login successful' + popup);
+            
+
+            // Redirect to another page (e.g., dashboard) after successful login
         } catch (error) {
-            console.error('Error logging in:', error);
-            alert('Error logging in. Please try again.');
+            alert("this is the error : " + error.message);
         }
     };
+
   
   return (
     <>
