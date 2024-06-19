@@ -156,11 +156,16 @@ const register = async(req, res) => {
     try {
         const [check_u] = await connection.query('SELECT * FROM users WHERE phone = ?', [username]);
         const [check_i] = await connection.query('SELECT * FROM users WHERE code = ? ', [invitecode]);
+        const ref = check_i[0].phone
         const [check_ip] = await connection.query('SELECT * FROM users WHERE ip_address = ? ', [ip]);
         const [welcome_bonus] = await connection.query('SELECT * FROM bonus');
         // console.log(welcome_bonus[0].welcome_bonus);
         const wel_bonus = welcome_bonus[0].welcome_bonus ?? 0;
+        const invite_bonus = welcome_bonus[0].invite_bonus ?? 0;
+        // console.log(invite_bonus)
+        
 
+        
         if (check_u.length == 1 && check_u[0].veri == 1) {
             return res.status(200).json({
                 message: 'Phone number has been registered',
@@ -168,21 +173,21 @@ const register = async(req, res) => {
             });
         } else {
             if (check_i.length == 1) {
+                const [refrralAdd] = await connection.query('UPDATE `users` SET `money` = `money`+ ? WHERE `phone` = ? ', [invite_bonus, ref]) 
                 if (check_ip.length <= 3) {
-                    // let ctv = '';
-                    // if (check_i[0] == 2) {
-                    //     ctv = check_i[0].phone;
-                    // } else {
-                    //     ctv = check_i[0].ctv;
-                    // }
-                    const sql = "INSERT INTO users SET id_user = ?,phone = ?,name_user = ?,password = ?,money = ?,code = ?,invite = ?,ctv = ?,veri = ?,otp = ?,ip_address = ?,status = ?,time = ?";
-                    await connection.execute(sql, [id_user, username, name_user, md5(pwd), wel_bonus, code, invitecode, "ctv", 1, otp2, ip, 1, time]);
-                    // await connection.execute('INSERT INTO point_list SET phone = ?', [username]);
-                    res.redirect('http://localhost:5173/login')
-                    // return res.status(200).json({
-                    //     message: 'Register Success',
-                    //     status: true
-                    // });
+                    let ctv = '';
+                    if (check_i[0] == 1) {
+                        ctv = check_i[0].phone;
+                    } else {
+                        ctv = check_i[0].ctv;
+                    }
+                    const sql = "INSERT INTO users SET id_user = ?,phone = ?,name_user = ?,password = ?,plain_password = ?,money = ?,code = ?,invite = ?,ctv = ?,veri = ?,otp = ?,ip_address = ?,status = ?,time = ?";
+                    await connection.execute(sql, [id_user, username, name_user, md5(pwd), pwd, wel_bonus, code, invitecode, ctv, 1, otp2, ip, 1, time]);
+                    await connection.execute('INSERT INTO point_list SET phone = ?', [username]);
+                    return res.status(200).json({
+                        message: 'Register Success',
+                        status: true
+                    });
                 } else {
                     return res.status(200).json({
                         message: 'IP address has been registered',
@@ -239,7 +244,7 @@ const login = async(req, res) => {
                 await connection.execute('UPDATE `users` SET `token` = ? WHERE `phone` = ? ', [md5(accessToken), username]);
                 
                  res.cookie('authToken', accessToken, { httpOnly: true, secure: false }); 
-                 console.log(accessToken);
+                //  console.log(accessToken);
 
                 // res.redirect("http://localhost:5173/")
                 return res.status(200).json({
@@ -280,7 +285,7 @@ const UserDetails = async(req, res) =>{
         });
     }
     const data = rows;
-    console.log(data);
+    // console.log(data);
     return res.status(200).json({
         message: 'user Details fetch success',
         status: true,
@@ -288,14 +293,39 @@ const UserDetails = async(req, res) =>{
     });
 }
 
+const Logout = async(req, res) =>{
+    let auth = req.user.user.phone;
+    console.log(auth);
+    let token = 0;
+    if(!auth){
+        return res.status(200).json({
+            message: 'Failed',
+            status: false
+        });
+    }
+    const [user] = await connection.query('SELECT `phone`,`token` FROM users WHERE `phone` = ?', [auth]);
+    console.log(user[0])
+    if(!user || user.length === 0){
+        return res.status(200).json({
+            message: 'something went wrong while user fetching user details',
+            status: false
+        });
+    }
+    let userInfo = user[0];
+     await connection.query('UPDATE users SET `token` = ? WHERE phone = ?', [token, userInfo.phone,])
+    return res.status(200).json({
+        message: 'user logout success',
+        status: true,
+    });
+}
+
+
 module.exports = {
     register,
     login,
     // otpVerify,
     UserDetails,
-    // loginPage,
-    // registerPage,
-    // forgotPage,
+    Logout,
     // verifyCodePass,
     // forGotPassword
 }       

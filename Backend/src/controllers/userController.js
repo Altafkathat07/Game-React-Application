@@ -138,7 +138,7 @@ const recharge = async (req, res) => {
         {
             connection.query('Update recharge set status = ? where id_order =?' , [status , txnId] )
             const info = await connection.query(`SELECT * FROM recharge WHERE id_order = ?`, [txnId]);
-            console.log(info , '.............+++++++')
+            // console.log(info , '.............+++++++')
         //     await connection.query('UPDATE users SET money = money + ?, total_money = total_money + ? WHERE phone = ?', [info[0].money, info[0].money, info[0].phone]);
         //     return res.status(200).json({
         //         message: 'Submit successful',
@@ -194,9 +194,9 @@ const recharge = async (req, res) => {
                 const transaction = data.data.transactions.find((t) => t.bankReferenceNo === utr && t.amount === info[0].money);
     
                 if (transaction) {
-                    console.log('Transaction found:', transaction);
+                    // console.log('Transaction found:', transaction);
                     await connection.query(`UPDATE recharge SET status = 1 WHERE utr = ?`, [utr]);
-                    console.log("money" + info[0].money + ",phone" + info[0].phone);
+                    // console.log("money" + info[0].money + ",phone" + info[0].phone);
                     await connection.query('UPDATE users SET money = money + ?, total_money = total_money + ? WHERE phone = ?', [info[0].money, info[0].money, info[0].phone]);
     
                     return res.status(200).json({
@@ -258,7 +258,7 @@ const recharge = async (req, res) => {
     money = Number(money);
     let client_transaction_id = id_time + id_order;
     let new_money = eval(money+first);
-    console.log(new_money);
+    // console.log(new_money);
     
     
     const sql = `INSERT INTO recharge SET
@@ -913,7 +913,7 @@ const activityCheck = async (req, res) => {
             const [point_lists] = await connection.query('SELECT * FROM point_list WHERE `phone` = ? ', [rows[0].phone]);
             let check = rows[0].money;
             let point_list = point_lists[0];
-            console.log(point_list);
+            // console.log(point_list);
             let get = 300;
             if (check >= data && point_list.total1 != 0) {
                 await connection.query('UPDATE users SET money = money + ? WHERE phone = ? ', [point_list.total1, rows[0].phone]);

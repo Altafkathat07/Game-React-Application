@@ -26,7 +26,7 @@ function BonusForm() {
         });
 
         // Log the entire response object for debugging
-        console.log('Response:', response);
+        // console.log('Response:', response);
 
         // Check if the response is OK and content type is JSON
         if (!response.ok) {

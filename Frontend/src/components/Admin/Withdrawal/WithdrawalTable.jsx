@@ -13,7 +13,7 @@ function WithdrawalTable() {
           return res.json();
         }) .then((data) => {
           let result = data.data;
-          console.log('Fetched data:', data.data);
+          // console.log('Fetched data:', data.data);
           if (data.status === true ) {
             const usersArray = Object.values(result);
             setUsers(usersArray);

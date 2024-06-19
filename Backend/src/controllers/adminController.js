@@ -21,7 +21,7 @@ const termsAndCondition = async(req, res) => {
         });
     }
     const rows = await connection.query(`SELECT * FROM terms LIMIT 1`)
-    console.log(rows);
+    // console.log(rows);
     
     if(rows[0].length === 0){
         const sql = "INSERT INTO terms SET term = ?";
@@ -45,7 +45,7 @@ const termsAndCondition = async(req, res) => {
 
 const termsFetching = async(req, res) => {
     const rows = await connection.query(`SELECT * FROM terms LIMIT 1`)
-    console.log(rows);
+    // console.log(rows);
     
     if(rows[0].length === 1){
         const data = rows[0]
@@ -161,7 +161,7 @@ const noticeFetching = async(req, res) => {
 
 const DeleteUser = async (req, res) => {
     const { id } =  req.params;
-    console.log(id)
+    // console.log(id)
     if(!id){
         return res.status(202).json({
             message: 'something went wrong while id fetching',
@@ -169,7 +169,7 @@ const DeleteUser = async (req, res) => {
         })
         
     }
-    console.log(id)
+    // console.log(id)
     const [user] = await connection.query('SELECT * FROM users WHERE id = ? ', [id]) ;
    if (user.length === 0) {
     return res.status(202).json({
@@ -222,7 +222,7 @@ const UserStatus = async (req, res) => {
 
 const rechargeDetails = async (req, res) =>{
     const [rows] = await connection.query('SELECT * FROM recharge WHERE status = 0');
-    console.log(rows);
+    // console.log(rows);
     if(!rows || rows.length === 0){
         return res.status(200).json({
             message: 'something went wrong while user fetching recharge details',
@@ -230,7 +230,7 @@ const rechargeDetails = async (req, res) =>{
         });
     }
     const data = rows;
-    console.log(data);
+    // console.log(data);
     return res.status(200).json({
         message: 'recharge Details fetch success',
         status: true,
@@ -239,7 +239,7 @@ const rechargeDetails = async (req, res) =>{
 }
 const rechargeApproveDetail = async (req, res) =>{
     const [rows] = await connection.query('SELECT * FROM recharge WHERE status = 1');
-    console.log(rows);
+    // console.log(rows);
     if(!rows || rows.length === 0){
         return res.status(200).json({
             message: 'something went wrong while user fetching recharge details',
@@ -247,7 +247,7 @@ const rechargeApproveDetail = async (req, res) =>{
         });
     }
     const data = rows;
-    console.log(data);
+    // console.log(data);
     return res.status(200).json({
         message: 'recharge Details fetch success',
         status: true,
@@ -279,13 +279,28 @@ const rechargeConfirm = async (req, res) => {
     const phone = user[0].phone
     // console.log(phone)
     const [rows] = await connection.query('SELECT * FROM users WHERE phone = ?', [phone])
-    console.log(rows[0].id)
+    // console.log(rows[0].id)
     if(!rows || rows.length === 0){
         return res.status(202).json({
             message: 'user not found',
             status: false,
         })
     }
+    const userInfo = rows[0];
+    const [bonus] = await connection.execute('SELECT * FROM bonus');
+    const invite_bonus = bonus[0].invite_bonus;
+    let bonus_money = (invite_bonus/100)*money
+    // console.log("this is bonus money :" + bonus_money)
+    
+    const invitecode = userInfo.invite;
+    // console.log("this is invite code :" + invitecode)
+    const [check_i] = await connection.query('SELECT * FROM users WHERE code = ? ', [invitecode]);
+    const ref = check_i[0].phone 
+    if(check_i){
+         const [refrral_money_add] = await connection.query('UPDATE `users` SET `money` = `money`+ ? WHERE `phone` = ? ', [bonus_money, ref]) 
+    }
+
+  
     await connection.query('UPDATE users SET money = money + ?, total_money = total_money + ? WHERE phone = ?', [money, money, rows[0].phone]);
 
 
@@ -322,7 +337,7 @@ const rechargeCancel = async (req, res) => {
 
 const withdraDetails = async (req, res) =>{
     const [rows] = await connection.query('SELECT * FROM withdraw WHERE status = 0');
-    console.log(rows);
+    // console.log(rows);
     if(!rows || rows.length === 0){
         return res.status(200).json({
             message: 'something went wrong while user fetching withdraw details',
@@ -330,7 +345,7 @@ const withdraDetails = async (req, res) =>{
         });
     }
     const data = rows;
-    console.log(data);
+    // console.log(data);
     return res.status(200).json({
         message: 'withdraw Details fetch success',
         status: true,
@@ -341,7 +356,7 @@ const withdraDetails = async (req, res) =>{
 
 const withdrawApproveDetail = async (req, res) =>{
     const [rows] = await connection.query('SELECT * FROM withdraw WHERE status = 1');
-    console.log(rows);
+    // console.log(rows);
     if(!rows || rows.length === 0){
         return res.status(200).json({
             message: 'something went wrong while user fetching recharge details',
@@ -349,7 +364,7 @@ const withdrawApproveDetail = async (req, res) =>{
         });
     }
     const data = rows;
-    console.log(data);
+    // console.log(data);
     return res.status(200).json({
         message: 'recharge Details fetch success',
         status: true,
@@ -569,7 +584,7 @@ const createBonus = async (req, res) => {
 
 const bonusDetails = async (req, res) =>{
     const [rows] = await connection.query('SELECT * FROM redenvelopes WHERE status = 0');
-    console.log(rows);
+    // console.log(rows);
     if(!rows || rows.length === 0){
         return res.status(200).json({
             message: 'something went wrong while user fetching bonus details',
@@ -577,7 +592,7 @@ const bonusDetails = async (req, res) =>{
         });
     }
     const data = rows;
-    console.log(data);
+    // console.log(data);
     return res.status(200).json({
         message: 'bonus Details fetch success',
         status: true,
@@ -830,9 +845,9 @@ const uploadBanner = async (req, res) => {
 
         
             const banners = req.files;
-            console.log(req.files) ;
+            // console.log(req.files) ;
             
-            console.log(banners);
+            // console.log(banners);
             if (!banners || banners.length === 0) {
                 return res.status(400).json({ message: 'No files uploaded' });
             }

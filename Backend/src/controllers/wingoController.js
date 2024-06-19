@@ -60,9 +60,9 @@ const rosesPlus = async (auth, money) => {
                         const queryRef = await connection.query('UPDATE users SET money = money + ?, roses_f = roses_f + ?, roses_today = roses_today + ? WHERE phone = ? ', [rosesF, rosesF, rosesF, infoF1.phone]);
 
                         if (queryRef.affectedRows > 0) {
-                            console.log(`Update successful. ${queryRef.affectedRows} row(s) updated.`);
+                            // console.log(`Update successful. ${queryRef.affectedRows} row(s) updated.`);
                         } else {
-                            console.log('No rows were updated.');
+                            // console.log('No rows were updated.');
                         }
                         const timeNow = Date.now();
                         const sql2 = `INSERT INTO roses SET phone = ?, code = ?, invite = ?, f1 = ?, time = ?`;

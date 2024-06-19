@@ -5,6 +5,7 @@ import secure from '../../assets/images/securityicon.webp'
 import guide from '../../assets/images/guideicon.webp'
 import about from '../../assets/images/abouticon.webp'
 import redeem from '../../assets/images/redeem.webp'
+import { useNavigate } from 'react-router-dom';
 // import logout from '../../assets/images/logout_icon.png'
 import {Link} from 'react-router-dom'
 // import { useNavigate } from 'react-router-dom';
@@ -16,6 +17,7 @@ function ProfileList() {
     const [level, setLevel] = useState({});
     // const navigate = useNavigate();
     // const [isBalanceVisible, setIsBalanceVisible] = useState(true);
+    const navigate = useNavigate();
 
     useEffect(() => {
         axios.post('/api/webapi/GetUserInfo')
@@ -26,8 +28,7 @@ function ProfileList() {
             })
             .catch(error => console.log(error));
     }, []);
-
-  
+     
     const handleLogoutClick = (e) => {
         e.preventDefault();
         MySwal.fire({
@@ -44,45 +45,48 @@ function ProfileList() {
           buttonsStyling: false,
         }).then((result) => {
           if (result.isConfirmed) {
-            unsetCookie();
-            MySwal.fire('Logged out!', 'You have been logged out.', 'success');
+            axios.post('/api/webapi/logout') 
+              .then(response => {
+                console.log('Token updated in database:', response.data);
+                MySwal.fire('Logged out!', 'You have been logged out.', 'success');
+                navigate('/'); 
+              })
+              .catch(error => {
+                console.error('Error updating token in database:', error);
+                MySwal.fire('Error', 'An error occurred while logging out.', 'error');
+              });
           } else if (result.dismiss === Swal.DismissReason.cancel) {
             MySwal.fire('Cancelled', 'You are still logged in :)', 'error');
           }
         });
       };
+  
+    // const handleLogoutClick = (e) => {
+    //     e.preventDefault();
+    //     MySwal.fire({
+    //       title: 'Are you sure?',
+    //       icon: 'warning',
+    //       showCancelButton: true,
+    //       confirmButtonText: 'Confirm',
+    //       cancelButtonText: 'Cancel!',
+    //       reverseButtons: true,
+    //       customClass: {
+    //         confirmButton: 'btn btn-success',
+    //         cancelButton: 'btn btn-danger',
+    //       },
+    //       buttonsStyling: false,
+    //     }).then((result) => {
+    //       if (result.isConfirmed) {
+    //         unsetCookie();
+    //         MySwal.fire('Logged out!', 'You have been logged out.', 'success');
+    //       } else if (result.dismiss === Swal.DismissReason.cancel) {
+    //         MySwal.fire('Cancelled', 'You are still logged in :)', 'error');
+    //       }
+    //     });
+    //   };
     
-      const setCookie = (cname, cvalue, exdays) => {
-        const d = new Date();
-        d.setTime(d.getTime() + exdays * 24 * 60 * 60 * 1000);
-        let expires = `expires=${d.toUTCString()}`;
-        document.cookie = `${cname}=${cvalue};${expires};path=/`;
-      };
-    
-      const getCookie = (cname) => {
-        let name = `${cname}=`;
-        let decodedCookie = decodeURIComponent(document.cookie);
-        let ca = decodedCookie.split(';');
-        for (let i = 0; i < ca.length; i++) {
-          let c = ca[i].trim();
-          if (c.indexOf(name) === 0) {
-            return c.substring(name.length, c.length);
-          }
-        }
-        return '';
-      };
-    
-      const unsetCookie = () => {
-        setCookie('token', '', 0);
-        setCookie('auth', '', 0);
-        if (!getCookie('token') && !getCookie('auth')) {
-          window.location.href = '/login';
-        } else {
-          setCookie('token', '', 0);
-          setCookie('auth', '', 0);
-          window.location.href = '/login';
-        }
-      };
+   
+     
 
 //   const togglePasswordVisibility = () => {
 //     let input = document.getElementById('pass_log_id');

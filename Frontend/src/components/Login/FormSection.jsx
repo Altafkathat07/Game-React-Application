@@ -47,6 +47,11 @@ function FormSection() {
             alertMessage({
                 title: popup,
                 confirmButtonText: 'OK',
+              }).then((result) => {
+                if (result.isConfirmed) {
+                  // Reload the page
+                  location.reload();
+                }
               });
             // alert('Login successful' + popup);
             

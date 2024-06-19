@@ -11,6 +11,7 @@ const initWebRouter = (app) => {
   router.post("/api/webapi/register", accountController.register);
   // router.post('/api/webapi/register/otp', accountController.otpVerify);
   router.post("/api/webapi/login", accountController.login);
+  router.post("/api/webapi/logout", middlewareController, accountController.Logout);
   router.post(
     "/api/webapi/GetUserInfo",
     middlewareController,
