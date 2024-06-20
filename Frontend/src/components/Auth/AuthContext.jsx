@@ -4,7 +4,7 @@ import axios from 'axios';
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [isAuthenticated, setIsAuthenticated] = useState(undefined); // Initialize as undefined
   const [loadingUserInfo, setLoadingUserInfo] = useState(true);
   const [userInfo, setUserInfo] = useState(null);
 
@@ -13,9 +13,14 @@ export const AuthProvider = ({ children }) => {
       try {
         const response = await axios.post('/api/webapi/GetUserInfo');
         const userInfo = response.data.data;
-        console.log(userInfo);
-        setUserInfo(userInfo);
-        setIsAuthenticated(true);
+
+        // If userInfo is valid, set as authenticated
+        if (userInfo) {
+          setUserInfo(userInfo);
+          setIsAuthenticated(true);
+        } else {
+          setIsAuthenticated(false);
+        }
       } catch (error) {
         setIsAuthenticated(false);
         console.error('Error fetching user info:', error);

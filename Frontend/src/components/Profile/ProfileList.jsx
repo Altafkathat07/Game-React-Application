@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useContext } from 'react'
 import axios from 'axios'
 import support from '../../assets/images/supicon.webp'
 import secure from '../../assets/images/securityicon.webp'
@@ -6,15 +6,16 @@ import guide from '../../assets/images/guideicon.webp'
 import about from '../../assets/images/abouticon.webp'
 import redeem from '../../assets/images/redeem.webp'
 import { useNavigate } from 'react-router-dom';
-// import logout from '../../assets/images/logout_icon.png'
 import {Link} from 'react-router-dom'
-// import { useNavigate } from 'react-router-dom';
+import AuthContext from '../Auth/AuthContext'
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
 const MySwal = withReactContent(Swal);
 
+
 function ProfileList() {
     const [level, setLevel] = useState({});
+    const { setIsAuthenticated } = useContext(AuthContext); 
     // const navigate = useNavigate();
     // const [isBalanceVisible, setIsBalanceVisible] = useState(true);
     const navigate = useNavigate();
@@ -27,28 +28,29 @@ function ProfileList() {
                 setLevel(userInfo.level);
             })
             .catch(error => console.log(error));
-    }, []);
-     
-    const handleLogoutClick = (e) => {
-        e.preventDefault();
-        MySwal.fire({
-          title: 'Are you sure?',
-          icon: 'warning',
-          showCancelButton: true,
-          confirmButtonText: 'Confirm',
+        }, []);
+        
+        const handleLogoutClick = (e) => {
+            e.preventDefault();
+            MySwal.fire({
+                title: 'Are you sure?',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Confirm',
           cancelButtonText: 'Cancel!',
           reverseButtons: true,
           customClass: {
             confirmButton: 'btn btn-success',
             cancelButton: 'btn btn-danger',
-          },
-          buttonsStyling: false,
-        }).then((result) => {
-          if (result.isConfirmed) {
+        },
+        buttonsStyling: false,
+    }).then((result) => {
+        if (result.isConfirmed) {
             axios.post('/api/webapi/logout') 
-              .then(response => {
+            .then(response => {
                 console.log('Token updated in database:', response.data);
                 MySwal.fire('Logged out!', 'You have been logged out.', 'success');
+                setIsAuthenticated(false);
                 navigate('/'); 
               })
               .catch(error => {

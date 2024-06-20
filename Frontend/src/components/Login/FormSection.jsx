@@ -39,24 +39,12 @@ function FormSection() {
             const responseData = await response.json();
             const { token, popup } = responseData;
 
-            // Set authToken cookie received from the server
             document.cookie = `authToken=${token};`;
-
-            // Display a success message or handle further actions
             navigate('/'); 
             alertMessage({
                 title: popup,
                 confirmButtonText: 'OK',
-              }).then((result) => {
-                if (result.isConfirmed) {
-                  // Reload the page
-                  location.reload();
-                }
-              });
-            // alert('Login successful' + popup);
-            
-
-            // Redirect to another page (e.g., dashboard) after successful login
+              })
         } catch (error) {
             alert("this is the error : " + error.message);
         }
