@@ -538,17 +538,12 @@ input[type="number"] {
 }
 .banner[data-v-432e6ed0] {
   height: 11rem !important;
-  margin-top: 1.6rem;
+  margin-top: 2.4rem;
+  width: 94%;
+  margin-left: 3%;
 }
 @media screen and (max-width: 3000px) {
-  html {
-    /* font-size: 2.5rem !important; */
-    /* width: 10rem;
-    margin: 0 auto;
-    background-color: var(--bg-structure);
-    overflow-x: hidden;
-    width: 100%; */
-  }
+ 
 
   #app {
     font-size: 2.5rem !important;
@@ -1512,8 +1507,8 @@ ul {
   list-style: none;
 }
 .noticebar {
-  width: 17px;
-  height: 18px;
+  width: 15px;
+  height: 16px;
   /* padding-right: 5px; */
 }
 .van-ellipsis {
@@ -6243,6 +6238,7 @@ ul {
   -webkit-user-select: none;
   user-select: none;
   height: 100%;
+  border-radius: 7px;
 }
 .van-swipe__track {
   display: -webkit-box;
@@ -7523,8 +7519,12 @@ ul {
   width: 2.66667rem;
 }
 .home .notice[data-v-432e6ed0] {
-  border-radius: 0.21333rem;
+  /* border-radius: 0.21333rem; */
   overflow: hidden;
+  margin-top: 0.5rem;
+  width: 95%;
+  margin-left: 2.5%;
+  border-radius: 30px;
 }
 .home .notice-box[data-v-432e6ed0] {
   position: relative;
@@ -7537,18 +7537,18 @@ ul {
 .home .notice-box .txt[data-v-432e6ed0] {
   position: absolute;
   right: 0;
-  top: 15%;
-  width: 150px;
+  top: 23%;
+  width: 90px;
   height: 100%;
   color: var(--color-org-);
   background-color: var(--notice-bg-color);
-  padding: 0.13333rem 0.26667rem;
-  font-size: 0.5rem;
+  /* padding: 0.13333rem 0.26667rem; */
+  font-size: 0.7rem;
 }
 .home .notice-box .txt .sp[data-v-432e6ed0] {
   padding: 0 0.26667rem;
   display: inline-block;
-  height: 1.5rem;
+  height: 1.4rem;
   line-height: 0.8rem;
   background-image: linear-gradient(
     90deg,
@@ -7563,7 +7563,7 @@ ul {
   width: 90%;
 }
 .home .notice-box .txt .sp .img[data-v-432e6ed0] {
-  width: 0.26667rem;
+  width: 0.16667rem;
   margin-right: 0.05333rem;
 }
 .home .banner .img[data-v-432e6ed0] {
@@ -10134,6 +10134,24 @@ padding: 2.5rem 1.5rem !important;
 .salary[data-v-432e6eddw]{
 background-color: #f18301;
 color: #fff;
+}
+
+.nav-btn {
+  width: 3.86667rem;
+  height: 1.46667rem;
+  text-align: center;
+  line-height: .84rem;
+  font-family: Inter;
+  font-size: .7333rem;
+  font-weight: 500;
+  margin-right: 10px;
+  color: var(--color-white);
+  border-radius: .13333rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 8px;
+  border: 1.5px solid var(--color-white);
 }
 
  .bank[data-v-7aa0f84a]{background:#f7f0f0;padding:1.4rem 0.4rem}

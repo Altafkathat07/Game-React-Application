@@ -293,6 +293,7 @@ const listOrderOld = async (req, res) => {
         });
     }
     // let auth = req.cookies.authToken;
+    // let auth = 7878979700;
     let auth = req.user.user.phone;
     const [user] = await connection.query('SELECT `phone`, `code`, `invite`, `level`, `money` FROM users WHERE phone = ? AND veri = 1  LIMIT 1 ', [auth]);
 

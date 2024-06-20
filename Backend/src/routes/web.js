@@ -156,12 +156,12 @@ const initWebRouter = (app) => {
   );
   router.post(
     "/api/webapi/GetNoaverageEmerdList",
-    middlewareController,
+    // middlewareController,
     wingoController.listOrderOld
   );
   router.post(
     "/api/webapi/GetMyEmerdList",
-    middlewareController,
+    // middlewareController,
     wingoController.GetMyEmerdList
   );
 

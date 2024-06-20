@@ -9,7 +9,7 @@ import WingoTime from "./WingoTime"
 import WinGoPeriod from "./WinGoPeriod"
 import WinGoList from "./WinGoList"
 import WingoJoin from "./WingoJoin"
-import "../WinGo/wingo";
+// import "../WinGo/wingo";
 
 
 // import $ from 'jquery';

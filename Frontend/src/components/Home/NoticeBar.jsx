@@ -43,7 +43,7 @@ function NoticeBar() {
 					</div>
 					<div data-v-432e6ed0="" className="txt">
 						<span data-v-432e6ed0="" className="sp">
-							<img data-v-432e6ed0="" src={noticeBar} className="noticebar" />Latest Notification
+							<img data-v-432e6ed0="" src={noticeBar} className="noticebar" />detail
 						</span>
 					</div>
 				</div>
