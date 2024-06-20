@@ -9,12 +9,12 @@ function PromotionTabel() {
         axios.post('/api/webapi/promotion')
         .then(response => {
             console.log("table list response:", response.data);
-            if (Array.isArray(response.data)) { // Ensure response.data.datas is an array
+            if (Array.isArray(response.data)) { 
             console.log("table list response:", response.data);
                 setUsers(response.data);
             } else {
                 
-                setUsers([]); // Default to empty array if data format is unexpected
+                setUsers([]); 
             }
         })
         .catch(error => console.log(error));

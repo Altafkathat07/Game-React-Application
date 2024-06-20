@@ -51,8 +51,8 @@ const middlewareController = async (req, res, next) => {
         'SELECT `token`, `status`, `phone` FROM `users` WHERE `token` = ? AND `veri` = 1',
         [authToken]
       );
-      console.log("output 1 : " + rows[0].token)
-      console.log("output 1 : " + rows[0].status)
+      // console.log("output 1 : " + rows[0].token )
+      // console.log("output 1 : " + rows[0].status)
       
       if (!rows.length) {
         console.log(true)

@@ -1,6 +1,60 @@
+import { useState, useEffect } from 'react';
+import axios from 'axios';
 import qrScanner from "../../assets/images/qrscan.jpg"
+import Swal from 'sweetalert2';
 
 function PromotionBox() {
+    const [user, setUser] = useState({});
+
+    useEffect(() => {
+        axios.post('/api/webapi/GetUserInfo')
+            .then(response => {
+                const userInfo = response.data.data;
+                console.log("this is pro: " + JSON.stringify(userInfo));
+                setUser(userInfo);
+            })
+            .catch(error => console.log(error));
+    }, []);
+
+    const copyToClipboard = (text) => {
+        navigator.clipboard.writeText(text)
+            .then(() => {
+                Swal.fire('Copied to clipboard!');
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Copy Invite Code',
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+            })
+            .catch((error) => {
+                Swal.fire({
+                    icon: 'failed',
+                    title: 'Failed to copy text: ' + error,
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+            });
+    };
+    const copuInviteLink = (text) => {
+        navigator.clipboard.writeText(text)
+            .then(() => {
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Copy Link',
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+            })
+            .catch((error) => {
+                Swal.fire({
+                    icon: 'failed',
+                    title: 'Failed to copy text: ' + error,
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+            });
+    };
   return (
     <>
     <div data-v-7c8bbbf4="" className="box">
@@ -38,15 +92,22 @@ function PromotionBox() {
                             </div>
                             <div data-v-7c8bbbf4="" className="btn-list c-row c-row-middle-center">
                                 <div data-v-7c8bbbf4="" className="btn-box">
+                                    {/* <input type="hidden" value={user.invite} />
+                                    {console.log("this is invite : " + user.invite)} */}
                                     <div data-v-7c8bbbf4="" className="btn m-b-10 c-row c-row-middle-center tag-read"
-                                        data-clipboard-text="">Copy Invitation Code</div>
+                                        data-clipboard-text="" onClick={() => copyToClipboard(user.invite)}>Copy Invitation Code</div>
                                     <div data-v-7c8bbbf4=""
                                         data-clipboard-text=""
-                                        className="btn m-b-10 c-row c-row-middle-center tag-read">Copy Link</div>
+                                        className="btn m-b-10 c-row c-row-middle-center tag-read" 
+                                        onClick={() => copuInviteLink(`http://localhost:5173/register?r_code=${user.invite}`)}
+                                        >Copy Link</div>
                                 </div>
                             </div>
                         </div>
-                        <div data-v-7c8bbbf6="" className="inviteLink"><center >Invite Link:</center> <span id='invite_code'></span><center><button  >Copy</button></center></div>
+                        <div data-v-7c8bbbf6="" className="inviteLink"><center >Invite Link:</center>
+                        <input type="text" value={`http://localhost:5173/register?r_code=${user.invite}`} readOnly  style={{fontSize: "0.8rem", color: "#f58a01", padding: "5px 15px", borderRadius: "5px", border: "2px solid #f58a01", width: "100%", background: "transparent", textAlign: "center" }}/>
+                         {/* <span id='invite_code'>{`http://localhost:5173/register?r_code=${user.invite}`}</span> */}
+                         <center><button onClick={() => copuInviteLink(`http://localhost:5173/register?r_code=${user.invite}`)} >Copy</button></center></div>
                     </div>
                 </div>
       

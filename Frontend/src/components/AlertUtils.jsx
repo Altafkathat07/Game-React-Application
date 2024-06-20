@@ -34,6 +34,7 @@ const alertMessage = (options) => {
       buttonsStyling,
     }).then((result) => {
       callback(result);
+      window.location.reload();
     });
   };
   

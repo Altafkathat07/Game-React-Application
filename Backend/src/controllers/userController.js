@@ -53,6 +53,7 @@ const userInfo = async (req, res) => {
         status: true,
         data: {
             code: others.code,
+            invite: others.invite,
             id_user: others.id_user,
             name_user: others.name_user,
             phone_user: others.phone,
@@ -735,6 +736,33 @@ const promotion = async (req, res) => {
             status: false,
             timeStamp: timeNow,
         });
+    }
+    function formateT(params) {
+        let result = (params < 10) ? "0" + params : params;
+        return result;
+    }
+    function timerJoin(params = '', addHours = 0) {
+        let date = '';
+        if (params) {
+            date = new Date(Number(params));
+        } else {
+            date = new Date();
+        }
+
+        date.setHours(date.getHours() + addHours);
+
+        let years = formateT(date.getFullYear());
+        let months = formateT(date.getMonth() + 1);
+        let days = formateT(date.getDate());
+
+        let hours = date.getHours() % 12;
+        hours = hours === 0 ? 12 : hours;
+        let ampm = date.getHours() < 12 ? "AM" : "PM";
+
+        let minutes = formateT(date.getMinutes());
+        let seconds = formateT(date.getSeconds());
+
+        return years + '-' + months + '-' + days + ' ' + hours + ':' + minutes + ':' + seconds + ' ' + ampm;
     }
 
     const [user] = await connection.query('SELECT `phone`, `code`,`invite`, `roses_f`, `roses_f1`, `roses_today` FROM users WHERE `phone` = ? ', [auth]);
