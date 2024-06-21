@@ -2,10 +2,16 @@ import Banner from "./Banner"
 import Footer from "./Footer"
 import GameSection from "./GameSection"
 import Header from "./Header"
-import HomeCom from "./HomeCom"
+// import HomeCom from "./HomeCom"
 import NoticeBar from "./NoticeBar"
 import '../../assets/home/css/index.css'
 import '../../assets/home/css/login.css'
+import '../../assets/home/css/gamescreen.css'
+import GameScreens from "./GameScreens"
+import OrignalGameSection from "./OrignalGameSection"
+import PlatformSection from "./PlatformSection"
+import SlotGameSection from "./SlotGameSection"
+import SportGameSection from "./SportGameSection"
 
 function Main() {
   return (
@@ -14,8 +20,13 @@ function Main() {
             <Header />
             <Banner />
             <NoticeBar />
-            <HomeCom />
+            <GameScreens />
+            {/* <HomeCom /> */}
             <GameSection />
+            <OrignalGameSection />
+            <PlatformSection />
+            <SlotGameSection />
+            <SportGameSection />
             <Footer />
         </div>
     </div>
