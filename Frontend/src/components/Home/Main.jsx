@@ -12,6 +12,11 @@ import OrignalGameSection from "./OrignalGameSection"
 import PlatformSection from "./PlatformSection"
 import SlotGameSection from "./SlotGameSection"
 import SportGameSection from "./SportGameSection"
+import CasinoGameSection from "./CasinoGameSection"
+import FishingGameSection from "./FishingGameSection"
+import RummyGameSection from "./RummyGameSection"
+import WinnigInfomationSection from "./WinnigInfomationSection"
+import DailyRanking from "../WinGo/DailyRanking"
 
 function Main() {
   return (
@@ -27,6 +32,11 @@ function Main() {
             <PlatformSection />
             <SlotGameSection />
             <SportGameSection />
+            <CasinoGameSection />
+            <FishingGameSection />
+            <RummyGameSection />
+            <WinnigInfomationSection />
+            <DailyRanking />
             <Footer />
         </div>
     </div>

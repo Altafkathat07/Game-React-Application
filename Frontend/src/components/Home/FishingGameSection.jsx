@@ -1,19 +1,19 @@
 import "../../assets/home/css/gamescreen.css"
-import img1 from "../../assets/images/48z5pjps3ntvqc1b.png"
-import img2 from "../../assets/images/CrazyTime0000001.png"
-import img3 from "../../assets/images/DragonTiger00001.png"
-import img4 from "../../assets/images/AmericanTable001.png"
-import img5 from "../../assets/images/SuperSicBo000001.png"
-import img6 from "../../assets/images/AndarBahar000001.png"
+import img1 from "../../assets/images/510.png"
+import img2 from "../../assets/images/67001.png"
+import img3 from "../../assets/images/7001.png"
+import img4 from "../../assets/images/7002.png"
+import img5 from "../../assets/images/7003.png"
+import img6 from "../../assets/images/7004.png"
 
-function CasinoGameSection() {
+function FishingGameSection() {
   return (
     <>
-      <div data-v-a900648a="" className="orignal">
+       <div data-v-a900648a="" className="orignal">
                             <div data-v-a900648a1="" className="daman-title daman-line">
-                                <div data-v-a900648a1="" className="daman-title-left"><span data-v-a900648a1="">Casino</span></div>
+                                <div data-v-a900648a1="" className="daman-title-left"><span data-v-a900648a1="">Fishing</span></div>
                                 <div data-v-a900648a1="" className="btn-all">
-                                    <span data-v-a900648a1="">All</span><span data-v-a900648a1=""></span><svg
+                                    <span data-v-a900648a1="">All</span><span data-v-a900648a1="">13</span><svg
                                         data-v-a900648a1="" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                         viewBox="0 0 24 24" fill="none">
                                         <path data-v-a900648a1="" fillRule="evenodd" clipRule="evenodd"
@@ -47,4 +47,4 @@ function CasinoGameSection() {
   )
 }
 
-export default CasinoGameSection
+export default FishingGameSection
