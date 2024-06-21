@@ -1,23 +1,37 @@
 .dailyProfitRank[data-v-84514e8e] {
-    color: var(--text_color_L1);
+    color: #fff;
     margin-top: .53333rem;
+    /* background-color: blueviolet; */
+   
 }
 
 .dailyProfitRank .title[data-v-84514e8e] {
-    height: .56rem;
+    height: 2rem;
     display: -webkit-box;
     display: -webkit-flex;
     display: flex;
     -webkit-box-align: center;
     -webkit-align-items: center;
     align-items: center;
-    font-size: .48rem;
-    font-weight: 500;
+    font-size: 1rem;
+    font-weight: 600;
     margin-bottom: 1.33333rem;
+    color: #fd9501;
+}
+.dailyProfitRank[data-v-84514e8e] .title b:before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 0;
+  -webkit-transform: translateY(-50%);
+  transform: translateY(-50%);
+  width: 0.08rem;
+  height: 0.4rem;
+  background: #759fde;
 }
 .dailyProfitRank .title b[data-v-84514e8e] {
     display: block;
-    height: .34667rem;
+    height: 4rem;
     width: .10667rem;
     border-radius: .05333rem;
     background-color: var(--main-color);
@@ -36,6 +50,7 @@
     -webkit-box-align: center;
     -webkit-align-items: center;
     align-items: center;
+    margin-top: 4rem;
 }
 
 .dailyProfitRank__content-topThree[data-v-84514e8e] {
@@ -44,9 +59,9 @@
     grid-template-columns: repeat(3, 1fr);
     justify-items: center;
     width: 100%;
-    height: 3.33333rem;
+    height: 7.33333rem;
     z-index: 1;
-    background: url(/assets/png/DailyProfitRankStage-ce00a6d6.png) no-repeat center center / 100% 100%;
+    background: url(src/assets/images/DailyProfitRankStage-ce00a6d6.png) no-repeat center center / 100% 100%;
 }
 
 .dailyProfitRank__content-topThree__item[data-v-84514e8e] {
@@ -64,30 +79,258 @@
     width: 3rem;
     height: 3.46667rem;
 }
-.dailyProfitRank__content-topThree__item>div[data-v-84514e8e]:first-of-type {
-    position: relative;
-    display: grid;
-    place-items: center;
-    width: 1.6rem;
-    min-width: 1.6rem;
-    height: 1.6rem;
-    min-height: 1.6rem;
-    border-radius: 50%;
-    overflow: hidden;
-}
+
 
 .dailyProfitRank__content-topThree__item>div:first-of-type>img[data-v-84514e8e] {
     width: calc(100% - .06667rem);
     height: calc(100% - .06667rem);
 }
-
-
-.dailyProfitRank__content-topThree__item>div:last-of-type img[data-v-84514e8e]:first-of-type {
-    position: relative;
-    top: -.33333rem;
-    left: -.25333rem;
-    width: 1.14667rem;
+.dailyProfitRank__content-topThree__item>div[data-v-84514e8e]:last-of-type {
+  position: absolute;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  justify-content: space-between;
+  width: 3.78667rem;
+  height: 3.82667rem;
 }
+.dailyProfitRank__content-topThree__item>div:last-of-type img[data-v-84514e8e]:first-of-type {
+  position: relative;
+    top: -1.53333rem;
+    left: -1.0333rem;
+    width: 3.14667rem;
+}
+
+.dailyProfitRank__content-topThree__item>span[data-v-84514e8e]:first-of-type {
+  /* margin-block: 18% 8%; */
+  font-size: .82rem;
+  width: 5.66667rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.dailyProfitRank__content-topThree__item>span[data-v-84514e8e] {
+  color: #fff;
+  padding: 0 .13333rem;
+  text-align: center;
+}
+.dailyProfitRank__content-topThree__item>span[data-v-84514e8e]:last-of-type {
+  width: 4.66667rem;
+  height: 1.66667rem;
+  padding: .27333rem .28667rem;
+  font-size: .5rem;
+  line-height: .6rem;
+  text-align: center;
+  border-radius: 9rem;
+  background: var(--bgDark, rgba(255, 255, 255, .3));
+}
+.dailyProfitRank__content-topThree__item>span[data-v-84514e8e] {
+  color: #fff;
+  padding: 0 .13333rem;
+  text-align: center;
+}
+.dailyProfitRank__content-topThree__item[data-v-84514e8e]:nth-child(2) {
+  right: .10667rem;
+}
+.dailyProfitRank__content-topThree__item[data-v-84514e8e] {
+  position: relative;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  align-items: center;
+  width: 3rem;
+  height: 3.46667rem;
+}
+
+.dailyProfitRank__content-topThree__item>div[data-v-84514e8e]:first-of-type {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 3.6rem;
+  min-width: 3.6rem;
+  height: 3.6rem;
+  min-height: 3.6rem;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.dailyProfitRank__content-topThree__item>div:first-of-type>img[data-v-84514e8e] {
+  width: calc(100% - .06667rem);
+  height: calc(100% - .06667rem);
+}
+
+.dailyProfitRank__content-topThree__item>div[data-v-84514e8e]:last-of-type {
+  position: absolute;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  justify-content: space-between;
+  width: 3.78667rem;
+  height: 3.82667rem;
+}
+
+.dailyProfitRank__content-topThree__item>span[data-v-84514e8e] {
+  color: #fff;
+  padding: 0 .13333rem;
+  text-align: center;
+}
+
+.dailyProfitRank__content-topThree__item>span[data-v-84514e8e] {
+  color: #fff;
+  padding: 0 .13333rem;
+  text-align: center;
+}
+
+.dailyProfitRank__content-topThree__item[data-v-84514e8e]:nth-child(3) {
+  left: .16rem;
+}
+.dailyProfitRank__content-topThree__item[data-v-84514e8e] {
+  position: relative;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  align-items: center;
+  width: 3rem;
+  height: 3.46667rem;
+}
+
+.dailyProfitRank__content-topThree__item>div:first-of-type>img[data-v-84514e8e] {
+  width: calc(100% - .06667rem);
+  height: calc(100% - .06667rem);
+}
+
+.dailyProfitRank__content-topThree__item>div[data-v-84514e8e]:last-of-type {
+  position: absolute;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  justify-content: space-between;
+  width: 3.78667rem;
+  height: 3.82667rem;
+}
+
+.dailyProfitRank__content-topThree__item>div:last-of-type img[data-v-84514e8e]:last-of-type {
+  width: 3.78667rem;
+  height: .82667rem;
+}
+
+.dailyProfitRank__content-topThree__item>span[data-v-84514e8e] {
+  color: #fff;
+  padding: 0 .13333rem;
+  text-align: center;
+}
+
+
+.dailyProfitRank__content-topThree__item>span[data-v-84514e8e] {
+  color: #fff;
+  padding: 0 .13333rem;
+  text-align: center;
+}
+
+.dailyProfitRank__content-list[data-v-84514e8e] {
+  position: relative;
+  z-index: 2;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  align-items: center;
+  gap: .21333rem;
+  width: 100%;
+}
+
+.dailyProfitRank__content-list__item[data-v-84514e8e] {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  align-items: center;
+  width: 100%;
+  height: 2.0rem;
+  padding: .14667rem .25333rem .14667rem .44rem;
+  background: #fd9501;
+  border-radius: .13333rem;
+}
+.dailyProfitRank__content-list__item span.left-rank[data-v-84514e8e] {
+  margin-right: .41333rem;
+  color: #fff;
+  font-size: .8rem;
+  font-weight: 600;
+}
+.dailyProfitRank__content-list__item img[data-v-84514e8e] {
+  width: 1.06667rem;
+  height: 1.06667rem;
+  margin-right: .17333rem;
+  border-radius: 50%;
+}
+
+.dailyProfitRank__content-list__item span.middle-name[data-v-84514e8e] {
+  color: var(--text_color_L2);
+  font-size: .8rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 7.66667rem;
+}
+
+.dailyProfitRank__content-list__item span.right-box[data-v-84514e8e] {
+  line-height: .66667rem;
+  width: 7.46667rem;
+  height: .66667rem;
+  margin-left: auto;
+  color: #fff;
+  font-size: .9rem;
+  text-align: center;
+  border-radius: 9rem;
+  background: var(--main_gradient-color);
+}
+
+
+
+.dailyProfitRank__content-list__item img[data-v-84514e8e] {
+  width: 1.06667rem;
+  height: 1.06667rem;
+  margin-right: .17333rem;
+  border-radius: 50%;
+}
+
 
 
 

@@ -1,4 +1,13 @@
 import "../../assets/home/css/daily.css"
+import man1 from "../../assets/images/win1.png"
+import tag1 from "../../assets/images/no1.png"
+import crown1 from "../../assets/images/crown1.png"
+import man2 from "../../assets/images/win2.png"
+import tag2 from "../../assets/images/place2.png"
+import crown2 from "../../assets/images/crown2.png"
+import man3 from "../../assets/images/face1.jpg"
+import tag3 from "../../assets/images/place3.png"
+import crown3 from "../../assets/images/crown2.png"
 
 function DailyRanking() {
     // const topThree = [
@@ -50,57 +59,30 @@ function DailyRanking() {
     //   ];
     return (
     <>
-{/* <div data-v-84514e8e className="dailyProfitRank">
-      <div data-v-84514e8e className="title"><b></b>Todays earnings chart</div>
-      <div data-v-84514e8e className="dailyProfitRank__content">
-        <div data-v-84514e8e className="dailyProfitRank__content-topThree">
-          {topThree.map((item, index) => (
-            <div
-              key={index}
-              data-v-84514e8e className="dailyProfitRank__content-topThree__item"
-              style={{ order: item.order, top: item.top }}
-            >
-              <div style={{ background: `url(${item.borderImg}) center center / 100% 100% no-repeat` }}>
-                <img src={item.avatarImg} alt="avatar" />
-              </div>
-              <div>
-                <img src={item.crownImg} alt="crown" />
-                <img src={item.placeImg} alt="place" />
-              </div>
-              <span>{item.name}</span><span>{item.earnings}</span>
-            </div>
-          ))}
-        </div>
-        <div data-v-84514e8e className="dailyProfitRank__content-list">
-          {list.map((item, index) => (
-            <div key={index} data-v-84514e8e className="dailyProfitRank__content-list__item">
-              <span data-v-84514e8e className="left-rank">{item.rank}</span>
-              <img src={item.avatarImg} alt="avatar" />
-              <span data-v-84514e8e className="middle-name">{item.name}</span>
-              <span data-v-84514e8e className="right-box">{item.earnings}</span>
-            </div>
-          ))}
-        </div>
-      </div>
-    </div>             */}
-    <div data-v-84514e8e="" className="dailyProfitRank">
-   <div data-v-84514e8e="" className="title"><b data-v-84514e8e=""></b>Todays earnings chart</div>
+
+    <div data-v-84514e8e="" className="dailyProfitRank" style={{width: "94%", marginLeft: "3%"}}>
+   <div data-v-84514e8e="" className="title">Todays earnings chart</div>
    <div data-v-84514e8e="" className="dailyProfitRank__content">
       <div data-v-84514e8e="" className="dailyProfitRank__content-topThree">
-         <div data-v-84514e8e="" className="dailyProfitRank__content-topThree__item" style={{order: "2", top: "-45px"}}>
-            <div data-v-84514e8e="" style={{background: "url(&quot;/assets/png/border1-3b6518ec.png&quot;) center center / 100% 100% no-repeat"}}><img data-v-84514e8e="" data-img="/assets/png/avatar-ea3b8ee9.png" className="" data-origin="/assets/png/4-12a0d0c5.png" src="/assets/png/4-12a0d0c5.png" /></div>
-            <div data-v-84514e8e=""><img data-v-84514e8e="" className="" data-origin="/assets/png/crown1-3912fd85.png" src="/assets/png/crown1-3912fd85.png" /><img data-v-84514e8e="" className="" data-origin="/assets/png/place1-fe39c3f3.png" src="/assets/png/place1-fe39c3f3.png" /></div>
-            <span data-v-84514e8e="">Mem***PYL</span><span data-v-84514e8e="">₹997,169,019.06</span>
+         <div data-v-84514e8e="" className="dailyProfitRank__content-topThree__item" style={{order: "2", marginTop: "-10px"}}>
+            <div data-v-84514e8e="" >
+              <img data-v-84514e8e="" data-img={man1} className="" data-origin={man1} src={man1} />
+              </div>
+            <div data-v-84514e8e="">
+              <img data-v-84514e8e="" className="" data-origin={crown1} src={crown1} />
+              <img data-v-84514e8e="" className="" data-origin={tag1} src={tag1} />
+              </div>
+            <span data-v-84514e8e="" style={{marginTop: "1rem",}}>Mem***PYL</span><span data-v-84514e8e="">₹997,169,019.06</span>
          </div>
-         <div data-v-84514e8e="" className="dailyProfitRank__content-topThree__item" style={{order: "1", top: "-30px"}}>
-            <div data-v-84514e8e="" style={{background: "url(&quot;/assets/png/border2-7a806be7.png&quot;) center center / 100% 100% no-repeat"}}><img data-v-84514e8e="" data-img="/assets/png/avatar-ea3b8ee9.png" className="" data-origin="/assets/png/6-7c7f5203.png" src="/assets/png/6-7c7f5203.png" /></div>
-            <div data-v-84514e8e=""><img data-v-84514e8e="" className="" data-origin="/assets/png/crown2-c8aced52.png" src="/assets/png/crown2-c8aced52.png" /><img data-v-84514e8e="" className="" data-origin="/assets/png/place2-8189be28.png" src="/assets/png/place2-8189be28.png" /></div>
-            <span data-v-84514e8e="">Mem***VHO</span><span data-v-84514e8e="">₹901,157,040.00</span>
+         <div data-v-84514e8e="" className="dailyProfitRank__content-topThree__item" style={{order: "1", marginTop: "-25px"}}>
+            <div data-v-84514e8e="" ><img data-v-84514e8e="" data-img={man2} className="" data-origin={man2}src={man2} /></div>
+            <div data-v-84514e8e=""><img data-v-84514e8e="" className="" data-origin={crown2} src={crown2} /><img data-v-84514e8e="" className="" data-origin={tag2} src={tag2} /></div>
+            <span data-v-84514e8e="" style={{marginTop: "1rem",}}>Mem***VHO</span><span data-v-84514e8e="">₹901,157,040.00</span>
          </div>
-         <div data-v-84514e8e="" className="dailyProfitRank__content-topThree__item" style={{order: "3", top: "-30px"}}>
-            <div data-v-84514e8e="" style={{background: "url(&quot;/assets/png/border3-cfec4a7d.png&quot;) center center / 100% 100% no-repeat"}}><img data-v-84514e8e="" data-img="/assets/png/avatar-ea3b8ee9.png" className="" data-origin="/assets/png/12-ae12c679.png" src="/assets/png/12-ae12c679.png" /></div>
-            <div data-v-84514e8e=""><img data-v-84514e8e="" className="" data-origin="/assets/png/crown3-2ca02146.png" src="/assets/png/crown3-2ca02146.png" /><img data-v-84514e8e="" className="" data-origin="/assets/png/place3-d9b0be38.png" src="/assets/png/place3-d9b0be38.png" /></div>
-            <span data-v-84514e8e="">Mem***KVG</span><span data-v-84514e8e="">₹590,286,732.00</span>
+         <div data-v-84514e8e="" className="dailyProfitRank__content-topThree__item" style={{order: "3", marginTop: "-10px"}}>
+            <div data-v-84514e8e="" ><img data-v-84514e8e="" data-img={man3} className="" data-origin={man2} src={man3} /></div>
+            <div data-v-84514e8e=""><img data-v-84514e8e="" className="" data-origin={crown3} src={crown3} /><img data-v-84514e8e="" className="" data-origin={tag3} src={tag3} /></div>
+            <span data-v-84514e8e="" style={{marginTop: "1rem",}}>Mem***KVG</span><span data-v-84514e8e="">₹590,286,732.00</span>
          </div>
       </div>
       <div data-v-84514e8e="" className="dailyProfitRank__content-list">

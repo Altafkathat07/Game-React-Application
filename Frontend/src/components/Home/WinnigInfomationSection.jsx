@@ -17,13 +17,13 @@ function WinnigInfomationSection() {
                 <div data-v-6a35701e="" className="luckyWinners__container-wrapper__item-img">
                     <img data-v-6a35701e="" data-src={img1} src={img1}  />
                 </div>
-                <div data-v-6a35701e="" className="luckyWinners__container-wrapper__item-info">
-                    <h1 data-v-6a35701e="">Mem***FasnN</h1>
+                <div data-v-6a35701e="" className="luckyWinners__container-wrapper__item-info" style={{marginTop: "1rem"}}>
+                    <h1 data-v-6a35701e="" >Mem***FasnN</h1>
                 </div>
                 <div data-v-6a35701e="" className="luckyWinners__container-wrapper__item-winType">
                     <img data-v-6a35701e="" data-src={img1} src={img1}  />
                 </div>
-                <div data-v-6a35701e="" className="luckyWinners__container-wrapper__item-winAmount">
+                <div data-v-6a35701e="" className="luckyWinners__container-wrapper__item-winAmount mt-2">
                     <h1 data-v-6a35701e="">Receive ₹296</h1>
                     <span data-v-6a35701e="">Winning amount</span>
                 </div>
