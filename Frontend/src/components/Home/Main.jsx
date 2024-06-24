@@ -16,7 +16,9 @@ import CasinoGameSection from "./CasinoGameSection"
 import FishingGameSection from "./FishingGameSection"
 import RummyGameSection from "./RummyGameSection"
 import WinnigInfomationSection from "./WinnigInfomationSection"
-import DailyRanking from "../WinGo/DailyRanking"
+import DailyRanking from "./DailyRanking"
+import TermsSection from "./TermsSection"
+import SettingPanelSection from "./SettingPanelSection"
 
 function Main() {
   return (
@@ -37,6 +39,8 @@ function Main() {
             <RummyGameSection />
             <WinnigInfomationSection />
             <DailyRanking />
+            <TermsSection />
+            <SettingPanelSection />
             <Footer />
         </div>
     </div>

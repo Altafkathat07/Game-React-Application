@@ -64,7 +64,7 @@ function DailyRanking() {
    <div data-v-84514e8e="" className="title">Todays earnings chart</div>
    <div data-v-84514e8e="" className="dailyProfitRank__content">
       <div data-v-84514e8e="" className="dailyProfitRank__content-topThree">
-         <div data-v-84514e8e="" className="dailyProfitRank__content-topThree__item" style={{order: "2", marginTop: "-10px"}}>
+         <div data-v-84514e8e="" className="dailyProfitRank__content-topThree__item" style={{order: "2", marginTop: "-49px"}}>
             <div data-v-84514e8e="" >
               <img data-v-84514e8e="" data-img={man1} className="" data-origin={man1} src={man1} />
               </div>

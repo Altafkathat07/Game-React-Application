@@ -3,7 +3,6 @@ import noticeBar from '../../assets/images/notice-right.svg';
 
 function NoticeBar() {
 	const [notice, setNotice] = useState('');
-	const [style, setStyle] = useState({});
     useEffect(() => {
         fetch('/api/webapi/admin/notification-fetching')
           .then((res) => {
@@ -22,15 +21,37 @@ function NoticeBar() {
           });
       }, []);
 
-  useEffect(() => {
-    setStyle({
-      transitionDuration: '44.0815s',
-      transform: 'translateX(-2204.07px)',
-    });
-  }, []);
+      const calculateDuration = (text) => {
+        const speed = 60; // pixels per second
+        const textLength = text.length * 10; // approximate width of text in pixels
+        return textLength / speed;
+      };
+      const duration = calculateDuration(notice);
+      const styles = {
+        notice: {
+          overflow: "hidden"
+        },
+        content: {
+          display: 'inline-block',
+          whiteSpace: 'nowrap',
+          animation: `scroll ${duration}s linear infinite`
+        }
+      };
 
   return (
     <>
+        <style>
+        {`
+          @keyframes scroll {
+            0% {
+              transform: translateX(100%);
+            }
+            100% {
+              transform: translateX(-100%);
+            }
+          }
+        `}
+      </style>
       <div data-v-432e6ed0="" className="notice">
 				<div data-v-432e6ed0="" className="notice-box c-row c-row-between">
 					<div data-v-432e6ed0="" role="alert" className="van-notice-bar" >
@@ -38,7 +59,7 @@ function NoticeBar() {
 							
 						</i>
 						<div role="marquee" className="van-notice-bar__wrap" style={{fontSize: "0.9rem"}}>
-							<div className="van-notice-bar__content" id="notice" style={style}>{notice}</div>
+							<div className="van-notice-bar__content" id="notice"  style={styles.content}>{notice}</div>
 						</div>
 					</div>
 					<div data-v-432e6ed0="" className="txt">

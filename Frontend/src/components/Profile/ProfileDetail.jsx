@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import avatar from '../../assets/images/avatar.svg'
 import { Link } from 'react-router-dom';
+import avatar from '../../assets/images/avatar.svg'
 
 function ProfileDetail() {
     const [user, setUser] = useState({});
