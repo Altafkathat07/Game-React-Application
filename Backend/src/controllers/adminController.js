@@ -681,17 +681,15 @@ const getLevelInfo = async (req, res) => {
     });
 }
 const updateLevel = async (req, res) => {
+    const updatedLevels = req.body;
     try {
-        let id = req.body.id;
-        let f1 = req.body.f1;
-        let f2 = req.body.f2;
-
-        console.log("level : " + id, f1, f2);
-
-        await connection.query(
-            'UPDATE `level` SET `f1`= ? ,`f2`= ? = ?  WHERE `id` = ?',
-            [f1, f2, id]
-        );
+        for (const level of updatedLevels) {
+            const { id, status, f1, f2 } = level;
+            await connection.query(
+                'UPDATE `level` SET `status` = ?, `f1` = ?, `f2` = ? WHERE `id` = ?',
+                [status, f1, f2, id]
+            );
+        }
         res.status(200).json({
             message: 'Update successful',
             status: true,

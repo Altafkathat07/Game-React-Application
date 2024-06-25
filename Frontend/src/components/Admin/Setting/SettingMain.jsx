@@ -3,7 +3,6 @@ import AdminNav from "../IndexPage/AdminNav"
 import AdminSidebar from "../IndexPage/AdminSidebar"
 import BonusForm from "./BonusForm"
 import DepositeBonusForm from "./DepositeBonusForm"
-import Level from "./Level"
 import WithdrawLimit from "./WithdrawLimit"
 
 function SettingMain() {
@@ -17,7 +16,6 @@ function SettingMain() {
             <BonusForm/>
             <DepositeBonusForm />
             <WithdrawLimit />
-            <Level />
           </div>
         </div>
      </div>

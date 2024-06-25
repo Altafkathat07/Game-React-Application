@@ -38,8 +38,21 @@ const getSalaryRecord = async(req, res)=>{
 })
 }
 
+const LevelDetails = async(req, res)=>{
+
+    const [levels] = await connection.query(`SELECT * FROM level WHERE status = 1 `);
+
+
+  console.log( levels)
+  return res.status(200).json({
+      message: 'Success',
+      status: true,
+      data: levels
+})
+}
 
 
 module.exports = {
     getSalaryRecord,
+    LevelDetails
 }

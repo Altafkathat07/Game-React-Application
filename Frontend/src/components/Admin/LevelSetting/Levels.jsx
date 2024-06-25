@@ -32,25 +32,23 @@ function Levels() {
         setLevels(updatedLevels);
     };
 
-    const handleSave = async () => {
-        // Send the updated levels to the backend
+    const updateLevels = async () => {
         try {
-            const response = await fetch('/api/update-levels', {
+            const response = await fetch('/api/webapi/admin/update-levels', {
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application/json',
+                    'Content-Type': 'application/json'
                 },
-                body: JSON.stringify(levels),
+                body: JSON.stringify(levels)
             });
-            if (response.ok) {
-                console.log('Levels updated successfully!');
-            } else {
-                console.error('Failed to update levels.');
-            }
+
+            const result = await response.json();
+            alert(result.message);
         } catch (error) {
-            console.error('Error:', error);
+            alert('Error updating levels:', error);
         }
     };
+
 
     return (
         <div className="content-wrapper" style={{ padding: "0px" }}>
@@ -68,7 +66,7 @@ function Levels() {
                 <div className="card">
                     <div className="card-header d-flex justify-content-between">
                         <h3 className="card-title">Levels Setting</h3>
-                        <button onClick={handleSave} className='updataBtn'>update</button>
+                        <button onClick={updateLevels} className='updataBtn'>update</button>
                         <div className="card-tools d-flex">
                             <button type="button" className="btn btn-tool" data-card-widget="collapse" title="Collapse">
                                 <i className="bi bi-dash-lg"></i>
@@ -104,18 +102,16 @@ function Levels() {
                                             <input
                                                 type="text"
                                                 name="f1"
-                                                // value={level.f1}
                                                 placeholder={level.f1}
-                                                onChange={(e) => handleInputChange(level.id, 'recharge', e.target.value)}
+                                                onChange={(e) => handleInputChange(level.id, 'f1', e.target.value)}
                                             /> %
                                         </td>
                                         <td className="text-center">
                                             <input
                                                 type="text"
                                                 name="f2"
-                                                // value={level.f2}
                                                 placeholder={level.f2}
-                                                onChange={(e) => handleInputChange(level.id, 'bet', e.target.value)}
+                                                onChange={(e) => handleInputChange(level.id, 'f2', e.target.value)}
                                             /> %
                                         </td>
                                     </tr>

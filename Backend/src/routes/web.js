@@ -206,6 +206,10 @@ const initWebRouter = (app) => {
     "/api/webapi/salary_record",
     middlewareController,
     homeController.getSalaryRecord
+  ); 
+  router.get(
+    "/api/webapi/level_record",
+    homeController.LevelDetails
   );
 
   router.post(
