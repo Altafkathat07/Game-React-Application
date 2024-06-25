@@ -10,8 +10,8 @@ function AdminNav() {
     <>
      <nav className="navbar default-layout-navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row" id="adminNav">
             <div className="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
-                <a className="navbar-brand brand-logo" href="index.html"><img src={logo} alt="logo" /></a>
-                <a className="navbar-brand brand-logo-mini" href="index.html"><img src={logoMini} alt="logo" /></a>
+                <a className="navbar-brand brand-logo" ><img src={logo} alt="logo" /></a>
+                <a className="navbar-brand brand-logo-mini" ><img src={logoMini} alt="logo" /></a>
             </div>
             <div className="navbar-menu-wrapper d-flex align-items-stretch">
                 <button className="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
@@ -31,7 +31,7 @@ function AdminNav() {
                 </div>
                 <ul className="navbar-nav navbar-nav-right">
                     <li className="nav-item nav-profile dropdown">
-                        <a className="nav-link dropdown-toggle" id="profileDropdown" href="#" data-toggle="dropdown" aria-expanded="false">
+                        <a className="nav-link dropdown-toggle" id="profileDropdown" data-toggle="dropdown" aria-expanded="false">
                             <div className="nav-profile-img">
                                 <img src={face} alt="image" />
                                 <span className="availability-status online"></span>

@@ -18876,3 +18876,25 @@ dl li {
   width: 16rem !important;
   position: relative !important;
 }
+
+tr td input{
+  width: 100px !important;
+  text-align: center;
+}
+tr td input::placeholder{
+  color: #000;
+}
+tr td .check{
+  width: 20px !important;
+  padding-top: 0px !important;
+} 
+
+.updataBtn{
+  width: 150px;
+  border: none;
+  height: 35px;
+  background: #15d0bc;
+  color: white;
+  font-size: 20px;
+  border-radius: 25px;
+}

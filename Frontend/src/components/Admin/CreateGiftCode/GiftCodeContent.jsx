@@ -5,8 +5,8 @@ import Swal from 'sweetalert2';
 function GiftCodeContent() {
   const [users, setUsers] = useState([]);
   const [showHide, setShowHide] = useState(true);
-  const [icon, setIcon] = useState("bi bi-dash fs-5 fw-7");
   const [sectionHide, setSectionHide] = useState(true);
+  const [icon, setIcon] = useState("bi bi-dash fs-5 fw-7");
   const [formData, setFormData] = useState({ money: "", numberOfClaim: "" });
   const [resultVisible, setResultVisible] = useState(false);
   const [resultId, setResultId] = useState('');

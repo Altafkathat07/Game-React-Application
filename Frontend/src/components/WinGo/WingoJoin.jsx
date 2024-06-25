@@ -26,7 +26,7 @@ function WingoJoin() {
       <div data-v-a9660e98="" className="item c-row c-row-between">
         <div data-v-a9660e98="" className="tit">Quantity</div>
         <div data-v-a9660e98="" className="c-row c-row-between stepper-box">
-          <div data-v-a9660e98="" className="li minus" >-</div>
+          <div data-v-a9660e98="" className="li minus text-dark" >-</div>
           <div data-v-a9660e98="" className="digit-box van-cell van-field">
             <div className="van-cell__value van-cell__value--alone van-field__value">
               <div className="van-field__body">

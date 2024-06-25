@@ -293,8 +293,9 @@ const rechargeConfirm = async (req, res) => {
     // console.log("this is bonus money :" + bonus_money)
     
     const invitecode = userInfo.invite;
-    // console.log("this is invite code :" + invitecode)
+    console.log("this is invite code :" + invitecode)
     const [check_i] = await connection.query('SELECT * FROM users WHERE code = ? ', [invitecode]);
+    console.log(check_i[0])
     const ref = check_i[0].phone 
     if(check_i){
          const [refrral_money_add] = await connection.query('UPDATE `users` SET `money` = `money`+ ? WHERE `phone` = ? ', [bonus_money, ref]) 
@@ -661,158 +662,51 @@ const Bonus = async (req, res) => {
     }
 };
 
+const getLevelInfo = async (req, res) => {
 
-// const Bonus = async (req, res) => {
-//     let auth = req.cookies.authToken;
-//     let { bonus, fr, ib } = req.body;
-    
-//     if (!auth || (!bonus && !fr && !ib)) {
-//         return res.status(200).json({
-//             message: 'Failed',
-//             status: false,
-//             timeStamp: new Date().toISOString(),
-//         });
-//     }
+    const [rows] = await connection.query('SELECT * FROM `level`');
 
-//     const rows = await connection.query(`SELECT * FROM bonus LIMIT 1`);
-    
-//     if (rows[0].length === 0) {
-//         const sql = "INSERT INTO bonus SET welcome_bonus = ?, first_reacharge_bonus = ?, invite_bonus = ?";
-//         await connection.execute(sql, [bonus || 0, fr || 0, ib || 0]);
-//         return res.status(200).json({
-//             message: 'Successfully Inserted',
-//             status: true
-//         });
-//     } else {
-//         if (bonus !== undefined || bonus !== '') {
-//             await connection.query(`UPDATE bonus SET welcome_bonus = ?`, [bonus]);
-//         }
-//         if (fr !== undefined || fr !== '') {
-//             await connection.query(`UPDATE bonus SET first_reacharge_bonus = ?`, [fr]);
-//         }
-//         if (ib !== undefined || ib !== '') {
-//             await connection.query(`UPDATE bonus SET invite_bonus = ?`, [ib]);
-//         }
-//         return res.status(200).json({
-//             message: 'Successfully Updated',
-//             status: true,
-//         });
-//     }
-// };
+    if (!rows) {
+        return res.status(200).json({
+            message: 'Failed',
+            status: false,
 
-// const RegistrationBonus = async (req, res) => {
-//     let auth = req.cookies.authToken;
-//     let bonus = req.body.bonus;
-    
+        });
+    }
+    console.log("asdasdasd : " + rows)
+    return res.status(200).json({
+        message: 'Success',
+        status: true,
+        data: rows
+    });
+}
+const updateLevel = async (req, res) => {
+    try {
+        let id = req.body.id;
+        let f1 = req.body.f1;
+        let f2 = req.body.f2;
 
-//     if (!auth || !bonus ){
-//         return res.status(200).json({
-//             message: 'Failed',
-//             status: false,
-//             timeStamp: timeNow,
-//         });
-//     }
-//     // await connection.query(`UPDATE bonus SET  bonus = ? `, [bonus]);
-//     // return res.status(200).json({
-//     //     message: 'Successful change',
-//     //     status: true,
-//     // });
-//     const rows = await connection.query(`SELECT * FROM bonus LIMIT 1`)
-//     // console.log(rows);
-    
-//     if(rows[0].length === 0){
-//         const sql = "INSERT INTO bonus SET welcome_bonus = ?, first_reacharge_bonus = ?, invite_bonus = ?";
-//         await connection.execute(sql, [bonus, 0, 0]);
-//         return res.status(200).json({
-//             message: 'Successful Inserted',
-//             status: true
-//         })
+        console.log("level : " + id, f1, f2);
 
+        await connection.query(
+            'UPDATE `level` SET `f1`= ? ,`f2`= ? = ?  WHERE `id` = ?',
+            [f1, f2, id]
+        );
+        res.status(200).json({
+            message: 'Update successful',
+            status: true,
+        });
+    } catch (error) {
+        console.error('Error updating level:', error);
 
-//     }else{
-//         await connection.query(`UPDATE bonus SET welcome_bonus = ?`, [bonus]);
-//         // res.redirect("http://localhost:5173/admin/uimanagemnt");
-//         return res.status(200).json({
-//             message: 'Successful change',
-//             status: true,
-//         });
-//     }
-// }
-// const FirstRechargeBonus = async (req, res) => {
-//     let auth = req.cookies.authToken;
-//     let first_recharge = req.body.fr;
-
-//     if (!auth || !first_recharge ){
-//         return res.status(200).json({
-//             message: 'Failed',
-//             status: false,
-//             timeStamp: timeNow,
-//         });
-//     }
-//     // await connection.query(`UPDATE bonus SET  bonus = ? `, [bonus]);
-//     // return res.status(200).json({
-//     //     message: 'Successful change',
-//     //     status: true,
-//     // });
-//     const rows = await connection.query(`SELECT * FROM bonus LIMIT 1`)
-//     // console.log(rows);
-    
-//     if(rows[0].length === 0){
-//         const sql = "INSERT INTO bonus SET welcome_bonus = ?, first_reacharge_bonus = ?, invite_bonus = ?";
-//         await connection.execute(sql, [0, first_recharge, 0]);
-//         return res.status(200).json({
-//             message: 'Successful Inserted',
-//             status: true
-//         })
-
-
-//     }else{
-//         await connection.query(`UPDATE bonus SET first_reacharge_bonus = ?`, [first_recharge]);
-//         // res.redirect("http://localhost:5173/admin/uimanagemnt");
-//         return res.status(200).json({
-//             message: 'Successful change',
-//             status: true,
-//         });
-//     }
-// }
-// const InviteBonus = async (req, res) => {
-//     let auth = req.cookies.authToken;
-//     let invite_bonus = req.body.ib
-
-//     if (!auth || !invite_bonus ){
-//         return res.status(200).json({
-//             message: 'Failed',
-//             status: false,
-//             timeStamp: timeNow,
-//         });
-//     }
-//     // await connection.query(`UPDATE bonus SET  bonus = ? `, [bonus]);
-//     // return res.status(200).json({
-//     //     message: 'Successful change',
-//     //     status: true,
-//     // });
-//     const rows = await connection.query(`SELECT * FROM bonus LIMIT 1`)
-//     // console.log(rows);
-    
-//     if(rows[0].length === 0){
-//         const sql = "INSERT INTO bonus SET welcome_bonus = ?, first_reacharge_bonus = ?, invite_bonus = ?";
-//         await connection.execute(sql, [0, 0, invite_bonus]);
-//         return res.status(200).json({
-//             message: 'Successful Inserted',
-//             status: true
-//         })
-
-
-//     }else{
-//         await connection.query(`UPDATE bonus SET invite_bonus = ?`, [invite_bonus]);
-//         // res.redirect("http://localhost:5173/admin/uimanagemnt");
-//         return res.status(200).json({
-//             message: 'Successful change',
-//             status: true,
-//         });
-//     }
-// }
-
+        // Send an error response to the client
+        res.status(500).json({
+            message: 'Update failed',
+            status: false,
+            error: error.message,
+        });
+    }
+};
 
 const currentDirectory = process.cwd();
 
@@ -885,7 +779,9 @@ module.exports = {
     withdrawCancel,
     createBonus,
     bonusDetails,
-    Bonus
+    Bonus,
+    getLevelInfo,
+    updateLevel
     // RegistrationBonus,
     // FirstRechargeBonus,
     // InviteBonus

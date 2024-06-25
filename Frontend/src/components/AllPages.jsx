@@ -41,6 +41,7 @@ import WithdrawApprove from "./Admin/WithdrawApprove/WithdrawApprove";
 import GiftCodeMain from "./Admin/CreateGiftCode/GiftCodeMain";
 import RechargeHistory from "./Recharge/RechargeHistory";
 import WithdrawalHistrory from "./Wallet/WithdrawalHistrory";
+import LevelSettingMain from './Admin/LevelSetting/LevelSettingMain';
 
 function AllPages() {
   const { isAuthenticated, loadingUserInfo } = useContext(AuthContext);
@@ -94,6 +95,7 @@ function AllPages() {
               <Route path="/admin/withdraw" element={<BrowseWithdrawa />} />
               <Route path="/admin/recharge-approve" element={<RechargeApprove />} />
               <Route path="/admin/withdraw-approve" element={<WithdrawApprove />} />
+              <Route path="/admin/level-settings" element={<LevelSettingMain />} />
               <Route path="/admin/settings" element={<SettingMain />} />
               <Route path="/admin/giftcode" element={<GiftCodeMain />} />
               <Route path="/salary-record" element={<SalaryRecord />} />

@@ -156,14 +156,19 @@ const initWebRouter = (app) => {
   );
   router.post(
     "/api/webapi/GetNoaverageEmerdList",
-    // middlewareController,
+    middlewareController,
     wingoController.listOrderOld
   );
   router.post(
     "/api/webapi/GetMyEmerdList",
-    // middlewareController,
+    middlewareController,
     wingoController.GetMyEmerdList
-  );
+  );  
+  // router.post(
+  //   "/api/webapi/wingo/bet",
+  //   // middlewareController,
+  //   wingoController.addWinGo
+  // );
 
   router.post(
     "/api/webapi/recharge",
@@ -180,6 +185,16 @@ const initWebRouter = (app) => {
     "/api/webapi/user-bank-info",
     middlewareController,
     userController.UserBankInfo
+  ); 
+  router.post(
+    "/api/webapi/admin/update-levels",
+    middlewareController,
+    adminController.updateLevel
+  );  
+  router.get(
+    "/api/webapi/admin/levels-data",
+    // middlewareController,
+    adminController.getLevelInfo
   );
   router.post(
     "/api/webapi/withdrawal",

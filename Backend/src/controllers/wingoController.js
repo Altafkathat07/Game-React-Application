@@ -98,6 +98,7 @@ const betWinGo = async (req, res) => {
     let { typeid, join, x, money } = req.body;
     // let auth = req.cookies.authToken;
     let auth = req.user.user.phone;
+    // let auth = 7878979700;
 
     if (typeid != 1 && typeid != 3 && typeid != 5 && typeid != 10) {
         return res.status(200).json({

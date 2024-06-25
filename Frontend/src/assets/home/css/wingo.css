@@ -354,13 +354,13 @@ height: 2rem !important;
     background-color: #fff;
     border-bottom: 0.02667rem solid #e2e2e2;
     color: #414141;
-    font-size: 0.37333rem;
+    font-size: 0.87333rem;
   }
   .game-list .list .hb .item[data-v-a9660e98] {
     padding: 0.21333rem;
     border-bottom: 0.02667rem solid #e2e2e2;
     color: #414141;
-    font-size: 0.37333rem;
+    font-size: 0.87333rem;
   }
   .game-list .list .hb .item .goItem[data-v-a9660e98] {
     height: 0.42667rem;
@@ -467,7 +467,7 @@ height: 2rem !important;
     background-color: #5cba47;
   }
   .game-list .list .hb .item[data-v-a9660e98] {
-    padding: 0.53333rem 0.4rem;
+    padding: 0.93333rem 0.4rem;
   }
   .game-list .list .hb .item .result .select[data-v-a9660e98] {
     height: 0.8rem;
@@ -1114,44 +1114,45 @@ height: 2rem !important;
     /* box-shadow: 0 0 0.21333rem 0.02667rem rgba(92, 186, 71, 0.72); */
   }
   .betting-mark[data-v-a9660e98] {
-    max-width: 10.66667rem;
+    max-width: 20.66667rem;
   }
   .betting-mark .head .box[data-v-a9660e98] {
     border-radius: 0.4rem 0.4rem 0 0;
     padding: 0.53333rem 0.4rem 0.8rem;
+    height: 7rem;
   }
   .betting-mark .head .box .con[data-v-a9660e98] {
     font-weight: 600;
     text-align: center;
     color: #fff;
-    font-size: 0.53333rem;
+    font-size: 1.4rem;
   }
   .betting-mark .head .box .color[data-v-a9660e98] {
     text-align: center;
     width: 80%;
     background-color: #fff;
-    height: 0.8rem;
+    height: 1.8rem;
     border-radius: 0.13333rem;
-    line-height: 0.8rem;
+    line-height: 1.8rem;
     margin: 0.26667rem auto 0;
-    font-size: 0.37333rem;
+    font-size: 0.7333rem;
   }
    .betting-mark .info[data-v-a9660e98] {
     padding: 0.4rem;
   }
   .betting-mark .info .item[data-v-a9660e98] {
-    height: 0.8rem;
-    line-height: 0.8rem;
+    height: 1.2rem;
+    line-height: 1.2rem;
     margin-top: 0.4rem;
   }
  .betting-mark .info .item .tit[data-v-a9660e98] {
-    font-size: 0.4rem;
+    font-size: 1rem;
     color: #333;
   }
  .betting-mark .info .item .amount-box .li[data-v-a9660e98] {
     text-align: center;
-    font-size: 0.32rem;
-    padding: 0 0.26667rem;
+    font-size: 1rem;
+    padding: 0 0.36667rem;
     margin-left: 0.13333rem;
     background-color: #f0f0f0;
   }
@@ -1176,10 +1177,14 @@ height: 2rem !important;
     text-align: center;
   }
   .betting-mark .info .item .stepper-box .li[data-v-a9660e98] {
-    height: 0.8rem;
-    width: 0.8rem;
-    font-size: 0.8rem;
+    height: 1.3rem;
+    width: 2rem;
+    font-size: 1.3rem;
     background-color: #f0f0f0;
+  }
+  .betting-mark .info .item .stepper-box .digit-box[data-v-a9660e98] .van-field__control{
+    height: 1.34667rem;
+    text-align: center;
   }
  .betting-mark .info .item .stepper-box .li.minus[data-v-a9660e98] {
     text-align: center;

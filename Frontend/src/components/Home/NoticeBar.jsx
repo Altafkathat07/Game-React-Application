@@ -13,7 +13,7 @@ function NoticeBar() {
           })
           .then((data) => {
             // console.log("Data fetched:", data.data[0].notice);
-            const result = data.data[0].notice;
+            const result = data.data[0].notice ?? "🎉 WELCOME TO Century100 Club  INDIANS BIGGEST GAMING PLATFORM  🎉";
             setNotice(result);
           })
           .catch((error) => {
