@@ -96,12 +96,12 @@ function RegisterForm() {
                             <input data-v-93f53084="" type="text" name="username" placeholder="Please enter the phone number" autoComplete="on" required />
                         </div>
                     </div>
-                    <div data-v-57d49070="" data-v-0ce8d964="" className="passwordInput__container">
+                    {/* <div data-v-57d49070="" data-v-0ce8d964="" className="passwordInput__container">
                     
                         <div data-v-57d49070="" className="passwordInput__container-input">
                             <input data-v-57d49070="" id="otp" type="text" name='otp' placeholder="Please Enter OTP" maxLength="32" autoComplete="on" required /><button type="submit" className='getOtp'>Get OTP</button>
                         </div>
-                    </div>
+                    </div> */}
                     <div data-v-57d49070="" data-v-0ce8d964="" className="passwordInput__container">
                         <div data-v-57d49070="" className="passwordInput__container-label">
                             <img data-v-57d49070="" className="passwordInput__container-label__icon" data-origin="https://www.bigdaddygame2.com/assets/png/password-b827c2b3.png" src={passImg} />

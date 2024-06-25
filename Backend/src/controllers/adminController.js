@@ -255,66 +255,279 @@ const rechargeApproveDetail = async (req, res) =>{
     });
 }
 
-const rechargeConfirm = async (req, res) => {
-    const { id } =  req.params;
-    const { money } =  req.params;
-    // console.log(id)
-    // console.log(money)
-    if(!id){
-        return res.status(202).json({
-            message: 'something went wrong while id fetching',
-            status: false,
-        })
+// const rechargeConfirm = async (req, res) => {
+//     const { id } =  req.params;
+//     const { money } =  req.params;
+//     if(!id){
+//         return res.status(202).json({
+//             message: 'something went wrong while id fetching',
+//             status: false,
+//         })
         
-    }
-    // console.log(id)
-    const [user] = await connection.query('SELECT * FROM recharge WHERE id = ? ', [id]) ;
-   if (user.length === 0) {
-    return res.status(202).json({
-        message: 'user id not find',
-        status: false,
-    })
-   } 
-//    console.log(user[0]);
-    const phone = user[0].phone
-    // console.log(phone)
-    const [rows] = await connection.query('SELECT * FROM users WHERE phone = ?', [phone])
-    // console.log(rows[0].id)
-    if(!rows || rows.length === 0){
-        return res.status(202).json({
-            message: 'user not found',
-            status: false,
-        })
-    }
-    const userInfo = rows[0];
-    const [bonus] = await connection.execute('SELECT * FROM bonus');
-    const invite_bonus = bonus[0].invite_bonus;
-    let bonus_money = (invite_bonus/100)*money
-    // console.log("this is bonus money :" + bonus_money)
+//     }
+//     const [user] = await connection.query('SELECT * FROM recharge WHERE id = ? ', [id]) ;
+//    if (user.length === 0) {
+//     return res.status(202).json({
+//         message: 'user id not find',
+//         status: false,
+//     })
+//    } 
+// //    console.log(user[0]);
+//     const phone = user[0].phone
+//     // console.log(phone)
+//     const [rows] = await connection.query('SELECT * FROM users WHERE phone = ?', [phone])
+//     // console.log(rows[0].id)
+//     if(!rows || rows.length === 0){
+//         return res.status(202).json({
+//             message: 'user not found',
+//             status: false,
+//         })
+//     }
+//     const userInfo = rows[0];
+//     const [bonus] = await connection.execute('SELECT * FROM bonus');
+//     const invite_bonus = bonus[0].invite_bonus;
+//     let bonus_money = (invite_bonus/100)*money
     
-    const invitecode = userInfo.invite;
-    console.log("this is invite code :" + invitecode)
-    const [check_i] = await connection.query('SELECT * FROM users WHERE code = ? ', [invitecode]);
-    console.log(check_i[0])
-    const ref = check_i[0].phone 
-    if(check_i){
-         const [refrral_money_add] = await connection.query('UPDATE `users` SET `money` = `money`+ ? WHERE `phone` = ? ', [bonus_money, ref]) 
-    }
+//     const invitecode = userInfo.invite;
+//     console.log("this is invite code :" + invitecode)
+//     const [check_i] = await connection.query('SELECT * FROM users WHERE code = ? ', [invitecode]);
+//     console.log(check_i[0])
+//     const ref = check_i[0].phone 
+//     if(check_i){
+//          const [refrral_money_add] = await connection.query('UPDATE `users` SET `money` = `money`+ ? WHERE `phone` = ? ', [bonus_money, ref]) 
+//     }
 
   
-    await connection.query('UPDATE users SET money = money + ?, total_money = total_money + ? WHERE phone = ?', [money, money, rows[0].phone]);
+//     await connection.query('UPDATE users SET money = money + ?, total_money = total_money + ? WHERE phone = ?', [money, money, rows[0].phone]);
 
 
-   await connection.query('UPDATE recharge SET status = ? WHERE id = ?', [1, id])
-//    return res.status(202).json({
-//     message: 'fetching success',
-//     status: true,
-//     data: user
+//    await connection.query('UPDATE recharge SET status = ? WHERE id = ?', [1, id])
+// //    return res.status(202).json({
+// //     message: 'fetching success',
+// //     status: true,
+// //     data: user
 
-// })
-   res.redirect("http://localhost:5173/admin/recharge")
+// // })
+//    res.redirect("http://localhost:5173/admin/recharge")
 
-}
+// }
+// const rechargeConfirm = async (req, res) => {
+//     const id = 111;
+//     const money = 500;
+
+//     // Validate id and money parameters
+//     if (!id || !money) {
+//         return res.status(400).json({
+//             message: 'Missing parameters',
+//             status: false,
+//         });
+//     }
+
+//     try {
+//         // Fetch recharge record by id
+//         const [recharge] = await connection.query('SELECT * FROM recharge WHERE id = ?', [id]);
+//         if (recharge.length === 0) {
+//             return res.status(404).json({
+//                 message: 'Recharge record not found',
+//                 status: false,
+//             });
+//         }
+
+//         const phone = recharge[0].phone;
+
+//         // Fetch user by phone number
+//         const [users] = await connection.query('SELECT * FROM users WHERE phone = ?', [phone]);
+//         if (!users || users.length === 0) {
+//             return res.status(404).json({
+//                 message: 'User not found',
+//                 status: false,
+//             });
+//         }
+
+//         const user = users[0];
+//         const invitecode = user.invite;
+
+//         // Function to get user info by invite code
+//         const getUserInfo = async (userId) => {
+//             const [userInfo] = await connection.query('SELECT * FROM users WHERE code = ?', [userId]);
+//             return userInfo[0];
+//         };
+
+//         // Get second user info by invite code
+//         const secondUser = await getUserInfo(invitecode);
+//         const secondInviteCode = secondUser.invite;
+
+//         // Function to fetch levels
+//         const getLevels = async () => {
+//             const [levels] = await connection.query('SELECT * FROM level WHERE status = 1');
+//             return levels;
+//         };
+
+//         // Get levels details
+//         const levelsDetail = await getLevels();
+
+//         // Function to calculate bonus based on money and level
+//         const calculateBonus = (money, level) => {
+//             const levelInfo = levelsDetail.find(l => l.level === level);
+//             const bonusPercentage = parseFloat(levelInfo.f1); // Assuming f1 is the bonus percentage
+//             const bonus = money * (bonusPercentage / 100);
+//             return bonus;
+//         };
+
+//         // Calculate bonus for current user (level 1)
+//         const money_bonus = calculateBonus(parseInt(money), 1);
+
+//         // Update current user's money with bonus and reference user's money
+//         const updateUserMoney = async (userId, refUserId, bonus, money) => {
+//             await connection.query('UPDATE users SET money = money + ?, total_money = total_money + ? WHERE phone = ?', [money, money, userId]);
+//             await connection.query('UPDATE users SET money = money + ? WHERE phone = ?', [bonus, refUserId]);
+//         };
+
+//         // Assuming you have a reference user to update their money, adjust accordingly
+//         await updateUserMoney(user.phone, secondUser.phone, money_bonus, parseInt(money));
+
+//         // Get next user info by second invite code
+//         const nextUser = await getUserInfo(secondInviteCode);
+
+//         // Calculate bonus for next user (level 2)
+//         const nextUserBonus = calculateBonus(parseInt(money), 2);
+
+//         // Update next user's money with bonus
+//         const updateUserMoney2 = async (refUserId, bonus) => {
+//             await connection.query('UPDATE users SET money = money + ? WHERE phone = ?', [bonus, refUserId]);
+//         };
+
+//         // Assuming you have a second reference user to update their money, adjust accordingly
+//         await updateUserMoney2(nextUser.phone, nextUserBonus);
+
+//         // Update recharge status to confirmed (status = 1)
+//         await connection.query('UPDATE recharge SET status = ? WHERE id = ?', [1, id]);
+
+//         // Return success response with recharge data
+//         return res.status(200).json({
+//             message: 'Recharge confirmed successfully',
+//             status: true,
+//             data: recharge,
+//         });
+//     } catch (error) {
+//         console.error('Error in rechargeConfirm:', error);
+//         return res.status(500).json({
+//             message: 'Internal server error',
+//             status: false,
+//         });
+//     }
+// };
+
+
+const rechargeConfirm = async (req, res) => {
+    const id = 111;
+    const money = 500;
+
+    // Validate id and money parameters
+    if (!id || !money) {
+        return res.status(400).json({
+            message: 'Missing parameters',
+            status: false,
+        });
+    }
+
+    try {
+        // Fetch recharge record by id
+        const [recharge] = await connection.query('SELECT * FROM recharge WHERE id = ?', [id]);
+        if (recharge.length === 0) {
+            return res.status(404).json({
+                message: 'Recharge record not found',
+                status: false,
+            });
+        }
+
+        const phone = recharge[0].phone;
+
+        // Fetch user by phone number
+        const [users] = await connection.query('SELECT * FROM users WHERE phone = ?', [phone]);
+        if (!users || users.length === 0) {
+            return res.status(404).json({
+                message: 'User not found',
+                status: false,
+            });
+        }
+
+        const user = users[0];
+        let currentInviteCode = user.invite;
+
+        // Function to get user info by invite code
+        const getUserInfo = async (userId) => {
+            const [userInfo] = await connection.query('SELECT * FROM users WHERE code = ?', [userId]);
+            return userInfo[0];
+        };
+
+        // Function to fetch levels
+        const getLevels = async () => {
+            const [levels] = await connection.query('SELECT * FROM level WHERE status = 1');
+            return levels;
+        };
+
+        // Get levels details
+        const levelsDetail = await getLevels();
+
+        // Function to calculate bonus based on money and level
+        const calculateBonus = (money, level) => {
+            const levelInfo = levelsDetail.find(l => l.level === level);
+            if (!levelInfo) {
+                throw new Error(`Level ${level} not found`);
+            }
+            const bonusPercentage = parseFloat(levelInfo.f1); // Assuming f1 is the bonus percentage
+            const bonus = money * (bonusPercentage / 100);
+            return bonus;
+        };
+
+        await connection.query('UPDATE users SET money = money + ?, total_money = total_money + ? WHERE phone = ?', [money, money, phone]);
+        // Update user's money with bonus
+        const updateUserMoney = async (userId, bonus) => {
+            await connection.query('UPDATE users SET money = money + ? WHERE phone = ?', [bonus, userId]);
+        };
+
+        // Update the current user's money with the recharge amount
+        await updateUserMoney(user.phone, 0, parseInt(money));
+
+        // Loop through the levels and update the money for up to 7 levels
+        for (let level = 1; level <= 7; level++) {
+            if (!currentInviteCode) break;
+
+            // Get the next user info by invite code
+            const nextUser = await getUserInfo(currentInviteCode);
+            if (!nextUser) break;
+
+            // Calculate bonus for the current level
+            const levelBonus = calculateBonus(parseInt(money), level);
+
+            // Update the next user's money with the bonus
+            await updateUserMoney(nextUser.phone, levelBonus, 0);
+
+            // Update the invite code for the next iteration
+            currentInviteCode = nextUser.invite;
+        }
+
+        // Update recharge status to confirmed (status = 1)
+        await connection.query('UPDATE recharge SET status = ? WHERE id = ?', [1, id]);
+
+        // Return success response with recharge data
+        return res.status(200).json({
+            message: 'Recharge confirmed successfully',
+            status: true,
+            data: recharge,
+        });
+    } catch (error) {
+        console.error('Error in rechargeConfirm:', error);
+        return res.status(500).json({
+            message: 'Internal server error',
+            status: false,
+        });
+    }
+};
+
+
+
 
 const rechargeCancel = async (req, res) => {
     const { id } =  req.params;

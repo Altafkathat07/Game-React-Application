@@ -62,8 +62,9 @@ const initWebRouter = (app) => {
     adminController.rechargeDetails
   );
   router.post(
-    "/api/webapi/admin/recharge-confirm/:id/:money",
-    middlewareController,
+    "/api/webapi/admin/recharge-confirm",
+    // "/api/webapi/admin/recharge-confirm/:id/:money",
+    // middlewareController,
     adminController.rechargeConfirm
   );
   router.post(
