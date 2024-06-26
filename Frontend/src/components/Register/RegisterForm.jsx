@@ -9,11 +9,9 @@ import { showAlert } from '../AlertMassWrapper'
 
 function RegisterForm() {
     const [formData, setFormData] = useState({
-        bankname: '',
         username: '',
-        account: '',
-        ifsc: '',
-        phone: ''
+        pwd: '',
+        invitecode: '',
     });
     const [showPassword, setShowPassword] = useState(false);
     const navigate = useNavigate();
@@ -173,7 +171,7 @@ function RegisterForm() {
                             <span data-v-57d49070="">Invite Code</span>
                         </div>
                         <div data-v-57d49070="" className="passwordInput__container-input">
-                            <input data-v-57d49070="" id="invitecode"  type="text" value={formData.invite} onChange={handleChange} name='invitecode' placeholder="Please Invite Code" maxLength="32" autoComplete="on" required />
+                            <input data-v-57d49070="" id="invitecode"  type="text" value={formData.invitecode} onChange={handleChange} name='invitecode' placeholder="Please Invite Code" maxLength="32" autoComplete="on" required />
                         </div>
                     </div> 
                     <div data-v-0ce8d964="" className="signIn__container-remember">

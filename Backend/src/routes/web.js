@@ -22,6 +22,11 @@ const initWebRouter = (app) => {
     "/api/webapi/total_ref",
     // middlewareController,
     userController.TotalReferrals
+  );  
+  router.get(
+    "/api/webapi/total_users",
+    // middlewareController,
+    userController.TotalUser
   );
 
   router.get(

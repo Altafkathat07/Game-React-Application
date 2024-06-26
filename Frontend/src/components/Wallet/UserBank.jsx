@@ -51,7 +51,6 @@ function UserBank() {
     
           if (data.status === false) {
             showAlert('success : ' + data.message);
-            navigate('/withdraw');
             return;
           }
     

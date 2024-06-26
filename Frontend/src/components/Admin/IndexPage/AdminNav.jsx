@@ -1,17 +1,31 @@
-import face from "../../../assets/images/face1.jpg"
-import face2 from "../../../assets/images/face2.jpg"
-import face3 from "../../../assets/images/face3.jpg"
-import face4 from "../../../assets/images/face4.jpg"
+import { useState, useEffect } from "react";
+import axios from "axios";
+import face from "../../../assets/images/win1.png"
+// import face2 from "../../../assets/images/face2.jpg"
+// import face3 from "../../../assets/images/face3.jpg"
+// import face4 from "../../../assets/images/face4.jpg"
 import logo from "../../../assets/images/logo.svg"
 import logoMini from "../../../assets/images/logo-mini.svg"
+import { Link } from "react-router-dom";
 
 function AdminNav() {
+    const [user, setUser] = useState({});
+
+    useEffect(() => {
+        axios.post('/api/webapi/GetUserInfo')
+            .then(response => {
+                const userInfo = response.data.data;
+                console.log("this is res: " + JSON.stringify(userInfo));
+                setUser(userInfo);
+            })
+            .catch(error => console.log(error));
+    }, []);
   return (
     <>
      <nav className="navbar default-layout-navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row" id="adminNav">
             <div className="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
-                <a className="navbar-brand brand-logo" ><img src={logo} alt="logo" /></a>
-                <a className="navbar-brand brand-logo-mini" ><img src={logoMini} alt="logo" /></a>
+                <Link to="/" className="navbar-brand brand-logo" ><img src={logo} alt="logo" /></Link>
+                <Link to="/" className="navbar-brand brand-logo-mini" ><img src={logoMini} alt="logo" /></Link>
             </div>
             <div className="navbar-menu-wrapper d-flex align-items-stretch">
                 <button className="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
@@ -37,7 +51,7 @@ function AdminNav() {
                                 <span className="availability-status online"></span>
                             </div>
                             <div className="nav-profile-text">
-                                <p className="mb-1 text-black">David Greymaax</p>
+                                <p className="mb-1 text-black">{user.name_user}</p>
                             </div>
                         </a>
                         {/* <div className="dropdown-menu navbar-dropdown" aria-labelledby="profileDropdown">
@@ -48,15 +62,15 @@ function AdminNav() {
                   <i className="mdi mdi-logout mr-2 text-primary"></i> Signout </a>
                         </div> */}
                     </li>
-                    <li className="nav-item d-none d-lg-block full-screen-link">
+                    {/* <li className="nav-item d-none d-lg-block full-screen-link">
                         <a className="nav-link">
-                {/* <i className="mdi mdi-fullscreen" id="fullscreen-button"></i> */}
+                {/* <i className="mdi mdi-fullscreen" id="fullscreen-button"></i> 
                 <i className="bi bi-fullscreen"></i>
               </a>
                     </li>
                     <li className="nav-item dropdown">
                         <a className="nav-link count-indicator dropdown-toggle" id="messageDropdown" href="#" data-toggle="dropdown" aria-expanded="false">
-                {/* <i className="mdi mdi-email-outline"></i> */}
+                {/* <i className="mdi mdi-email-outline"></i> 
                 <i className="bi bi-envelope"></i>
                 <span className="count-symbol bg-warning"></span>
               </a>
@@ -98,7 +112,7 @@ function AdminNav() {
                     </li>
                     <li className="nav-item dropdown">
                         <a className="nav-link count-indicator dropdown-toggle" id="notificationDropdown" href="#" data-toggle="dropdown">
-                {/* <i className="mdi mdi-bell-outline"></i> */}
+                {/* <i className="mdi mdi-bell-outline"></i> 
                 <i className="bi bi-bell"></i>
                 <span className="count-symbol bg-danger"></span>
               </a>
@@ -147,16 +161,16 @@ function AdminNav() {
                     <li className="nav-item nav-logout d-none d-lg-block">
                         <a className="nav-link" href="#">
                         <i className="bi bi-power"></i>
-                {/* <i className="mdi mdi-power"></i> */}
+                {/* <i className="mdi mdi-power"></i> 
               </a>
                     </li>
                     <li className="nav-item nav-settings d-none d-lg-block">
                         <a className="nav-link" href="#">
                 {/* <i className="mdi mdi-format-line-spacing"></i>
-                 */}
+                 
                  <i className="bi bi-three-dots-vertical"></i>
               </a>
-                    </li>
+                    </li> */}
                 </ul>
                 <button className="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
             <span className="mdi mdi-menu"></span>

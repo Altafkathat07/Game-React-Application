@@ -1,3 +1,5 @@
+import { useState, useEffect } from "react";
+import axios from "axios";
 import face from "../../../assets/images/face1.jpg"
 import face2 from "../../../assets/images/face2.jpg"
 import face3 from "../../../assets/images/face3.jpg"
@@ -9,6 +11,17 @@ import img3 from "../../../assets/images/img_3.jpg"
 import img4 from "../../../assets/images/img_4.jpg"
 
 function AdminAsidebar() {
+    const [user, setUser] = useState({});
+
+    useEffect(() => {
+        axios.get('/api/webapi/total_users')
+            .then(response => {
+                const userInfo = response.data.data;
+                console.log("this is total user : " + JSON.stringify(userInfo));
+                setUser(userInfo);
+            })
+            .catch(error => console.log(error));
+    }, []);
   return (
     <>
             
@@ -33,9 +46,9 @@ function AdminAsidebar() {
                             <div className="card bg-gradient-danger card-img-holder text-white">
                                 <div className="card-body">
                                     <img src={circle} className="card-img-absolute" alt="circle-image" />
-                                    <h4 className="font-weight-normal mb-3">Weekly Sales <i className="mdi mdi-chart-line mdi-24px float-right"></i>
+                                    <h4 className="font-weight-normal mb-3">Total User <i className="mdi mdi-chart-line mdi-24px float-right"></i>
                                     </h4>
-                                    <h2 className="mb-5">$ 15,0000</h2>
+                                    <h2 className="mb-5">{user.total ?? 0}</h2>
                                     <h6 className="card-text">Increased by 60%</h6>
                                 </div>
                             </div>
@@ -44,10 +57,10 @@ function AdminAsidebar() {
                             <div className="card bg-gradient-info card-img-holder text-white">
                                 <div className="card-body">
                                     <img src={circle} className="card-img-absolute" alt="circle-image" />
-                                    <h4 className="font-weight-normal mb-3">Weekly Orders <i className="mdi mdi-bookmark-outline mdi-24px float-right"></i>
+                                    <h4 className="font-weight-normal mb-3">Total Admin <i className="mdi mdi-bookmark-outline mdi-24px float-right"></i>
                                     </h4>
-                                    <h2 className="mb-5">45,6334</h2>
-                                    <h6 className="card-text">Decreased by 10%</h6>
+                                    <h2 className="mb-5">{user.admin}</h2>
+                                    {/* <h6 className="card-text">Decreased by 10%</h6> */}
                                 </div>
                             </div>
                         </div>

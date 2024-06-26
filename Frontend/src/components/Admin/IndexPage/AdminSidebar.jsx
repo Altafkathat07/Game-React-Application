@@ -1,7 +1,19 @@
-
+import { useState, useEffect } from "react";
+import axios from "axios";
 import face from "../../../assets/images/face1.jpg"
 import {Link} from "react-router-dom"
 function AdminSidebar() {
+  const [user, setUser] = useState({});
+
+  useEffect(() => {
+      axios.post('/api/webapi/GetUserInfo')
+          .then(response => {
+              const userInfo = response.data.data;
+              console.log("this is res: " + JSON.stringify(userInfo));
+              setUser(userInfo);
+          })
+          .catch(error => console.log(error));
+  }, []);
   return (
     <>
       <nav className="sidebar sidebar-offcanvas" id="sidebar">
@@ -13,8 +25,8 @@ function AdminSidebar() {
                                 <span className="login-status online"></span>
                             </div>
                             <div className="nav-profile-text d-flex flex-column">
-                                <span className="font-weight-bold mb-2">David Grey. H</span>
-                                <span className="text-secondary text-small">Project Manager</span>
+                                <span className="font-weight-bold mb-2">{user.name_user}</span>
+                                <span className="text-secondary text-small">{user.level == 1 ? "Admin" : "Member"}</span>
                             </div>
                             <i className="mdi mdi-bookmark-check text-success nav-profile-badge"></i>
                         </a>

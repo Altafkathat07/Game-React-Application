@@ -115,6 +115,32 @@ const TotalReferrals = async (req, res) => {
 
 }
 
+const TotalUser = async (req, res) => {
+    const [rows] = await connection.query('SELECT * FROM users');
+    const [admins] = await connection.query('SELECT * FROM users WHERE `user_level` = 1');
+    const total_admin = admins.length
+    if (!rows) {
+        return res.status(200).json({
+            message: 'Failed',
+            status: false,
+            timeStamp: timeNow,
+        });
+    }
+    console.log(rows.length)
+
+    const total = rows.length
+    return res.status(200).json({
+        message: 'Success',
+        status: true,
+        data: {
+            total: total,  
+            admin: total_admin,  
+        },
+        timeStamp: timeNow,
+    });
+
+}
+
 const ResetPassword = async (req, res) => {
     // let auth = 7878979700;
     let auth = req.user.user.phone;
@@ -453,14 +479,14 @@ const addBank = async (req, res) => {
         await connection.query('UPDATE user_bank SET account = ? WHERE sdk = ? ', [account, userInfo.phone]);
         return res.status(200).json({
             message: 'Account number updated in the system',
-            status: false,
+            status: true,
             timeStamp: timeNow,
         });
     } else if (user_bank2.length > 0) {
         await connection.query('UPDATE user_bank SET bank_name = ?, user_name = ?, account = ?, ifsc = ?, phone = ?, time = ? WHERE sdk = ?', [bank_name, user_name, account, ifsc, phone, time, userInfo.phone]);
         return res.status(200).json({
             message: 'your account is updated',
-            status: false,
+            status: true,
             timeStamp: timeNow,
         });
     }
@@ -1252,5 +1278,6 @@ module.exports = {
     promotion,
     activityCheck,
     TotalReferrals,
-    ResetPassword
+    ResetPassword,
+    TotalUser
 }

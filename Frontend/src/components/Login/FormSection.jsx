@@ -6,49 +6,59 @@ import eye from '../../assets/images/eye.png'
 import { Link } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom';
 import alertMessage from '../AlertUtils'
+import { showAlert } from '../AlertMassWrapper'
 
 function FormSection() {
-    const [username, setUsername] = useState('');
-    const [pwd, setPwd] = useState('');
+    const [formData, setFormData] = useState({
+        username: '',
+        pwd: '',
+    });
     const [showPassword, setShowPassword] = useState(false);
     const navigate = useNavigate();
 
+    const handleChange = (event) => {
+        const { name, value } = event.target;
+        setFormData((prevData) => ({
+            ...prevData,
+            [name]: value
+        }));
+    };
+
     const handleSubmit = async (e) => {
         e.preventDefault();
-
-        const requestData = {
-            username: username,
-            pwd: pwd
-        };
-
+    
         try {
-            const response = await fetch('/api/webapi/login', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(requestData)
-            });
-
-            if (!response.ok) {
-                const errorData = await response.json();
-                throw new Error(errorData.message);
-                // alertMessage(errorData.message)
-            }
-
-            const responseData = await response.json();
-            const { token, popup } = responseData;
-
-            document.cookie = `authToken=${token};`;
-            navigate('/'); 
-            alertMessage({
-                title: popup,
-                confirmButtonText: 'OK',
-              })
+          const response = await fetch('/api/webapi/login', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(formData),
+          });
+    
+          if (!response.ok) {
+            throw new Error('Network response was not ok');
+          }
+    
+          const data = await response.json();
+    
+          if (data.status === false) {
+            showAlert( data.message);
+            return;
+          }
+    
+          
+          navigate('/'); 
+          alertMessage({
+              text: data.popup,
+              confirmButtonText: 'OK',
+            })
         } catch (error) {
-            alert("this is the error : " + error.message);
+          console.error('There was a problem with the fetch operation:', error);
+          showAlert('There was a problem with the fetch operation: ' + error.message, 'error', 'Error');
         }
-    };
+      };
+
 
   
   return (
@@ -141,8 +151,8 @@ function FormSection() {
                                                 <span data-v-6f85c91a="">+263</span> Zimbabwe </div>
                                 </div> */}
                             </div>
-                            <input data-v-93f53084="" type="text" name="username" placeholder="Please enter the phone number" autoComplete="on" required  value={username}
-                                    onChange={(e) => setUsername(e.target.value)}
+                            <input data-v-93f53084="" type="text" name="username" placeholder="Please enter the phone number" autoComplete="on" required  value={formData.username}
+                                    onChange={handleChange}
                                     />
                         </div>
                     </div>
@@ -155,8 +165,8 @@ function FormSection() {
                             <input data-v-57d49070="" name="pwd" id="passwordfield"    type={showPassword ? "text" : "password"}
                                     placeholder="Please enter Password"
                                     required
-                                    value={pwd}
-                                    onChange={(e) => setPwd(e.target.value)}/>
+                                    value={formData.pwd}
+                                    onChange={handleChange}/>
                             <img data-v-57d49070="" id="eyeicon" src={eye} className="eye"  onClick={() => setShowPassword(!showPassword)}
                                     alt="Toggle visibility" />
                         </div>

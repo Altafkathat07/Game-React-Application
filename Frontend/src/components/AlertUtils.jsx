@@ -4,9 +4,9 @@ const MySwal = withReactContent(Swal);
 
 const alertMessage = (options) => {
     const {
-      title = 'Alert',
-      text = '',
-      icon = 'info',
+      title = '',
+      text = 'Alert',
+      icon = 'success',
       showCancelButton = false,
       confirmButtonText = 'OK',
       cancelButtonText = 'Cancel',

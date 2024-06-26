@@ -223,7 +223,8 @@ const login = async(req, res) => {
 
     if (!username || !pwd) {
         return res.status(401).json({
-            message: 'ERROR!!!'
+            message: 'Failed: Please fill the required fields',
+            status: false
         });
     }
 
@@ -254,7 +255,7 @@ const login = async(req, res) => {
 
                 // res.redirect("http://localhost:5173/")
                 return res.status(200).json({
-                    message: 'Login Success',
+                    message: 'success : Login Success',
                     status: true,
                     token: accessToken,
                     value: md5(accessToken),
@@ -262,19 +263,19 @@ const login = async(req, res) => {
                 }); 
             } else {
                 return res.status(410).json({
-                    message: 'Account has been locked',
+                    message: 'Failed : Account has been locked',
                     status: false
                 });
             }
         } else {
             return res.status(200).json({
-                message: 'Account or Password is incorrect',
+                message: 'Failed : Account or Password is incorrect',
                 status: false
             });
         }
     } catch (error) {
         return res.status(400).json({
-            message: 'something went wrong while login the user',
+            message: 'Failed : something went wrong while login the user',
             status: false
         })
     }

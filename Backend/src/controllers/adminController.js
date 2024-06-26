@@ -25,7 +25,7 @@ const termsAndCondition = async(req, res) => {
     let term = req.body.term;
     if ( !auth || !term ) {
         return res.status(200).json({
-            message: 'Failed',
+            message: 'Failed : user not fount',
             status: false,
             timeStamp: timeNow,
         });
@@ -36,20 +36,20 @@ const termsAndCondition = async(req, res) => {
     if(rows[0].length === 0){
         const sql = "INSERT INTO terms SET term = ?";
         await connection.execute(sql, [term]);
-        res.redirect("http://localhost:5173/admin/uimanagemnt")
-        // return res.status(200).json({
-        //     message: 'Successful Inserted',
-        //     status: true
-        // })
+        // res.redirect("http://localhost:5173/admin/uimanagemnt")
+        return res.status(200).json({
+            message: 'success : Successfully Inserted',
+            status: true
+        })
 
 
     }else{
         await connection.query(`UPDATE terms SET term = ?`, [term]);
-        res.redirect("http://localhost:5173/admin/uimanagemnt")
-        // return res.status(200).json({
-        //     message: 'Successful change',
-        //     status: true,
-        // });
+        // res.redirect("http://localhost:5173/admin/uimanagemnt")
+        return res.status(200).json({
+            message: 'success : Successfully updated',
+            status: true,
+        });
     }
 }
 
@@ -60,13 +60,13 @@ const termsFetching = async(req, res) => {
     if(rows[0].length === 1){
         const data = rows[0]
         return res.status(200).json({
-            message: 'Successful Fetching',
+            message: 'success : Successfully Fetching',
             status: true,
             data: data
         })
     }else{
         return res.status(202).json({
-            message: 'something went wrong while fetching Privacy Agreement',
+            message: 'Failed : something went wrong while fetching Privacy Agreement',
             status: false,
         })
     }
@@ -79,7 +79,7 @@ const notice = async(req, res) => {
     let noti = req.body.notices;
     if ( !auth || !noti  ) {
         return res.status(200).json({
-            message: 'Failed',
+            message: 'Failed : user not found',
             status: false,
             timeStamp: timeNow,
         });
@@ -90,20 +90,20 @@ const notice = async(req, res) => {
     if(rows[0].length === 0){
         const sql = "INSERT INTO notification SET notice = ?";
         await connection.execute(sql, [noti]);
-        res.redirect("http://localhost:5173/admin/uimanagemnt")
-            // return res.status(200).json({
-        //     message: 'Successful Inserted',
-        //     status: true
-        // })
+        // res.redirect("http://localhost:5173/admin/uimanagemnt")
+            return res.status(200).json({
+            message: 'success : Successfully Inserted',
+            status: true
+        })
 
 
     }else{
         await connection.query(`UPDATE notification SET notice = ?`, [noti]);
-        res.redirect("http://localhost:5173/admin/uimanagemnt");
-        // return res.status(200).json({
-        //     message: 'Successful change',
-        //     status: true,
-        // });
+        // res.redirect("http://localhost:5173/admin/uimanagemnt");
+        return res.status(200).json({
+            message: 'success : Successful updated',
+            status: true,
+        });
     }
 }
 
@@ -113,7 +113,7 @@ const Popup = async(req, res) => {
     let msg = req.body.message;
     if (!auth || !msg ) {
         return res.status(200).json({
-            message: 'Failed',
+            message: 'Failed : user not found',
             status: false,
             timeStamp: timeNow,
         });
@@ -124,20 +124,20 @@ const Popup = async(req, res) => {
     if(rows[0].length === 0){
         const sql = "INSERT INTO popup SET message = ?";
         await connection.execute(sql, [msg]);
-        res.redirect("http://localhost:5173/admin/uimanagemnt")
-        // return res.status(200).json({
-        //     message: 'Successful Inserted',
-        //     status: true
-        // })
+        // res.redirect("http://localhost:5173/admin/uimanagemnt")
+        return res.status(200).json({
+            message: 'Successfully Inserted',
+            status: true
+        })
 
 
     }else{
         await connection.query(`UPDATE popup SET message = ?`, [msg]);
-        res.redirect("http://localhost:5173/admin/uimanagemnt");
-        // return res.status(200).json({
-        //     message: 'Successful change',
-        //     status: true,
-        // });
+        // res.redirect("http://localhost:5173/admin/uimanagemnt");
+        return res.status(200).json({
+            message: 'Successfully updated',
+            status: true,
+        });
     }
 }
 
@@ -145,7 +145,7 @@ const noticeFetching = async(req, res) => {
     let auth = req.user.user.phone;
     if(!auth){
         return res.status(202).json({
-            message: 'Failed',
+            message: 'Failed : user not found',
             status: false,
         }) 
     }
@@ -157,13 +157,13 @@ const noticeFetching = async(req, res) => {
     if(rows[0].length === 1){
         const data = rows[0]
         return res.status(200).json({
-            message: 'Successful Fetching',
+            message: 'success : Successfully Fetching',
             status: true,
             data: data
         })
     }else{
         return res.status(202).json({
-            message: 'something went wrong while fetching Privacy Agreement',
+            message: 'Failed : something went wrong while fetching Privacy Agreement',
             status: false,
         })
     }
@@ -174,7 +174,7 @@ const DeleteUser = async (req, res) => {
     // console.log(id)
     if(!id){
         return res.status(202).json({
-            message: 'something went wrong while id fetching',
+            message: 'Failed : something went wrong while id fetching',
             status: false,
         })
         
@@ -183,7 +183,7 @@ const DeleteUser = async (req, res) => {
     const [user] = await connection.query('SELECT * FROM users WHERE id = ? ', [id]) ;
    if (user.length === 0) {
     return res.status(202).json({
-        message: 'user id not find',
+        message: 'Failed : user id not find',
         status: false,
     })
    } 
