@@ -50,6 +50,7 @@
   padding-inline: 0.53333rem;
   margin-bottom: 0.74667rem;
   background-color: var(--bg-login);
+  padding-bottom: 20px;
 }
 .login_container-tab[data-v-8752c961] {
   width: 100%;

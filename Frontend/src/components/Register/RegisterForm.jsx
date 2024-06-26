@@ -1,14 +1,48 @@
+import { useState } from 'react'
 import phoneImg from '../../assets/images/cellphone.png'
 import passImg from '../../assets/images/lock.png'
 import eye from '../../assets/images/eye.png'
-import invite from '../../assets/images/invitecode.png'
+import inviteImg from '../../assets/images/invitecode.png'
 import { Link } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom';
 
 function RegisterForm() {
+    const [username, setUsername] = useState('');
+    const [pwd, setPwd] = useState('');
+    const [invite, setInvite] = useState('');
+    const [showPassword, setShowPassword] = useState(false);
+    const navigate = useNavigate();
+
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+        const data = { username, pwd, invite };
+
+        try {
+            const response = await fetch('/api/webapi/register', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data),
+            });
+
+            if (response.ok) {
+                const result = await response.json();
+                alert('Registration successful:', result);
+                navigate('/login'); 
+            } else {
+                alert('Registration failed:', response.statusText);
+            }
+        } catch (error) {
+            console.error('Error:', error);
+        }
+    };
+
+    
   return (
     <>
       <div data-v-8752c961="" className="login__container-form">
-        <form action="/api/webapi/register" method="post">
+        <form onSubmit={handleSubmit}>
             <div data-v-8752c961="" className="tab-content activecontent">
                 <div data-v-0ce8d964="" data-v-8752c961="" className="signIn__container">
                     <div data-v-93f53084="" data-v-0ce8d964="" className="phoneInput__container">
@@ -93,7 +127,7 @@ function RegisterForm() {
                                                 <span data-v-6f85c91a="">+263</span> Zimbabwe </div>
                                 </div> */}
                             </div>
-                            <input data-v-93f53084="" type="text" name="username" placeholder="Please enter the phone number" autoComplete="on" required />
+                            <input data-v-93f53084="" type="text" value={username} name="username" onChange={(e) => setUsername(e.target.value)} placeholder="Please enter the phone number" autoComplete="on" required />
                         </div>
                     </div>
                     {/* <div data-v-57d49070="" data-v-0ce8d964="" className="passwordInput__container">
@@ -108,17 +142,17 @@ function RegisterForm() {
                             <span data-v-57d49070="">Password</span>
                         </div>
                         <div data-v-57d49070="" className="passwordInput__container-input">
-                            <input data-v-57d49070="" id="passwordfield" type="password" name='pwd' placeholder="Please enterPassword" maxLength="32" autoComplete="on" required />
-                            <img data-v-57d49070="" id="eyeicon" src={eye} className="eye" />
+                            <input data-v-57d49070="" id="passwordfield" value={pwd} onChange={(e) => setPwd(e.target.value)} type={showPassword ? "text" : "password"} name='pwd' placeholder="Please enterPassword" maxLength="32" autoComplete="on" required />
+                            <img data-v-57d49070="" id="eyeicon" src={eye} className="eye"  onClick={() => setShowPassword(!showPassword)} />
                         </div>
                     </div>
                     <div data-v-57d49070="" data-v-0ce8d964="" className="passwordInput__container">
                         <div data-v-57d49070="" className="passwordInput__container-label">
-                            <img data-v-57d49070="" className="passwordInput__container-label__icon" data-origin="https://www.bigdaddygame2.com/assets/png/password-b827c2b3.png" src={invite} />
+                            <img data-v-57d49070="" className="passwordInput__container-label__icon" data-origin="https://www.bigdaddygame2.com/assets/png/password-b827c2b3.png" src={inviteImg} />
                             <span data-v-57d49070="">Invite Code</span>
                         </div>
                         <div data-v-57d49070="" className="passwordInput__container-input">
-                            <input data-v-57d49070="" id="invitecode" type="text" name='invitecode' placeholder="Please Invite Code" maxLength="32" autoComplete="on" required />
+                            <input data-v-57d49070="" id="invitecode"  type="text" value={invite}  onChange={(e) => setInvite(e.target.value)} name='invitecode' placeholder="Please Invite Code" maxLength="32" autoComplete="on" required />
                         </div>
                     </div> 
                     <div data-v-0ce8d964="" className="signIn__container-remember">

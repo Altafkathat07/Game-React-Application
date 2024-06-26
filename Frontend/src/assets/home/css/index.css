@@ -9229,8 +9229,23 @@ a:hover {
   font-weight: 600;
 }
 .mian .promotion .info-img .img[data-v-7c8bbbf4] {
-  width: 40%;
+  width: 45%;
   height: 8rem;
+}
+.swal2-styled.swal2-confirm:focus{
+  outline: none !important;
+  border: none !important;
+}
+.swal2-styled.swal2-confirm{
+  border: none !important;
+}
+.swal2-styled.swal2-confirm:active{
+  outline: none !important;
+  border: none !important;
+}
+.swal2-styled.swal2-confirm:hover{
+  outline: none !important;
+  border: none !important;
 }
 .mian .promotion .info-img .img-box[data-v-7c8bbbf4],
 .mian .promotion .info-img .img[data-v-7c8bbbf4] img {

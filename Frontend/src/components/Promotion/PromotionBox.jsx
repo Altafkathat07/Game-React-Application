@@ -1,6 +1,6 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
-import qrScanner from "../../assets/images/qrscan.jpg"
+// import qrScanner from "../../assets/images/qrscan.jpg"
 import Swal from 'sweetalert2';
 
 function PromotionBox() {
@@ -55,6 +55,24 @@ function PromotionBox() {
                 });
             });
     };
+
+const qrcodeRef = useRef(null);
+const text = `http://localhost:5173/register?r_code=${user.invite}`
+
+  useEffect(() => {
+    if (qrcodeRef.current) {
+      // Clear previous QR code if exists
+      qrcodeRef.current.innerHTML = '';
+      new window.QRCode(qrcodeRef.current, {
+        text: text,
+        width: 128,
+        height: 128,
+        colorDark: '#000000',
+        colorLight: '#ffffff',
+        correctLevel: window.QRCode.CorrectLevel.H,
+      });
+    }
+  }, [text]);
   return (
     <>
     <div data-v-7c8bbbf4="" className="box">
@@ -86,7 +104,7 @@ function PromotionBox() {
                             <div data-v-7c8bbbf4="" className="img" id="img" >
                                 <div data-v-7c8bbbf4="" id="qrcode"
                                     title="">
-                                    <img src={qrScanner} alt=""  width="100%" height="100%"/>
+                                    <div ref={qrcodeRef} />
                                 </div>
                                 <div data-v-7c8bbbf4="" className="c-tc save">Long Press To Save QR Code</div>
                             </div>
