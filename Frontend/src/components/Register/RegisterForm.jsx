@@ -5,38 +5,59 @@ import eye from '../../assets/images/eye.png'
 import inviteImg from '../../assets/images/invitecode.png'
 import { Link } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom';
+import { showAlert } from '../AlertMassWrapper'
 
 function RegisterForm() {
-    const [username, setUsername] = useState('');
-    const [pwd, setPwd] = useState('');
-    const [invite, setInvite] = useState('');
+    const [formData, setFormData] = useState({
+        bankname: '',
+        username: '',
+        account: '',
+        ifsc: '',
+        phone: ''
+    });
     const [showPassword, setShowPassword] = useState(false);
     const navigate = useNavigate();
 
-    const handleSubmit = async (event) => {
-        event.preventDefault();
-        const data = { username, pwd, invite };
-
-        try {
-            const response = await fetch('/api/webapi/register', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(data),
-            });
-
-            if (response.ok) {
-                const result = await response.json();
-                alert('Registration successful:', result);
-                navigate('/login'); 
-            } else {
-                alert('Registration failed:', response.statusText);
-            }
-        } catch (error) {
-            console.error('Error:', error);
-        }
+    const handleChange = (event) => {
+        const { name, value } = event.target;
+        setFormData((prevData) => ({
+            ...prevData,
+            [name]: value
+        }));
     };
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+    
+        try {
+          const response = await fetch('/api/webapi/register', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(formData),
+          });
+    
+          if (!response.ok) {
+            throw new Error('Network response was not ok');
+          }
+    
+          const data = await response.json();
+    
+          if (data.status === false) {
+            showAlert( data.message);
+            return;
+          }
+    
+          showAlert(data.message);
+          navigate('/login');
+        } catch (error) {
+          console.error('There was a problem with the fetch operation:', error);
+          showAlert('There was a problem with the fetch operation: ' + error.message, 'error', 'Error');
+        }
+      };
+
+
 
     
   return (
@@ -127,7 +148,7 @@ function RegisterForm() {
                                                 <span data-v-6f85c91a="">+263</span> Zimbabwe </div>
                                 </div> */}
                             </div>
-                            <input data-v-93f53084="" type="text" value={username} name="username" onChange={(e) => setUsername(e.target.value)} placeholder="Please enter the phone number" autoComplete="on" required />
+                            <input data-v-93f53084="" type="text" name="username" value={formData.username} onChange={handleChange} placeholder="Please enter the phone number" autoComplete="on" required />
                         </div>
                     </div>
                     {/* <div data-v-57d49070="" data-v-0ce8d964="" className="passwordInput__container">
@@ -142,7 +163,7 @@ function RegisterForm() {
                             <span data-v-57d49070="">Password</span>
                         </div>
                         <div data-v-57d49070="" className="passwordInput__container-input">
-                            <input data-v-57d49070="" id="passwordfield" value={pwd} onChange={(e) => setPwd(e.target.value)} type={showPassword ? "text" : "password"} name='pwd' placeholder="Please enterPassword" maxLength="32" autoComplete="on" required />
+                            <input data-v-57d49070="" id="passwordfield" value={formData.pwd} onChange={handleChange} type={showPassword ? "text" : "password"} name='pwd' placeholder="Please enterPassword" maxLength="32" autoComplete="on" required />
                             <img data-v-57d49070="" id="eyeicon" src={eye} className="eye"  onClick={() => setShowPassword(!showPassword)} />
                         </div>
                     </div>
@@ -152,7 +173,7 @@ function RegisterForm() {
                             <span data-v-57d49070="">Invite Code</span>
                         </div>
                         <div data-v-57d49070="" className="passwordInput__container-input">
-                            <input data-v-57d49070="" id="invitecode"  type="text" value={invite}  onChange={(e) => setInvite(e.target.value)} name='invitecode' placeholder="Please Invite Code" maxLength="32" autoComplete="on" required />
+                            <input data-v-57d49070="" id="invitecode"  type="text" value={formData.invite} onChange={handleChange} name='invitecode' placeholder="Please Invite Code" maxLength="32" autoComplete="on" required />
                         </div>
                     </div> 
                     <div data-v-0ce8d964="" className="signIn__container-remember">

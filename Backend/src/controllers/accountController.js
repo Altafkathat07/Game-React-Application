@@ -139,14 +139,14 @@ const register = async(req, res) => {
     if (!username || !pwd || !invitecode) {
         // console.log(username, pwd, invitecode )
         return res.status(200).json({
-            message: 'ERROR!!!',
+            message: 'ERROR : Please fill the required field',
             status: false
         });
     }
 
     if (username.length < 9 || username.length > 10 || !isNumber(username)) {
         return res.status(200).json({
-            message: 'phone error',
+            message: 'Failed: please fill valid phone number',
             status: false
         });
     }
@@ -156,6 +156,12 @@ const register = async(req, res) => {
     try {
         const [check_u] = await connection.query('SELECT * FROM users WHERE phone = ?', [username]);
         const [check_i] = await connection.query('SELECT * FROM users WHERE code = ? ', [invitecode]);
+        if(check_i[0].length == 0 ){
+            return res.status(200).json({
+                message: 'Failed: this is the issue',
+                status: false
+            });
+        }
         const ref = check_i[0].phone
         const [check_ip] = await connection.query('SELECT * FROM users WHERE ip_address = ? ', [ip]);
         const [welcome_bonus] = await connection.query('SELECT * FROM bonus');
@@ -168,12 +174,12 @@ const register = async(req, res) => {
         
         if (check_u.length == 1 && check_u[0].veri == 1) {
             return res.status(200).json({
-                message: 'Phone number has been registered',
+                message: 'Failed : Phone number has been already registered',
                 status: false
             });
         } else {
             if (check_i.length == 1) {
-                const [refrralAdd] = await connection.query('UPDATE `users` SET `money` = `money`+ ?, roses_f = ?, roses_today = ?, WHERE `phone` = ? ', [invite_bonus, invite_bonus, invite_bonus, ref]) 
+                const [refrralAdd] = await connection.query('UPDATE `users` SET `money` = `money`+ ?, roses_f = ?, roses_today = ?WHERE `phone` = ? ', [invite_bonus, invite_bonus, invite_bonus, ref]) 
                 if (check_ip.length <= 3) {
                     let ctv = '';
                     if (check_i[0] == 1) {
@@ -185,18 +191,18 @@ const register = async(req, res) => {
                     await connection.execute(sql, [id_user, username, name_user, md5(pwd), pwd, wel_bonus, wel_bonus, wel_bonus, code, invitecode, ctv, 1, otp2, ip, 1, time]);
                     await connection.execute('INSERT INTO point_list SET phone = ?', [username]);
                     return res.status(200).json({
-                        message: 'Register Success',
+                        message: 'success : Register Success',
                         status: true
                     });
                 } else {
                     return res.status(200).json({
-                        message: 'IP address has been registered',
+                        message: 'Failed : IP address has been already registered',
                         status: false
                     });
                 }
             } else {
                 return res.status(200).json({
-                    message: 'Invite code does not exist',
+                    message: 'Failed : Invite code does not exist',
                     status: false
                 });
             }
@@ -205,7 +211,7 @@ const register = async(req, res) => {
         if (error){
         } console.log(error);
             return res.status(200).json({
-                message: 'something went wrong while user register',
+                message: 'Failed : something went wrong while user register',
                 status: false
             });
     }

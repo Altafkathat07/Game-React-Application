@@ -116,42 +116,58 @@ const TotalReferrals = async (req, res) => {
 }
 
 const ResetPassword = async (req, res) => {
-    let auth = req.user.user.phone
-    console.log("this is user info" + auth)
+    // let auth = 7878979700;
+    let auth = req.user.user.phone;
+    let password = req.body.pwd;
+    let newPass = req.body.npwd;
+    let confirmPass = req.body.cpwd;
+    
 
-    if (!auth) {
+    if (!auth || !password || !newPass || !confirmPass) {
         return res.status(200).json({
-            message: 'Failed',
+            message: 'Failed: Please fill the required fields',
             status: false,
             timeStamp: timeNow,
         });
     }
-    const [rows] = await connection.query('SELECT * FROM users WHERE `phone` = ? ', [auth]);
+
+    if(confirmPass !== newPass){
+        return res.status(200).json({
+            message: 'Failed: New password and confirm password does not match',
+            status: false,
+            timeStamp: timeNow,
+        });
+    }
+    const [rows] = await connection.query('SELECT `password`, `phone` FROM users WHERE `phone` = ? ', [auth]);
     if (!rows) {
         return res.status(200).json({
-            message: 'Failed',
+            message: 'Failed : user not found',
             status: false,
             timeStamp: timeNow,
         });
     }
-    console.log("this is user code" + rows[0].code)
 
-    const [total_ref] = await  connection.query('SELECT * FROM users  WHERE `invite` = ? ', [rows[0].code])
-    console.log(total_ref.length)
-    if (!total_ref) {
+    const hashPass = md5(password)
+     const result = rows[0].password;
+    console.log(hashPass, result)
+
+    if(hashPass !== result){
         return res.status(200).json({
-            message: 'Failed',
+            message: 'Failed : Old Password does not match',
             status: false,
             timeStamp: timeNow,
-        });
+        }); 
     }
-    const total = total_ref.length
+
+    const row_data = await connection.query('UPDATE users SET password = ? WHERE phone = ?', [md5(newPass), rows[0].phone])
+    
+
+
+
     return res.status(200).json({
-        message: 'Success',
+        message: 'success: password reset successfully',
         status: true,
-        data: {
-            total: total,  
-        },
+        data: row_data,
         timeStamp: timeNow,
     });
 
@@ -1235,5 +1251,6 @@ module.exports = {
     listWithdraw,
     promotion,
     activityCheck,
-    TotalReferrals
+    TotalReferrals,
+    ResetPassword
 }
