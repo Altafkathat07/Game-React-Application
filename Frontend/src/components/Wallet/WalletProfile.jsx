@@ -8,12 +8,16 @@ import time from "../../assets/images/withdraw_time.png"
 import daily from "../../assets/images/daily.png"
 import range from "../../assets/images/range.png"
 import { Link } from "react-router-dom"
+import { showAlert } from '../AlertMassWrapper';
 
 function WalletProfile() {
     const [user, setUser] = useState({});
     const [betAmount, setBetAmount] = useState('');
     const [data, setData] = useState(null);
-    // const [actionClass, setActionClass] = useState('');
+    const [formData, setFormData] = useState({
+        money: '',
+        password: ''
+    });
 
     useEffect(() => {
         axios.post('/api/webapi/user-bank-info')
@@ -27,13 +31,38 @@ function WalletProfile() {
             .catch(error => console.log(error));
     }, []);
 
-    // const handleClick = (e) => {
-    //     e.preventDefault();
-    //     setActionClass('action block-click');
-    //     setTimeout(() => {
-    //         setActionClass('');
-    //     }, 2500);
-    // };
+      const handleChange = (event) => {
+        const { name, value } = event.target;
+        setFormData((prevData) => ({
+            ...prevData,
+            [name]: value
+        }));
+    };
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+
+        try {
+            const response = await axios.post('/api/webapi/withdrawal', formData);
+            
+            if (!response.status === 200) {
+                throw new Error('Network response was not ok');
+            }
+            
+            const data = response.data;
+
+            if (data.status === false) {
+                showAlert('Failed: ' + data.message);
+                return;
+            }
+
+            showAlert('Success: ' + data.message);
+            // Perform additional actions like redirecting or updating state if needed
+        } catch (error) {
+            console.error('There was a problem with the fetch operation:', error);
+            showAlert('There was a problem with the fetch operation: ' + error.message);
+        }
+    };
     
   return (
     <>
@@ -75,12 +104,13 @@ function WalletProfile() {
                         </ul>
                     </div>
                 </div>
-                <form action="/api/webapi/withdrawal" method='post'>
+
+                <form onSubmit={handleSubmit}>
                     <div data-v-25d9c352="" className="number-box c-row">
                         <div data-v-25d9c352="" className="symbol c-row c-row-middle">₹</div>
                         <div data-v-25d9c352="" className="input c-row c-row-middle van-cell van-field">
                             <div className="van-cell__value van-cell__value--alone van-field__value">
-                                <input type="number" inputMode="numeric" placeholder="Withdrawal Amount" name='money' className="van-field__control" id="amount" style={{color: "#FFF"}}/>
+                                <input type="number" inputMode="numeric" placeholder="Withdrawal Amount" name='money' className="van-field__control" id="amount" value={formData.money} onChange={handleChange} style={{color: "#FFF"}}/>
                             </div>
                         </div>
                         
@@ -117,7 +147,7 @@ function WalletProfile() {
                     <div data-v-25d9c352="" className="requiredBox p-t-20">
                         <div data-v-25d9c352="" className="box c-row c-row-between c-row-middle p-l-10">
                             <img data-v-25d9c352="" height="13px" width="25px" src={key_img} />
-                            <input data-v-d8986e5e="" name='password' data-v-25d9c352="" placeholder="Enter Password"  className="pw-input input" />
+                            <input data-v-d8986e5e="" name='password' data-v-25d9c352="" placeholder="Enter Password" onChange={handleChange} value={formData.password} className="pw-input input" />
                         </div>
                     </div>
                 
@@ -130,6 +160,7 @@ function WalletProfile() {
                                     className="van-button__text"> Withdraw Money </span></div>
                         </button></div>
                 </form>
+
                 <div data-v-25d9c352="" className="bankBox m-b-15 m-t-5">
                     <div data-v-25d9c352="" className="box">
                         <div data-v-25d9c352="" className="item c-row c-row-middle">

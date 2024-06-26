@@ -1,10 +1,12 @@
 import { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 // import qrScanner from "../../assets/images/qrscan.jpg"
-import Swal from 'sweetalert2';
+// import Swal from 'sweetalert2';
+import { showAlert } from '../AlertMassWrapper';
 
 function PromotionBox() {
     const [user, setUser] = useState({});
+    const [totalRef, setTotalRef] = useState({});
 
     useEffect(() => {
         axios.post('/api/webapi/GetUserInfo')
@@ -14,45 +16,33 @@ function PromotionBox() {
                 setUser(userInfo);
             })
             .catch(error => console.log(error));
+    }, []);    
+    useEffect(() => {
+        axios.post('/api/webapi/total_ref')
+            .then(response => {
+                const userInfo = response.data.data;
+                console.log("this is pro: " + JSON.stringify(userInfo));
+                setTotalRef(userInfo);
+            })
+            .catch(error => console.log(error));
     }, []);
 
     const copyToClipboard = (text) => {
         navigator.clipboard.writeText(text)
             .then(() => {
-                Swal.fire('Copied to clipboard!');
-                Swal.fire({
-                    icon: 'success',
-                    title: 'Copy Invite Code',
-                    showConfirmButton: false,
-                    timer: 1500
-                });
+                showAlert('success :' + 'Copy Invite Code');
             })
             .catch((error) => {
-                Swal.fire({
-                    icon: 'failed',
-                    title: 'Failed to copy text: ' + error,
-                    showConfirmButton: false,
-                    timer: 1500
-                });
+                showAlert('Failed :' + error);
             });
     };
     const copuInviteLink = (text) => {
         navigator.clipboard.writeText(text)
             .then(() => {
-                Swal.fire({
-                    icon: 'success',
-                    title: 'Copy Link',
-                    showConfirmButton: false,
-                    timer: 1500
-                });
+                showAlert('success :' + 'Copy Invite Code');
             })
             .catch((error) => {
-                Swal.fire({
-                    icon: 'failed',
-                    title: 'Failed to copy text: ' + error,
-                    showConfirmButton: false,
-                    timer: 1500
-                });
+                showAlert('Failed :' + error);
             });
     };
 
@@ -81,23 +71,23 @@ const text = `http://localhost:5173/register?r_code=${user.invite}`
                         <div data-v-7c8bbbf4="" className="info-data c-row c-row-between m-b-20">
                             <div data-v-7c8bbbf4="" className="left">
                                 <h5 data-v-7c8bbbf4="" className="all" > Todays Total Commission</h5>
-                                <p data-v-7c8bbbf4="" className="num" id="roses_today">0</p>
-                                <p data-v-7c8bbbf4="" className="txt" id="roses_f1">Direct Commission: 0</p> 
-                                <p data-v-7c8bbbf4="" className="txt" id="roses_f">Team Commission: 0</p>
+                                <p data-v-7c8bbbf4="" className="num" id="roses_today">{user.today_bonus ?? 0}</p>
+                                <p data-v-7c8bbbf4="" className="txt" id="roses_f1">Direct Commission: {user.direct_bonus ?? 0}</p> 
+                                <p data-v-7c8bbbf4="" className="txt" id="roses_f">Team Commission: {user.team_bonus ?? 0}</p>
                             </div>
                             <div data-v-7c8bbbf4="" className="right">
                                 <p data-v-7c8bbbf4="" className="txt">Total Referrals: <span data-v-7c8bbbf4=""
-                                        className="num" id="f1">0</span></p>
+                                        className="num" id="f1">{totalRef.total ?? 0}</span></p>
                                 <p data-v-7c8bbbf4="" className="txt">Total Members: <span data-v-7c8bbbf4=""
                                         className="num" id="f_total">0</span></p>
                                 <p data-v-7c8bbbf4="" className="txt">New Members Today: <span data-v-7c8bbbf4=""
                                         className="num" id="f1_today">0</span></p>
-                                <p data-v-7c8bbbf4="" className="txt">New Total Members For The Day: <span data-v-7c8bbbf4=""
+                                <p data-v-7c8bbbf4="" className="txt">New Today Total Member: <span data-v-7c8bbbf4=""
                                         className="num" id="f_all_today">0</span></p>
                              {/* <!--    <p data-v-7c8bbbf4="" className="txt">Total Commission For The Week: <span data-v-7c8bbbf4=""
                                         className="num">0</span></p> --> */}
                                 <p data-v-7c8bbbf4="" className="txt" >Total Commission: <span data-v-7c8bbbf4=""
-                                        className="num" id="roses_all">0</span></p> 
+                                        className="num" id="roses_all">{user.total_bonus ?? 0}</span></p> 
                             </div> 
                         </div>
                         <div data-v-7c8bbbf4="" className="info-img c-row c-row-between">

@@ -9220,8 +9220,8 @@ a:hover {
 }
 .mian .promotion .info-data .right .txt[data-v-7c8bbbf4] {
   color: #fff;
-  font-size: 0.5733rem;
-  line-height: 0.53333rem;
+  font-size: 0.733rem;
+  line-height: 0.83333rem;
 }
 .mian .promotion .info-data .right .txt .num[data-v-7c8bbbf4] {
   color: #fff;
@@ -9231,6 +9231,24 @@ a:hover {
 .mian .promotion .info-img .img[data-v-7c8bbbf4] {
   width: 45%;
   height: 8rem;
+}
+.swal2-modal{
+  background-color: #000;
+  color: #fff;
+}
+div:where(.swal2-container) .swal2-html-container {
+  z-index: 1;
+  justify-content: center;
+  margin: 0;
+  padding: 0.5em 1em .3em !important;
+  overflow: auto;
+  color: inherit;
+  font-size: 1.125em;
+  font-weight: normal;
+  line-height: normal;
+  text-align: center;
+  word-wrap: break-word;
+  word-break: break-word;
 }
 .swal2-styled.swal2-confirm:focus{
   outline: none !important;

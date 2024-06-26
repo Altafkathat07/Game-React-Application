@@ -8,6 +8,7 @@ import '../../assets/admin/css/admin.css'
 import Header from "../Home/Header"
 import Footer from "../Home/Footer"
 import img from "../../assets/images/copy.png"
+import { showAlert } from '../AlertMassWrapper';
 
 function WithdrawalHistrory() {
     const [items, setItems] = useState([]);
@@ -29,9 +30,9 @@ function WithdrawalHistrory() {
     const handleCopy = (text) => {
         navigator.clipboard.writeText(text)
             .then(() => {
-                alert('Copy successful');
+                showAlert('Copy successful');
             })
-            .catch(err => console.error('Error copying text: ', err));
+            .catch(err => showAlert('Error copying text: ' + err));
     };
     function formateT(params) {
         let result = (params < 10) ? "0" + params : params;

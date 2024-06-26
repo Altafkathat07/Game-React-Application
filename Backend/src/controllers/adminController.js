@@ -5,8 +5,18 @@ import multer from "multer";
 require('dotenv').config();
 import path from 'path';
 import fs from 'fs';
+import cron from "node-cron"
 let timeNow = Date.now();
 
+
+cron.schedule('0 0 * * *', async () => {
+    try {
+        await connection.query('UPDATE users SET roses_today = 0');
+        console.log('roses_today field reset for all users.');
+    } catch (error) {
+        console.error('Error resetting roses_today field:', error);
+    }
+})
 
 const termsAndCondition = async(req, res) => {
     // let auth = req.cookies.authToken;
@@ -480,8 +490,12 @@ const rechargeConfirm = async (req, res) => {
 
         await connection.query('UPDATE users SET money = money + ?, total_money = total_money + ? WHERE phone = ?', [money, money, phone]);
        
-        const updateUserMoney = async (userId, bonus) => {
-            await connection.query('UPDATE users SET money = money + ? WHERE phone = ?', [bonus, userId]);
+        const updateUserMoney = async (userId, bonus, level) => {
+            if (level === 1) {
+                await connection.query('UPDATE users SET money = money + ?, roses_f = roses_f + ?, roses_today = roses_today + ?, roses_f1 = roses_f1 + ? WHERE phone = ?', [bonus, bonus, bonus, bonus, userId]);
+            } else {
+                await connection.query('UPDATE users SET money = money + ?, roses_f = roses_f + ?, roses_today = roses_today + ?, team = team + ? WHERE phone = ?', [bonus, bonus, bonus, bonus, userId]);
+            }
         };
 
         await updateUserMoney(user.phone, 0, parseInt(money));
@@ -495,7 +509,7 @@ const rechargeConfirm = async (req, res) => {
 
             const levelBonus = calculateBonus(parseInt(money), level);
 
-            await updateUserMoney(nextUser.phone, levelBonus, 0);
+            await updateUserMoney(nextUser.phone, levelBonus, level);
 
             currentInviteCode = nextUser.invite;
         }

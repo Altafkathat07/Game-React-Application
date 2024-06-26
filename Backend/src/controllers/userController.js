@@ -59,11 +59,99 @@ const userInfo = async (req, res) => {
             phone_user: others.phone,
             money_user: others.money,
             level: others.user_level,
+            direct_bonus: others.roses_f1,
+            today_bonus: others.roses_today,
+            total_bonus: others.roses_f,
+            team_bonus: others.team,
             totalRecharge: totalRecharge,
             totalWithdraw: totalWithdraw,
         },
         totalRecharge: totalRecharge,
         totalWithdraw: totalWithdraw,
+        timeStamp: timeNow,
+    });
+
+}
+
+const TotalReferrals = async (req, res) => {
+    let auth = req.user.user.phone
+    console.log("this is user info" + auth)
+
+    if (!auth) {
+        return res.status(200).json({
+            message: 'Failed',
+            status: false,
+            timeStamp: timeNow,
+        });
+    }
+    const [rows] = await connection.query('SELECT * FROM users WHERE `phone` = ? ', [auth]);
+    if (!rows) {
+        return res.status(200).json({
+            message: 'Failed',
+            status: false,
+            timeStamp: timeNow,
+        });
+    }
+    console.log("this is user code" + rows[0].code)
+
+    const [total_ref] = await  connection.query('SELECT * FROM users  WHERE `invite` = ? ', [rows[0].code])
+    console.log(total_ref.length)
+    if (!total_ref) {
+        return res.status(200).json({
+            message: 'Failed',
+            status: false,
+            timeStamp: timeNow,
+        });
+    }
+    const total = total_ref.length
+    return res.status(200).json({
+        message: 'Success',
+        status: true,
+        data: {
+            total: total,  
+        },
+        timeStamp: timeNow,
+    });
+
+}
+
+const ResetPassword = async (req, res) => {
+    let auth = req.user.user.phone
+    console.log("this is user info" + auth)
+
+    if (!auth) {
+        return res.status(200).json({
+            message: 'Failed',
+            status: false,
+            timeStamp: timeNow,
+        });
+    }
+    const [rows] = await connection.query('SELECT * FROM users WHERE `phone` = ? ', [auth]);
+    if (!rows) {
+        return res.status(200).json({
+            message: 'Failed',
+            status: false,
+            timeStamp: timeNow,
+        });
+    }
+    console.log("this is user code" + rows[0].code)
+
+    const [total_ref] = await  connection.query('SELECT * FROM users  WHERE `invite` = ? ', [rows[0].code])
+    console.log(total_ref.length)
+    if (!total_ref) {
+        return res.status(200).json({
+            message: 'Failed',
+            status: false,
+            timeStamp: timeNow,
+        });
+    }
+    const total = total_ref.length
+    return res.status(200).json({
+        message: 'Success',
+        status: true,
+        data: {
+            total: total,  
+        },
         timeStamp: timeNow,
     });
 
@@ -274,27 +362,28 @@ const recharge = async (req, res) => {
         url = ?,
         time = ?`;
     const [userCount] = await connection.execute('SELECT * FROM recharge WHERE phone = ?', [userInfo.phone]);
+    await connection.query('UPDATE users SET roses_f = roses_f + ?, roses_today = roses_today + ? WHERE phone = ?', [ first, first, userInfo.phone])
     if(userCount.length == 0) {
         await connection.execute(sql, [client_transaction_id, '0', userInfo.phone, new_money, type, 0, 1 ,checkTime, '0', time]);
-        res.redirect("http://localhost:5173/wallet")
-        // return res.status(200).json({
-        //     message: 'Order creation successful',
-        //     pay: true,
-        //     orderid: client_transaction_id,
-        //     status: true,
-        //     timeStamp: timeNow,
-        // });       
+        
+        return res.status(200).json({
+            message: 'Order creation successful',
+            pay: true,
+            orderid: client_transaction_id,
+            status: true,
+            timeStamp: timeNow,
+        });       
     }
     else{
         await connection.execute(sql, [client_transaction_id, '0', userInfo.phone, money, type, 0, 0 ,checkTime, '0', time]);
-        res.redirect("http://localhost:5173/recharge")
-        // return res.status(200).json({
-        //     message: 'Order creation successful',
-        //     pay: true,
-        //     orderid: client_transaction_id,
-        //     status: true,
-        //     timeStamp: timeNow,
-        // });
+        // res.redirect("http://localhost:5173/recharge")
+        return res.status(200).json({
+            message: 'Order creation successful',
+            pay: true,
+            orderid: client_transaction_id,
+            status: true,
+            timeStamp: timeNow,
+        });
     }
 
 
@@ -448,7 +537,7 @@ const withdrawal = async (req, res) => {
     let password = req.body.password;
     if (!auth || !money || !password || money < 109) {
         return res.status(200).json({
-            message: 'Failed',
+            message: 'Please fill the field and withdrawal amount is at least ₹110.',
             status: false,
             timeStamp: timeNow,
         })
@@ -651,20 +740,20 @@ const useRedenvelope = async(req, res) => {
         
 
            
-            await connection.query('UPDATE users SET money = money + ? WHERE `phone` = ?', [infoRe.money, userInfo.phone]);
+            await connection.query('UPDATE users SET money = money + ?, roses_f = roses_f + ?,  roses_today = roses_today + ? WHERE `phone` = ?', [infoRe.money, infoRe.money, infoRe.money, userInfo.phone]);
         
             
             let sql = 'INSERT INTO redenvelopes_used SET phone = ?, phone_used = ?, id_redenvelops = ?, money = ?, `time` = ? ';
             await connection.query(sql, [infoRe.phone, userInfo.phone, infoRe.id_redenvelope, infoRe.money, time]);
         
             return res.status(200).json({
-                message: `Received successfully +${infoRe.money}`,
+                message: `success : Received successfully +${infoRe.money}`,
                 status: true,
                 timeStamp: timeNow,
             });
         } else {
             return res.status(200).json({
-                message: 'Gift code already used',
+                message: 'Failed : Gift code already used',
                 status: false,
                 timeStamp: timeNow,
             });
@@ -1145,5 +1234,6 @@ module.exports = {
     listRecharge,
     listWithdraw,
     promotion,
-    activityCheck
+    activityCheck,
+    TotalReferrals
 }

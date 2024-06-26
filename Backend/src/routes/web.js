@@ -16,6 +16,11 @@ const initWebRouter = (app) => {
     "/api/webapi/GetUserInfo",
     middlewareController,
     userController.userInfo
+  );  
+  router.post(
+    "/api/webapi/total_ref",
+    // middlewareController,
+    userController.TotalReferrals
   );
 
   router.get(

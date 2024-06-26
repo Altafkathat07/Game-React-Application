@@ -10,7 +10,7 @@ function ResetForm() {
                 <div data-v-0ce8d964="" data-v-8752c961="" className="signIn__container">
                     <div data-v-57d49070="" data-v-0ce8d964="" className="passwordInput__container"> 
                         <div data-v-57d49070="" className="passwordInput__container-input">
-                            <input data-v-57d49070="" id="passwordfield1" type="password" name='pwd' placeholder="Password" maxLength="32" autoComplete="on" required />
+                            <input data-v-57d49070="" id="passwordfield1" type="password" name='pwd' placeholder="Old Password" maxLength="32" autoComplete="on" required />
                             <img data-v-57d49070="" id="eyeicon" src={eye} className="eye" />
                         </div>
                     </div>

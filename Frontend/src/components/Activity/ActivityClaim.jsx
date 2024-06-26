@@ -1,18 +1,18 @@
 // import { useState } from "react";
 import img from "../../assets/images/tu.webp"
 import { Link } from "react-router-dom"
+import { showAlert } from "../AlertMassWrapper";
 
 function ActivityClaim() {
     // const [showMessage, setShowMessage] = useState(true);
     // const [blockClick, setBlockClick] = useState(false);
 
 
-
     const handleClick = (e) => {
       e.preventDefault();
       const data = e.currentTarget.getAttribute('data-dpr');
       const wd = e.currentTarget;
-  
+    
       fetch('/api/webapi/activity_check', {
         method: 'POST',
         headers: {
@@ -27,15 +27,20 @@ function ActivityClaim() {
           return response.json();
         })
         .then(data => {
-            // setBlockClick(data.message, wd);
-          if (data.status === false) return;
+          if (data.status === false) {
+            showAlert('Failed : ' + data.message);
+            return;
+          }
           wd.classList.remove('action');
           wd.querySelector('.txt').textContent = 'Received';
+          showAlert('Success: ' + data.message);
         })
         .catch(error => {
           console.error('There was a problem with the fetch operation:', error);
+          showAlert('There was a problem with the fetch operation: ' + error.message);
         });
     };
+    
   return (
     <>
        <div data-v-11ffe290="" className="check-box">

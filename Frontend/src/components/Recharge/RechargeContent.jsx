@@ -2,6 +2,7 @@ import img from "../../assets/images/wal_img.png"
 import pay from "../../assets/images/htmls2.png"
 import { useState, useEffect } from "react"
 import axios from "axios"
+import { showAlert } from "../AlertMassWrapper"
 
 function RechargeContent() {
     const [amount, setAmount] = useState(300)
@@ -20,6 +21,36 @@ function RechargeContent() {
             })
             .catch(error => console.log(error));
     }, []);
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+    
+        const formData = new FormData();
+        formData.append('money', amount);
+    
+        try {
+          const response = await fetch('/api/webapi/recharge', {
+            method: 'POST',
+            body: formData,
+          });
+    
+          if (!response.ok) {
+            throw new Error('Network response was not ok');
+          }
+    
+          const data = await response.json();
+    
+          if (data.status === false) {
+            showAlert('Failed to submit form: ' + data.message, 'error', 'Error');
+            return;
+          }
+    
+          showAlert('Success :' + data.message);
+        } catch (error) {
+          console.error('There was a problem with the fetch operation:', error);
+          showAlert('There was a problem with the fetch operation: ' + error.message, 'error', 'Error');
+        }
+      };
   return (
     <>
       <div data-v-67caa467="" className="selectBox">
@@ -113,7 +144,7 @@ function RechargeContent() {
                         
                     </div>
                     <div data-v-67caa467="">
-                        <form action="http://localhost:8888/api/webapi/recharge" method="post">
+                        <form onSubmit={handleSubmit}>
                             <div data-v-67caa467="">
                                 <div data-v-67caa467="" className="box numberSize c-row c-row-between c-row-middle p-l-10">
                                     <div data-v-67caa467="" className="fuhao"> </div>
