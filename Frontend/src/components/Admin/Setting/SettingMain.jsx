@@ -2,8 +2,8 @@
 import AdminNav from "../IndexPage/AdminNav"
 import AdminSidebar from "../IndexPage/AdminSidebar"
 import BonusForm from "./BonusForm"
-import DepositeBonusForm from "./DepositeBonusForm"
-import WithdrawLimit from "./WithdrawLimit"
+// import DepositeBonusForm from "./DepositeBonusForm"
+// import WithdrawLimit from "./WithdrawLimit"
 
 function SettingMain() {
   return (
@@ -14,8 +14,8 @@ function SettingMain() {
           <AdminSidebar />
           <div className="container">
             <BonusForm/>
-            <DepositeBonusForm />
-            <WithdrawLimit />
+            {/* <DepositeBonusForm /> */}
+            {/* <WithdrawLimit /> */}
           </div>
         </div>
      </div>

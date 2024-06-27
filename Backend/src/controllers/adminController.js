@@ -170,7 +170,7 @@ const noticeFetching = async(req, res) => {
 }
 
 const DeleteUser = async (req, res) => {
-    const { id } =  req.params;
+    const  id  =  parseInt(req.params.id);
     // console.log(id)
     if(!id){
         return res.status(202).json({
@@ -189,38 +189,44 @@ const DeleteUser = async (req, res) => {
    } 
 
    await connection.query('DELETE FROM users WHERE id = ?', [id])
-   res.redirect("http://localhost:5173/admin/user-details")
+   return res.status(202).json({
+    message: 'success : user delete successfully',
+    status: true,
+})
 
 }
 
 const UserStatus = async (req, res) => {
-  const { id } = req.params;
-  const { status } = req.body;
-    if(!id || !status){
+    const userId = parseInt(req.params.id); 
+    const { status } = req.body;   
+    console.log('User ID:', userId);
+    console.log('New Status:', status);
+
+    if(!userId){
         return res.status(202).json({
-            message: 'something went wrong while id fetching',
+            message: 'Failed : something went wrong while id fetching',
             status: false,
         })
         
     }
     try {
-        const [user] = await connection.query('SELECT * FROM users WHERE id = ?', [id]);
+        const [user] = await connection.query('SELECT * FROM users WHERE id = ?', [userId]);
         
-        if (user.length === 0) {
+        if (!user) {
           return res.status(404).json({
-            message: 'User not found',
+            message: 'Failed : User not found',
             status: false,
           });
         }
     
-        await connection.query('UPDATE users SET status = ? WHERE id = ?', [status, id]);
+        await connection.query('UPDATE users SET status = ? WHERE id = ?', [status, userId]);
     
         return res.status(200).json({
-          message: 'User status updated successfully',
+          message: 'success : User status updated successfully',
           status: true,
         });
       } catch (error) {
-        console.error('Error updating user status:', error);
+        console.error('Failed : Error updating user status:'+ error);
         return res.status(500).json({
           message: 'Server error',
           status: false,
@@ -235,14 +241,14 @@ const rechargeDetails = async (req, res) =>{
     // console.log(rows);
     if(!rows || rows.length === 0){
         return res.status(200).json({
-            message: 'something went wrong while user fetching recharge details',
+            message: 'Failed :something went wrong while user fetching recharge details',
             status: false
         });
     }
     const data = rows;
     // console.log(data);
     return res.status(200).json({
-        message: 'recharge Details fetch success',
+        message: 'success : recharge Details fetch success',
         status: true,
         data: data
     });
@@ -252,14 +258,14 @@ const rechargeApproveDetail = async (req, res) =>{
     // console.log(rows);
     if(!rows || rows.length === 0){
         return res.status(200).json({
-            message: 'something went wrong while user fetching recharge details',
+            message: 'Failed : something went wrong while user fetching recharge details',
             status: false
         });
     }
     const data = rows;
     // console.log(data);
     return res.status(200).json({
-        message: 'recharge Details fetch success',
+        message: 'success : recharge Details fetch success',
         status: true,
         data: data
     });
@@ -430,10 +436,10 @@ const rechargeApproveDetail = async (req, res) =>{
 
 
 const rechargeConfirm = async (req, res) => {
-    // const { id } =  req.params;
-    // const { money } =  req.params;
-    const id = 109;
-    const money = 500;
+    const { id } =  req.params;
+    const { money } =  req.params;
+    // const id = 109;
+    // const money = 500;
 
     if (!id || !money) {
         return res.status(400).json({
@@ -446,7 +452,7 @@ const rechargeConfirm = async (req, res) => {
         const [recharge] = await connection.query('SELECT * FROM recharge WHERE id = ?', [id]);
         if (recharge.length === 0) {
             return res.status(404).json({
-                message: 'Recharge record not found',
+                message: 'Failed : Recharge record not found',
                 status: false,
             });
         }
@@ -456,7 +462,7 @@ const rechargeConfirm = async (req, res) => {
         const [users] = await connection.query('SELECT * FROM users WHERE phone = ?', [phone]);
         if (!users || users.length === 0) {
             return res.status(404).json({
-                message: 'User not found',
+                message: 'Failed : User not found',
                 status: false,
             });
         }
@@ -517,14 +523,14 @@ const rechargeConfirm = async (req, res) => {
         await connection.query('UPDATE recharge SET status = ? WHERE id = ?', [1, id]);
 
         return res.status(200).json({
-            message: 'Recharge confirmed successfully',
+            message: 'success : Recharge confirmed successfully',
             status: true,
             data: recharge,
         });
     } catch (error) {
-        console.error('Error in rechargeConfirm:', error);
+        console.error('Error in rechargeConfirm:'+ error);
         return res.status(500).json({
-            message: 'Internal server error',
+            message: 'Failed : Internal server error',
             status: false,
         });
     }
@@ -537,7 +543,7 @@ const rechargeCancel = async (req, res) => {
     const { id } =  req.params;
     if(!id){
         return res.status(202).json({
-            message: 'something went wrong while id fetching',
+            message: 'Failed : something went wrong while id fetching',
             status: false,
         })
         
@@ -545,11 +551,10 @@ const rechargeCancel = async (req, res) => {
 
    await connection.query('UPDATE recharge SET status = ? WHERE id = ?', [2, id])
    return res.status(202).json({
-    message: 'Cancel success',
+    message: 'success : Cancel success',
     status: true,
 
 })
-   res.redirect("http://localhost:5173/admin/recharge")
 
 }
 
@@ -558,14 +563,14 @@ const withdraDetails = async (req, res) =>{
     // console.log(rows);
     if(!rows || rows.length === 0){
         return res.status(200).json({
-            message: 'something went wrong while user fetching withdraw details',
+            message: 'Failed : something went wrong while user fetching withdraw details',
             status: false
         });
     }
     const data = rows;
     // console.log(data);
     return res.status(200).json({
-        message: 'withdraw Details fetch success',
+        message: 'success : withdraw Details fetch success',
         status: true,
         data: data
     });
@@ -606,13 +611,12 @@ const withdrawConfirm = async (req, res) => {
         })
     } 
    await connection.query('UPDATE withdraw SET status = ? WHERE id = ?', [1, id])
-//    return res.status(202).json({
-//     message: 'fetching success',
-//     status: true,
-//     data: user
+   return res.status(202).json({
+    message: 'success : withdrawal success',
+    status: true,
+    data: user
 
-// })
-   res.redirect("http://localhost:5173/admin/withdraw")
+})
 
 }
 
@@ -621,7 +625,7 @@ const withdrawCancel = async (req, res) => {
     const { money } =  req.params;
     if(!id){
         return res.status(202).json({
-            message: 'something went wrong while id fetching',
+            message: 'Failed : something went wrong while id fetching',
             status: false,
         })
         
@@ -629,7 +633,7 @@ const withdrawCancel = async (req, res) => {
     const [user] = await connection.query('SELECT * FROM withdraw WHERE id = ? ', [id]) ;
     if (user.length === 0) {
      return res.status(202).json({
-         message: 'user id not find',
+         message: 'Failed : user id not find',
          status: false,
      })
     } 
@@ -648,12 +652,12 @@ const withdrawCancel = async (req, res) => {
 
 
    await connection.query('UPDATE withdraw SET status = ? WHERE id = ?', [2, id])
-   res.redirect("http://localhost:5173/admin/recharge")
-//    return res.status(202).json({
-//     message: 'Cancel success',
-//     status: true,
 
-// })
+   return res.status(202).json({
+    message: 'success : Withdrawal Cancel success',
+    status: true,
+
+})
 
 }
 
@@ -702,7 +706,7 @@ const createBonus = async (req, res) => {
 
     if (!auth || !money || !claim) {
         return res.status(200).json({
-            message: 'Failed 1',
+            message: 'Failed : Please Fill The Required Feilds',
             status: false,
             timeStamp: timeNow,
         });
@@ -711,7 +715,7 @@ const createBonus = async (req, res) => {
 
     if (user.length == 0) {
         return res.status(200).json({
-            message: 'Failed ',
+            message: 'Failed : user does not Exist',
             status: false,
             timeStamp: timeNow,
         });
@@ -726,7 +730,7 @@ const createBonus = async (req, res) => {
             await connection.query(`UPDATE point_list SET money = money - ? WHERE level = 2`, [money]);
         }
         return res.status(200).json({
-            message: 'successful change',
+            message: 'success : successfully changes',
             status: true,
         });
     }
@@ -739,7 +743,7 @@ const createBonus = async (req, res) => {
             await connection.query(`UPDATE point_list SET money_us = money_us - ? WHERE level = 2`, [money]);
         }
         return res.status(200).json({
-            message: 'successful change',
+            message: 'success : successfully changes',
             status: true,
         });
     }
@@ -750,7 +754,7 @@ const createBonus = async (req, res) => {
         const [user] = await connection.query('SELECT * FROM point_list WHERE phone = ? ', [phone]);
         if (user.length == 0) {
             return res.status(200).json({
-                message: 'Failed',
+                message: 'Failed : user not fount',
                 status: false,
                 timeStamp: timeNow,
             });
@@ -761,7 +765,7 @@ const createBonus = async (req, res) => {
             await connection.query(`UPDATE point_list SET money = money - ? WHERE level = 2 and phone = ?`, [money, phone]);
         }
         return res.status(200).json({
-            message: 'successful change',
+            message: 'success : successfully  changes',
             status: true,
         });
     }
@@ -772,7 +776,7 @@ const createBonus = async (req, res) => {
         const [user] = await connection.query('SELECT * FROM point_list WHERE phone = ? ', [phone]);
         if (user.length == 0) {
             return res.status(200).json({
-                message: 'account does not exist',
+                message: 'Failed : account does not exist',
                 status: false,
                 timeStamp: timeNow,
             });
@@ -783,7 +787,7 @@ const createBonus = async (req, res) => {
             await connection.query(`UPDATE point_list SET money_us = money_us - ? WHERE level = 2 and phone = ?`, [money, phone]);
         }
         return res.status(200).json({
-            message: 'successful change',
+            message: 'success : successfully changes',
             status: true,
         });
     }
@@ -793,7 +797,7 @@ const createBonus = async (req, res) => {
         let sql = `INSERT INTO redenvelopes SET id_redenvelope = ?, phone = ?, money = ?, used = ?, max_claims = ?, max_count = ?, amount = ?, status = ?, time = ?`;
         await connection.query(sql, [id_redenvelops, userInfo.phone, money, 0, claim, 0, 1, 0, time]);
         return res.status(200).json({
-            message: 'Successful change',
+            message: 'success : Successfully Created',
             status: true,
             id: id_redenvelops,
         });
@@ -805,14 +809,14 @@ const bonusDetails = async (req, res) =>{
     // console.log(rows);
     if(!rows || rows.length === 0){
         return res.status(200).json({
-            message: 'something went wrong while user fetching bonus details',
+            message: 'Failed : something went wrong while user fetching bonus details',
             status: false
         });
     }
     const data = rows;
     // console.log(data);
     return res.status(200).json({
-        message: 'bonus Details fetch success',
+        message: 'success : bonus Details fetch success',
         status: true,
         data: data
     });
@@ -825,7 +829,7 @@ const Bonus = async (req, res) => {
     
     if (!auth || (!bonus && !fr && !ib)) {
         return res.status(400).json({
-            message: 'Failed',
+            message: 'Failed please fill the any one feild',
             status: false,
             timeStamp: new Date().toISOString(),
         });
@@ -838,7 +842,7 @@ const Bonus = async (req, res) => {
             const sql = "INSERT INTO bonus SET welcome_bonus = ?, first_reacharge_bonus = ?, invite_bonus = ?";
             await connection.execute(sql, [bonus || 0, fr || 0, ib || 0]);
             return res.status(200).json({
-                message: 'Successfully Inserted',
+                message: 'success : Successfully Inserted',
                 status: true
             });
         } else {
@@ -865,14 +869,14 @@ const Bonus = async (req, res) => {
             }
 
             return res.status(200).json({
-                message: 'Successfully Updated',
+                message: 'success : Bonus Updated Successfully',
                 status: true,
             });
         }
     } catch (error) {
         console.error(error);
         return res.status(500).json({
-            message: 'Server error',
+            message: 'Failed : Internal Server error',
             status: false,
             error: error.message
         });

@@ -1,5 +1,6 @@
 
 import { useState } from 'react';
+import { showAlert } from '../../AlertMassWrapper';
 // import { useNavigate } from 'react-router-dom';
 function BonusForm() {
   const [bonus, setBonus] = useState('');
@@ -41,14 +42,16 @@ function BonusForm() {
         const result = await response.json();
 
         if (result.status) {
-            alert('Successfully submitted');
-            // navigate('/main'); // Redirect to /main page
+            showAlert(result.message);
+            setBonus('');
+            setFr('');
+            setIb('')
         } else {
-            alert('Submission failed: ' + result.message);
+            showAlert('Failed: ' + result.message);
         }
     } catch (error) {
         console.error('Error:', error);
-        alert('An error occurred: ' + error.message);
+        showAlert('An error occurred: ' + error.message);
     }
 };
 

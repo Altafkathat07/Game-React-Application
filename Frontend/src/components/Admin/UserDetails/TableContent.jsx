@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { showAlert } from "../../AlertMassWrapper";
 
 function TableContent() {
 
@@ -33,26 +34,58 @@ function TableContent() {
 
   
     const toggleStatus = async (userId, currentStatus) => {
-      const newStatus = currentStatus === 1 ? 0 : 1;
+      // e.preventDefault();
       try {
-        const response = await fetch(`/api/webapi/admin/update-user-status/:id/${userId}`, {
+        const newStatus = currentStatus === 1 ? 0 : 1;
+        const response = await fetch(`/api/webapi/admin/update-user-status/${userId}`, {
           method: 'POST',
           headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
           },
-          body: JSON.stringify({ status: newStatus })
+          body: JSON.stringify({ status: newStatus }),
         });
+    
+        const data = await response.json();
+    
         if (response.ok) {
-          setUsers(users.map(user => user.id === userId ? { ...user, status: newStatus } : user));
+          const updatedUsers = users.map(user => {
+            if (user.id === userId) {
+              return { ...user, status: newStatus };
+            }
+            return user;
+          });
+          setUsers(updatedUsers);
+          showAlert(data.message);
         } else {
-          console.error('Failed to update status');
+          showAlert(data.message);
         }
       } catch (error) {
-        console.error('There has been a problem with your toggle status operation:', error);
+        showAlert('Failed: ' + error);
+      }
+    }; 
+  
+    const DeleteUser = async (userId) => {
+      try {
+        const response = await fetch(`/api/webapi/admin/user-delete/${userId}`, {
+          method: 'DELETE',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        });
+  
+        const data = await response.json();
+  
+        if (response.ok) {
+          const updatedUsers = users.filter(user => user.id !== userId);
+          setUsers(updatedUsers);
+          showAlert(data.message);
+        } else {
+          showAlert(data.message);
+        }
+      } catch (error) {
+        showAlert('Failed: ' + error);
       }
     };
-  
-    
     
    
   return (
@@ -89,16 +122,16 @@ function TableContent() {
                     </button>
               </td>
               <td>
-                <form action={`/api/webapi/admin/user-edit/${user.id}`} method="post">
-                <button type="button" className="btn btn-link btn-sm btn-rounded">
-                  Edit
-                </button> 
-                </form>
+                
                 <form action={`/api/webapi/admin/user-delete/${user.id}`} method="post">
                 <button type="submit" className="btn btn-link btn-sm btn-rounded">
-                  Delete
+                  Edit
                 </button>
-
+                </form>
+                <form onClick={(e) => { e.preventDefault(); DeleteUser(user.id); }}>
+                <button type="button" className="btn btn-link btn-sm btn-rounded ">
+                  Delete
+                </button> 
                 </form>
               </td>
             </tr>

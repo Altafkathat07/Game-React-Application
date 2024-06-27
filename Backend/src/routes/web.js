@@ -73,9 +73,8 @@ const initWebRouter = (app) => {
     adminController.rechargeDetails
   );
   router.post(
-    "/api/webapi/admin/recharge-confirm",
-    // "/api/webapi/admin/recharge-confirm/:id/:money",
-    // middlewareController,
+    "/api/webapi/admin/recharge-confirm/:id/:money",
+    middlewareController,
     adminController.rechargeConfirm
   );
   router.post(
@@ -116,7 +115,7 @@ const initWebRouter = (app) => {
     adminController.bonusDetails
   );
 
-  router.post(
+  router.delete(
     "/api/webapi/admin/user-delete/:id",
     middlewareController,
     adminController.DeleteUser

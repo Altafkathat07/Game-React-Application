@@ -24,6 +24,7 @@ function NoticeForm() {
 
       if (response.ok) {
         showAlert(data.message);
+        setNotice('')
         return;
       } else {
         showAlert(data.message);

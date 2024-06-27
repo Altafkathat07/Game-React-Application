@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { showAlert } from "../../AlertMassWrapper";
 
 function RechargeTable() {
     const [users, setUsers] = useState([]);
@@ -58,6 +59,53 @@ function RechargeTable() {
         
             return years + '-' + months + '-' + days + ' ' + hours + ':' + minutes + ':' + seconds + ' ' + ampm;
         }
+
+        const confirmRecharge = async (userId, amount) => {
+          try {
+            const response = await fetch(`/api/webapi/admin/recharge-confirm/${userId}/${amount}`, {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+              },
+            });
+      
+            const data = await response.json();
+      
+            if (response.ok) {
+              const updatedUsers = users.filter(user => user.id !== userId);
+              setUsers(updatedUsers);
+              showAlert(data.message); // Show alert or update UI as needed
+            } else {
+              showAlert('Failed to confirm recharge'); // Handle error case
+            }
+          } catch (error) {
+            showAlert('Failed: ' + error); // Handle fetch or other errors
+          }
+        };
+
+
+  const cancelRecharge = async (userId) => {
+    try {
+      const response = await fetch(`/api/webapi/admin/recharge-cancel/${userId}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        const updatedUsers = users.filter(user => user.id !== userId);
+        setUsers(updatedUsers);
+        showAlert(data.message); 
+      } else {
+        showAlert('Failed to cancel recharge');
+      }
+    } catch (error) {
+      showAlert('Failed: ' + error); 
+    }
+  };
   return (
     <>
        {users.length === 0 ? (
@@ -97,10 +145,10 @@ function RechargeTable() {
                     </span>
                     </td>
               <td style={{display: "flex", justifyContent: "space-between", alignItems: "center"}}>
-                <form action={`/api/webapi/admin/recharge-confirm/${user.id}/${user.money}`} method="post">
+                <form onSubmit={(e) => { e.preventDefault(); confirmRecharge(user.id, user.money); }}>
                 <button className="btn btn-success btn-sm confirm-btn" href="" data="97"><i className="fa fa-check"></i></button>
                  </form>
-                <form action={`/api/webapi/admin/recharge-cancel/${user.id}`} method="post">
+                <form onSubmit={(e) => { e.preventDefault(); cancelRecharge(user.id); }}>
                 <button className="btn btn-danger btn-sm delete-btn" href="" data="97"><i className="bi bi-trash3-fill"></i></button>
                 </form>
               </td>

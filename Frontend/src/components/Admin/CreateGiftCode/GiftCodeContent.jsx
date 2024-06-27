@@ -1,7 +1,7 @@
 // import { useState } from "react";
 import axios from "axios";
 import { useState, useEffect } from "react";
-import Swal from 'sweetalert2';
+import { showAlert } from "../../AlertMassWrapper";
 function GiftCodeContent() {
   const [users, setUsers] = useState([]);
   const [showHide, setShowHide] = useState(true);
@@ -15,7 +15,7 @@ function GiftCodeContent() {
     const { name, value } = e.target;
     setFormData({
       ...formData,
-      [name]: value.replace(/\D/g, ""), // Only keep digits
+      [name]: value.replace(/\D/g, ""), 
     });
   };
 
@@ -27,13 +27,15 @@ function GiftCodeContent() {
         formData
       );
       if (response.status === 200) {
-        // console.log(response.data.id);
         setResultId(response.data.id);
         setResultVisible(true);
+        showAlert('Giftcode created successfully');
       }
     } catch (error) {
       console.error("Error creating bonus:", error);
+      showAlert('Failed to create giftcode');
     }
+ 
   };
 
   useEffect(() => {
@@ -123,7 +125,7 @@ function GiftCodeContent() {
   const copyLinkToClipboard = () => {
     const url = document.getElementById('money_result').value;
     navigator.clipboard.writeText(url);
-    Swal.fire('Copy Success!', '', 'success');
+    showAlert('Copy Success');
   };
 
   return (
