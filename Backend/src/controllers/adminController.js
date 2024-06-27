@@ -5,6 +5,7 @@ import multer from "multer";
 require('dotenv').config();
 import path from 'path';
 import fs from 'fs';
+import BadWordsFilter from "bad-words"
 import cron from "node-cron"
 let timeNow = Date.now();
 
@@ -805,7 +806,7 @@ const createBonus = async (req, res) => {
 }
 
 const bonusDetails = async (req, res) =>{
-    const [rows] = await connection.query('SELECT * FROM redenvelopes WHERE status = 0');
+    const [rows] = await connection.query('SELECT * FROM redenvelopes WHERE status = 0 ORDER BY id DESC');
     // console.log(rows);
     if(!rows || rows.length === 0){
         return res.status(200).json({
@@ -927,8 +928,10 @@ const updateLevel = async (req, res) => {
     }
 };
 
+
 const currentDirectory = process.cwd();
 
+// Define the destination directory relative to the current directory
 const uploadDir = path.join(currentDirectory, 'src', 'public', 'uploads', 'banners');
 if (!fs.existsSync(uploadDir)) {
     fs.mkdirSync(uploadDir, { recursive: true });
@@ -942,41 +945,44 @@ const storage = multer.diskStorage({
     }
 });
 
+// Initialize multer upload
 const upload = multer({ storage: storage }).array('banners');
 
 const uploadBanner = async (req, res) => {
     try {
-      
         upload(req, res, async function (err) {
             if (err instanceof multer.MulterError) {
+                // A multer error occurred
                 console.error('Multer error:', err);
                 return res.status(400).json({ message: 'File upload error' });
             } else if (err) {
-                console.error('Error uploading files:', err);
-                return res.status(500).json({ message: 'Internal server error' });
+                // Other unexpected errors
+                console.error('Other error:', err);
+                return res.status(400).json({ message: 'Internal server error' });
             }
-
-        
-            const banners = req.files;
-            // console.log(req.files) ;
             
-            // console.log(banners);
+            // Process uploaded files
+            const banners = req.files;
             if (!banners || banners.length === 0) {
                 return res.status(400).json({ message: 'No files uploaded' });
             }
-
+            
+            // Save files to database or perform other actions
             for (const banner of banners) {
                 const filename = banner.filename;
+                // Save file information to MySQL database
                 await connection.query('INSERT INTO banners (filename) VALUES (?)', [filename]);
             }
-
-            return res.status(200).json({ message: 'Files uploaded successfully', status: true, files: banners });
+            
+            return res.status(200).json({ message: 'Files uploaded successfully', files: banners });
         });
     } catch (error) {
         console.error('Error uploading files:', error);
         return res.status(500).json({ message: 'Internal server error' });
     }
 };
+
+
 
 
 module.exports = {
@@ -1006,3 +1012,7 @@ module.exports = {
     // InviteBonus
 
 }
+
+
+
+

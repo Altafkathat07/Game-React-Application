@@ -2,6 +2,9 @@ import { useState, useEffect } from 'react';
 
 function Levels() {
     const [levels, setLevels] = useState([]);
+    const [showHide, setShowHide] = useState(true);
+  const [sectionHide, setSectionHide] = useState(true);
+  const [icon, setIcon] = useState("bi bi-dash fs-5 fw-7");
     useEffect(() => {
         const fetchLevels = async () => {
             try {
@@ -49,6 +52,18 @@ function Levels() {
         }
     };
 
+    const showHideHandler = () => {
+        setShowHide((prevShowHide) => !prevShowHide);
+        setIcon((prevIcon) =>
+          prevIcon === "bi bi-plus-lg fs-5 fw-7"
+            ? "bi bi-dash-lg fs-5 fw-7"
+            : "bi bi-plus-lg fs-5 fw-7"
+        );
+      };
+    const HideSection = () => {
+        setSectionHide(false);
+      };
+
 
     return (
         <div className="content-wrapper" style={{ padding: "0px" }}>
@@ -61,21 +76,22 @@ function Levels() {
                     </div>
                 </div>
             </section>
-
+            {sectionHide && (
             <section className="content-fluid px-0">
                 <div className="card">
                     <div className="card-header d-flex justify-content-between">
                         <h3 className="card-title">Levels Setting</h3>
                         <button onClick={updateLevels} className='updataBtn'>update</button>
                         <div className="card-tools d-flex">
-                            <button type="button" className="btn btn-tool" data-card-widget="collapse" title="Collapse">
-                                <i className="bi bi-dash-lg"></i>
+                            <button type="button" onClick={showHideHandler} className="btn btn-tool" data-card-widget="collapse" title="Collapse">
+                            <i className={icon}></i>
                             </button>
-                            <button type="button" className="btn btn-tool" data-card-widget="remove" title="Remove">
-                                <i className="bi bi-plus-lg"></i>
+                            <button type="button" onClick={HideSection} className="btn btn-tool" data-card-widget="remove" title="Remove">
+                            <i className="bi bi-x-lg fs-5 fw-7"></i>
                             </button>
                         </div>
                     </div>
+                    {showHide && (
                     <div className="card-body p-0" style={{ overflowY: "hidden" }}>
                         <table className="table table-striped projects" id="tableget">
                             <thead>
@@ -119,9 +135,11 @@ function Levels() {
                             </tbody>
                         </table>
                     </div>
+                    )}
                 </div>
                 
             </section>
+            )}
         </div>
     );
 }
