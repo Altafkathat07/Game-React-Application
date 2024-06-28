@@ -3,7 +3,9 @@
   --bg-structure: #dadada;
   --second-bg-color: rgb(43 50 112);
   --second2-bg-color: rgb(43 50 112);
-  --notice-bg-color: #fffbe8;
+  --bg-box: #5586e4;
+  --bg-box2: #374992;
+  --notice-bg-color: #6a9bfc;
   --color-black: #000;
   --color-black2: #303133;
   --color-white: #fff;
@@ -187,7 +189,7 @@
     margin-bottom: 0.05333rem;
     height: 2rem;
     font-weight: 700;
-    color: #ff9801;
+    color: var(--color-white);
   }
   .daman-title.daman-line[data-v-a900648a1] {
     padding-left: 0.26667rem;
@@ -201,7 +203,7 @@
     transform: translateY(-50%);
     width: 0.08rem;
     height: 0.4rem;
-    background: #fe9701;
+    background: var(--color-white);
     border-radius: 0.05333rem;
   }
   .daman-title-left[data-v-a900648a1] {
@@ -229,17 +231,17 @@
     justify-content: center;
     width: 2.86667rem;
     height: 1rem;
-    border: 0.01333rem solid #fe9701;
+    border: 0.01333rem solid var(--color-white);
     font-size: 0.7333rem;
     font-weight: 400;
     line-height: 0.29333rem;
-    color: #fe9701;
+    color: var(--color-white);
     border-radius: 0.13333rem;
     white-space: nowrap;
     padding: 0 0.05333rem;
   }
   .daman-title .btn-all span[data-v-a900648a1] {
-    color: #fe9701;
+    color: var(--color-white);
     margin-right: 0.10667rem;
     margin-left: 0.05333rem;
   }
@@ -263,7 +265,7 @@
   width: 100%;
   height: 100%;
   border-radius: 0.26667rem;
-  background: linear-gradient(153deg, #fc672b 5.33%, #fd9501 93.42%);
+  background: linear-gradient(153deg, var(--bg-box2) 5.33%, var(--bg-box) 93.42%);
 }
 .daman__container .item .game-type[data-v-03087118] {
   position: absolute;
@@ -279,8 +281,8 @@
   display: -webkit-flex;
   display: flex;
   height: 0.9rem;
-  background: #666563;
-  color: #fff;
+  background: #4f4e88;
+  color: var(--color-white);
   width: 100%;
   border-radius: 0.13333rem;
   font-size: 0.6333rem;
@@ -315,7 +317,7 @@
   line-height: 0.88rem;
 }
 .daman__container .game-odd .win-p[data-v-03087118] {
-  background: #fe9701;
+  background: #504ff6;
   position: absolute;
   left: 0;
   height: 100%;

@@ -5,6 +5,9 @@
   --second2-bg-color: rgb(43 50 112);
   --notice-bg-color: #fffbe8;
   --color-black: #000;
+  --bg-box: #5586e4;
+  --bg-box2: #374992;
+  --bg-win: rgb(43, 50, 112);
   --color-black2: #303133;
   --color-white: #fff;
   --color-gray: #959595;
@@ -45,7 +48,7 @@
     margin-bottom: 0.13333rem;
     padding: 0.26667rem 0.24rem;
     border-radius: 0.13333rem;
-    background: #fd9501;
+    background: var(--bg-win);
   }
   .luckyWinners__container-wrapper__item-img[data-v-6a35701e] {
     margin-right: 0.17333rem;

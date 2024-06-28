@@ -36,7 +36,7 @@ function WinnigInfomationSection() {
   return (
     <>
       <div data-v-6a35701e="" className="luckyWinners__container" style={{width: "94%", marginLeft: "3%"}}>
-                <h1 data-v-6a35701e="" style={{position: "relative", marginBottom: "0.34667rem", paddingLeft: "0.26667rem", fontSize: "1rem", fontWeight: "700", color: "rgb(253, 149, 1)"}}>Winning information</h1>
+                <h1 data-v-6a35701e="" style={{position: "relative", marginBottom: "0.667rem", paddingLeft: "0.26667rem", fontSize: "1rem", fontWeight: "700", color: "#fff"}}>Winning information</h1>
         <div data-v-6a35701e="" className='luckyWinners__container-wrapper' style={{height: "15.66667rem", overflow: "hidden"}}>
         {duplicatedWinners.map((winner, index) => (
             <div data-v-6a35701e="" key={index} className="luckyWinners__container-wrapper__item " style={{
