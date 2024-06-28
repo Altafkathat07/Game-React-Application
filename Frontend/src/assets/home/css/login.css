@@ -1,16 +1,12 @@
 :root {
-  --main-bg-color: #fbfcfd; 
+  --main-bg-color: rgb(34 39 91);
   --bg-structure: #dadada;
-  --bg-login: #f7f8ff;
-  --second-bg-color: rgb(255, 152, 1);
-  --second2-bg-color: rgb(230, 116, 1);
+  --second-bg-color: rgb(43 50 112);
+  --second2-bg-color: rgb(43 50 112);
   --notice-bg-color: #fffbe8;
-  --color-black : #000; 
-  --color-black2 : #303133; 
-  --color-white : #fff; 
-  --color-org-: #ed6a0c;
-  --color-text-: #f58a01;
-  --color-darkred : #670001;
+  --color-black: #000;
+  --color-black2: #303133;
+  --color-white: #fff;
   --color-gray: #959595;
 }
 

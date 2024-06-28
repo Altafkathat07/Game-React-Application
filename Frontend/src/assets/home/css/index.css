@@ -1,14 +1,12 @@
 :root {
-  --main-bg-color: #fbfcfd;
+  --main-bg-color: rgb(34 39 91);
   --bg-structure: #dadada;
-  --second-bg-color: rgb(255, 152, 1);
-  --second2-bg-color: rgb(230, 116, 1);
+  --second-bg-color: rgb(43 50 112);
+  --second2-bg-color: rgb(43 50 112);
   --notice-bg-color: #fffbe8;
   --color-black: #000;
   --color-black2: #303133;
   --color-white: #fff;
-  --color-org-: #ed6a0c;
-  --color-darkred: #670001;
   --color-gray: #959595;
 }
 
@@ -1345,7 +1343,7 @@ img[data-v-7b9b9922] {
   font-size: 0.4rem;
   line-height: 0.96rem;
   padding-right: 0.08rem;
-  color: var(--color-org-);
+  color: var(--color-white);
 }
 .mian-from .item input[data-v-a0753f48] {
   border: none;
@@ -1376,7 +1374,7 @@ img[data-v-7b9b9922] {
 }
 .mian-from .txt[data-v-a0753f48] {
   font-size: 0.4rem;
-  color: var(--color-org-);
+  color: var(--color-white);
 }
 .mian-from .mian-btn .gradient[data-v-a0753f48] {
   width: 65%;
@@ -1392,7 +1390,7 @@ img[data-v-7b9b9922] {
   height: 0.53333rem;
   line-height: 0.53333rem;
   font-size: 0.4rem;
-  color: var(--color-org-);
+  color: var(--color-white);
 }
 .mian .AreaCode-box[data-v-a0753f48] {
   padding: 0.26667rem 0.4rem;
@@ -2789,10 +2787,10 @@ ul {
   align-items: center;
   height: 1.06667rem;
   padding: 0 0.42667rem;
-  color: var(--color-org-);
+  color: var(--color-white);
   font-size: 0.37333rem;
   line-height: 0.64rem;
-  background-color: var(--notice-bg-color);
+  background-color: var(--second-bg-color);
 }
 .van-notice-bar__left-icon,
 .van-notice-bar__right-icon {
@@ -7540,8 +7538,8 @@ ul {
   top: 23%;
   width: 90px;
   height: 100%;
-  color: var(--color-org-);
-  background-color: var(--notice-bg-color);
+  color: var(--color-white);
+  /* background-color: var(--notice-bg-color); */
   /* padding: 0.13333rem 0.26667rem; */
   font-size: 0.7rem;
 }
@@ -7560,7 +7558,7 @@ ul {
   display: flex;
   justify-content: space-around;
   align-items: center;
-  width: 90%;
+  width: 100%;
 }
 .home .notice-box .txt .sp .img[data-v-432e6ed0] {
   width: 0.16667rem;
@@ -7754,7 +7752,7 @@ ul {
 .home .gameList .item[data-v-432e6ed0] {
   width: 100%;
   color: #fff;
-  box-shadow: 0 0.02667rem 0.48rem 0 rgba(203, 202, 220, 0.56);
+  /* box-shadow: 0 0.02667rem 0.48rem 0 rgba(203, 202, 220, 0.56); */
   border-radius: 0.4rem;
 }
 .home .gameList .item.maskShow[data-v-432e6ed0] {
@@ -8859,7 +8857,7 @@ a:hover {
   font-size: 0.97333rem;
 }
 .profile div h4 {
-  color: var(--color-org-);
+  color: var(--color-white);
   margin-top: 20px;
   margin-bottom: 20px;
 }
@@ -9373,12 +9371,12 @@ div:where(.swal2-container) .swal2-html-container {
   margin-top: 2rem;
 }
 .inviteLink[data-v-7c8bbbf6] center {
-  color: var(--color-org-);
+  color: var(--color-white);
   font-size: 0.8rem;
 }
 .save[data-v-7c8bbbf4] {
   font-size: 0.8rem;
-  color: var(--color-org-);
+  color: var(--color-white);
 }
 
 .inviteLink[data-v-7c8bbbf6] center button {
@@ -10129,7 +10127,7 @@ color: #f18301;
   background: #fff;
   margin-top: 1.7rem;
   padding: 10px 20px;
-  color: var(--color-org-);
+  color: var(--color-white);
 }
 .banner[data-v-439e6f58]{
 margin-top: 1.7rem;

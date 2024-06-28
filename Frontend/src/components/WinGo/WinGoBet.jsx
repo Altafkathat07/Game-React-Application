@@ -200,7 +200,13 @@ function WinGoBet() {
       // Update its text content
       element_2.textContent = "4";
       
-          fetch("/api/webapi/GetUserInfo")
+          fetch("/api/webapi/GetUserInfo", {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                // Add any additional headers if required
+            } // Example: Replace with actual data
+        })
             .then((response) => response.json())
             .then((data) => {
               if (data.status === false) {
@@ -243,7 +249,13 @@ function WinGoBet() {
         audio2.play();
       }
       
-      fetch("/api/webapi/GetUserInfo")
+      fetch("/api/webapi/GetUserInfo", {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            // Add any additional headers if required
+        } // Example: Replace with actual data
+    })
         .then((response) => response.json())
         .then((data) => {
           $(".Loading").fadeOut(0);
@@ -260,7 +272,13 @@ function WinGoBet() {
         setTimeout(() => {
           $(this).removeClass("action block-click");
         }, 3000);
-        fetch("/api/webapi/GetUserInfo")
+        fetch("/api/webapi/GetUserInfo", {
+          method: 'POST',
+          headers: {
+              'Content-Type': 'application/json',
+              // Add any additional headers if required
+          } // Example: Replace with actual data
+      })
         .then((response) => response.json())
         .then((data) => {
           if (data.status === false) {

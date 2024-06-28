@@ -1,3 +1,14 @@
+:root {
+  --main-bg-color: rgb(34 39 91);
+  --bg-structure: #dadada;
+  --second-bg-color: rgb(43 50 112);
+  --second2-bg-color: rgb(43 50 112);
+  --notice-bg-color: #fffbe8;
+  --color-black: #000;
+  --color-black2: #303133;
+  --color-white: #fff;
+  --color-gray: #959595;
+}
  .content[data-v-42f27458] {
     padding: 0.26667rem;
     font-size: 0.9rem;

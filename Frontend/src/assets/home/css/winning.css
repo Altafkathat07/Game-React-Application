@@ -1,3 +1,14 @@
+:root {
+  --main-bg-color: rgb(34 39 91);
+  --bg-structure: #dadada;
+  --second-bg-color: rgb(43 50 112);
+  --second2-bg-color: rgb(43 50 112);
+  --notice-bg-color: #fffbe8;
+  --color-black: #000;
+  --color-black2: #303133;
+  --color-white: #fff;
+  --color-gray: #959595;
+}
 
 .luckyWinners__container > h1[data-v-6a35701e] {
     position: relative;
@@ -112,3 +123,15 @@
     color: #fff;
     font-size: 0.6rem;
   }
+  
+.luckyWinners__container-wrapper__item {
+  transition: transform 30s ease;
+}
+
+@keyframes scrollY {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-100%); }
+  100% { transform: translateY(0); }
+}
+
+  

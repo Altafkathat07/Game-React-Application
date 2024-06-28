@@ -7,6 +7,7 @@ import path from 'path';
 import fs from 'fs';
 import BadWordsFilter from "bad-words"
 import cron from "node-cron"
+import { assert } from "console";
 let timeNow = Date.now();
 
 
@@ -948,39 +949,301 @@ const storage = multer.diskStorage({
 // Initialize multer upload
 const upload = multer({ storage: storage }).array('banners');
 
+// const uploadBanner = async (req, res) => {
+//     try {
+//         upload(req, res, async function (err) {
+//             if (err instanceof multer.MulterError) {
+//                 // A multer error occurred
+//                 console.error('Multer error:', err);
+//                 return res.status(400).json({ message: 'File upload error' });
+//             } else if (err) {
+//                 // Other unexpected errors
+//                 console.error('Other error:', err);
+//                 return res.status(400).json({ message: 'Internal server error' });
+//             }
+            
+//             // Process uploaded files
+//             const banners = req.files;
+//             if (!banners || banners.length === 0) {
+//                 return res.status(400).json({ message: 'No files uploaded' });
+//             }
+            
+//             // Save files to database or perform other actions
+//             for (const banner of banners) {
+//                 const filename = banner.filename;
+//                 // Save file information to MySQL database
+//                 await connection.query('INSERT INTO banners (filename) VALUES (?)', [filename]);
+//             }
+            
+//             return res.status(200).json({ message: 'Files uploaded successfully', files: banners });
+//         });
+//     } catch (error) {
+//         console.error('Error uploading files:', error);
+//         return res.status(500).json({ message: 'Internal server error' });
+//     }
+// };
+// const uploadBanner = async (req, res) => {
+//     try {
+//       const files = req.files;
+//       console.log(files);
+  
+//       if (!files || files.length === 0) {
+//         return res.status(400).json({
+//           message: 'No files were uploaded.',
+//           status: false,
+//         });
+//       }
+  
+//       for (const file of files) {
+//         const { originalname } = file;
+
+  
+//         // Assuming connection is already established
+//         const sql = await connection.query('INSERT INTO banners (filename) VALUES (?)', [originalname]);
+  
+//         if (!sql) {
+//           return res.status(500).json({
+//             message: 'Failed: Something went wrong while uploading files.',
+//             status: false,
+//           });
+//         }
+//       }
+  
+//       return res.status(200).json({
+//         message: 'Files uploaded successfully.',
+//         status: true,
+//         files: files,
+//       });
+//     } catch (error) {
+//       console.error('Error uploading files:', error);
+//       return res.status(500).json({
+//         message: 'Failed to upload files. Please try again later.',
+//         status: false,
+//       });
+//     }
+//   };
+
+// const uploadBanner = async (req, res) => {
+//     try {
+//         const files = req.files;
+//         console.log(files);
+
+//         if (!files || files.length === 0) {
+//             return res.status(400).json({
+//                 message: 'No files were uploaded.',
+//                 status: false,
+//             });
+//         }
+
+//         // Extract filenames into an array
+//         const filenames = files.map(file => file.originalname);
+        
+//         // Combine filenames into a single string separated by comma (you can choose another delimiter)
+//         const combinedFilenames = filenames.join(',');
+
+//         // Assuming connection is already established
+//         const sql = await connection.query('INSERT INTO banners (filename) VALUES (?)', [combinedFilenames]);
+
+//         if (!sql) {
+//             return res.status(500).json({
+//                 message: 'Failed: Something went wrong while uploading files.',
+//                 status: false,
+//             });
+//         }
+
+//         return res.status(200).json({
+//             message: 'Files uploaded successfully.',
+//             status: true,
+//             files: files,
+//         });
+//     } catch (error) {
+//         console.error('Error uploading files:', error);
+//         return res.status(500).json({
+//             message: 'Failed to upload files. Please try again later.',
+//             status: false,
+//         });
+//     }
+// };
+
+// const uploadBanner = async (req, res) => {
+//     try {
+//       const files = req.files;
+//     //   console.log(files);
+  
+//       if (!files || files.length === 0) {
+//         return res.status(400).json({
+//           message: 'No files were uploaded.',
+//           status: false,
+//         });
+//       }
+  
+//       // Extract filenames from files array
+//       const filenames = files.map(file => file.originalname);
+  
+//       // 
+//         const rows = await connection.query(`SELECT * FROM banners LIMIT 1`)
+       
+
+//         if (rows.length === 0) {
+//           // Insert new row if no row exists
+//           const insertQuery = 'INSERT INTO banners (filename) VALUES ?';
+//           const insertValues = filenames.map(filename => [filename]);
+//           await connection.execute(insertQuery, [insertValues]);
+//               return res.status(200).json({
+//                 message: 'success :Banners Inserted successfully',
+//                 status: true,
+//               });
+//             } else {
+                
+//                 const bannerId = rows[0].id ?? 1;
+//                 const updateQuery = 'UPDATE banners SET filename = ? WHERE id = ?';
+          
+//                 // Execute update for each filename individually
+//                 for (const filename of filenames) {
+//                   await connection.execute(updateQuery, [filename, bannerId]);
+//                 }
+             
+//             return res.status(200).json({
+//               message: 'success : Files uploaded successfully',
+//               status: true,
+//               files: filenames,
+//             });
+//         }
+//     } catch (error) {
+//       console.error('Error uploading files:', error);
+//       return res.status(500).json({
+//         message: 'Failed to upload files. Please try again later.',
+//         status: false,
+//       });
+//     }
+//   };
+
 const uploadBanner = async (req, res) => {
+    
+    upload(req, res, async function (err) {
+        if (err instanceof multer.MulterError) {
+            // A multer error occurred
+            console.error('Multer error:', err);
+            return res.status(500).json({
+                message: 'Failed to upload files. Please try again later.',
+                status: false,
+            });
+        } else if (err) {
+            // An unknown error occurred
+            console.error('Unknown error:', err);
+            return res.status(500).json({
+                message: 'Failed to upload files. Please try again later.',
+                status: false,
+            });
+        }
+
     try {
-        upload(req, res, async function (err) {
-            if (err instanceof multer.MulterError) {
-                // A multer error occurred
-                console.error('Multer error:', err);
-                return res.status(400).json({ message: 'File upload error' });
-            } else if (err) {
-                // Other unexpected errors
-                console.error('Other error:', err);
-                return res.status(400).json({ message: 'Internal server error' });
-            }
-            
-            // Process uploaded files
-            const banners = req.files;
-            if (!banners || banners.length === 0) {
-                return res.status(400).json({ message: 'No files uploaded' });
-            }
-            
-            // Save files to database or perform other actions
-            for (const banner of banners) {
-                const filename = banner.filename;
-                // Save file information to MySQL database
-                await connection.query('INSERT INTO banners (filename) VALUES (?)', [filename]);
-            }
-            
-            return res.status(200).json({ message: 'Files uploaded successfully', files: banners });
+        const files = req.files;
+        // console.log(files);
+
+        if (!files || files.length === 0) {
+            return res.status(400).json({
+                message: 'No files were uploaded.',
+                status: false,
+            });
+        }
+        
+
+        // Extract filenames into an array
+        const filenames = files.map(file => file.originalname);
+        
+        // Combine filenames into a single string separated by comma (you can choose another delimiter)
+        const combinedFilenames = filenames.join(',');
+
+        // Check if there are existing records in the banners table
+        const existingData = await connection.query('SELECT * FROM banners LIMIT 1');
+        console.log(existingData[0][0].id)
+        let sql;
+        
+        if (existingData.length === 0) {
+            // If no records exist, insert a new row
+            sql = await connection.query('INSERT INTO banners (filename) VALUES (?)', [combinedFilenames]);
+        } else {
+            // If records exist, update the existing row
+            sql = await connection.query('UPDATE banners SET filename = ? WHERE id = ?', [combinedFilenames, existingData[0][0].id]);
+        }
+
+        if (!sql) {
+            return res.status(500).json({
+                message: 'Failed: Something went wrong while uploading files.',
+                status: false,
+            });
+        }
+
+        return res.status(200).json({
+            message: 'success : Files uploaded successfully.',
+            status: true,
+            files: files,
         });
     } catch (error) {
         console.error('Error uploading files:', error);
-        return res.status(500).json({ message: 'Internal server error' });
+        return res.status(500).json({
+            message: 'Failed to upload files. Please try again later.',
+            status: false,
+        });
     }
+}) 
 };
+// const uploadBanner = async (req, res) => {
+//     try {
+//         const files = req.files;
+//         // console.log(files);
+
+//         if (!files || files.length === 0) {
+//             return res.status(400).json({
+//                 message: 'No files were uploaded.',
+//                 status: false,
+//             });
+//         }
+        
+
+//         // Extract filenames into an array
+//         const filenames = files.map(file => file.originalname);
+        
+//         // Combine filenames into a single string separated by comma (you can choose another delimiter)
+//         const combinedFilenames = filenames.join(',');
+
+//         // Check if there are existing records in the banners table
+//         const existingData = await connection.query('SELECT * FROM banners LIMIT 1');
+//         console.log(existingData[0][0].id)
+//         let sql;
+        
+//         if (existingData.length === 0) {
+//             // If no records exist, insert a new row
+//             sql = await connection.query('INSERT INTO banners (filename) VALUES (?)', [combinedFilenames]);
+//         } else {
+//             // If records exist, update the existing row
+//             sql = await connection.query('UPDATE banners SET filename = ? WHERE id = ?', [combinedFilenames, existingData[0][0].id]);
+//         }
+
+//         if (!sql) {
+//             return res.status(500).json({
+//                 message: 'Failed: Something went wrong while uploading files.',
+//                 status: false,
+//             });
+//         }
+
+//         return res.status(200).json({
+//             message: 'success : Files uploaded successfully.',
+//             status: true,
+//             files: files,
+//         });
+//     } catch (error) {
+//         console.error('Error uploading files:', error);
+//         return res.status(500).json({
+//             message: 'Failed to upload files. Please try again later.',
+//             status: false,
+//         });
+//     }
+// };
+
+  
+  
 
 
 

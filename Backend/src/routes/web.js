@@ -20,12 +20,12 @@ const initWebRouter = (app) => {
   );  
   router.post(
     "/api/webapi/total_ref",
-    // middlewareController,
+    middlewareController,
     userController.TotalReferrals
   );  
   router.get(
     "/api/webapi/total_users",
-    // middlewareController,
+    middlewareController,
     userController.TotalUser
   );
 
@@ -204,7 +204,7 @@ const initWebRouter = (app) => {
   );  
   router.get(
     "/api/webapi/admin/levels-data",
-    // middlewareController,
+    middlewareController,
     adminController.getLevelInfo
   );
   router.post(

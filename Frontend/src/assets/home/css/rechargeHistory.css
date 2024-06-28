@@ -1,4 +1,14 @@
-
+:root {
+    --main-bg-color: rgb(34 39 91);
+    --bg-structure: #dadada;
+    --second-bg-color: rgb(43 50 112);
+    --second2-bg-color: rgb(43 50 112);
+    --notice-bg-color: #fffbe8;
+    --color-black: #000;
+    --color-black2: #303133;
+    --color-white: #fff;
+    --color-gray: #959595;
+  }
  .box[data-v-3966082f] {
     padding: .4rem
 }
