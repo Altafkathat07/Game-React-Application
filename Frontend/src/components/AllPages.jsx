@@ -61,12 +61,13 @@ function AllPages() {
           <Route path="/" exact element={<Main />} />
           <Route path="/login" element={<LoginMain />} />
           <Route path="/register" element={<RegisterMain />} />
+          <Route path="/forgot" element={<ForgotMain />} />
+          <Route path="/support" element={<SupportMain />} />
 
           {/* Private Routes - Require Authentication */}
           {isAuth && (
             <>
               <Route path="/main" element={<ProfileMain />} />
-              <Route path="/forgot" element={<ForgotMain />} />
               <Route path="/promotion" element={<PromotionMain />} />
               <Route path="/promotion/myteam" element={<MyTeamPage />} />
               <Route path="/promotion/history" element={<HistoryPage />} />
@@ -74,7 +75,6 @@ function AllPages() {
               <Route path="/about-us" element={<AboutMain />} />
               <Route path="/privacy-agreement" element={<PrivacyMain />} />
               <Route path="/risk-disclosure-agreement" element={<RiskMain />} />
-              <Route path="/support" element={<SupportMain />} />
               <Route path="/beginner-guide" element={<GuideMain />} />
               <Route path="/wallet" element={<WalletMain />} />
               <Route path="/withdraw" element={<WalletProfileMain />} />

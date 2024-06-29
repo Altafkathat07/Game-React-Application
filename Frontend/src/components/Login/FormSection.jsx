@@ -1,7 +1,7 @@
 import { useState } from 'react'
 // import axios from 'axios'
-import phoneImg from '../../assets/images/cellphone.png'
-import passImg from '../../assets/images/lock.png'
+import phoneImg from '../../assets/images/cellphone-35529171.png'
+import passImg from '../../assets/images/password-12e0a3fc.png'
 import eye from '../../assets/images/eye.png'
 import { Link } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom';
@@ -151,7 +151,7 @@ function FormSection() {
                                                 <span data-v-6f85c91a="">+263</span> Zimbabwe </div>
                                 </div> */}
                             </div>
-                            <input data-v-93f53084="" type="text" name="username" placeholder="Please enter the phone number" autoComplete="on" required  value={formData.username}
+                            <input data-v-93f53084="" type="number" name="username" placeholder="Please enter the phone number" autoComplete="on" required  value={formData.username}
                                     onChange={handleChange}
                                     />
                         </div>
@@ -185,16 +185,18 @@ function FormSection() {
                        <Link to="/register"> <button data-v-0ce8d964="" className="register">Register</button> </Link>
                     </div>
                     <div data-v-0ce8d964="" className="signIn_footer">
-        
-                        <div data-v-0ce8d964="" className="forgetcon" >
-                            <div data-v-0ce8d964="" className="forgetbg"></div>
-                            <div data-v-0ce8d964="" className="font24">Forgot password</div>
-                        </div>
-            
-                        <div data-v-0ce8d964="" className="customcon" >
-                            <div data-v-0ce8d964="" className="custombg"></div>
-                            <div data-v-0ce8d964="" className="font24">Customer Service</div>
-                        </div>
+                       <Link to="/forgot" style={{width: "50%"}}>
+                            <div data-v-0ce8d964="" className="forgetcon" >
+                                <div data-v-0ce8d964="" className="forgetbg"></div>
+                                <div data-v-0ce8d964="" className="font24">Forgot password</div>
+                            </div>
+                        </Link>
+                        <Link to="/support" style={{width: "50%"}}>
+                            <div data-v-0ce8d964="" className="customcon" >
+                                <div data-v-0ce8d964="" className="custombg"></div>
+                                <div data-v-0ce8d964="" className="font24">Customer Service</div>
+                            </div>
+                        </Link>
         
                     </div>
         

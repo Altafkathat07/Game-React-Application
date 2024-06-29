@@ -1,8 +1,8 @@
 import { useState } from 'react'
-import phoneImg from '../../assets/images/cellphone.png'
-import passImg from '../../assets/images/lock.png'
+import phoneImg from '../../assets/images/cellphone-35529171.png'
+import passImg from '../../assets/images/password-12e0a3fc.png'
 import eye from '../../assets/images/eye.png'
-import inviteImg from '../../assets/images/invitecode.png'
+import inviteImg from '../../assets/images/invitation-5285cf0f.png'
 import { Link } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom';
 import { showAlert } from '../AlertMassWrapper'
@@ -187,19 +187,7 @@ function RegisterForm() {
                         <button type='submit' data-v-0ce8d964="" className="active">Register</button>
                       <Link to="/login"><button data-v-0ce8d964="" className="register"> <span> I have an account </span> Login</button></Link>
                     </div>
-                    <div data-v-0ce8d964="" className="signIn_footer">
-        
-                        <div data-v-0ce8d964="" className="forgetcon" >
-                            <div data-v-0ce8d964="" className="forgetbg"></div>
-                            <div data-v-0ce8d964="" className="font24">Forgot password</div>
-                        </div>
-            
-                        <div data-v-0ce8d964="" className="customcon" >
-                            <div data-v-0ce8d964="" className="custombg"></div>
-                            <div data-v-0ce8d964="" className="font24">Customer Service</div>
-                        </div>
-        
-                    </div>
+                    
         
                     {/* <div data-v-b9e16d43="" data-v-0ce8d964="" className="dialog inactive">
                         <div data-v-b9e16d43="" className="dialog__container" role="dialog" tabIndex="0">

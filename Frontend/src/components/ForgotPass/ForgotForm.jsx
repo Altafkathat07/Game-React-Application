@@ -1,6 +1,6 @@
-import phoneImg from '../../assets/images/phone.png'
-import verifie from '../../assets/images/verifie.png'
-import InviteImg from '../../assets/images/invite.png'
+import phoneImg from '../../assets/images/cellphone-35529171.png'
+import verifie from '../../assets/images/cellphone-35529171.png'
+import InviteImg from '../../assets/images/password-12e0a3fc.png'
 
 function ForgotForm() {
   return (
@@ -25,13 +25,13 @@ function ForgotForm() {
                         <span data-v-51f72da1=""
                             className="c-row c-row-middle-center">
                             <img data-v-51f72da1="" height="22px" width="15px" src={verifie} className="mobile" /></span>
-                            <input data-v-51f72da1="" type="number" id="otp" placeholder="Enter OTP" />
+                            <input data-v-51f72da1="" type="number" id="otp" placeholder="Enter OTP" style={{paddingLeft: "10px"}} />
                             <button data-v-51f72da1="" className="otp">OTP</button>
                         </div>
                     <div data-v-51f72da1="" className="tip"> Did not receive OTP code? Please contact Customer Service</div>
                     <div data-v-51f72da1="" className="item c-row c-row-center c-row-middle m-b-30">
                         <span data-v-51f72da1="" className="c-row c-row-middle-center">
-                            <img data-v-51f72da1="" height="20px" width="18px" src={InviteImg} className="password" />
+                            <img data-v-51f72da1="" height="20px" width="18px" src={InviteImg} className="password"  />
                         </span>
                         <input data-v-d8986e5e="" id="password" data-v-51f72da1="" placeholder="Enter New Password" className="pw-input" />
                     </div>
