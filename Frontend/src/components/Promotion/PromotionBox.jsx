@@ -113,7 +113,7 @@ const text = `http://localhost:5173/register?r_code=${user.invite}`
                             </div>
                         </div>
                         <div data-v-7c8bbbf6="" className="inviteLink"><center >Invite Link:</center>
-                        <input type="text" value={`http://localhost:5173/register?r_code=${user.invite}`} readOnly  style={{fontSize: "0.8rem", color: "#f58a01", padding: "5px 15px", borderRadius: "5px", border: "2px solid #f58a01", width: "100%", background: "transparent", textAlign: "center" }}/>
+                        <input type="text" value={`http://localhost:5173/register?r_code=${user.invite}`} readOnly  style={{fontSize: "0.8rem", color: "#fff", padding: "5px 15px", borderRadius: "5px", border: "2px solid #fff", width: "100%", background: "transparent", textAlign: "center" }}/>
                          {/* <span id='invite_code'>{`http://localhost:5173/register?r_code=${user.invite}`}</span> */}
                          <center><button onClick={() => copuInviteLink(`http://localhost:5173/register?r_code=${user.invite}`)} >Copy</button></center></div>
                     </div>

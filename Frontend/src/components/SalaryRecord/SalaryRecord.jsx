@@ -33,7 +33,7 @@ function SalaryRecord() {
       <div id="app">
 		<div data-v-432e6ed0="" className="home mian game" id="application">
             <Header />
-            <div className="card">
+            <div className="card" style={{background: "rgb(34 39 91)"}}>
                 <div data-v-432e6eddd="" className="card-body cardTBody">
                   <table className="table" id="tableget">
                     <thead>

@@ -163,13 +163,14 @@ function RechargeContent() {
                                 <div data-v-67caa467="" className="list m-t-10 c-row c-row-between c-flex-warp gap-2 my-3">
 
                                 {[300, 500, 1000, 5000, 10000, 20000].map((value) => (
-                                    <div style={{width: "30%"}}
+                                    <div style={{width: "30%", borderRadius: "5px",  border: amount === value ? "2px solid #2979F2" : "none",
+                                        color: amount === value ? "#2979F2" : "#000"}}
                                         key={value}
                                         data-money={value}
                                         className={`li ${amount === value ? 'action' : ''}`}
                                         onClick={() => amountHandler(value)}
                                     >
-                                        <div data-v-67caa467="" className="number" style={{ width: "100%", color:"#fe9601", fontSize:"1rem", boxShadow: "0px 0px 5px #eee8e8", display: "flex", justifyContent: "center", alignItems: "center", height: "50px",}}>{value}</div>
+                                        <div data-v-67caa467="" className="number" style={{ width: "100%", borderRadius: "5px",  fontSize:"1rem", boxShadow: "0px 0px 10px #d8d4d4", display: "flex", justifyContent: "center", alignItems: "center", height: "50px",}}>{value}</div>
                                     </div>
                                 ))}
 

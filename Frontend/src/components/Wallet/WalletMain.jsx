@@ -10,7 +10,7 @@ function WalletMain() {
     
   return (
     <>
-      <div data-v-8cd483ca="" className="home mian game" style={{background:"#fca552"}}>
+      <div data-v-8cd483ca="" className="home mian game" style={{background:"#22275b"}}>
             <div data-v-8cd483ca="" className="menu-box">
               <Header />
               <WalletContent />

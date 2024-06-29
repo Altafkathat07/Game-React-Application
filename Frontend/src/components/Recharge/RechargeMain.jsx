@@ -9,7 +9,7 @@ import RechargeContent from './RechargeContent'
 function RechargeMain() {
   return (
     <>
-      <div data-v-8cd483ca="" className="home mian game" style={{background:"#fca552"}}>
+      <div data-v-8cd483ca="" className="home mian game" style={{background:"#fff"}}>
             <div data-v-8cd483ca="" className="menu-box">
               <Header />
               <RechargeContent />

@@ -1,15 +1,15 @@
-import about from "../../assets/images/aboutBg.webp";
+import about from "../../assets/images/nbg_about.webp";
 import { Link } from "react-router-dom";
 
 function AboutContent() {
   return (
     <>
       <div data-v-439e6f58="" className="banner">
-                <img data-v-439e6f58="" width="100%" height="210px" src={about} className="" />
+                <img data-v-439e6f58="" width="100%" height="230px" src={about} className="" />
                 <div data-v-439e6f58="" className="com">
                   
                   
-                    <div data-v-439e6f58="" className="number">V2</div>
+                    {/* <div data-v-439e6f58="" className="number">V2</div> */}
                 </div>
             </div>
             <div data-v-439e6f58="" className="list m-t-20">

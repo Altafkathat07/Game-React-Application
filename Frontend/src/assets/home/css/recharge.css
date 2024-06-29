@@ -3,11 +3,20 @@
     --bg-structure: #dadada;
     --second-bg-color: rgb(43 50 112);
     --second2-bg-color: rgb(43 50 112);
-    --notice-bg-color: #fffbe8;
+    --notice-bg-color: var(--color-white)be8;
     --color-black: #000;
     --color-black2: #303133;
-    --color-white: #fff;
+    --color-white: var(--color-white);
     --color-gray: #959595;
+    --bg-log-box: #4675D2;
+    --bg-log-box2: #374992;
+    --btn-bg: #2AAAF3;
+    --btn-bg2: #2979F2;
+    --bg-input: #323A7C;
+    --bg-wallet-box : #2b3270;
+    --text2-color: rgb(231, 249, 24);
+    --bg-recharge: #7683f6;
+    --bg-recharge2: #394cf5;
   }
 
  .selectBox[data-v-67caa467] {
@@ -17,11 +26,11 @@
  .selectBox .colorBox[data-v-67caa467] {
     height: 2.06667rem;
     width: 100%;
-    background-image: linear-gradient(90deg, #fe9601, #fe9601)
+    background-image: linear-gradient(90deg, var(--bg-recharge2), var(--bg-recharge))
 }
 
  .selectBox .txtBox[data-v-67caa467] {
-    background-color: #fff;
+    background-color: var(--color-white);
     z-index: 99;
     margin-top: -.8rem;
     border-radius: .26667rem .26667rem 0 0;
@@ -30,12 +39,12 @@
 }
 
  .selectBox .txtBox .txt[data-v-67caa467] {
-    color: #333;
+    color: var(--color-black2);
     font-size: 0.967rem
 }
 
  .selectBox .txtBox .money[data-v-67caa467] {
-    color: #090909;
+    color: var(--color-black);
     font-weight: 600;
     font-size: 1.18667rem
 }
@@ -71,7 +80,7 @@
  .selectBox .recharge .rechargeType[data-v-67caa467] {
     padding: .26667rem .4rem .13333rem;
     height: 2rem;
-    background-color: #fff
+    background-color: var(--color-white)
 }
 
  .selectBox .recharge .rechargeType .customerBox[data-v-67caa467] {
@@ -207,7 +216,10 @@
 }
 
  .selectBox .pay-box[data-v-67caa467] {
-    padding: 0 .53333rem
+    padding: 0 .53333rem;
+    background: var(--color-white);
+   
+    
 }
 
  .selectBox .pay-box .title[data-v-67caa467] {
@@ -457,7 +469,9 @@ left: 20px;
  .selectBox .pay-box .box[data-v-67caa467] {
     height: 2.6667rem;
     border-bottom: .02667rem solid #eee;
-    overflow: hidden
+    overflow: hidden;
+    box-shadow: 0px 0px 10px #d8d4d4;
+    margin-top: 10px;
 }
 
  .selectBox .pay-box .up-img[data-v-67caa467] {
@@ -482,7 +496,7 @@ left: 20px;
  .selectBox .pay-box .des[data-v-67caa467] {
     margin-bottom: .6667rem;
     font-size: .667rem;
-    color: #fe9601;
+    color: var(--btn-bg2);
     line-height: 1rem
 }
 
@@ -503,8 +517,8 @@ left: 20px;
 
  .selectBox .pay-box .btn-list .item .next-btn[data-v-67caa467] {
     height: 2.06667rem;
-    background: #fe9701;
-    color: white;
+    background: var(--btn-bg2);
+    color: var(--color-white);
     font-size: 1rem;
     font-weight: 600;
 }

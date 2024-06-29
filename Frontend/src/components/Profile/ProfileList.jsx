@@ -1,10 +1,10 @@
 import { useState, useEffect, useContext } from 'react'
 import axios from 'axios'
-import support from '../../assets/images/supicon.webp'
-import secure from '../../assets/images/securityicon.webp'
-import guide from '../../assets/images/guideicon.webp'
-import about from '../../assets/images/abouticon.webp'
-import redeem from '../../assets/images/redeem.webp'
+// import support from '../../assets/images/supicon.webp'
+// import secure from '../../assets/images/securityicon.webp'
+// import guide from '../../assets/images/guideicon.webp'
+// import about from '../../assets/images/abouticon.webp'
+// import redeem from '../../assets/images/redeem.webp'
 import { useNavigate } from 'react-router-dom';
 import {Link} from 'react-router-dom'
 import AuthContext from '../Auth/AuthContext'
@@ -107,7 +107,9 @@ function ProfileList() {
                     { level === 1 &&(
                        <Link to="/admin"> <div data-v-21f3500a=""  className="item c-row c-row-between" >
                             <div data-v-21f3500a="" className="c-row c-row-middle">
-                                <img data-v-21f3500a="" width="24px" height="24px" src={secure} className="img" />
+                            <i className="bi bi-person-circle mr-2"></i>
+                            
+                                {/* <img data-v-21f3500a="" width="24px" height="24px" src={secure} className="img" /> */}
                                 <span data-v-21f3500a="" className="name">Administrator Area</span>
                             </div>
                             <div data-v-21f3500a="" className="c-row c-row-middle">
@@ -121,8 +123,11 @@ function ProfileList() {
                     )}
                     <Link to="/reset-password">
                     <div data-v-21f3500a="" className="item c-row c-row-between" >
-                        <div data-v-21f3500a="" className="c-row c-row-middle"><img data-v-21f3500a="" width="24px"
-                                height="24px" src={secure} className="img" /><span data-v-21f3500a="" className="name">Security and Safety</span></div>
+                        <div data-v-21f3500a="" className="c-row c-row-middle">
+                            {/* <img data-v-21f3500a="" width="24px"
+                                height="24px" src={secure} className="img" /> */}
+                                <i className="bi bi-key-fill mr-2"></i>
+                                <span data-v-21f3500a="" className="name">Security and Safety</span></div>
                         <div data-v-21f3500a="" className="c-row c-row-middle"><i data-v-21f3500a=""
                                 className="van-icon van-icon-arrow" >
                                 
@@ -131,8 +136,11 @@ function ProfileList() {
                     </Link>
                     <Link to="/redeem-code">
                     <div data-v-21f3500a="" className="item c-row c-row-between" >
-                        <div data-v-21f3500a="" className="c-row c-row-middle"><img data-v-21f3500a="" width="24px"
-                                height="24px" src={redeem} className="img" /><span data-v-21f3500a="" className="name">Redeem Code</span></div>
+                        <div data-v-21f3500a="" className="c-row c-row-middle">
+                        <i className="bi bi-gift-fill mr-2"></i>
+                            {/* <img data-v-21f3500a="" width="24px"
+                                height="24px" src={redeem} className="img" /> */}
+                                <span data-v-21f3500a="" className="name">Redeem Code</span></div>
                         <div data-v-21f3500a="" className="c-row c-row-middle"><i data-v-21f3500a=""
                                 className="van-icon van-icon-arrow" >
                                 
@@ -141,8 +149,11 @@ function ProfileList() {
                     </Link>
                     <Link to="/beginner-guide">
                     <div data-v-21f3500a="" className="item c-row c-row-between" >
-                        <div data-v-21f3500a="" className="c-row c-row-middle"><img data-v-21f3500a="" width="24px"
-                                height="24px" src={guide} className="img" /><span data-v-21f3500a=""
+                        <div data-v-21f3500a="" className="c-row c-row-middle">
+                            {/* <img data-v-21f3500a="" width="24px"
+                                height="24px" src={guide} className="img" /> */}
+                                <i className="bi bi-question-circle-fill mr-2"></i>
+                                <span data-v-21f3500a=""
                                 className="name">Guide for beginners</span>
                         </div>
                         <div data-v-21f3500a="" className="c-row c-row-middle"><i data-v-21f3500a=""
@@ -153,8 +164,11 @@ function ProfileList() {
                     </Link>
                     <Link to="/about-us">
                     <div data-v-21f3500a="" className="item c-row c-row-between" >
-                        <div data-v-21f3500a="" className="c-row c-row-middle"><img data-v-21f3500a="" width="24px"
-                                height="24px" src={about} className="img" /><span data-v-21f3500a="" className="name">About Us</span></div>
+                        <div data-v-21f3500a="" className="c-row c-row-middle">
+                            {/* <img data-v-21f3500a="" width="24px"
+                                height="24px" src={about} className="img" /> */}
+                                <i className="bi bi-info-circle-fill mr-2"></i>
+                                <span data-v-21f3500a="" className="name">About Us</span></div>
                         <div data-v-21f3500a="" className="c-row c-row-middle">
                             <i data-v-21f3500a=""
                                 className="van-icon van-icon-arrow" >
@@ -164,7 +178,7 @@ function ProfileList() {
                     </Link>                    
                     <Link to="/salary-record">
                     <div data-v-21f3500a="" className="item c-row c-row-between" >
-                        <div data-v-21f3500a="" className="c-row c-row-middle"><i className="bi bi-cash mr-2"></i><span data-v-21f3500a="" className="name">Salary Record</span></div>
+                        <div data-v-21f3500a="" className="c-row c-row-middle"><i className="bi bi-percent mr-2"></i><span data-v-21f3500a="" className="name">Salary Record</span></div>
                         <div data-v-21f3500a="" className="c-row c-row-middle">
                             <i data-v-21f3500a=""
                                 className="van-icon van-icon-arrow" >
@@ -175,8 +189,11 @@ function ProfileList() {
                     </Link>
                     <Link to="/support">
                     <div data-v-21f3500a="" className="item c-row c-row-between" >
-                        <div data-v-21f3500a="" className="c-row c-row-middle"><img data-v-21f3500a="" width="24px"
-                                height="24px" src={support} className="img" /><span data-v-21f3500a=""
+                        <div data-v-21f3500a="" className="c-row c-row-middle">
+                            {/* <img data-v-21f3500a="" width="24px"
+                                height="24px" src={support} className="img" /> */}
+                                <i className="bi bi-headset mr-2"></i>
+                                <span data-v-21f3500a=""
                                 className="name">Customer Support Online 24/7</span></div>
                         <div data-v-21f3500a="" className="c-row c-row-middle">
                             <i data-v-21f3500a=""
@@ -186,11 +203,11 @@ function ProfileList() {
                     </div>
                     </Link>
                 </div>
-                <div data-v-8cd483ca="" className="logout-btn m-t-40" onClick={handleLogoutClick}>
+                <div data-v-8cd483ca="" className="logout-btn m-t-40 mb-4" onClick={handleLogoutClick}>
                 <div data-v-8cd483ca="" className="gradient">
                     <button data-v-8cd483ca=""
                         className="logout van-button van-button--default van-button--normal van-button--block van-button--round"
-                        style={{background: "#f18301", color: "#fff",display: "flex",justifyContent: "center",alignItems: "center",borderRadius: "1rem",textAlign: "center",width: "100%",height: "1.8rem",lineHeight: "0.8rem" }}>
+                        style={{background: "#2AAAF3", color: "#fff",display: "flex",justifyContent: "center",alignItems: "center",borderRadius: "1rem",textAlign: "center",width: "100%",height: "2rem",lineHeight: "1rem" }}>
                         <div data-v-8cd483ca="" className="van-button__content">
                             <span data-v-8cd483ca="" className="van-button__text">
                                 <span data-v-8cd483ca="" style={{fontSize: "1rem"}}>Logout</span>

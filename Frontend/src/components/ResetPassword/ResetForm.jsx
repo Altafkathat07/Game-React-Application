@@ -97,7 +97,7 @@ function ResetForm() {
                         fontSize: '1rem',
                         height: '40px',
                         marginLeft: '20%',
-                        background: '#fd9501',
+                        background: 'linear-gradient(180deg, rgb(42, 170, 243) 0%, rgb(41, 121, 242) 100%)',
                         border: 'none',
                         borderRadius: '30px',
                     }}>

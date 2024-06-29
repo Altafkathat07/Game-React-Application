@@ -9,7 +9,7 @@ function AboutMain() {
   return (
     <>
     <div id="app">
-		<div data-v-432e6ed0="" className="home mian game" id="application">
+		<div data-v-432e6ed0="" className="home mian game" id="application" style={{background: "#fff"}}>
             <Header />
             <AboutContent />
             <Footer />

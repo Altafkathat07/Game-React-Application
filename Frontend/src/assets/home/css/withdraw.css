@@ -3,16 +3,21 @@
     --bg-structure: #dadada;
     --second-bg-color: rgb(43 50 112);
     --second2-bg-color: rgb(43 50 112);
-    --notice-bg-color: #fffbe8;
+    --notice-bg-color: var(--color-white)be8;
     --color-black: #000;
     --color-black2: #303133;
-    --color-white: #fff;
+    --color-white: var(--color-white);
     --color-gray: #959595;
+    --bg-log-box: #4675D2;
+    --bg-log-box2: #374992;
+    --btn-bg: #2AAAF3;
+    --btn-bg2: #2979F2;
+    --bg-input: #323A7C;
   }
 
          .selectBox[data-v-25d9c352] {
             width: 100%;
-            background: #ff9801;
+            background: var(--bg-log-box2);
         }
 
          .selectBox .colorBox[data-v-25d9c352] {
@@ -23,7 +28,7 @@
         }
 
          .selectBox .txtBox[data-v-25d9c352] {
-            background-color: #ff9801;
+            background-color: var(--bg-log-box2);
             z-index: 99;
             height: 3.33333rem;
             margin-top: -.8rem;
@@ -92,8 +97,8 @@
 
          .selectBox .tab[data-v-25d9c352] {
             padding: .53333rem .4rem 0;
-            border-top: .02667rem solid #ff901e;
-            background: #ff9801;
+            border-top: .02667rem solid var(--bg-input);
+            background: var(--bg-log-box2);
         }
 
          .selectBox .tab .box[data-v-25d9c352] {
@@ -169,10 +174,10 @@
             height: 2.06667rem;
             line-height: 2.06667rem;
             color: #fff;
-            border-bottom: .02667rem solid #ffbb00;
+            border-bottom: .02667rem solid var(--bg-input);
             font-size: 1.266667rem;
             font-weight: 600;
-            background: #ff9801;
+            background: var(--bg-log-box2);
         }
 
          .selectBox .number-box .symbol.action[data-v-25d9c352] {
@@ -209,7 +214,7 @@
         }
 
          .selectBox .bankBox .box[data-v-25d9c352] {
-            background: #ff9801;
+            background: var(--bg-log-box2);
             border: .05333rem solid #fff;
             box-shadow: 0  0 10px #eebc70;
             border-radius: .13333rem
@@ -228,7 +233,7 @@
 
          .selectBox .conBox[data-v-25d9c352] {
             padding: 0 .53333rem;
-            background: #ff9801;
+            background: var(--bg-log-box2);
             padding-bottom: 0.2rem;
         }
 
@@ -285,7 +290,7 @@
             padding: 0 .26667rem;
             background: #f2ecec;
             border-radius: .26667rem;
-            color: #ff9801;
+            color: var(--bg-log-box2);
             font-size: 1.5rem;
             font-weight: 600;
         }
@@ -304,7 +309,7 @@
 
          .selectBox .requiredBox[data-v-25d9c352] {
             padding: 0 .53333rem;
-            background: #ff9801;
+            background: var(--bg-log-box2);
         }
 
          .selectBox .requiredBox .box[data-v-25d9c352] {
@@ -313,11 +318,11 @@
             line-height: 1.96rem;
             margin: 0.4rem 0 0.8rem;
             background: #fff;
-            color: #ff9801;
+            color: var(--bg-log-box2);
             font-size: 1rem;
             border-radius: 0.26667rem;
             outline: none;
-            border: 0.05333rem solid #ff9801;
+            border: 0.05333rem solid var(--bg-log-box2);
             overflow: hidden
         }
 
@@ -352,9 +357,9 @@
             line-height: .93333rem;
             background-color: #ffffff;
             margin-top: 9px;
-            color: #fd9601;
+            color: var(--btn-bg2);
             border-radius: 2px;
-            border-bottom: .02667rem solid #e87801;
+            border-bottom: .02667rem solid var(--bg-input);
         }
         .van-ellipsis[data-v-25d9c3524]{
             font-size: 1.4rem;
