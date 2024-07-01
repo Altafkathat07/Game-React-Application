@@ -5,8 +5,8 @@ function GameContent() {
     <>
       <div data-v-42f27458="" className="content">
     <div data-v-42f27458="" className="page-box">
-      <div data-v-42f274589="" className="last-round flex-row-between flex-center "><span data-v-42f27458=""> Result </span>
-        <div data-v-42f27458="" className="round-num">
+      <div data-v-42f274589="" className="last-round flex-row-between flex-center " style={{borderBottom: "1px solid white", paddingBottom: "10px"}}><span data-v-42f27458=""> Result </span>
+        <div data-v-42f27458="" className="round-num" >
           <div data-v-42f27458="" className="num-scroll-box">
             <div data-v-42f27458="" className="fade-item">0</div>
           </div>
@@ -43,7 +43,7 @@ function GameContent() {
           </div>
         </div>
       </div>
-      <div data-v-42f27458="" className="flex-row-between period-title mt-4"><span data-v-42f27458=""> Period</span><span
+      <div data-v-42f27458="" className="flex-row-between period-title mt-3" ><span data-v-42f27458=""> Period</span><span
           data-v-42f27458="">Time remaining</span></div>
       <div data-v-42f27458="" className="flex-row-between flex-center period-span mt-2"><span
           data-v-42f27458="" id="period">0</span>
@@ -55,7 +55,7 @@ function GameContent() {
         </div>
       </div>
     </div>
-    <div data-v-42f27458="">
+    <div data-v-42f27458="" style={{background: "#323a7c"}}>
       <div data-v-42f27458="" className="slot-inner">
         <div data-v-42f27458="" className="d5-slot-box">
           <div data-v-42f27458="" className="slot-column">

@@ -44,6 +44,14 @@ function GameContent() {
                     <span data-v-03b808c2="" className="item m-r-20">0</span>
                     <span data-v-03b808c2="" className="item m-l-20">0</span>
                 </div>
+                <div data-v-03b808c2="" className="bet-tab mt-2">
+                <ul data-v-03b808c2="" className="c-row c-row-between">
+                    <li data-v-03b808c2=""  className="item action block-click">Total</li>
+                    <li data-v-03b808c2=""  className=" item">2 Same</li>
+                    <li data-v-03b808c2=""  className=" item">3 Same</li>
+                    <li data-v-03b808c2=""  className=" item">Different</li>
+                </ul>
+            </div>
                 <div data-v-03b808c2=""  className="bet-con">
                     <div data-v-03b808c233="" className="check-box  c-row c-flex-warp c-row-between list-join-total">
                         <div data-v-03b808c2="" className="item">
@@ -376,14 +384,7 @@ function GameContent() {
                     <div data-v-03b808c2="" className="des">*Choose 2 or more numbers, if two numbers in the lottery result are different and match the numbers you have chosen, then you win the prize.</div>
                 </div>
             </div>
-            <div data-v-03b808c2="" className="bet-tab mt-2">
-                <ul data-v-03b808c2="" className="c-row c-row-between">
-                    <li data-v-03b808c2=""  className="item action block-click">Sum</li>
-                    <li data-v-03b808c2=""  className=" item">2 Matching</li>
-                    <li data-v-03b808c2=""  className=" item">3 Matching</li>
-                    <li data-v-03b808c2=""  className=" item">Different</li>
-                </ul>
-            </div>
+           
         </div>
     </div>
       

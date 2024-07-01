@@ -19,13 +19,13 @@ function WinGoPeriod() {
                 Time Left
               </div>
               <div data-v-a9660e98="" className="number c-row c-row-middle c-flew-end">
-                <div data-v-a9660e981="" className="item">0</div>
-                <div data-v-a9660e981="" className="item">0</div>
-                <div data-v-a9660e9="" className="item c-row c-row-middle">
+                <div data-v-a9660e98="" className="item">0</div>
+                <div data-v-a9660e98="" className="item">0</div>
+                <div data-v-a9660e98="" className="item c-row c-row-middle">
                   :
                 </div>
-                <div data-v-a9660e981="" className="item">0</div>
-                <div data-v-a9660e981="" className="item">0</div>
+                <div data-v-a9660e98="" className="item">1</div>
+                <div data-v-a9660e98="" className="item">0</div>
               </div>
             </div>
           </div>
