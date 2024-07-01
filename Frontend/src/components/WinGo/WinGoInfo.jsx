@@ -1,4 +1,4 @@
-import wallet from "../../assets/images/wal_icon.webp";
+import wallet from "../../assets/images/icon_wallet.webp";
 import icon from "../../assets/images/refresh.png";
 import { useState, useEffect } from 'react';
 import axios from 'axios';

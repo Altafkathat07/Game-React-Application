@@ -64,7 +64,7 @@ function WithdrawalHistrory() {
         }
   return (
     <>
-      <div data-v-8cd483ca="" className="home mian game" style={{background:"rgb(243 243 243)"}}>
+      <div data-v-8cd483ca="" className="home mian game" style={{background:"#22275b"}}>
             <div data-v-8cd483ca="" className="menu-box">
               <Header />
               <div data-v-3966082f="" className="box">

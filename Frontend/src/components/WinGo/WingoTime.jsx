@@ -21,7 +21,7 @@ function WingoTime() {
             </div>
             <i data-v-a9660e98="" className="triangle"></i>
         </div>
-        <div data-v-a9660e98="" className="txt c-tc" style={{color: "#fa4e46"}}>1 min</div>
+        <div data-v-a9660e98="" className="txt c-tc" style={{color: "#fff"}}>1 min</div>
     </div>
     <div data-v-a9660e98="" className="item c-tc">
         <div data-v-a9660e98="" className="circular c-row c-row-middle-center c-tc">

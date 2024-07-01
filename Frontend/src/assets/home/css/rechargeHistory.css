@@ -8,6 +8,13 @@
     --color-black2: #303133;
     --color-white: #fff;
     --color-gray: #959595;
+    --bg-log-box: #4675D2;
+    --bg-log-box2: #374992;
+    --btn-bg: #2AAAF3;
+    --btn-bg2: #2979F2;
+    --bg-input: #323A7C;
+    --bg-wallet-box : #2b3270;
+    --text2-color: rgb(231, 249, 24);
   }
  .box[data-v-3966082f] {
     padding: .4rem
@@ -19,16 +26,19 @@
     overflow: hidden
 }
 .box .list .van-list{
-    background-color: #fff;
+    background-color: var(--bg-wallet-box);
     color: #000;
     font-size: 0.8rem;
+    padding: 5px;
+
 }
 
  .box .list .item {
     padding: .8667rem .6rem;
-    background: rgb(221 232 236 / 68%);
+    background: var(--color-white);
     margin-bottom: 1rem !important;
     line-height: 1.2rem;
+    border-radius: 5px;
 }
 .box .list .item .time{
     font-size: 0.7rem !important;

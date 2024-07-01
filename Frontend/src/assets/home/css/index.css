@@ -3,10 +3,10 @@
   --bg-structure: #dadada;
   --second-bg-color: rgb(43 50 112);
   --second2-bg-color: rgb(43 50 112);
-  --notice-bg-color: var(--color-white)be8;
+  --notice-bg-color: #fffbe8;
   --color-black: #000;
   --color-black2: #303133;
-  --color-white: var(--color-white);
+  --color-white: #ffffff;
   --color-gray: #959595;
   --bg-log-box: #4675D2;
   --bg-log-box2: #374992;
@@ -2797,7 +2797,7 @@ ul {
   color: var(--color-white);
   font-size: 0.37333rem;
   line-height: 0.64rem;
-  background-color: var(--second-bg-color);
+  background-color: var(--bg-log-box2);
 }
 .van-notice-bar__left-icon,
 .van-notice-bar__right-icon {
@@ -10224,14 +10224,14 @@ color: var(--color-white);
   border: 1.5px solid var(--color-white);
 }
 
- .bank[data-v-7aa0f84a]{background:#f7f0f0;padding:1.4rem 0.4rem}
- .bank .box[data-v-7aa0f84a]{background:#ff9801;color:#fff;border-radius:.26667rem;padding:.4rem}
+ .bank[data-v-7aa0f84a]{background: var(--bg-log-box2);padding:1.4rem 0.4rem}
+ .bank .box[data-v-7aa0f84a]{background:var(--bg-input);color:#fff;border-radius:.26667rem;padding:.4rem}
  .bank .box .item[data-v-7aa0f84a]{margin-bottom:.6667rem}
  .bank .box .backTitel[data-v-7aa0f84a]{font-size: 1rem; font-weight: 600;}
  .bank .box .item .lab[data-v-7aa0f84a]{font-size:1.1rem;margin-bottom:.46667rem; font-weight: 600;}
  .bank .box .item .input[data-v-7aa0f84a]{display: flex;}
  .bank .box .item .input .ipt[data-v-7aa0f84a]{width:100%;padding:0 .4rem;height:1.93333rem;line-height:1.93333rem;border-radius:.13333rem;border:.05333rem solid #fff;color: #000; font-size: 0.8rem;}
- .bank .bank-btn .btn[data-v-7aa0f84a]{width: 70%;height: 2.2rem;color: #ffffff;font-size: 1rem;font-weight: 700;letter-spacing: .01333rem;border: none;border-radius: 1.06667rem;background: -webkit-linear-gradient(top,#FAE59F 0%,#C4933F 100%);background: linear-gradient(180deg, #ff9701 0%, #f08201 100%)}
+ .bank .bank-btn .btn[data-v-7aa0f84a]{width: 70%;height: 2.2rem;color: var(--color-white);font-size: 1rem;font-weight: 700;letter-spacing: .01333rem;border: none;border-radius: 1.06667rem;background: -webkit-linear-gradient(top,var(--btn-bg) 0%,var(--btn-bg2) 100%);background: linear-gradient(180deg, var(--btn-bg) 0%,var(--btn-bg2) 100%)}
 
 
 

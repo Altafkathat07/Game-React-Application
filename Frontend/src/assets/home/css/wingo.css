@@ -6,23 +6,30 @@
   --notice-bg-color: #fffbe8;
   --color-black: #000;
   --color-black2: #303133;
-  --color-white: #fff;
+  --color-white: #ffffff;
   --color-gray: #959595;
+  --bg-log-box: #4675D2;
+  --bg-log-box2: #374992;
+  --btn-bg: #2AAAF3;
+  --btn-bg2: #2979F2;
+  --bg-input: #323A7C;
+  --bg-wallet-box : #2b3270;
+  --text2-color: rgb(231, 249, 24);
 }
 .game-head[data-v-a9660e98] {
     padding: 1.4rem 0.4rem 3.86667rem;
-    background:  linear-gradient(45deg, #ff9801, #e77501);
+    background:  linear-gradient(45deg, var(--second-bg-color), var(--second2-bg-color));
     margin-top: 1.6rem;
     border-radius: 0px 0px 50px 50px;
   }
   .game-head .total-box[data-v-a9660e98] {
-    background-color: #fff;
+    background:  linear-gradient(153.24deg, var(--bg-log-box2) 5.33%, var(--bg-log-box) 93.42%);
     border-radius: 0.53333rem;
     padding: 0.4rem;
   }
   .game-head .total-box .info .total[data-v-a9660e98] {
     font-size: 0.9333rem;
-    color: #ff9801;
+    color: var(--color-white);
     font-weight: 600;
   }
   .game-head .total-box .info .wallet[data-v-a9660e98] {
@@ -61,7 +68,7 @@
     font-size: 1.2rem;
     font-weight: 600;
     width: 6rem;
-    color: #ff9801;
+    color: var(--color-white);
   }
   .game-head .total-box .total-btn[data-v-a9660e98] {
     padding: 0 0.4rem;
@@ -74,9 +81,9 @@
     height: 1rem;
     height: 1.93333rem;
     font-size: 0.8rem;
-    background: linear-gradient(45deg, #fe9701, #f28501);
+    background: var(--btn-bg);
     border-radius: 30px;
-    color: #fff;
+    color: var(--color-white);
     font-size: 0.8rem;
   }
 
@@ -89,9 +96,9 @@ height: 2rem !important;
   }
   .game-betting .tab[data-v-a9660e98] {
     margin: 0 0.4rem;
-    background-color: #fff;
+    background-color: var(--bg-log-box2);
     border-radius: 0.4rem;
-    box-shadow: 0 0 0.21333rem 0.02667rem rgba(187, 191, 205, 0.3);
+    /* box-shadow: 0 0 0.21333rem 0.02667rem rgba(187, 191, 205, 0.3); */
   }
   .game-betting .tab .trcBox[data-v-a9660e98] {
     padding: 0.21333rem;
@@ -216,7 +223,7 @@ height: 2rem !important;
     width: 1.32rem;
     height: 1.32rem;
     border-radius: 50%;
-    background: #6abe57;
+    background: var(--bg-log-box);
     color: #fff;
     font-size: 1rem;
   }
@@ -235,7 +242,7 @@ height: 2rem !important;
     transform: translate(-50%);
   }
   .game-betting .tab .box .item .txt[data-v-a9660e98] {
-    color: #6abe57;
+    color: var(--color-gray);
     font-size: 0.87333rem;
   }
   .game-betting .tab .box .item.action .triangle[data-v-a9660e98] {
@@ -824,8 +831,7 @@ height: 2rem !important;
   }
   .content .time-box[data-v-a9660e98] {
     border-radius: 0.26667rem;
-    background: #fd9601 url(/images/bannertimeout.webp) no-repeat 50%;
-    background-size: auto 100%;
+    background: var(--bg-log-box) ;
   }
  .content .time-box .info[data-v-a9660e98] {
     padding: 0.26667rem;
@@ -903,9 +909,9 @@ height: 2rem !important;
   }
  .content .box[data-v-a9660e98] {
   border-radius: 0.4rem;
-  background-color: rgba(253, 220, 173, 0.5);
+  background-color: var(--bg-wallet-box);
   backdrop-filter: blur(64px);
-  box-shadow: 0 0.24rem 0.48rem 0.02667rem #ebebf1;
+  /* box-shadow: 0 0.24rem 0.48rem 0.02667rem #ebebf1; */
   padding: 0.6rem 0.36667rem;
   position: relative;
   }
@@ -962,7 +968,7 @@ height: 2rem !important;
     border-radius: 0.26667rem;
   }
   .content .box .number-box.action[data-v-a9660e98] {
-    background-color: #fbedf3;
+    background-color: var(--bg-input);
   }
  .content .box .number-box .item[data-v-a9660e98] {
     width: 20%;

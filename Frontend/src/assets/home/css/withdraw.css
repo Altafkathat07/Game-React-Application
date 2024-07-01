@@ -3,10 +3,10 @@
     --bg-structure: #dadada;
     --second-bg-color: rgb(43 50 112);
     --second2-bg-color: rgb(43 50 112);
-    --notice-bg-color: var(--color-white)be8;
+    --notice-bg-color: #fffbe8;
     --color-black: #000;
     --color-black2: #303133;
-    --color-white: var(--color-white);
+    --color-white: #fff;
     --color-gray: #959595;
     --bg-log-box: #4675D2;
     --bg-log-box2: #374992;
@@ -216,7 +216,7 @@
          .selectBox .bankBox .box[data-v-25d9c352] {
             background: var(--bg-log-box2);
             border: .05333rem solid #fff;
-            box-shadow: 0  0 10px #eebc70;
+            box-shadow: 0  0 10px var(--bg-log-box2);
             border-radius: .13333rem
         }
 
@@ -244,8 +244,9 @@
         }
 
          .selectBox .conBox .box[data-v-25d9c352] {
-            background: #fff;
-            border-radius: .13333rem
+            background: #2B3270;
+            border-radius: .13333rem;
+            padding: 5px;
         }
 
          .selectBox .conBox .box .tit[data-v-25d9c352] {
@@ -288,9 +289,9 @@
             -webkit-line-clamp: 1;
             height: 1.93333rem;
             padding: 0 .26667rem;
-            background: #f2ecec;
+            background: var(--bg-log-box2);
             border-radius: .26667rem;
-            color: var(--bg-log-box2);
+            color: var(--color-white);
             font-size: 1.5rem;
             font-weight: 600;
         }
@@ -300,7 +301,7 @@
             height: 1.26667rem;
             width: 1.26667rem;
             border-radius: .66667rem;
-            background-color: #f5c176;
+            background-color: var(--bg-log-box);
             color: #fff;
             display: flex;
             justify-content: center;
@@ -317,8 +318,8 @@
             height: 2.06667rem;
             line-height: 1.96rem;
             margin: 0.4rem 0 0.8rem;
-            background: #fff;
-            color: var(--bg-log-box2);
+            background: var(--bg-input);
+            color: var(--color-white);
             font-size: 1rem;
             border-radius: 0.26667rem;
             outline: none;
@@ -330,7 +331,7 @@
             width: 100%;
             height: 100%;
             border: none;
-            background: #fff;
+            background: var(--bg-input);
             outline: none;
             padding-left: .26667rem
         }
@@ -355,11 +356,11 @@
             height: 1.93333rem;
             padding: 0 .4rem;
             line-height: .93333rem;
-            background-color: #ffffff;
+            background-color: transparent;
             margin-top: 9px;
-            color: var(--btn-bg2);
+            color: var(--color-white);
             border-radius: 2px;
-            border-bottom: .02667rem solid var(--bg-input);
+            border-bottom: .02667rem solid var(--color-white);
         }
         .van-ellipsis[data-v-25d9c3524]{
             font-size: 1.4rem;

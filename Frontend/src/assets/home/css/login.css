@@ -3,10 +3,10 @@
   --bg-structure: #dadada;
   --second-bg-color: rgb(43 50 112);
   --second2-bg-color: rgb(43 50 112);
-  --notice-bg-color: var(--color-white)be8;
+  --notice-bg-color:#fffbe8;
   --color-black: #000;
   --color-black2: #303133;
-  --color-white: var(--color-white);
+  --color-white: #fff;
   --color-gray: #959595;
   --bg-log-box: #4675D2;
   --bg-log-box2: #374992;
