@@ -1,6 +1,10 @@
-
+// import { io } from 'socket.io-client';
+// import $ from 'jquery';
 
 function GameContent() {
+  
+
+
   return (
     <>
       <div data-v-42f27458="" className="content">

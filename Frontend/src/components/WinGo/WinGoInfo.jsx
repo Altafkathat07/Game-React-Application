@@ -90,7 +90,7 @@ function WinGoInfo() {
             </div>
         </div>
         <div data-v-a9660e98="" className="total-btn c-row c-row-between">
-            <div data-v-a9660e98="" className="item" >
+            <div data-v-a9660e98="" className="item btnInfo" >
                 <Link to="/withdraw">
                 <button data-v-a9660e98=""
                     className="btn van-button van-button--default van-button--normal van-button--block van-button--round"
@@ -103,7 +103,7 @@ function WinGoInfo() {
                 </button>
                 </Link>
             </div>
-            <div data-v-a9660e98="" className="item">
+            <div data-v-a9660e98="" className="item btnInfo">
                <Link to="/recharge"> 
                <button data-v-a9660e98=""
                     className="btn van-button van-button--default van-button--normal van-button--block van-button--round"

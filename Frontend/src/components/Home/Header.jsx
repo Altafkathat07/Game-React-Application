@@ -18,7 +18,7 @@ function Header() {
             <div data-v-106b99c8="" data-v-432e6ed0=""className="navbar">
 				<div data-v-106b99c8=""className="navbar-left">
 				<div data-v-432e6ed0="" data-v-106b99c8=""className="c-row c-row-middle-center">
-					<Link to="/"><img src={logo} alt="logo"  style={{width: "8rem", height: "2.5rem"}}/></Link>
+					<Link to="/"><img src={logo} alt="logo" className="logoImage" style={{width: "8rem", height: "2.5rem"}}/></Link>
 					</div>
 				</div>
 				<div data-v-106b99c8=""className="navbar-title">

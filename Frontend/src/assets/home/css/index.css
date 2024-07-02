@@ -723,7 +723,9 @@ input[type="number"] {
     font-size: 0.3rem !important;
   }
   .home .notice-box .txt .sp[data-v-432e6ed0] {
-    height: 0.7rem !important;
+    display: none !important;
+    height: 1.7rem !important;
+    margin-right: 5px !important;
   }
   .van-tabbar .van-tabbar-item {
     font-size: 0.21rem !important;
@@ -778,12 +780,81 @@ input[type="number"] {
   .mian-from .mian-btn .gradient[data-v-51f72da1] {
     height: 0.9rem !important;
   }
+
+  .slot-column[data-v-42f27458] {
+    width: 2.7rem !important;
+    height: 4.7667rem;
 }
-@media screen and (max-width: 395px) {
+.slot-column .slot-num[data-v-42f27458] {
+  width: 2.22rem !important;
+  height: 2.22rem !important;
+  line-height: 2.22rem !important;
+}
+.slot-column .slot-transform[data-v-42f27458] {
+  -webkit-transform: translateY(-2.88rem);
+  transform: translateY(-1.2rem) !important;
+}
+
+.fade-item[data-v-42f27458] {
+  width: 30px !important;
+  height: 30px !important;
+}
+#total_r[data-v-42f2745899]{
+  width: 30px !important;
+  height: 30px !important;
+}
+.game-head .total-box .total-btn .item .btn[data-v-a9660e98] {
+ 
+  width: 80% !important;
+}
+.luckyWinners__container-wrapper__item-winAmount span[data-v-6a35701e] {
+  color: #fff;
+  font-size: 0.4rem !important;
+}
+
+.luckyWinners__container-wrapper__item-winAmount h1[data-v-6a35701e]{
+  font-size: 0.5rem !important;
+}
+.luckyWinners__container-wrapper__item-info h1[data-v-6a35701e] {
+  color: #fff;
+  font-size: 0.7rem !important;
+}
+.slot-column[data-v-03b808c2] {
+  width: 5rem !important;
+  height: 5rem;
+}
+}
+@media screen and (max-width: 376px) {
   .daman-lottery .daman_img[data-v-4feef803] {
     width: 3.4rem !important;
     height: 4rem !important;
   }
+
+  .row-item[data-v-a900648a] {
+    width: 50% !important;
+}
+.logoImage{
+  width: 5rem !important;
+  height: 2rem !important;
+}
+.game_bg[data-v-a900648a] {
+  display: block;
+  position: absolute;
+  bottom: -0.32rem;
+  left: -0.21333rem;
+  width: 100% !important;
+}
+.game_image2[data-v-a900648a] {
+  top: 1rem !important;
+  height: 3rem !important;
+  width: 4.53333rem !important;
+}
+.game_image[data-v-a900648a] {
+  width: 3.83333rem !important;
+}
+.game_text[data-v-a900648a] {
+  right: 1.1rem !important;
+}
 }
 @media screen and (max-width: 360px) {
   .daman-lottery .daman_img[data-v-4feef803] {
@@ -804,8 +875,18 @@ input[type="number"] {
     width: 1.2rem !important;
     margin: 0 auto;
   }
+  .cardTBody[data-v-432e6eddd] {
+    padding: 2.5rem 0rem !important;
+  }
+
+  .number[data-v-a9660e9800] {
+    font-size: 0.8rem !important;
 }
-@media screen and (max-width: 320px) {
+.content .time-box .out .number .item[data-v-a9660e98] {
+  font-size: 1rem !important;
+}
+}
+@media screen and (max-width: 321px) {
   html {
     margin: 0px !important;
     background-color: var(--bg-structure);
@@ -863,6 +944,189 @@ input[type="number"] {
   .van-tabbar .van-tabbar-item {
     font-size: 0.2rem !important;
   }
+
+  .home .notice-box[data-v-432e6ed0]{
+    height: 1.6rem !important;
+  }
+  .home .notice-box[data-v-432e6ed0] .van-notice-bar{
+    height: 100% !important;
+  }
+  .van-notice-bar__wrap{
+    font-size: 0.7rem !important;
+  }
+  .banner[data-v-432e6ed0] {
+    height: 9rem !important;
+}
+.van-notice-bar__left-icon{
+  font-size: 0.9rem !important;
+}
+.game_text2[data-v-a900648a] {
+  font-size: 0.6rem !important;
+  font-weight: 700;
+}
+.tabbar__container[data-v-c4b9aaee] { 
+  height: 2.73333rem !important;
+  font-size: 0.6333rem !important;
+}
+.promotionBg[data-v-c4b9aaee] {
+  width: 2.46667rem !important;
+  height: 2.46667rem !important;
+}
+.tabbar__container-item[data-v-c4b9aaee] svg {
+  width: 1.2rem !important;
+  height: 1.2rem !important;
+}
+.promotionBg[data-v-c4b9aaee] {
+  width: 1.86667rem !important;
+  height: 1.86667rem !important;
+}
+
+.promotionBg[data-v-c4b9aaee]:after {
+  width: 1.8rem !important;
+  height: 1.8rem !important;
+}
+.prosvg{
+  top: -5px !important;
+}
+.btnInfo[data-v-a9660e98]{
+  width: 50%;
+}
+.game-head .total-box .total-btn .item .btn[data-v-a9660e98] {
+  width: 95% !important;
+}
+.slot-column[data-v-03b808c2] {
+  width: 4.33rem !important;
+}
+.content .page-box .period-span .li-item[data-v-03b808c2] {
+  font-size: 0.9rem !important;
+  width: 1rem !important;
+  height: 1.5rem !important;
+}
+.slot-column .slot-num.bg1[data-v-03b808c2] {
+  background: url(src/assets/images/bg1.png) no-repeat 100%;
+  background-size: 90% 90% !important;
+}
+.slot-column .slot-num.bg2[data-v-03b808c2] {
+  background: url(src/assets/images/bg2.png) no-repeat 100%;
+  background-size: 90% 90% !important;
+}
+.slot-column .slot-num.bg3[data-v-03b808c2] {
+  background: url(src/assets/images/bg3.png) no-repeat 100%;
+  background-size: 90% 90% !important;
+}
+.slot-column .slot-num.bg4[data-v-03b808c2] {
+  background: url(src/assets/images/bg4.png) no-repeat 100%;
+  background-size: 90% 90% !important;
+}
+.slot-column .slot-num.bg5[data-v-03b808c2] {
+  background: url(src/assets/images/bg5.png) no-repeat 100%;
+  background-size: 90% 90% !important;
+}
+.slot-column .slot-num.bg6[data-v-03b808c2] {
+  background: url(src/assets/images/bg6.png) no-repeat 100%;
+  background-size: 90% 90% !important;
+}
+.slot-column .slot-num[data-v-03b808c2] {
+  width: 3.5rem !important;
+  height: 4.5rem;
+}
+.hd[data-v-7c8bbbf4]{
+  font-size: 0.6rem !important;
+}
+.titel[data-v-7c8bbbf4] {
+  font-size: 0.7rem !important;
+}
+.mian .promotion .info-img .btn-list .btn[data-v-7c8bbbf4] {
+  padding: 15px 5px !important;
+  font-size: 0.6rem !important;
+}
+.mian .promotion .info-data .left .txt[data-v-7c8bbbf4] {
+  font-size: 0.5333rem !important;
+}
+.mian .promotion .info-data .right .txt[data-v-7c8bbbf4] {
+  font-size: 0.533rem !important;
+}
+.mian .wallet-box .box .balance .info .item[data-v-7b283485] {
+  font-size: 0.7333rem !important;
+}
+.mian .wallet-box .box[data-v-7b283485] {
+  padding-bottom: 2rem !important;
+}
+#image_box {
+  display: flex;
+  flex-wrap: wrap !important;
+  justify-content: center !important;
+}
+
+#image_box a {
+  width: 50%;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center; 
+}
+.selectBox .txtBox .txt[data-v-25d9c352] {
+  font-size: 0.8rem !important;
+}
+.selectBox .conBox .box .add[data-v-25d9c352] {
+  font-size: 1rem !important;
+}
+.withdrawal-btn .btn[data-v-25d9c352] {
+  font-size: 0.8rem !important;
+}
+.selectBox .bankBox .box .item[data-v-25d9c352] {
+  font-size: .6333rem !important;
+}
+.bank .box .item .lab[data-v-7aa0f84a] {
+  font-size: 0.8rem !important;
+}
+.bank .bank-btn .btn[data-v-7aa0f84a] {
+  width: 100% !important;
+  font-size: 0.8rem !important;
+}
+.cardTBody[data-v-432e6eddd] {
+  padding: 2.5rem 0rem !important;
+}
+.con-box[data-v-a9660e98] {
+  font-size: 0.7rem;
+  padding: 0px !important;
+}
+.content .box .color-box .btn[data-v-a9660e98]{
+  width: 4rem !important;
+  padding: 20px 45px !important;
+}
+.content .box .random-box .item[data-v-a9660e98] {
+  width: 1.5rem !important;
+  height: 1.5rem ;
+  padding: 0.2rem 0.16rem !important;
+  font-size: 0.52rem !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.content .box .random-box .random[data-v-a9660e98] {
+  height: 1.5rem !important;
+}
+.game-list .tab .li .txt[data-v-a9660e98] {
+  font-size: 0.7rem !important;
+  height: 1.667rem !important;
+}
+.game-list .list .wrap[data-v-a9660e98] {
+  margin-top: 20px !important;
+}
+.game-list .list .hb .item[data-v-a9660e98] {
+  font-size: 0.67333rem !important;
+}
+.fade-item[data-v-42f27458] {
+  width: 25px !important;
+  height: 25px !important;
+}
+#total_r[data-v-42f2745899] {
+  width: 25px !important;
+  height: 25px !important;
+}
+#submit[data-v-51f72da1]{
+ height: 2rem !important;
+}
 }
 
 @media screen and (max-width: 315px) {
@@ -1000,12 +1264,16 @@ input[type="number"] {
   .mian-from .mian-btn .gradient[data-v-51f72da1] {
     height: 0.7rem !important;
   }
+
   /* .mian-from .item .otp[data-v-51f72da1]{
   
   font-size: 0.30rem !important;
   height: 0.8rem !important;
 } */
 }
+
+
+
 
 .menu_container[data-v-7b9b9922] {
   width: 1.46667rem;
@@ -10192,7 +10460,7 @@ padding: 20px 10px;
   background-color: linear-gradient(90deg, var(--bg-log-box2) 0%, var(--bg-log-box) 100%);
 }
 .cardTBody[data-v-432e6eddd]{
-padding: 2.5rem 1.5rem !important;
+padding: 2.5rem 1.5rem ;
 }
 #tableget {
   /* margin: 0.26667rem 0.4rem 0; */
