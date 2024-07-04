@@ -201,8 +201,8 @@ const DeleteUser = async (req, res) => {
 const UserStatus = async (req, res) => {
     const userId = parseInt(req.params.id); 
     const { status } = req.body;   
-    console.log('User ID:', userId);
-    console.log('New Status:', status);
+    // console.log('User ID:', userId);
+    // console.log('New Status:', status);
 
     if(!userId){
         return res.status(202).json({
@@ -480,7 +480,7 @@ const rechargeConfirm = async (req, res) => {
         const getLevels = async () => {
             const [levels] = await connection.query('SELECT * FROM level WHERE status = 1');
              levelLenght = levels.length;
-            console.log(levelLenght);
+            // console.log(levelLenght);
             return levels;
         };
 
@@ -896,7 +896,7 @@ const getLevelInfo = async (req, res) => {
 
         });
     }
-    console.log("asdasdasd : " + rows)
+    // console.log("asdasdasd : " + rows)
     return res.status(200).json({
         message: 'Success',
         status: true,
@@ -1157,7 +1157,7 @@ const uploadBanner = async (req, res) => {
 
         // Check if there are existing records in the banners table
         const existingData = await connection.query('SELECT * FROM banners LIMIT 1');
-        console.log(existingData[0][0].id)
+        // console.log(existingData[0][0].id)
         let sql;
         
         if (existingData.length === 0) {

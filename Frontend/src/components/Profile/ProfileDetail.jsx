@@ -10,7 +10,7 @@ function ProfileDetail() {
         axios.post('/api/webapi/GetUserInfo')
             .then(response => {
                 const userInfo = response.data.data;
-                console.log("this is res: " + JSON.stringify(userInfo));
+                // console.log("this is res: " + JSON.stringify(userInfo));
                 setUser(userInfo);
             })
             .catch(error => console.log(error));

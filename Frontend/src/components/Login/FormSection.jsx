@@ -31,7 +31,7 @@ function FormSection() {
             const { success, msg } = await login(formData);    
             if (success) {
                 navigate('/');
-                showAlert(msg); // Display the message returned from login
+                showAlert(msg); 
               } else {
                 showAlert('Login failed');
               }

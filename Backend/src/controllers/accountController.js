@@ -302,7 +302,7 @@ const UserDetails = async(req, res) =>{
 
 const Logout = async(req, res) =>{
     let auth = req.user.user.phone;
-    console.log(auth);
+    // console.log(auth);
     let token = 0;
     if(!auth){
         return res.status(200).json({
@@ -311,7 +311,7 @@ const Logout = async(req, res) =>{
         });
     }
     const [user] = await connection.query('SELECT `phone`,`token` FROM users WHERE `phone` = ?', [auth]);
-    console.log(user[0])
+    // console.log(user[0])
     if(!user || user.length === 0){
         return res.status(200).json({
             message: 'something went wrong while user fetching user details',

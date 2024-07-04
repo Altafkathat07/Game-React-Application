@@ -12,7 +12,7 @@ function Levels() {
                 const response = await fetch('/api/webapi/admin/levels-data');
                 const data = await response.json();
                 const result = data.data;
-                console.log(result)
+                // console.log(result)
                 setLevels(result);
             } catch (error) {
                 console.error('Error fetching levels:', error);

@@ -45,7 +45,7 @@ import LevelSettingMain from './Admin/LevelSetting/LevelSettingMain';
 
 function AllPages() {
   const { isAuthenticated, loadingUserInfo } = useContext(AuthContext);
-  console.log(isAuthenticated);
+  // console.log(isAuthenticated);
 
   if (loadingUserInfo) {
     return <p>Loading user info...</p>;

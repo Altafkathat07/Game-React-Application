@@ -8,7 +8,7 @@ function BannersForm() {
     setImages(selectedImages);
   };
 
-  console.log(images)
+  // console.log(images)
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -17,12 +17,12 @@ function BannersForm() {
       images.forEach((image, index) => {
         formData.append(`image${index}`, image);
       });
-      console.log("this is form data : " +formData)
+      // console.log("this is form data : " +formData)
       const response = await fetch('/api/webapi/admin/upload-banner', {
         method: 'POST',
         body: formData,
       });
-      console.log("image",images)
+      // console.log("image",images)
       let data;
       try {
         data = await response.json();

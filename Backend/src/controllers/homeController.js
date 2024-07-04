@@ -27,7 +27,7 @@ const getSalaryRecord = async(req, res)=>{
     );
 
 
-  console.log("asdasdasd : " +[ rows.phone])
+//   console.log("asdasdasd : " +[ rows.phone])
   return res.status(200).json({
       message: 'Success',
       status: true,
@@ -43,7 +43,7 @@ const LevelDetails = async(req, res)=>{
     const [levels] = await connection.query(`SELECT * FROM level WHERE status = 1 `);
 
 
-  console.log( levels)
+//   console.log( levels)
   return res.status(200).json({
       message: 'Success',
       status: true,

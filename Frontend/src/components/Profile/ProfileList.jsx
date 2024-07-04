@@ -24,7 +24,7 @@ function ProfileList() {
         axios.post('/api/webapi/GetUserInfo')
             .then(response => {
                 const userInfo = response.data.data;
-                console.log("this is res: " + JSON.stringify(userInfo.level));
+                // console.log("this is res: " + JSON.stringify(userInfo.level));
                 setLevel(userInfo.level);
             })
             .catch(error => console.log(error));

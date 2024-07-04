@@ -9,7 +9,7 @@ let timeNow = Date.now();
 const userInfo = async (req, res) => {
     // let auth = req.user.user.phone
     let auth = req.user.user.phone
-    console.log("this is user info" + auth)
+    // console.log("this is user info" + auth)
 
     if (!auth) {
         return res.status(200).json({
@@ -20,7 +20,7 @@ const userInfo = async (req, res) => {
     }
     const [rows] = await connection.query('SELECT * FROM users WHERE `phone` = ? ', [auth]);
 
-    console.log(rows[0])
+    // console.log(rows[0])
     
     
 //    console.log(rows[0].phone);
@@ -32,7 +32,7 @@ const userInfo = async (req, res) => {
         });
     }
     const [recharge] = await connection.query('SELECT * FROM recharge WHERE `phone` = ? AND status = 1', [rows[0].phone]);
-    console.log(recharge)
+    // console.log(recharge)
     let totalRecharge = 0;
     recharge.forEach((data) => {
         totalRecharge += data.money;
@@ -75,7 +75,7 @@ const userInfo = async (req, res) => {
 
 const TotalReferrals = async (req, res) => {
     let auth = req.user.user.phone
-    console.log("this is user info" + auth)
+    // console.log("this is user info" + auth)
 
     if (!auth) {
         return res.status(200).json({
@@ -92,10 +92,10 @@ const TotalReferrals = async (req, res) => {
             timeStamp: timeNow,
         });
     }
-    console.log("this is user code" + rows[0].code)
+    // console.log("this is user code" + rows[0].code)
 
     const [total_ref] = await  connection.query('SELECT * FROM users  WHERE `invite` = ? ', [rows[0].code])
-    console.log(total_ref.length)
+    // console.log(total_ref.length)
     if (!total_ref) {
         return res.status(200).json({
             message: 'Failed',
@@ -126,7 +126,7 @@ const TotalUser = async (req, res) => {
             timeStamp: timeNow,
         });
     }
-    console.log(rows.length)
+    // console.log(rows.length)
 
     const total = rows.length
     return res.status(200).json({
@@ -175,7 +175,7 @@ const ResetPassword = async (req, res) => {
 
     const hashPass = md5(password)
      const result = rows[0].password;
-    console.log(hashPass, result)
+    // console.log(hashPass, result)
 
     if(hashPass !== result){
         return res.status(200).json({

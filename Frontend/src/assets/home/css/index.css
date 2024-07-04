@@ -829,6 +829,15 @@ input[type="number"] {
  .forgot-box input{
   font-size: 1rem !important;
  }
+ .swal2-cancel{
+  width: 45% !important;
+  padding: 10px !important;
+ }
+ .swal2-confirm{
+  width: 45% !important;
+  padding: 10px !important;
+ }
+
 }
 @media screen and (max-width: 376px) {
   .daman-lottery .daman_img[data-v-4feef803] {
@@ -897,6 +906,7 @@ input[type="number"] {
 #submit[data-v-51f72da1]{
   height: 2rem !important;
  }
+
 }
 @media screen and (max-width: 321px) {
   html {

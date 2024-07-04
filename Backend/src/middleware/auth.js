@@ -37,9 +37,9 @@ const middlewareController = async (req, res, next) => {
     return res.redirect("http://localhost:5173/login");
   }
    const authToken = md5(auth);
-  console.log("this is auth from middleware :" + authToken)
+  // console.log("this is auth from middleware :" + authToken)
   const token =  process.env.ACCESS_TOKEN_SECRET
-  console.log(token);
+  // console.log(token);
   try {
     jwt.verify(auth, token, async (err, user) => {
       if (err) {
@@ -55,17 +55,17 @@ const middlewareController = async (req, res, next) => {
       // console.log("output 1 : " + rows[0].status)
       
       if (!rows.length) {
-        console.log(true)
+        // console.log(true)
         res.clearCookie("authToken");
         return res.end();
       }
       if (authToken == rows[0].token && rows[0].status == '1') {
-        console.log("output 2 : " + authToken)
+        // console.log("output 2 : " + authToken)
         req.user = user; 
-        console.log("this is auth :" + user.user)
+        // console.log("this is auth :" + user.user)
         next();
       } else {
-        console.log("this is else part ")
+        // console.log("this is else part ")
         return res.redirect("http://localhost:5173/login");
       }
     });

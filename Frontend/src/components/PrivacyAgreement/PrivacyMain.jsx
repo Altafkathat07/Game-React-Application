@@ -11,7 +11,7 @@ function PrivacyMain() {
          axios.get('/api/webapi/admin/privacy-fetching')
          .then(response => {
           const userInfo = response.data.data;
-          console.log("this is res: " + JSON.stringify(userInfo));
+        //   console.log("this is res: " + JSON.stringify(userInfo));
           setTerms(userInfo[0].term);
       })
       .catch(error => console.log(error));
