@@ -1,14 +1,15 @@
-import { useState } from 'react'
+import { useContext, useState } from 'react'
 // import axios from 'axios'
 import phoneImg from '../../assets/images/cellphone-35529171.png'
 import passImg from '../../assets/images/password-12e0a3fc.png'
 import eye from '../../assets/images/eye.png'
 import { Link } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom';
-import alertMessage from '../AlertUtils'
 import { showAlert } from '../AlertMassWrapper'
+import AuthContext from '../Auth/AuthContext'
 
 function FormSection() {
+    const { login } = useContext(AuthContext);
     const [formData, setFormData] = useState({
         username: '',
         pwd: '',
@@ -23,41 +24,57 @@ function FormSection() {
             [name]: value
         }));
     };
-
     const handleSubmit = async (e) => {
         e.preventDefault();
     
         try {
-          const response = await fetch('/api/webapi/login', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(formData),
-          });
-    
-          if (!response.ok) {
-            throw new Error('Network response was not ok');
-          }
-    
-          const data = await response.json();
-    
-          if (data.status === false) {
-            showAlert( data.message);
-            return;
-          }
-    
-          
-          navigate('/'); 
-          alertMessage({
-              text: data.popup,
-              confirmButtonText: 'OK',
-            })
+            const { success, msg } = await login(formData);    
+            if (success) {
+                navigate('/');
+                showAlert(msg); // Display the message returned from login
+              } else {
+                showAlert('Login failed');
+              }
         } catch (error) {
-          console.error('There was a problem with the fetch operation:', error);
-          showAlert('There was a problem with the fetch operation: ' + error.message, 'error', 'Error');
+          console.error('Error logging in:', error);
+          showAlert(error.message || 'Login failed');
         }
       };
+
+    // const handleSubmit = async (e) => {
+    //     e.preventDefault();
+    
+    //     try {
+    //       const response = await fetch('/api/webapi/login', {
+    //         method: 'POST',
+    //         headers: {
+    //           'Content-Type': 'application/json',
+    //         },
+    //         body: JSON.stringify(formData),
+    //       });
+    
+    //       if (!response.ok) {
+    //         throw new Error('Network response was not ok');
+    //       }
+    
+    //       const data = await response.json();
+    
+    //       if (data.status === false) {
+    //         showAlert( data.message);
+    //         return;
+    //       }
+    
+          
+    //       navigate('/'); 
+    //       alertMessage({
+    //           text: data.popup,
+    //           confirmButtonText: 'OK',
+    //         })
+    //     } catch (error) {
+    //       console.error('There was a problem with the fetch operation:', error);
+    //       showAlert('There was a problem with the fetch operation: ' + error.message, 'error', 'Error');
+    //     }
+    //   };
 
 
   

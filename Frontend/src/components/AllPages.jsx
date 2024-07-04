@@ -69,12 +69,12 @@ function AllPages() {
             <>
               <Route path="/main" element={<ProfileMain />} />
               <Route path="/promotion" element={<PromotionMain />} />
-              <Route path="/promotion/myteam" element={<MyTeamPage />} />
-              <Route path="/promotion/history" element={<HistoryPage />} />
-              <Route path="/promotion/tutorial" element={<TutorialPage />} />
+              <Route path="/myteam" element={<MyTeamPage />} />
+              <Route path="/history" element={<HistoryPage />} />
+              <Route path="/tutorial" element={<TutorialPage />} />
               <Route path="/about-us" element={<AboutMain />} />
               <Route path="/privacy-agreement" element={<PrivacyMain />} />
-              <Route path="/risk-disclosure-agreement" element={<RiskMain />} />
+              <Route path="/risk-agreement" element={<RiskMain />} />
               <Route path="/beginner-guide" element={<GuideMain />} />
               <Route path="/wallet" element={<WalletMain />} />
               <Route path="/withdraw" element={<WalletProfileMain />} />

@@ -1,27 +1,43 @@
 import { useContext } from "react";
 import AuthContext from "../Auth/AuthContext";
-import {Link} from "react-router-dom"
+import {Link, useLocation } from "react-router-dom"
 import logo from "../../assets/images/headerimage.png"
 
 // import down from "../../assets/images/down.png"
 // import msg from "../../assets/images/msgimage.png"
 function Header() {
+	const location = useLocation();
+	const isHomePage = location.pathname === '/';
 	const { isAuthenticated, loadingUserInfo } = useContext(AuthContext);
     // console.log(isAuthenticated);
     if (loadingUserInfo) {
         return <p>Loading user info...</p>;
     }
     const isAuth = isAuthenticated ?? false;
+	const capitalizeFirstLetter = (str) => {
+	return str.replace(/\b\w/g, (char) => char.toUpperCase());
+	};
+	const pageTitle = capitalizeFirstLetter(location.pathname.substring(1));
   return (
     <>
 
             <div data-v-106b99c8="" data-v-432e6ed0=""className="navbar">
 				<div data-v-106b99c8=""className="navbar-left">
-				<div data-v-432e6ed0="" data-v-106b99c8=""className="c-row c-row-middle-center">
-					<Link to="/"><img src={logo} alt="logo" className="logoImage" style={{width: "8rem", height: "2.5rem"}}/></Link>
+				<div className="c-row c-row-middle-center">
+					{isHomePage ? (
+						<Link to="/"><img src={logo} alt="logo" className="logoImage" style={{width: "8rem", height: "2.5rem"}}/></Link>
+					) : (
+						<>
+						<Link to="/">
+						<i className="bi bi-chevron-left fs-2 text-light"></i>
+						</Link>
+						{/* <h1>{location.pathname.substring(1)}</h1> This will display the page name */}
+						</>
+					)}
 					</div>
 				</div>
 				<div data-v-106b99c8=""className="navbar-title">
+				{pageTitle}
 				</div>
 				{!isAuth && (
 					<div data-v-81ead1cb="" className="navbar__content-right ">

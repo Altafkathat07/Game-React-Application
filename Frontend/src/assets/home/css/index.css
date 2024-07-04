@@ -1496,7 +1496,7 @@ img[data-v-7b9b9922] {
   background-size: cover;
 }
 .navbar-title[data-v-106b99c8] {
-  font-size: 0.42667rem;
+  font-size: 2rem;
   flex: 1;
   text-align: center;
 }
@@ -9178,7 +9178,7 @@ a:hover {
   font-size: 0.97333rem;
 }
 .profile div h4 {
-  color: var(--color-white);
+  color: var(--color-black2);
   margin-top: 20px;
   margin-bottom: 20px;
 }

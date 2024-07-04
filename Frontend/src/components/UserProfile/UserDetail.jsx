@@ -16,7 +16,7 @@ function UserDetail() {
   }, []);
   return (
     <>
-      <div data-v-9f3a9836="" className="profile">
+      <div data-v-9f3a9836="" className="profile" style={{background: "#fff"}}>
         <div><h4>Profile</h4></div>
                 <div data-v-9f3a9836="" className="item c-row c-row-between c-row-middle-center">
                     <div data-v-9f3a9836="" className="lab">Avatar</div>

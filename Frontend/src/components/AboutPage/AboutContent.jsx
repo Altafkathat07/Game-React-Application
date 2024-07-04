@@ -21,7 +21,7 @@ function AboutContent() {
                     </i>
                 </div>
                 </Link>
-                <Link to="/risk-disclosure-agreement">
+                <Link to="/risk-agreement">
                 <div data-v-439e6f58="" className="item c-row c-row-between c-row-middle">
                     <div data-v-439e6f58="" className="name">Risk Disclosure Agreement</div>
                     <i data-v-439e6f58="" className="van-icon van-icon-arrow">
