@@ -773,7 +773,7 @@ height: 2rem !important;
   .item[data-v-a9660e981]{
     padding: 5px;
     margin: 0.5rem 5px 2px 5px;
-    background: #eab873;
+    background: var(--bg-log-box2);
     color: #fff;
     font-size: 1rem;
     font-weight: 700;
@@ -1163,9 +1163,13 @@ height: 2rem !important;
     padding: 0.4rem;
   }
   .betting-mark .info .item[data-v-a9660e98] {
-    height: 1.2rem;
-    line-height: 1.2rem;
+    height: 1.6rem;
+    line-height: 1.6rem;
     margin-top: 0.4rem;
+    font-size: 0.8rem;
+  }
+  .betCheck{
+    height: 1.2rem !important;
   }
  .betting-mark .info .item .tit[data-v-a9660e98] {
     font-size: 1rem;
@@ -1183,7 +1187,7 @@ height: 2rem !important;
   }
  .betting-mark .info .item .stepper-box .digit-box[data-v-a9660e98] {
     width: 1.86667rem;
-    height: 0.8rem;
+    height: 1.2rem;
     padding: 0;
     border: 0.02667rem solid #dcdfe6;
     margin: 0 0.13333rem;
@@ -1207,14 +1211,16 @@ height: 2rem !important;
   .betting-mark .info .item .stepper-box .digit-box[data-v-a9660e98] .van-field__control{
     height: 1.34667rem;
     text-align: center;
+    font-size: 0.9rem;
+    font-weight: 600;
   }
  .betting-mark .info .item .stepper-box .li.minus[data-v-a9660e98] {
     text-align: center;
-    line-height: 0.66667rem;
+    line-height: 1.1rem;
   }
  .betting-mark .info .item .multiple-box .li[data-v-a9660e98] {
     text-align: center;
-    font-size: 0.32rem;
+    font-size: 0.8rem;
     padding: 0 0.26667rem;
     margin-left: 0.13333rem;
     background-color: #f0f0f0;
@@ -1227,19 +1233,19 @@ height: 2rem !important;
   }
  .betting-mark .foot[data-v-a9660e98] {
     width: 100%;
-    height: 1.06667rem;
+    height: 2.06667rem;
     line-height: 1.06667rem;
     text-align: center;
-    font-size: 0.37333rem;
+    font-size: 1rem;
   }
 .betting-mark .foot .left[data-v-a9660e98] {
-    line-height: 1.06667rem;
+    line-height: 2.06667rem;
     width: 35%;
     background: #25253c;
     color: hsla(0, 0%, 100%, 0.4);
   }
 .betting-mark .foot .right[data-v-a9660e98] {
-    line-height: 1.06667rem;
+    line-height: 2.06667rem;
     width: 65%;
     background: #fa574a;
     color: #fff;

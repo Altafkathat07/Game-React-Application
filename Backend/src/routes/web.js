@@ -229,6 +229,13 @@ const initWebRouter = (app) => {
     userController.useRedenvelope
   );
 
+  
+  router.post(
+    "/api/webapi/action/join",
+    // middlewareController,
+    wingoController.betWinGo
+  );
+
   return app.use("/", router);
 };
 

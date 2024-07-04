@@ -692,7 +692,7 @@ function WinGoBet() {
         $("body").append(
           `
                       <div data-v-1dcba851="" class="msg">
-                          <div data-v-1dcba851="" class="msg-content v-enter-active v-enter-to" style=""> ${msg} </div>
+                          <div data-v-1dcba851="" class="msg-content v-enter-active v-enter-to fs-6" style=""> ${msg} </div>
                       </div>
                       `
         );
@@ -704,7 +704,7 @@ function WinGoBet() {
           }, 500);
         }, 1000);
       }
-      $(".foot .right").click(function (e) {
+      $(".foot .right").off('click').on('click', function (e) {
         e.preventDefault();
         let join = $(this).attr("data-join");
         let x = $(".stepper-box input").val().trim();
@@ -749,6 +749,7 @@ function WinGoBet() {
           $(".foot .right").removeClass("block-click");
         }, 500);
       });
+      
       
       function showListOrder(list_orders, x) {
         if (list_orders.length == 0) {

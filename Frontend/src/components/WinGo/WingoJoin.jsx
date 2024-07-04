@@ -49,7 +49,7 @@ function WingoJoin() {
       </div>
       <div data-v-a9660e98="" className="item c-row c-row-middle">
         <div data-v-a9660e98="" role="checkbox" tabIndex="0" aria-checked="true" className="van-checkbox">
-          <div className="van-checkbox__icon van-checkbox__icon--square van-checkbox__icon--checked"><i className="van-icon van-icon-success" >
+          <div className="van-checkbox__icon van-checkbox__icon--square van-checkbox__icon--checked betCheck"><i className="van-icon van-icon-success" >
               
             </i></div><span className="van-checkbox__label">
             <div data-v-a9660e98="" className="agree p-r-15">Rules</div>

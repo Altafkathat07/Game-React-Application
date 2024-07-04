@@ -6,7 +6,7 @@ import face from "../../../assets/images/win1.png"
 // import face4 from "../../../assets/images/face4.jpg"
 import logo from "../../../assets/images/logo.svg"
 import logoMini from "../../../assets/images/logo-mini.svg"
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 
 function AdminNav() {
     const [user, setUser] = useState({});
@@ -20,12 +20,16 @@ function AdminNav() {
             })
             .catch(error => console.log(error));
     }, []);
+
+    const navHandler = () =>{
+        console.log("click")
+    }
   return (
     <>
      <nav className="navbar default-layout-navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row" id="adminNav">
             <div className="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
-                <Link to="/" className="navbar-brand brand-logo" ><img src={logo} alt="logo" /></Link>
-                <Link to="/" className="navbar-brand brand-logo-mini" ><img src={logoMini} alt="logo" /></Link>
+                <a className="navbar-brand brand-logo" ><img src={logo} alt="logo" /></a>
+                <a  className="navbar-brand brand-logo-mini" onClick={navHandler}><img src={logoMini} alt="logo" /></a>
             </div>
             <div className="navbar-menu-wrapper d-flex align-items-stretch">
                 <button className="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">

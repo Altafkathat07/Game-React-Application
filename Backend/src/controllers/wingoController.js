@@ -96,9 +96,8 @@ const rosesPlus = async (auth, money) => {
 }
 const betWinGo = async (req, res) => {
     let { typeid, join, x, money } = req.body;
-    // let auth = req.cookies.authToken;
-    let auth = req.user.user.phone;
-    // let auth = 7878979700;
+    // let auth = req.user.user.phone;
+    let auth = 7878979705;
 
     if (typeid != 1 && typeid != 3 && typeid != 5 && typeid != 10) {
         return res.status(200).json({
@@ -239,26 +238,61 @@ const betWinGo = async (req, res) => {
         time = ?`;
         await connection.execute(sql, [id_product, userInfo.phone, userInfo.code, userInfo.invite, period, userInfo.level, total, x, fee, 0, gameJoin, join, 0, checkTime, timeNow]);
         await connection.execute('UPDATE `users` SET `money` = `money` - ? WHERE `phone` = ? ', [money * x, auth]);
-        const [users] = await connection.query('SELECT `money`, `level` FROM users WHERE phone = ? AND veri = 1  LIMIT 1 ', [auth]);
-        await rosesPlus(auth, money * x);
-        // const [level] = await connection.query('SELECT * FROM level ');
-        // let level0 = level[0];
-        // const sql2 = `INSERT INTO roses SET 
-        // phone = ?,
-        // code = ?,
-        // invite = ?,
-        // f1 = ?,
-        // f2 = ?,
-        // f3 = ?,
-        // f4 = ?,
-        // time = ?`;
-        // let total_m = money * x;
-        // let f1 = (total_m / 100) * level0.f1;
-        // let f2 = (total_m / 100) * level0.f2;
-        // let f3 = (total_m / 100) * level0.f3;
-        // let f4 = (total_m / 100) * level0.f4;
-        // await connection.execute(sql2, [userInfo.phone, userInfo.code, userInfo.invite, f1, f2, f3, f4, timeNow]);
-        // console.log(level);
+        const [users] = await connection.query('SELECT `money`, `level`, `code`, `invite` FROM users WHERE phone = ? AND veri = 1  LIMIT 1 ', [auth]);
+        // await rosesPlus(auth, money * x);
+        console.log("this is user in wingo :" + users[0]);
+        // const user = users[0];
+        let currentInviteCode = userInfo.invite;
+        console.log("this is user invite code in wingo :" + currentInviteCode);
+        const getUserInfo = async (userId) => {
+            const [userInfo] = await connection.query('SELECT * FROM users WHERE code = ?', [userId]);
+            return userInfo[0];
+        };
+        let levelLenght = '';
+        const getLevels = async () => {
+            const [levels] = await connection.query('SELECT * FROM level WHERE status = 1');
+             levelLenght = levels.length;
+            console.log(levelLenght);
+            console.log(levels);
+            return levels;
+            
+        };
+
+        const levelsDetail = await getLevels();
+
+        const calculateBonus = (money, level) => {
+            const levelInfo = levelsDetail.find(l => l.level === level);
+            if (!levelInfo) {
+                throw new Error(`Level ${level} not found`);
+            }
+            const bonusPercentage = parseFloat(levelInfo.f2); 
+            const bonus = money * (bonusPercentage / 100);
+            return bonus;
+        };
+        const updateUserMoney = async (userId, bonus, level) => {
+            if (level === 1) {
+                await connection.query('UPDATE users SET money = money + ?, roses_f = roses_f + ?, roses_today = roses_today + ?, roses_f1 = roses_f1 + ? WHERE phone = ?', [bonus, bonus, bonus, bonus, userId]);
+            } else {
+                await connection.query('UPDATE users SET money = money + ?, roses_f = roses_f + ?, roses_today = roses_today + ?, team = team + ? WHERE phone = ?', [bonus, bonus, bonus, bonus, userId]);
+            }
+        };
+
+        await updateUserMoney(userInfo.phone, 0, parseInt(money));
+
+        for (let level = 1; level <= levelLenght; level++) {
+            console.log(levelLenght)
+            if (!currentInviteCode) break;
+
+            const nextUser = await getUserInfo(currentInviteCode);
+            if (!nextUser) break;
+
+            const levelBonus = calculateBonus(parseInt(money), level);
+
+            await updateUserMoney(nextUser.phone, levelBonus, level);
+
+            currentInviteCode = nextUser.invite;
+        }
+        
         return res.status(200).json({
             message: 'Successful bet',
             status: true,
