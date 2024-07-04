@@ -54,47 +54,55 @@ const timeCreate = () => {
     const time = d.getTime();
     return time;
 }
-// const otpVerify = async (req, res) =>{
 
-//     let { username} = req.body;
+// const accountSid = process.env.TWILIO_ACCOUNT_SID;
+// const authToken = process.env.TWILIO_AUTH_TOKEN;
+
+// const client = require('twilio')(accountSid, authToken);
+// const otpVerify = async (req, res) => {
+//     let { username } = req.body;
 //     let otp = randomNumber(100000, 999999);
-//     if (!username ) {
-//         return res.status(200).json({
-//             message: 'ERROR!!!',
+
+//     if (!username) {
+//         return res.status(400).json({
+//             message: 'ERROR: Username is required.',
 //             status: false
 //         });
 //     }
 
-//     if (username.length < 9 || username.length > 10 || !isNumber(username)) {
-//         return res.status(200).json({
-//             message: 'phone error',
+//     if (username.length !== 10 || !(/^\d+$/.test(username))) {
+//         return res.status(400).json({
+//             message: 'ERROR: Invalid phone number format.',
 //             status: false
 //         });
 //     }
-//     const option = {
-//         authorization: "gT1GIrhD4UNvpOQdBWAutKm38nfVPZqwxYkF6e79yElMjoSCbzz01dLDEKxYM28gt9a3XTkOB4ifeyHc",
-//         message: `your otp is : ` +  otp,
-//         numbers: `${username}`
-    
+//     if (!username.startsWith('+')) {
+//         username = `+91${username}`; // Assuming +91 is the country code for India
 //     }
-//     console.log(username, option)
-    
-    
-//     fast2sms.sendMessage(option).then((response)=>{
-//         console.log(response)
+//     console.log(username)
+//     try {
+//     client.messages
+//     .create({
+//       body: `Your OTP is: ${otp}`,
+//       messagingServiceSid: 'MUS1056754042dbfca01de04be7577ce1ac',
+//       to: username,
+//     })
+//     .then(message => console.log(message));
+
 //         return res.status(200).json({
-//             message: 'otp send successfully',
+//             message: 'OTP sent successfully.',
 //             status: true
 //         });
-//     }).catch((error) =>{
-//         console.log("in catch" + option)
-//         console.log(error)
-//         return res.status(200).json({
-//             message: 'something went wrong while sending otp',
+//     } catch (error) {
+//         console.error('Error sending OTP:', error);
+
+//         return res.status(500).json({
+//             message: 'Failed to send OTP. Please try again later.',
 //             status: false
 //         });
-//     })
-// }
+//     }
+// };
+
 
 
 // const otpVerify = async (req, res) =>{

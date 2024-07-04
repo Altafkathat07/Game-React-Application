@@ -234,7 +234,12 @@ const initWebRouter = (app) => {
     "/api/webapi/action/join",
     // middlewareController,
     wingoController.betWinGo
-  );
+  ); 
+  // router.post(
+  //   "/api/webapi/otp-send",
+  //   // middlewareController,
+  //   accountController.otpVerify
+  // );
 
   return app.use("/", router);
 };

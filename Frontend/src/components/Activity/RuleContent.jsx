@@ -60,14 +60,6 @@ function RuleContent() {
                         Contact customer service</div>
                 </div>
             </div>
-            {/* <div data-v-7692a079="" data-v-2973c506="" className="Loading c-row c-row-middle-center" style="display: none;">
-                <div data-v-7692a079="" className="van-loading van-loading--circular"><span data-v-7692a079=""
-                        className="van-loading__spinner van-loading__spinner--circular"
-                        style="color: rgb(242, 65, 59);"><svg data-v-7692a079="" viewBox="25 25 50 50"
-                            className="van-loading__circular">
-                            <circle data-v-7692a079="" cx="50" cy="50" r="20" fill="none"></circle>
-                        </svg></span></div>
-            </div> */}
         </div>
     </>
   )

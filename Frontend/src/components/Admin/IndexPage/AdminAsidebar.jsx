@@ -295,52 +295,7 @@ function AdminAsidebar() {
                                         <input type="text" className="form-control todo-list-input" placeholder="What do you need to do today?" />
                                         <button className="add btn btn-gradient-primary font-weight-bold todo-list-add-btn" id="add-task">Add</button>
                                     </div>
-                                    {/* <div className="list-wrapper">
-                                        <ul className="d-flex flex-column-reverse todo-list todo-list-custom">
-                                            <li>
-                                                <div className="form-check">
-                                                    <label className="form-check-label">
-                              <input className="checkbox" type="checkbox" /> Meeting with Alisa </label>
-                                                </div>
-                                                <i className="remove mdi mdi-close-circle-outline"></i>
-                                            </li>
-                                            <li className="completed">
-                                                <div className="form-check">
-                                                    <label className="form-check-label">
-                              <input className="checkbox" type="checkbox" checked /> Call John </label>
-                                                </div>
-                                                <i className="remove mdi mdi-close-circle-outline"></i>
-                                            </li>
-                                            <li>
-                                                <div className="form-check">
-                                                    <label className="form-check-label">
-                              <input className="checkbox" type="checkbox" /> Create invoice </label>
-                                                </div>
-                                                <i className="remove mdi mdi-close-circle-outline"></i>
-                                            </li>
-                                            <li>
-                                                <div className="form-check">
-                                                    <label className="form-check-label">
-                              <input className="checkbox" type="checkbox" /> Print Statements </label>
-                                                </div>
-                                                <i className="remove mdi mdi-close-circle-outline"></i>
-                                            </li>
-                                            <li className="completed">
-                                                <div className="form-check">
-                                                    <label className="form-check-label">
-                              <input className="checkbox" type="checkbox" checked /> Prepare for presentation </label>
-                                                </div>
-                                                <i className="remove mdi mdi-close-circle-outline"></i>
-                                            </li>
-                                            <li>
-                                                <div className="form-check">
-                                                    <label className="form-check-label">
-                              <input className="checkbox" type="checkbox" /> Pick up kids from school </label>
-                                                </div>
-                                                <i className="remove mdi mdi-close-circle-outline"></i>
-                                            </li>
-                                        </ul>
-                                    </div> */}
+                                    
                                 </div>
                             </div>
                         </div>

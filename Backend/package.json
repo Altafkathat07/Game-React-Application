@@ -32,6 +32,7 @@
     "nodemon": "2.0.12",
     "request": "^2.88.2",
     "socket.io": "^4.4.1",
+    "twilio": "^5.2.2",
     "unirest": "^0.6.0"
   }
 }
