@@ -17,7 +17,7 @@ function AdminAsidebar() {
         axios.get('/api/webapi/total_users')
             .then(response => {
                 const userInfo = response.data.data;
-                console.log("this is total user : " + JSON.stringify(userInfo));
+                // console.log("this is total user : " + JSON.stringify(userInfo));
                 setUser(userInfo);
             })
             .catch(error => console.log(error));

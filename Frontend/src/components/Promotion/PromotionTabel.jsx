@@ -13,7 +13,7 @@ function PromotionTabel() {
                 return res.json();
             })
             .then((data) => {
-                console.log('Fetched data:', data);
+                // console.log('Fetched data:', data);
                 if (data.status === true) {
                     const usersArray = Object.values(data.data);
                     setUsers(usersArray);

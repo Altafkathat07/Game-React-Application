@@ -15,7 +15,7 @@ function WithdrawalHistrory() {
     useEffect(() => {
         axios.get('/api/webapi/withdraw-list')
             .then(response => {
-                console.log("Recharge list response:", response.data);
+                // console.log("Recharge list response:", response.data);
                 if (Array.isArray(response.data.datas)) { 
                     setItems(response.data.datas);
                 } else {

@@ -10,53 +10,7 @@ import tag3 from "../../assets/images/place3.png"
 import crown3 from "../../assets/images/crown2.png"
 
 function DailyRanking() {
-    // const topThree = [
-    //     {
-    //       order: 2,
-    //       top: '-45px',
-    //       borderImg: '/assets/png/border1-3b6518ec.png',
-    //       avatarImg: '/assets/png/4-12a0d0c5.png',
-    //       crownImg: '/assets/png/crown1-3912fd85.png',
-    //       placeImg: '/assets/png/place1-fe39c3f3.png',
-    //       name: 'Mem***PYL',
-    //       earnings: '₹997,169,019.06'
-    //     },
-    //     {
-    //       order: 1,
-    //       top: '-30px',
-    //       borderImg: '/assets/png/border2-7a806be7.png',
-    //       avatarImg: '/assets/png/6-7c7f5203.png',
-    //       crownImg: '/assets/png/crown2-c8aced52.png',
-    //       placeImg: '/assets/png/place2-8189be28.png',
-    //       name: 'Mem***VHO',
-    //       earnings: '₹901,157,040.00'
-    //     },
-    //     {
-    //       order: 3,
-    //       top: '-30px',
-    //       borderImg: '/assets/png/border3-cfec4a7d.png',
-    //       avatarImg: '/assets/png/12-ae12c679.png',
-    //       crownImg: '/assets/png/crown3-2ca02146.png',
-    //       placeImg: '/assets/png/place3-d9b0be38.png',
-    //       name: 'Mem***KVG',
-    //       earnings: '₹590,286,732.00'
-    //     }
-    //   ];
-    
-    //   const list = [
-    //     {
-    //       rank: 4,
-    //       avatarImg: '/assets/png/12-ae12c679.png',
-    //       name: 'Mem***XWJ',
-    //       earnings: '₹334,958,316.00'
-    //     },
-    //     {
-    //       rank: 5,
-    //       avatarImg: '/assets/png/4-12a0d0c5.png',
-    //       name: 'Mem***ZQH',
-    //       earnings: '₹246,903,160.00'
-    //     }
-    //   ];
+
     return (
     <>
 

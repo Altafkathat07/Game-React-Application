@@ -14,12 +14,12 @@ function RechargeHistory() {
     useEffect(() => {
         axios.get('/api/webapi/recharge-list')
             .then(response => {
-                console.log("Recharge list response:", response.data);
-                if (Array.isArray(response.data.datas)) { // Ensure response.data.datas is an array
+                // console.log("Recharge list response:", response.data);
+                if (Array.isArray(response.data.datas)) { 
                     setItems(response.data.datas);
                 } else {
                     console.error("Unexpected data format:", response.data);
-                    setItems([]); // Default to empty array if data format is unexpected
+                    setItems([]);
                 }
             })
             .catch(error => console.log(error));

@@ -37,7 +37,7 @@ function ResetForm() {
             }
 
             const data = await response.json();
-            console.log('Reset password response:'+ data);
+            // console.log('Reset password response:'+ data);
 
             if (data.status === false) {
                 showAlert('Failed :'+ data.message);

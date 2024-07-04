@@ -29,18 +29,7 @@ function GameSection() {
 								<img data-v-432e6ed0="" width="120px" height="85px"
 									src={game2} className="img m-r-5" />
 							</div>
-							{/* <div data-v-432e6ed0="" className="userList">
-								<div data-v-39efd474="" data-v-432e6ed0="" className="gomeList">
-									<div data-v-39efd474="" className="list">
-										<div data-v-39efd474="" className="swpier van-swipe">
-											<div className="van-swipe__track van-swipe__track--vertical"
-												id="k5d">
-												
-											</div>
-										</div>
-									</div>
-								</div>
-							</div> */}
+							
 						</div>
 					</Link>
 					<Link to="/k3">		
@@ -51,18 +40,7 @@ function GameSection() {
 								<img data-v-432e6ed0="" width="120px" height="85px" src={game3}
 									className="img m-r-5" />
 							</div>
-							{/* <div data-v-432e6ed0="" className="userList">
-								<div data-v-39efd474="" data-v-432e6ed0="" className="gomeList">
-									<div data-v-39efd474="" className="list">
-										<div data-v-39efd474="" className="swpier van-swipe">
-											<div className="van-swipe__track van-swipe__track--vertical"
-												id="k3">
-												
-											</div>
-										</div>
-									</div>
-								</div>
-							</div> */}
+							
 						</div>
 					</Link>
 					<Link to="/trx">	
@@ -73,18 +51,7 @@ function GameSection() {
 								<img data-v-432e6ed0="" width="120px" height="85px" src={game4}
 									className="img m-r-5" />
 							</div>
-							{/* <div data-v-432e6ed0="" className="userList">
-								<div data-v-39efd474="" data-v-432e6ed0="" className="gomeList">
-									<div data-v-39efd474="" className="list">
-										<div data-v-39efd474="" className="swpier van-swipe">
-											<div className="van-swipe__track van-swipe__track--vertical"
-												id="k3">
-												
-											</div>
-										</div>
-									</div>
-								</div>
-							</div> */}
+							
 						</div>
 					</Link>	
 				</div>

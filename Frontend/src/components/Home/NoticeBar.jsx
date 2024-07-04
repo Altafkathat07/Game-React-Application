@@ -12,7 +12,6 @@ function NoticeBar() {
             return res.json();
           })
           .then((data) => {
-            // console.log("Data fetched:", data.data[0].notice);
             const result = data.data[0].notice ?? "🎉 WELCOME TO Century100 Club  INDIANS BIGGEST GAMING PLATFORM  🎉";
             setNotice(result);
           })
@@ -22,8 +21,8 @@ function NoticeBar() {
       }, []);
 
       const calculateDuration = (text) => {
-        const speed = 60; // pixels per second
-        const textLength = text.length * 10; // approximate width of text in pixels
+        const speed = 60; 
+        const textLength = text.length * 10; 
         return textLength / speed;
       };
       const duration = calculateDuration(notice);

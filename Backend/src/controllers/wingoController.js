@@ -252,8 +252,8 @@ const betWinGo = async (req, res) => {
         const getLevels = async () => {
             const [levels] = await connection.query('SELECT * FROM level WHERE status = 1');
              levelLenght = levels.length;
-            console.log(levelLenght);
-            console.log(levels);
+            // console.log(levelLenght);
+            // console.log(levels);
             return levels;
             
         };
@@ -280,7 +280,7 @@ const betWinGo = async (req, res) => {
         await updateUserMoney(userInfo.phone, 0, parseInt(money));
 
         for (let level = 1; level <= levelLenght; level++) {
-            console.log(levelLenght)
+            // console.log(levelLenght)
             if (!currentInviteCode) break;
 
             const nextUser = await getUserInfo(currentInviteCode);
@@ -481,10 +481,10 @@ const addWinGo = async (game) => {
             `);
                 return { name: column.name, total_money: result[0].total_money ? parseInt(result[0].total_money) : 0 };
             });
-            console.log("1 minute row :" + totalMoneyPromises);
+            // console.log("1 minute row :" + totalMoneyPromises);
             
             const categories = await Promise.all(totalMoneyPromises);
-            console.log("1 minute row category:" + categories);
+            // console.log("1 minute row category:" + categories);
             let smallestCategory = categories.reduce((smallest, category) =>
                 (smallest === null || category.total_money < smallest.total_money) ? category : smallest
                 , null);

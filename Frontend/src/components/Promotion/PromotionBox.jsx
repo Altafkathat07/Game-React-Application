@@ -12,7 +12,7 @@ function PromotionBox() {
         axios.post('/api/webapi/GetUserInfo')
             .then(response => {
                 const userInfo = response.data.data;
-                console.log("this is pro: " + JSON.stringify(userInfo));
+                // console.log("this is pro: " + JSON.stringify(userInfo));
                 setUser(userInfo);
             })
             .catch(error => console.log(error));
@@ -21,7 +21,7 @@ function PromotionBox() {
         axios.post('/api/webapi/total_ref')
             .then(response => {
                 const userInfo = response.data.data;
-                console.log("this is pro: " + JSON.stringify(userInfo));
+                // console.log("this is pro: " + JSON.stringify(userInfo));
                 setTotalRef(userInfo);
             })
             .catch(error => console.log(error));
