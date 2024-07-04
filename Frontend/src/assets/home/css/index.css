@@ -584,6 +584,7 @@ input[type="number"] {
     overflow-x: hidden;
     width: 100%;
   }
+
   body,
   html {
     position: relative;
@@ -600,6 +601,16 @@ input[type="number"] {
   .navbar,
   .van-tabbar {
     width: 15rem !important;
+  }
+  .sidebar-hidden {
+    left: -260px !important; /* Adjust this value to hide the sidebar */
+    transition: right 0.3s ease !important;
+  }
+  
+  /* Sidebar visible */
+  .sidebar-hidden {
+    right: -260px; /* Adjust based on your sidebar width */
+    transition: right 0.3s ease;
   }
   /* .home-tab[data-v-432e6ed0] .van-tabs__wrap .img {
     width: 1.5rem !important;
@@ -10678,3 +10689,4 @@ color: var(--color-white);
   height: 100%;
   border-radius: 50%;
 }
+

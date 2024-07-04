@@ -177,7 +177,7 @@ function AdminNav() {
                     </li> */}
                 </ul>
                 <button className="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
-            <span className="mdi mdi-menu"></span>
+            <span className="bi bi-list"></span>
 
           </button>
             </div>
