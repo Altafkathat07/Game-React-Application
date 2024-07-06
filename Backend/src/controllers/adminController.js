@@ -1120,22 +1120,22 @@ const upload = multer({ storage: storage }).array('banners');
 
 const uploadBanner = async (req, res) => {
     
-    upload(req, res, async function (err) {
-        if (err instanceof multer.MulterError) {
-            // A multer error occurred
-            console.error('Multer error:', err);
-            return res.status(500).json({
-                message: 'Failed to upload files. Please try again later.',
-                status: false,
-            });
-        } else if (err) {
-            // An unknown error occurred
-            console.error('Unknown error:', err);
-            return res.status(500).json({
-                message: 'Failed to upload files. Please try again later.',
-                status: false,
-            });
-        }
+    // upload(req, res, async function (err) {
+        // if (err instanceof multer.MulterError) {
+        //     // A multer error occurred
+        //     console.error('Multer error:', err);
+        //     return res.status(500).json({
+        //         message: 'Failed to upload files. Please try again later.',
+        //         status: false,
+        //     });
+        // } else if (err) {
+        //     // An unknown error occurred
+        //     console.error('Unknown error:', err);
+        //     return res.status(500).json({
+        //         message: 'Failed to upload files. Please try again later.',
+        //         status: false,
+        //     });
+        // }
 
     try {
         const files = req.files;
@@ -1187,7 +1187,7 @@ const uploadBanner = async (req, res) => {
             status: false,
         });
     }
-}) 
+// }) 
 };
 // const uploadBanner = async (req, res) => {
 //     try {

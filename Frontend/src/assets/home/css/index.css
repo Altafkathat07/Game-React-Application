@@ -681,6 +681,9 @@ input[type="number"] {
   .van-tabbar .van-tabbar-item {
     font-size: 0.25rem !important;
   }
+  .selectBox .pay-box[data-v-67caa467]{
+    padding-bottom: 30px !important;
+  }
 }
 @media screen and (max-width: 415px) {
   html {
@@ -1517,7 +1520,7 @@ img[data-v-7b9b9922] {
   background-size: cover;
 }
 .navbar-title[data-v-106b99c8] {
-  font-size: 2rem;
+  font-size: 1.2rem;
   flex: 1;
   text-align: center;
 }

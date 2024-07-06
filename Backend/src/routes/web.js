@@ -143,7 +143,7 @@ const initWebRouter = (app) => {
   );
   router.post(
     "/api/webapi/admin/upload-banner",
-    middlewareController,
+    // middlewareController,
     adminController.uploadBanner
   );
   router.post(

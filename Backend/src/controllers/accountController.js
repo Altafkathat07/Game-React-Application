@@ -2,10 +2,10 @@ import connection from "../config/connectDB";
 import jwt from 'jsonwebtoken'
 import md5 from "md5";
 import request from 'request';
-import e, { response } from "express";
-import fast2sms from  "fast-two-sms";
-import axios from "axios";
-import multer from "multer";
+// import e, { response } from "express";
+// import fast2sms from  "fast-two-sms";
+// import axios from "axios";
+// import multer from "multer";
 
 
 
@@ -259,9 +259,7 @@ const login = async(req, res) => {
                 await connection.execute('UPDATE `users` SET `token` = ? WHERE `phone` = ? ', [md5(accessToken), username]);
                 
                  res.cookie('authToken', accessToken, { httpOnly: true, secure: false }); 
-                //  console.log(accessToken);
-
-                // res.redirect("http://localhost:5173/")
+          
                 return res.status(200).json({
                     message: 'success : Login Success',
                     status: true,

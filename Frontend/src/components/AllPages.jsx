@@ -42,13 +42,14 @@ import GiftCodeMain from "./Admin/CreateGiftCode/GiftCodeMain";
 import RechargeHistory from "./Recharge/RechargeHistory";
 import WithdrawalHistrory from "./Wallet/WithdrawalHistrory";
 import LevelSettingMain from './Admin/LevelSetting/LevelSettingMain';
+import logo from "../assets/images/AmericanTable001.png"
 
 function AllPages() {
   const { isAuthenticated, loadingUserInfo } = useContext(AuthContext);
   // console.log(isAuthenticated);
 
   if (loadingUserInfo) {
-    return <p>Loading user info...</p>;
+    return <img src={logo} alt="logo" style={{width: "40%", height: "100vh", position: "relative", top: "0", left: "30%"}}/>;
   }
 
   const isAuth = isAuthenticated ?? false;

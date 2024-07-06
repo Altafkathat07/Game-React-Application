@@ -11,7 +11,7 @@ function Header() {
 	const { isAuthenticated, loadingUserInfo } = useContext(AuthContext);
     // console.log(isAuthenticated);
     if (loadingUserInfo) {
-        return <p>Loading user info...</p>;
+        return <img src={logo} alt="logo" />;
     }
     const isAuth = isAuthenticated ?? false;
 	const capitalizeFirstLetter = (str) => {

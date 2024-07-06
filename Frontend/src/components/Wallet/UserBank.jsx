@@ -63,7 +63,7 @@ function UserBank() {
       };
   return (
     <>
- <div data-v-8cd483ca="" className="home mian game" style={{background:"#fca552"}}>
+ <div data-v-8cd483ca="" className="home mian game" style={{background:"rgb(55 73 146)"}}>
             <div data-v-8cd483ca="" className="menu-box">
               <Header />
               <form onSubmit={handleSubmit}>
